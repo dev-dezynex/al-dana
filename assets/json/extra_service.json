@@ -1,0 +1,174 @@
+{
+    "status": "success",
+    "message": "",
+    "data": [
+        {
+            "id": "1",
+            "title": "AC Gas Filling",
+            "sub_title": "In publishing and graphic design of car wash",
+            "desc": "In publishing and graphic design of car wash",
+            "image": "assets/images/img_vehicle_2.png",
+            "bg_card_color": "#FF3868",
+            "station": [
+                "12eoriu545f7g87gfg",
+                "12eoriu545f7g87gff",
+                "12eoriu545f7g87gfr"
+            ],
+            "price": 183.23,
+            "work": [
+                "washing",
+                "soaping",
+                "washing after soaping",
+                "draining"
+            ]
+        },
+        {
+            "id": "2",
+            "title": "Batery Charging",
+            "sub_title": "In publishing and graphic design of car wash",
+            "desc": "In publishing and graphic design of car wash",
+            "image": "assets/images/img_vehicle_3.png",
+            "bg_card_color": "#FFC643",
+            "station": [
+                "12eoriu545f7g87gfg",
+                "12eoriu545f7g87gff",
+                "12eoriu545f7g87gfr"
+            ],
+            "price": 183.23,
+            "work": [
+                "washing",
+                "soaping",
+                "washing after soaping",
+                "draining"
+            ],
+            "spare_category": {
+                "id": "1",
+                "name": "Battery",
+                "spare": [
+                    {
+                        "id": "1",
+                        "category_id": "1",
+                        "name": "Exide Matrix",
+                        "price": 97.4,
+                        "image": "string"
+                    },
+                    {
+                        "id": "2",
+                        "category_id": "1",
+                        "name": "Optima RedTop",
+                        "price": 105.4,
+                        "image": "string"
+                    },
+                    {
+                        "id": "3",
+                        "category_id": "1",
+                        "name": "DieHard Platinum AGM",
+                        "price": 110.4,
+                        "image": "string"
+                    },
+                    {
+                        "id": "4",
+                        "category_id": "1",
+                        "name": "ACDelco Gold",
+                        "price": 120.4,
+                        "image": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "3",
+            "title": "Oil Chang",
+            "sub_title": "In publishing and graphic design of car wash",
+            "desc": "In publishing and graphic design of car wash",
+            "image": "assets/images/img_vehicle_4.png",
+            "bg_card_color": "#06D39E",
+            "station": [
+                "12eoriu545f7g87gfg",
+                "12eoriu545f7g87gff",
+                "12eoriu545f7g87gfr"
+            ],
+            "price": 183.23,
+            "work": [
+                "washing",
+                "soaping",
+                "washing after soaping",
+                "draining"
+            ],
+            "spare_category": {
+                "id": "2",
+                "name": "Oil",
+                "spare": [
+                    {
+                        "id": "1",
+                        "category_id": "2",
+                        "name": "Castrol GTX",
+                        "price": 97.4,
+                        "image": "string"
+                    },
+                    {
+                        "id": "2",
+                        "category_id": "2",
+                        "name": "Pennzoil Ultra Platinum",
+                        "price": 94.4,
+                        "image": "string"
+                    },
+                    {
+                        "id": "3",
+                        "category_id": "2",
+                        "name": "Amsoil Signature",
+                        "price": 90.4,
+                        "image": "string"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "4",
+            "title": "Tyre Change",
+            "sub_title": "In publishing and graphic design of car wash",
+            "desc": "In publishing and graphic design of car wash",
+            "image": "assets/images/img_vehicle_5.png",
+            "bg_card_color": "#118AB2",
+            "station": [
+                "12eoriu545f7g87gfg",
+                "12eoriu545f7g87gff",
+                "12eoriu545f7g87gfr"
+            ],
+            "price": 183.23,
+            "work": [
+                "washing",
+                "soaping",
+                "washing after soaping",
+                "draining"
+            ],
+            "spare_category": {
+                "id": "3",
+                "name": "Tyre",
+                "spare": [
+                    {
+                        "id": "1",
+                        "category_id": "3",
+                        "name": "MRF",
+                        "price": 197.4,
+                        "image": "string"
+                    },
+                    {
+                        "id": "2",
+                        "category_id": "3",
+                        "name": "Apollo Tyres",
+                        "price": 194.4,
+                        "image": "string"
+                    },
+                    {
+                        "id": "3",
+                        "category_id": "3",
+                        "name": "JK Tyre",
+                        "price": 190.4,
+                        "image": "string"
+                    }
+                ]
+            }
+        }
+    ]
+}
