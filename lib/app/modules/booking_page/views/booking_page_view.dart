@@ -1,7 +1,9 @@
+import 'package:al_dana/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 
+import '../../../data/data.dart';
 import '../controllers/booking_page_controller.dart';
 
 class BookingPageView extends GetView<BookingPageController> {
@@ -9,14 +11,51 @@ class BookingPageView extends GetView<BookingPageController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: bgColor1,
       appBar: AppBar(
-        title: const Text('BookingPageView'),
+        backgroundColor: Colors.transparent,
         centerTitle: true,
+        leading: const GoBack(),
+        title: Text(
+          'My Booking',
+          style:
+              tsPoppins(size: 18, weight: FontWeight.w600, color: textDark80),
+        ),
       ),
-      body: Center(
-        child: Text(
-          'BookingPageView is working',
-          style: TextStyle(fontSize: 20),
+      body: SafeArea(
+        child: CustomScrollView(
+          slivers: [
+            SliverToBoxAdapter(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Obx(
+                    () => ListView.builder(
+                        shrinkWrap: true,
+                        scrollDirection: Axis.vertical,
+                        physics: const NeverScrollableScrollPhysics(),
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 10, vertical: 2),
+                        itemCount:
+                            controller.bookingResult.value.bookingList!.length,
+                        itemBuilder: (con, i) {
+                          return BookingTile(
+                            onTap: () {
+                              Get.toNamed(Routes.TRACK_PAGE,
+                                  arguments: controller
+                                      .bookingResult.value.bookingList![i]);
+                            },
+                            booking:
+                                controller.bookingResult.value.bookingList![i],
+                          );
+                        }),
+                  ),
+                  SizedBox(height: Get.height * .2),
+                ],
+              ),
+            ),
+          ],
         ),
       ),
     );

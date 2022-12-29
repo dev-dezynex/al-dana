@@ -336,7 +336,7 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                                 size: 14,
                                                 color: textDark80)),
                                         Text(
-                                            'AED: ${controller.booking.value.packageList![i].price}',
+                                            'AED: ${controller.booking.value.packageList![i].price!.toStringAsFixed(2)}',
                                             style: tsPoppins(
                                                 size: 14, color: textDark80)),
                                       ],
@@ -367,7 +367,7 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                                 size: 14,
                                                 color: textDark80)),
                                         Text(
-                                            'AED: ${controller.booking.value.services![i].price}',
+                                            'AED: ${controller.booking.value.services![i].price.toStringAsFixed(2)}',
                                             style: tsPoppins(
                                                 size: 14, color: textDark80)),
                                       ],
@@ -387,7 +387,7 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                         weight: FontWeight.w600,
                                         size: 14,
                                         color: textDark80)),
-                                Text('AED: ${controller.booking.value.price}',
+                                Text('AED: ${controller.booking.value.price.toStringAsFixed(2)}',
                                     style: tsPoppins(
                                         weight: FontWeight.w600,
                                         size: 14,

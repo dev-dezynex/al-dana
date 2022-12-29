@@ -22,6 +22,7 @@ abstract class Routes {
   static const PAYMENT_PAGE = _Paths.PAYMENT_PAGE;
   static const BOOKING_PAGE = _Paths.BOOKING_PAGE;
   static const ADD_BOOKING = _Paths.ADD_BOOKING;
+  static const TRACK_PAGE = _Paths.TRACK_PAGE;
 }
 
 abstract class _Paths {
@@ -45,4 +46,5 @@ abstract class _Paths {
   static const PAYMENT_PAGE = '/payment-page';
   static const BOOKING_PAGE = '/booking-page';
   static const ADD_BOOKING = '/add-booking';
+  static const TRACK_PAGE = '/track-page';
 }

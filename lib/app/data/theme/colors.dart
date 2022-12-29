@@ -32,6 +32,10 @@ const Color bgColor25 = Color(0xff222222);
 const Color bgColor26 = Color(0xffDADADA);
 const Color bgColor27 = Color(0xff003A85);
 const Color bgColor28 = Color(0xff018336);
+const Color bgColor29 = Color(0xffFF3868);
+const Color bgColor30 = Color(0xff06D39E);
+const Color bgColor31 = Color(0xff118AB2);
+const Color bgColor32 = Color(0xff00BDFE);
 
 const Color borderColor = Color(0xff909090);
 

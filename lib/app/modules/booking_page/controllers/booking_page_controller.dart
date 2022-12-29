@@ -1,12 +1,13 @@
+import 'package:al_dana/app/data/data.dart';
 import 'package:get/get.dart';
 
 class BookingPageController extends GetxController {
-  //TODO: Implement BookingPageController
-
-  final count = 0.obs;
+  var bookingResult = BookingResult().obs;
+  var isLoading = false.obs;
   @override
   void onInit() {
     super.onInit();
+    getDetails();
   }
 
   @override
@@ -19,5 +20,12 @@ class BookingPageController extends GetxController {
     super.onClose();
   }
 
-  void increment() => count.value++;
+  getDetails() {
+    getBookingHistory();
+  }
+
+  getBookingHistory() async {
+    bookingResult.value = await BookingProvider().getBookingHistory();
+    bookingResult.refresh();
+  }
 }
