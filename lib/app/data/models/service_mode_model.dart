@@ -1,17 +1,17 @@
 class ServiceModeResult {
   String? status;
   String? message;
-  List<ServiceMode>? data;
+  List<ServiceMode>? serviceModeList;
 
-  ServiceModeResult({this.status, this.message, this.data});
+  ServiceModeResult({this.status, this.message, this.serviceModeList});
 
   ServiceModeResult.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
     if (json['data'] != null) {
-      data = <ServiceMode>[];
+      serviceModeList = <ServiceMode>[];
       json['data'].forEach((v) {
-        data?.add(ServiceMode.fromJson(v));
+        serviceModeList?.add(ServiceMode.fromJson(v));
       });
     }
   }
@@ -20,7 +20,7 @@ class ServiceModeResult {
     final data = <String, dynamic>{};
     data['status'] = status;
     data['message'] = message;
-    data['data'] = this.data?.map((v) => v.toJson()).toList();
+    data['data'] = serviceModeList?.map((v) => v.toJson()).toList();
     return data;
   }
 }

@@ -120,6 +120,25 @@
                         "washing after soaping",
                         "draining"
                     ]
+                },
+                {
+                    "id": "2",
+                    "title": "Oil Change",
+                    "sub_title": "In publishing and graphic design of car wash",
+                    "desc": "In publishing and graphic design of car wash",
+                    "image": "assets/images/img_service_4.png",
+                    "bg_card_color": "#FF3868",
+                    "station": [
+                        "12eoriu545f7g87gfg",
+                        "12eoriu545f7g87gff",
+                        "12eoriu545f7g87gfr"
+                    ],
+                    "price": 183.23,
+                    "work": [
+                        "clearing old oil",
+                        "Cleaning container",
+                        "Filling New Oil"
+                    ]
                 }
             ],
             "spares": [

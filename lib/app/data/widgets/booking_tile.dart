@@ -19,7 +19,7 @@ class BookingTile extends StatelessWidget {
       onTap: onTap,
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        color: bgColor32,
+        color: white,
         child: Stack(
           children: [
             Padding(
@@ -29,10 +29,18 @@ class BookingTile extends StatelessWidget {
                 children: [
                   const SizedBox(height: 5),
                   Text(
-                    booking.packageList![0].title!,
+                    '${booking.id}',
                     style: tsPoppins(
                       weight: FontWeight.w600,
                       color: white,
+                      size: 18,
+                    ),
+                  ),
+                  Text(
+                    booking.packageList![0].title!,
+                    style: tsPoppins(
+                      weight: FontWeight.w600,
+                      color: textDark80,
                       size: 18,
                     ),
                   ),
@@ -46,7 +54,7 @@ class BookingTile extends StatelessWidget {
                   Text(
                     'Service Includes',
                     style: tsPoppins(
-                      color: bgColor25,
+                      color: bgColor27,
                       size: 14,
                     ),
                   ),
@@ -60,12 +68,12 @@ class BookingTile extends StatelessWidget {
                           children: [
                             const Icon(
                               Icons.arrow_right_rounded,
-                              color: white,
+                              color: textDark80,
                             ),
                             Text(
                               booking.packageList![0].services![i].title,
                               style: tsPoppins(
-                                  color: white, weight: FontWeight.w400),
+                                  color: textDark80, weight: FontWeight.w400),
                             )
                           ],
                         );
@@ -74,7 +82,7 @@ class BookingTile extends StatelessWidget {
                   Text(
                     'Add-Once',
                     style: tsPoppins(
-                      color: bgColor25,
+                      color: bgColor27,
                       size: 14,
                     ),
                   ),
@@ -87,12 +95,12 @@ class BookingTile extends StatelessWidget {
                           children: [
                             const Icon(
                               Icons.arrow_right_rounded,
-                              color: white,
+                              color: textDark80,
                             ),
                             Text(
                               booking.services![i].title,
                               style: tsPoppins(
-                                  color: white, weight: FontWeight.w400),
+                                  color: textDark80, weight: FontWeight.w400),
                             )
                           ],
                         );
@@ -110,8 +118,8 @@ class BookingTile extends StatelessWidget {
                     Text(
                         '${outputDateFormat2.format(outputDateFormat.parse(booking.date!))},\n ${booking.slot}',
                         textAlign: TextAlign.right,
-                        style:
-                            tsPoppins(color: white, weight: FontWeight.w400)),
+                        style: tsPoppins(
+                            color: textDark80, weight: FontWeight.w400)),
                     Text('AED ${booking.price.toStringAsFixed(2)}',
                         textAlign: TextAlign.center,
                         style: tsRubik(color: bgColor27, size: 14)),
@@ -157,6 +165,139 @@ class BookingTile extends StatelessWidget {
           ],
         ),
       ),
+    );
+  }
+}
+
+class BookingTile2 extends StatelessWidget {
+  const BookingTile2({
+    Key? key,
+    required this.booking,
+    this.onTap,
+    this.onChanged,
+  }) : super(key: key);
+  final Booking booking;
+  final GestureTapCallback? onTap;
+  final void Function(bool?)? onChanged;
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: onTap,
+      child: Card(
+          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+          color: white,
+          child: Column(
+            children: [
+              Row(
+                children: [
+                  Container(
+                    constraints: BoxConstraints(
+                        maxWidth: Get.width * .3, maxHeight: 100),
+                    padding: EdgeInsets.all(10),
+                    child: Image.network(
+                      booking.packageList![0].image!,
+                      fit: BoxFit.contain,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Image.asset(
+                          booking.packageList![0].image!,
+                          fit: BoxFit.contain,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Image.asset(
+                              'assets/images/img_placeholder.png',
+                              fit: BoxFit.contain,
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                '${booking.id}',
+                                style: tsPoppins(
+                                    weight: FontWeight.w600,
+                                    size: 16,
+                                    color: textDark80),
+                              ),
+                              Text(
+                                'Time Slot',
+                                textAlign: TextAlign.end,
+                                style: tsPoppins(
+                                    weight: FontWeight.w400, color: textDark40),
+                              ),
+                            ],
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(
+                                'Booking ID',
+                                style: tsPoppins(color: textDark40),
+                              ),
+                              Text(
+                                '${outputDateFormat2.format(outputDateFormat.parse(booking.date!))},\n ${booking.slot}',
+                                textAlign: TextAlign.end,
+                                style: tsPoppins(color: textDark80),
+                              ),
+                            ],
+                          ),
+                          Text(
+                            'Address',
+                            style: tsPoppins(
+                                weight: FontWeight.w400, color: textDark40),
+                          ),
+                          Text(
+                            'Downtown Dubai - Dubai - United Arab Gold Palace, UAE, Baniyas Road Dubai,',
+                            style: tsPoppins(
+                                weight: FontWeight.w400,
+                                color: textDark40,
+                                size: 10),
+                          ),
+                        ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(primary: bgColor29),
+                      child: Text(
+                        '   Cancel   ',
+                        style: tsPoppins(weight: FontWeight.w600, color: white),
+                      )),
+                  ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(primary: bgColor37),
+                      child: Text(
+                        '  Reassign  ',
+                        style: tsPoppins(weight: FontWeight.w600, color: white),
+                      )),
+                  ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(primary: bgColor38),
+                      child: Text(
+                        '   Accept   ',
+                        style: tsPoppins(weight: FontWeight.w600, color: white),
+                      )),
+                ],
+              ),
+              SizedBox(
+                height: 10,
+              )
+            ],
+          )),
     );
   }
 }

@@ -3,17 +3,19 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class ServiceTile extends StatelessWidget {
-  const ServiceTile(
-      {Key? key,
-      required this.service,
-      required this.isSelected,
-       this.onChanged,
-       this.onTap})
-      : super(key: key);
+  const ServiceTile({
+    Key? key,
+    required this.service,
+    this.isSelected = false,
+    this.isManage = false,
+    this.onChanged,
+    this.onTap,
+    this.onEdit,
+  }) : super(key: key);
   final Service service;
-  final bool isSelected;
+  final bool isSelected, isManage;
   final void Function(bool?)? onChanged;
-  final void Function()? onTap;
+  final void Function()? onTap, onEdit;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -24,15 +26,17 @@ class ServiceTile extends StatelessWidget {
         child: Stack(
           children: [
             Container(
+              alignment: Alignment.center,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                    height: Get.width * .25,
-                    width: Get.width * .35,
+                    constraints: BoxConstraints(
+                        maxHeight: Get.width * .25, maxWidth: Get.width * .35),
                     padding:
                         const EdgeInsets.only(top: 18.0, left: 5, right: 5),
+                    alignment: Alignment.center,
                     child: Image.network(
                       service.image,
                       fit: BoxFit.cover,
@@ -65,15 +69,30 @@ class ServiceTile extends StatelessWidget {
                 ],
               ),
             ),
-            Positioned(
+            if (!isManage)
+              Positioned(
+                  top: 0,
+                  right: 0,
+                  child: Radio(
+                    fillColor:
+                        MaterialStateColor.resolveWith((states) => white),
+                    value: isSelected,
+                    groupValue: true,
+                    onChanged: onChanged,
+                  )),
+            if (isManage)
+              Positioned(
                 top: 0,
                 right: 0,
-                child: Radio(
-                  fillColor: MaterialStateColor.resolveWith((states) => white),
-                  value: isSelected,
-                  groupValue: true,
-                  onChanged: onChanged,
-                ))
+                child: IconButton(
+                  onPressed: onEdit,
+                  icon: const Icon(
+                    Icons.edit,
+                    color: white,
+                    size: 15,
+                  ),
+                ),
+              )
           ],
         ),
       ),

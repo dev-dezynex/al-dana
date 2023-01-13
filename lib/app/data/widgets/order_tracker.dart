@@ -1,3 +1,4 @@
+import 'package:al_dana/app/data/data.dart';
 import 'package:flutter/material.dart';
 
 class OrderTracker extends StatefulWidget {
@@ -172,11 +173,19 @@ class _OrderTrackerState extends State<OrderTracker>
             Row(
               children: [
                 Container(
-                  height: 15,
-                  width: 15,
+                  height: 30,
+                  width: 30,
+                  alignment: Alignment.center,
                   decoration: BoxDecoration(
-                      color: widget.activeColor ?? Colors.green,
+                      color: bgColor33,
                       borderRadius: BorderRadius.circular(50)),
+                  child: Container(
+                    height: 15,
+                    width: 15,
+                    decoration: BoxDecoration(
+                        color: widget.activeColor ?? Colors.red,
+                        borderRadius: BorderRadius.circular(15)),
+                  ),
                 ),
                 const SizedBox(
                   width: 20,
@@ -202,7 +211,7 @@ class _OrderTrackerState extends State<OrderTracker>
             Row(
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(left: 6),
+                  padding: const EdgeInsets.only(left: 14),
                   child: SizedBox(
                     width: 2,
                     height: widget.orderTitleAndDateList != null &&

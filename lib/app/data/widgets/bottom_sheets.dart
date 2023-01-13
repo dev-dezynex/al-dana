@@ -295,9 +295,11 @@ yearSelectionBottomSheet(
 modeSelectionBottomSheet({
   required BuildContext context,
   required RxList<ServiceMode> modeList,
-  required Rx<ServiceMode> selectedMode,
+   Rx<ServiceMode>? selectedMode,
+  RxList<ServiceMode>? selectedModeList ,
   required Function(ServiceMode) onModeSelected,
   required VoidCallback? onSubmit,
+  bool isMultiSelect = false
 }) {
   return showModalBottomSheet(
       backgroundColor: Colors.transparent,
@@ -399,7 +401,7 @@ modeSelectionBottomSheet({
                                         ),
                                         child: Obx(
                                           () => Radio(
-                                              value: selectedMode.value ==
+                                              value:isMultiSelect? selectedModeList!.contains(modeList[i]): selectedMode!.value ==
                                                   modeList[i],
                                               groupValue: true,
                                               activeColor: white,

@@ -1,3 +1,4 @@
+import 'package:al_dana/app/modules/home/views/admin_home.dart';
 import 'package:al_dana/app/modules/home/views/category_view.dart';
 import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
@@ -9,6 +10,7 @@ import 'package:get/get.dart';
 import '../../../data/data.dart';
 import '../../../routes/app_pages.dart';
 import '../controllers/home_controller.dart';
+import 'profile_view.dart';
 
 class HomeView extends GetView<HomeController> {
   HomeView({Key? key}) : super(key: key);
@@ -129,6 +131,30 @@ class HomeView extends GetView<HomeController> {
             },
           ),
           NavItem(
+            title: "Manage Category",
+            icon: "assets/icons/ic_nav_4.svg",
+            onTap: () {
+              Get.back();
+              Get.toNamed(Routes.CATEGORY_LIST);
+            },
+          ),
+          NavItem(
+            title: "Manage Service",
+            icon: "assets/icons/ic_nav_4.svg",
+            onTap: () {
+              Get.back();
+              Get.toNamed(Routes.SERVICE_LIST);
+            },
+          ),
+          NavItem(
+            title: "Manage Package",
+            icon: "assets/icons/ic_nav_4.svg",
+            onTap: () {
+              Get.back();
+              Get.toNamed(Routes.PACKAGE_LIST);
+            },
+          ),
+          NavItem(
             title: "Payment",
             icon: "assets/icons/ic_nav_5.svg",
             onTap: () {
@@ -175,13 +201,10 @@ class HomeView extends GetView<HomeController> {
       floatingActionButton: FloatingActionButton(
           heroTag: 'BOTTOMBAR_INDEX',
           onPressed: () {
-            Get.toNamed(Routes.ADD_VEHICLE);
+            controller.bottomBarIndex.value = 1;
           },
           backgroundColor: primary,
-          child: Icon(
-            Icons.add,
-            color: white,
-          )),
+          child: SvgPicture.asset('assets/icons/ic_home.svg')),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       // bottomNavigationBar: Obx(
       //   () => BottomNavigationBar(
@@ -233,6 +256,7 @@ class HomeView extends GetView<HomeController> {
       //     },
       //   ),
       // ),
+
       bottomNavigationBar: BottomAppBar(
           shape: const CircularNotchedRectangle(),
           child: Padding(
@@ -253,13 +277,13 @@ class HomeView extends GetView<HomeController> {
                 Padding(
                   padding: const EdgeInsets.only(top: 20.0),
                   child: Text(
-                    'Add Car',
+                    'Home',
                     style: tsPoppins(color: primary),
                   ),
                 ),
                 IconButton(
                     onPressed: () {
-                      Get.toNamed(Routes.PROFILE);
+                      controller.bottomBarIndex.value = 2;
                     },
                     icon: SvgPicture.asset(
                       'assets/icons/ic_bottom_bar_5.svg',
@@ -275,7 +299,7 @@ class HomeView extends GetView<HomeController> {
   final List<Widget> _children = [
     Container(),
     const CategoryView(),
-    Container(),
+    ProfileView(),
   ];
 
   final iconList = <IconData>[

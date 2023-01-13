@@ -1,11 +1,15 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:location/location.dart';
 
 import '../../../data/data.dart';
 import '../../../routes/app_pages.dart';
 
 class HomeController extends GetxController {
+  var common = Common();
   var bottomBarIndex = 1.obs;
   var bannerIndex = 0.obs;
   var categoryResult = CategoryResult().obs;
@@ -15,6 +19,18 @@ class HomeController extends GetxController {
   var selectedMode = ServiceMode().obs;
   var vehicleList = <Vehicle>[].obs;
   var selectedVehicle = Vehicle().obs;
+  //for admin home
+  var bookingResult = BookingResult().obs;
+  var adminTabIndex = 0.obs;
+
+  //for profile 
+    var file = File('').obs;
+  var currentUser = Common().currentUser.obs;
+  TextEditingController nameController = TextEditingController(text: 'Harps Joseph');
+  TextEditingController phoneController = TextEditingController(text: '+974 453875636');
+  TextEditingController emailController = TextEditingController(text: 'harpsjoseph@gmail.com');
+  TextEditingController addressController = TextEditingController(text: 'Gold Palace, UAE, Baniyas Road Dubai,');
+  var isLoading = false.obs;
   @override
   void onInit() {
     super.onInit();
@@ -30,6 +46,9 @@ class HomeController extends GetxController {
   void onClose() {}
 
   getDetails() {
+    // if (common.currentUser.scope == 'admin') {
+      getBookings();
+    // }
     getService();
     getVehicles();
   }
@@ -117,4 +136,23 @@ class HomeController extends GetxController {
       barrierDismissible: false,
     );
   }
+
+  void getBookings() async {
+    bookingResult.value = await BookingProvider().getBookingHistory();
+    bookingResult.refresh();
+  }
+
+
+
+  //for profile
+
+    pickImage(ImageSource sourse) async {
+    var image = (await FileProvider().pickImage(imageSource: sourse))!;
+
+    print('file picked ${file.value.path.split('/').last}');
+
+    file.value = (await FileProvider().cropImage(image))!;
+  }
+
+  void updateProfile() {}
 }

@@ -136,11 +136,13 @@ class CategoryView extends GetView<HomeController> {
                               padding:
                                   const EdgeInsets.only(right: 10.0, left: 18),
                               child: ElevatedButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  Get.toNamed(Routes.ADD_VEHICLE);
+                                },
                                 style: ElevatedButton.styleFrom(
                                     primary: bgColor24),
                                 child: Text(
-                                  'Book Now',
+                                  'Add Vehicle',
                                   style: tsPoppins(color: white),
                                 ),
                               ),
@@ -208,10 +210,11 @@ class CategoryView extends GetView<HomeController> {
                                   controller.chooseVehicle(context);
                                 }
                               },
-                              service: controller
+                              category: controller
                                   .categoryResult.value.categoryList[i]);
                         }),
                   ),
+                
                 ],
               ),
             ),

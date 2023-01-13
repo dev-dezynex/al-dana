@@ -4,10 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class CategoryTile extends StatelessWidget {
-  const CategoryTile({Key? key, required this.service, this.onTap, this.onEdit})
+  const CategoryTile(
+      {Key? key, required this.category, this.onTap, this.onEdit,this.isManage=false})
       : super(key: key);
-  final Category service;
+  final Category category;
   final GestureTapCallback? onTap, onEdit;
+  final bool isManage;
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -15,7 +17,7 @@ class CategoryTile extends StatelessWidget {
         child: Card(
           elevation: 5,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          color: hexToColor(service.bgCardColor),
+          color: hexToColor(category.bgCardColor),
           child: Stack(
             children: [
               Column(
@@ -29,10 +31,10 @@ class CategoryTile extends StatelessWidget {
                       padding:
                           const EdgeInsets.only(top: 8.0, left: 5, right: 5),
                       child: Image.network(
-                        service.image,
+                        category.image,
                         errorBuilder: (context, error, stackTrace) {
                           return Image.asset(
-                            service.image,
+                            category.image,
                             errorBuilder: (context, error, stackTrace) {
                               return Image.asset(
                                 'assets/images/img_placeholder.png',
@@ -52,12 +54,12 @@ class CategoryTile extends StatelessWidget {
                         children: [
                           const SizedBox(height: 5),
                           Text(
-                            service.title,
+                            category.title,
                             style: tsPoppins(
                                 weight: FontWeight.w600, color: white),
                           ),
                           Text(
-                            service.desc,
+                            category.desc,
                             style: tsPoppins(
                                 size: 11,
                                 weight: FontWeight.w400,
@@ -77,7 +79,7 @@ class CategoryTile extends StatelessWidget {
                   ),
                 ],
               ),
-              if (false)
+              if (isManage)
                 Positioned(
                   top: 0,
                   right: 0,

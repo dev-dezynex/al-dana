@@ -9,7 +9,7 @@ class PackageTile extends StatelessWidget {
       required this.package,
       this.onTap,
       this.onChanged,
-      required this.isSelected})
+      this.isSelected = false})
       : super(key: key);
   final PackageModel package;
   final GestureTapCallback? onTap;

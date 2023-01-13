@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_colorpicker/flutter_colorpicker.dart';
 import 'package:get/get.dart';
 
 import '../data.dart';
@@ -40,5 +41,41 @@ myAlertDialog({
       ),
     ),
     barrierDismissible: false,
+  );
+}
+
+
+
+getColorPicker(
+    {required BuildContext context,
+    required Color pickerColor,
+    required ValueChanged<Color> onColorChanged,
+    bool enableAlpha2 = true,
+    bool displayThumbColor2 = false}) {
+  return showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        titlePadding: const EdgeInsets.all(0),
+        contentPadding: const EdgeInsets.all(0),
+        shape: RoundedRectangleBorder(
+          borderRadius:
+              MediaQuery.of(context).orientation == Orientation.portrait
+                  ? const BorderRadius.vertical(
+                      top: Radius.circular(500),
+                      bottom: Radius.circular(100),
+                    )
+                  : const BorderRadius.horizontal(right: Radius.circular(500)),
+        ),
+        content: SingleChildScrollView(
+          child: HueRingPicker(
+            pickerColor: pickerColor,
+            onColorChanged: onColorChanged,
+            enableAlpha: enableAlpha2,
+            displayThumbColor: displayThumbColor2,
+          ),
+        ),
+      );
+    },
   );
 }

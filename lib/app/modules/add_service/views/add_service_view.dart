@@ -14,9 +14,15 @@ class AddServiceView extends GetView<AddServiceController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: const Text('Add Service'),
+          title: Text(
+            'Add Service',
+            style:
+                tsPoppins(size: 18, weight: FontWeight.w600, color: textDark80),
+          ),
           centerTitle: true,
+          leading: const GoBack(),
         ),
         body: SafeArea(
           child: Column(

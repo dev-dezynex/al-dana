@@ -33,7 +33,6 @@ class BookingPageView extends GetView<BookingPageController> {
                   Obx(
                     () => ListView.builder(
                         shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
                         physics: const NeverScrollableScrollPhysics(),
                         padding: const EdgeInsets.symmetric(
                             horizontal: 10, vertical: 2),

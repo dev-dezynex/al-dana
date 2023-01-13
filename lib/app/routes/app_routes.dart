@@ -23,6 +23,11 @@ abstract class Routes {
   static const BOOKING_PAGE = _Paths.BOOKING_PAGE;
   static const ADD_BOOKING = _Paths.ADD_BOOKING;
   static const TRACK_PAGE = _Paths.TRACK_PAGE;
+  static const SERVICE_LIST = _Paths.SERVICE_LIST;
+  static const CATEGORY_LIST = _Paths.CATEGORY_LIST;
+  static const ADD_CATEGORY = _Paths.ADD_CATEGORY;
+  static const PACKAGE_LIST = _Paths.PACKAGE_LIST;
+  static const ADD_PACKAGE = _Paths.ADD_PACKAGE;
 }
 
 abstract class _Paths {
@@ -47,4 +52,9 @@ abstract class _Paths {
   static const BOOKING_PAGE = '/booking-page';
   static const ADD_BOOKING = '/add-booking';
   static const TRACK_PAGE = '/track-page';
+  static const SERVICE_LIST = '/service-list';
+  static const CATEGORY_LIST = '/category-list';
+  static const ADD_CATEGORY = '/add-category';
+  static const PACKAGE_LIST = '/package-list';
+  static const ADD_PACKAGE = '/add-package';
 }

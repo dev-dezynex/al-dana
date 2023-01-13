@@ -4,6 +4,10 @@ import '../modules/add_booking/bindings/add_booking_binding.dart';
 import '../modules/add_booking/views/add_booking_view.dart';
 import '../modules/add_brand/bindings/add_brand_binding.dart';
 import '../modules/add_brand/views/add_brand_view.dart';
+import '../modules/add_category/bindings/add_category_binding.dart';
+import '../modules/add_category/views/add_category_view.dart';
+import '../modules/add_package/bindings/add_package_binding.dart';
+import '../modules/add_package/views/add_package_view.dart';
 import '../modules/add_service/bindings/add_service_binding.dart';
 import '../modules/add_service/views/add_service_view.dart';
 import '../modules/add_vehicle/bindings/add_vehicle_binding.dart';
@@ -18,10 +22,14 @@ import '../modules/branch/bindings/branch_binding.dart';
 import '../modules/branch/views/branch_view.dart';
 import '../modules/brand/bindings/brand_binding.dart';
 import '../modules/brand/views/brand_view.dart';
+import '../modules/category_list/bindings/category_list_binding.dart';
+import '../modules/category_list/views/category_list_view.dart';
 import '../modules/home/bindings/home_binding.dart';
 import '../modules/home/views/home_view.dart';
 import '../modules/map_page/bindings/map_page_binding.dart';
 import '../modules/map_page/views/map_page_view.dart';
+import '../modules/package_list/bindings/package_list_binding.dart';
+import '../modules/package_list/views/package_list_view.dart';
 import '../modules/payment_page/bindings/payment_page_binding.dart';
 import '../modules/payment_page/views/payment_page_view.dart';
 import '../modules/profile/bindings/profile_binding.dart';
@@ -30,6 +38,8 @@ import '../modules/service/bindings/service_binding.dart';
 import '../modules/service/views/service_view.dart';
 import '../modules/service_details/bindings/service_details_binding.dart';
 import '../modules/service_details/views/service_details_view.dart';
+import '../modules/service_list/bindings/service_list_binding.dart';
+import '../modules/service_list/views/service_list_view.dart';
 import '../modules/slider/bindings/slider_binding.dart';
 import '../modules/slider/views/slider_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
@@ -146,8 +156,33 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.TRACK_PAGE,
-      page: () =>  TrackPageView(),
+      page: () => TrackPageView(),
       binding: TrackPageBinding(),
+    ),
+    GetPage(
+      name: _Paths.SERVICE_LIST,
+      page: () => const ServiceListView(),
+      binding: ServiceListBinding(),
+    ),
+    GetPage(
+      name: _Paths.CATEGORY_LIST,
+      page: () => const CategoryListView(),
+      binding: CategoryListBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_CATEGORY,
+      page: () =>  AddCategoryView(),
+      binding: AddCategoryBinding(),
+    ),
+    GetPage(
+      name: _Paths.PACKAGE_LIST,
+      page: () => const PackageListView(),
+      binding: PackageListBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_PACKAGE,
+      page: () => const AddPackageView(),
+      binding: AddPackageBinding(),
     ),
   ];
 }
