@@ -3,7 +3,6 @@ import 'dart:io';
 import 'package:file_picker/file_picker.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import '../data.dart';
 import 'package:image_cropper/image_cropper.dart';
 
 import 'package:image_picker/image_picker.dart';
@@ -23,8 +22,8 @@ class FileProvider {
 
   Future<File?> pickImage(
       {ImageSource imageSource = ImageSource.gallery}) async {
-    final ImagePicker _picker = ImagePicker();
-    XFile? image = await _picker.pickImage(source: imageSource);
+    final ImagePicker picker = ImagePicker();
+    XFile? image = await picker.pickImage(source: imageSource);
     if (image == null) {
       return null;
     } else {

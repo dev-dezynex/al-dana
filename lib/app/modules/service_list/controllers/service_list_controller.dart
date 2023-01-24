@@ -10,15 +10,7 @@ class ServiceListController extends GetxController {
     getServices();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   getServices() async {
     serviceResult.value = await ServiceProvider().getDummyData();

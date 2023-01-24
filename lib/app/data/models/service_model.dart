@@ -35,9 +35,9 @@ class Service {
   late String desc;
   late String image;
   late String bgCardColor;
-  late List<String> station;
+  late List<Branch> branchList;
   late double price;
-  late List<String> work;
+  late List<Work> work;
   late SpareCategory spareCategory;
 
   Service(
@@ -47,7 +47,7 @@ class Service {
       this.desc = '',
       this.image = '',
       this.bgCardColor = '',
-      this.station = const [],
+      this.branchList = const [],
       this.price = 0,
       this.work = const [],
       required this.spareCategory});
@@ -59,9 +59,19 @@ class Service {
     desc = json['desc'];
     image = json['image'];
     bgCardColor = json['bg_card_color'];
-    station = json['station'].cast<String>();
+    if (json['branch'] != null) {
+      branchList = <Branch>[];
+      json['branch'].forEach((v) {
+        branchList.add(Branch.fromJson(v));
+      });
+    }
     price = json['price'];
-    work = json['work'].cast<String>();
+       if (json['works'] != null) {
+      work = <Work>[];
+      json['works'].forEach((v) {
+        work.add(Work.fromJson(v));
+      });
+    }
     spareCategory = json['spare_category'] != null
         ? SpareCategory.fromJson(json['spare_category'])
         : SpareCategory();
@@ -75,9 +85,9 @@ class Service {
     data['desc'] = desc;
     data['image'] = image;
     data['bg_card_color'] = bgCardColor;
-    data['station'] = station;
+    data['branch'] = branchList.map((v) => v.toJson()).toList();
     data['price'] = price;
-    data['work'] = work;
+    data['works'] = work.map((v) => v.toJson()).toList();
     return data;
   }
 }

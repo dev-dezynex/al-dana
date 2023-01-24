@@ -7,7 +7,6 @@ import 'package:al_dana/app/data/data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:location/location.dart';
 
 class BranchController extends GetxController {
   var isLoading = false.obs;
@@ -16,12 +15,12 @@ class BranchController extends GetxController {
     target: LatLng(8.5678277, 76.8929361),
     zoom: 14.4746,
   ).obs;
-  var originLocation = LatLng(8.5678277, 76.8929361);
-  var destinationLocation = LatLng(8.5704811, 76.8752231);
+  var originLocation = const LatLng(8.5678277, 76.8929361);
+  var destinationLocation = const LatLng(8.5704811, 76.8752231);
   var polylineCoordinates = <LatLng>[].obs;
   // LocationData? currentLocation;
   var branchResult = BranchResult().obs;
-  var markers = Set<Marker>().obs;
+  var markers = <Marker>{}.obs;
   late BitmapDescriptor customIconSelected, customIconUnSelected;
   var selectedBranch = Branch().obs;
   @override
@@ -30,15 +29,7 @@ class BranchController extends GetxController {
     getDetails();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   addMarker() async {
 // make sure to initialize before map loading
@@ -70,9 +61,9 @@ class BranchController extends GetxController {
     markers.clear();
     for (int i = 0; i < branchResult.value.branchList!.length; i++) {
       Marker resultMarker = Marker(
-        markerId: MarkerId('${branchResult.value.branchList![i].id}'),
+        markerId: MarkerId(branchResult.value.branchList![i].id),
         infoWindow:
-            InfoWindow(title: "${branchResult.value.branchList![i].name}"),
+            InfoWindow(title: branchResult.value.branchList![i].name),
         position: LatLng(branchResult.value.branchList![i].latitude,
             branchResult.value.branchList![i].longitude),
         icon: selectedBranch.value.id == branchResult.value.branchList![i].id
@@ -84,7 +75,7 @@ class BranchController extends GetxController {
       markers.add(resultMarker);
     }
     print('adding markers ${markers.length}');
-    print('markers ${markers}');
+    print('markers $markers');
     markers.refresh();
   }
 

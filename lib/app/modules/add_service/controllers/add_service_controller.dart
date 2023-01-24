@@ -11,11 +11,17 @@ class AddServiceController extends GetxController {
   TextEditingController subTitleController = TextEditingController();
   TextEditingController descController = TextEditingController();
   TextEditingController priceController = TextEditingController();
+  TextEditingController branchController = TextEditingController();
+  TextEditingController workController = TextEditingController();
   TextEditingController thumbController = TextEditingController();
+  var branchResult = BranchResult().obs;
+  var workResult = WorkResult().obs;
   var isUpdate = false.obs;
   var isLoading = false.obs;
   var thumbFile = File('').obs;
-
+  var bgCardColor = const Color(0xff09DDBD).obs;
+  var selectedBranch = <Branch>[].obs;
+  var selectedWork = <Work>[].obs;
   var selectedService = Service(spareCategory: SpareCategory()).obs;
   @override
   void onInit() {
@@ -26,16 +32,7 @@ class AddServiceController extends GetxController {
       selectedService.value = Get.arguments;
       setFields();
     }
-  }
-
-  @override
-  void onReady() {
-    super.onReady();
-  }
-
-  @override
-  void onClose() {
-    super.onClose();
+    getDetails();
   }
 
   pickThumb() async {
@@ -58,5 +55,22 @@ class AddServiceController extends GetxController {
     descController.text = selectedService.value.desc;
     priceController.text = selectedService.value.price.toString();
     thumbController.text = selectedService.value.image.split('/').last;
+    selectedBranch.value = selectedService.value.branchList;
+    selectedWork.value = selectedService.value.work;
+  }
+
+  void getDetails() {
+    getBranches();
+    getWorks();
+  }
+
+  void getBranches() async {
+    branchResult.value = await BranchProvider().getDummyData();
+    branchResult.refresh();
+  }
+
+  void getWorks() async {
+    workResult.value = await WorkProvider().getDummyData();
+    workResult.refresh();
   }
 }

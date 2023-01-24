@@ -22,9 +22,7 @@ class PackageResult {
     final data = <String, dynamic>{};
     data['status'] = status;
     data['message'] = message;
-    if (data != null) {
-      data['data'] = packageList?.map((v) => v.toJson()).toList();
-    }
+    data['data'] = packageList?.map((v) => v.toJson()).toList();
     return data;
   }
 }

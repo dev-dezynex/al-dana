@@ -1,6 +1,4 @@
 import 'dart:io';
-import 'dart:isolate';
-import 'dart:ui';
 
 // import 'package:flutter_downloader/flutter_downloader.dart';
 import 'package:get/get.dart';
@@ -57,7 +55,7 @@ class FileService {
     }
 
     final folderName = cow;
-    final path = Directory("${_extStorage}$folderName");
+    final path = Directory("$_extStorage$folderName");
     if ((await path.exists())) {
       return path.path;
     } else {
@@ -78,7 +76,7 @@ class FileService {
           print(_extStorage);
           return await createFolder( cow );
         } else {
-          throw(e);
+          rethrow;
         }
       }
       return path.path;

@@ -1,8 +1,6 @@
 import 'package:al_dana/app/data/data.dart';
 import 'package:flutter/material.dart';
 
-import '../models/booking_model.dart';
-import '../theme/colors.dart';
 
 class TrackerTile extends StatelessWidget {
   final Booking booking;
@@ -90,7 +88,7 @@ class TrackerTile extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              booking.services![serviceIndex].work[index],
+                              booking.services![serviceIndex].work[index].title,
                               style: tsPoppins(),
                             ),
                             const SizedBox(

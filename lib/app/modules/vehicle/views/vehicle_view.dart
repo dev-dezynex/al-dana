@@ -13,7 +13,7 @@ class VehicleView extends GetView<VehicleController> {
         title: const Text('VehicleView'),
         centerTitle: true,
       ),
-      body: Center(
+      body: const Center(
         child: Text(
           'VehicleView is working',
           style: TextStyle(fontSize: 20),

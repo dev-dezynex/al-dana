@@ -11,9 +11,23 @@ class WorkView extends GetView<WorkController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('WorkView'),
-        centerTitle: true,
+     appBar: AppBar(
+          title: Text(
+            'Works',
+            style:
+                tsPoppins(size: 18, weight: FontWeight.w600, color: textDark80),
+          ),
+          centerTitle: true,
+          leading: const GoBack(),
+        ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Get.toNamed(Routes.ADD_WORK);
+        },
+        backgroundColor: primary,
+        child: const Icon(
+          Icons.add,
+        ),
       ),
       body: Obx(
         () => ListView.builder(
@@ -23,10 +37,6 @@ class WorkView extends GetView<WorkController> {
               return WorkTile(
                   onEdit: () {
                     Get.toNamed(Routes.ADD_WORK,
-                        arguments: controller.workResult.value.workList[i]);
-                  },
-                  onTap: () {
-                    Get.toNamed(Routes.ADD_BOOKING,
                         arguments: controller.workResult.value.workList[i]);
                   },
                   work: controller.workResult.value.workList[i]);

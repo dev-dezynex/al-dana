@@ -1,6 +1,5 @@
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 
@@ -50,7 +49,7 @@ class SliderView extends GetView<SliderController> {
   }
 
   slider_view(int index) {
-    print('slider index ${index}');
+    print('slider index $index');
 
     switch (index) {
       case 1:

@@ -1,7 +1,3 @@
-import 'package:al_dana/app/data/models/color_model.dart';
-import 'package:al_dana/app/data/models/year_model.dart';
-import 'package:al_dana/app/data/providers/color_provider.dart';
-import 'package:al_dana/app/data/providers/year_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -33,15 +29,7 @@ class AddVehicleController extends GetxController {
     getDetails();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   getDetails() {
     getbrands();

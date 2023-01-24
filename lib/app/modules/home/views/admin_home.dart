@@ -1,8 +1,5 @@
 import 'package:al_dana/app/data/data.dart';
-import 'package:al_dana/app/routes/app_pages.dart';
-import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../controllers/home_controller.dart';
@@ -32,7 +29,7 @@ class AdminHomeView extends GetView<HomeController> {
                     centerTitle: true,
                     bottom: PreferredSize(
                         preferredSize: Size(Get.width, 60),
-                        child: Container(
+                        child: SizedBox(
                           width: Get.width,
                           child: TabBar(
                             isScrollable: true,

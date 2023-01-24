@@ -21,15 +21,7 @@ class ServiceController extends GetxController {
     getDetails();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   void getDetails() {
     getServices();

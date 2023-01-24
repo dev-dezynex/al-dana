@@ -223,7 +223,7 @@ class AddCategoryView extends GetView<AddCategoryController> {
                                     width: 10,
                                   ),
                                   Text(
-                                    '${colorToHexValue(controller.bgCardColor.value)}',
+                                    colorToHexValue(controller.bgCardColor.value),
                                     style: tsPoppins(color: textDark),
                                   ),
                                 ],

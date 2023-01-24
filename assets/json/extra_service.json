@@ -9,17 +9,76 @@
             "desc": "In publishing and graphic design of car wash",
             "image": "assets/images/img_vehicle_2.png",
             "bg_card_color": "#FF3868",
-            "station": [
-                "12eoriu545f7g87gfg",
-                "12eoriu545f7g87gff",
-                "12eoriu545f7g87gfr"
+            "branch": [
+                {
+                    "id": "1",
+                    "name": "Al Dana Station 1",
+                    "location": "Ras Al Khaimah",
+                    "latitude": 8.5908657,
+                    "longitude": 76.8505975,
+                    "image": "assets/images/img_branch_1.png",
+                    "rating": 4.3,
+                    "distance": "6 Km"
+                },
+                {
+                    "id": "2",
+                    "name": "Al Dana Station 2",
+                    "location": "Ras Al Khaimah",
+                    "latitude": 8.5714731,
+                    "longitude": 76.8979696,
+                    "image": "assets/images/img_branch_1.png",
+                    "rating": 4.2,
+                    "distance": "8 Km"
+                },
+                {
+                    "id": "3",
+                    "name": "Al Dana Station 3",
+                    "location": "Ras Al Khaimah",
+                    "latitude": 8.5678277,
+                    "longitude": 76.8929361,
+                    "image": "assets/images/img_branch_1.png",
+                    "rating": 4.1,
+                    "distance": "12 Km"
+                }
             ],
             "price": 183.23,
-            "work": [
-                "washing",
-                "soaping",
-                "washing after soaping",
-                "draining"
+            "works": [
+                {
+                    "id": "1",
+                    "title": "washing",
+                    "sub_title": "string",
+                    "desc": "string",
+                    "price": 123.3,
+                    "is_item_change": true,
+                    "categoy_id": "string"
+                },
+                {
+                    "id": "2",
+                    "title": "soaping",
+                    "sub_title": "string",
+                    "desc": "string",
+                    "price": 123.3,
+                    "is_item_change": true,
+                    "categoy_id": "string"
+                },
+                {
+                    "id": "3",
+                    "title": "washing after soaping",
+                    "sub_title": "string",
+                    "desc": "string",
+                    "price": 123.3,
+                    "is_item_change": true,
+                    "categoy_id": "string"
+                },
+                {
+                    "id": "4",
+                    "title": "draining",
+                    "sub_title": "string",
+                    "desc": "string",
+                    "price": 123.3,
+                    "is_item_change": true,
+                    "categoy_id": "string"
+                }
             ]
         },
         {
@@ -29,17 +88,76 @@
             "desc": "In publishing and graphic design of car wash",
             "image": "assets/images/img_vehicle_3.png",
             "bg_card_color": "#FFC643",
-            "station": [
-                "12eoriu545f7g87gfg",
-                "12eoriu545f7g87gff",
-                "12eoriu545f7g87gfr"
+            "branch": [
+                {
+                    "id": "1",
+                    "name": "Al Dana Station 1",
+                    "location": "Ras Al Khaimah",
+                    "latitude": 8.5908657,
+                    "longitude": 76.8505975,
+                    "image": "assets/images/img_branch_1.png",
+                    "rating": 4.3,
+                    "distance": "6 Km"
+                },
+                {
+                    "id": "2",
+                    "name": "Al Dana Station 2",
+                    "location": "Ras Al Khaimah",
+                    "latitude": 8.5714731,
+                    "longitude": 76.8979696,
+                    "image": "assets/images/img_branch_1.png",
+                    "rating": 4.2,
+                    "distance": "8 Km"
+                },
+                {
+                    "id": "3",
+                    "name": "Al Dana Station 3",
+                    "location": "Ras Al Khaimah",
+                    "latitude": 8.5678277,
+                    "longitude": 76.8929361,
+                    "image": "assets/images/img_branch_1.png",
+                    "rating": 4.1,
+                    "distance": "12 Km"
+                }
             ],
             "price": 183.23,
-            "work": [
-                "washing",
-                "soaping",
-                "washing after soaping",
-                "draining"
+            "works": [
+                {
+                    "id": "1",
+                    "title": "washing",
+                    "sub_title": "string",
+                    "desc": "string",
+                    "price": 123.3,
+                    "is_item_change": true,
+                    "categoy_id": "string"
+                },
+                {
+                    "id": "2",
+                    "title": "soaping",
+                    "sub_title": "string",
+                    "desc": "string",
+                    "price": 123.3,
+                    "is_item_change": true,
+                    "categoy_id": "string"
+                },
+                {
+                    "id": "3",
+                    "title": "washing after soaping",
+                    "sub_title": "string",
+                    "desc": "string",
+                    "price": 123.3,
+                    "is_item_change": true,
+                    "categoy_id": "string"
+                },
+                {
+                    "id": "4",
+                    "title": "draining",
+                    "sub_title": "string",
+                    "desc": "string",
+                    "price": 123.3,
+                    "is_item_change": true,
+                    "categoy_id": "string"
+                }
             ],
             "spare_category": {
                 "id": "1",
@@ -83,17 +201,76 @@
             "desc": "In publishing and graphic design of car wash",
             "image": "assets/images/img_vehicle_4.png",
             "bg_card_color": "#06D39E",
-            "station": [
-                "12eoriu545f7g87gfg",
-                "12eoriu545f7g87gff",
-                "12eoriu545f7g87gfr"
+            "branch": [
+                {
+                    "id": "1",
+                    "name": "Al Dana Station 1",
+                    "location": "Ras Al Khaimah",
+                    "latitude": 8.5908657,
+                    "longitude": 76.8505975,
+                    "image": "assets/images/img_branch_1.png",
+                    "rating": 4.3,
+                    "distance": "6 Km"
+                },
+                {
+                    "id": "2",
+                    "name": "Al Dana Station 2",
+                    "location": "Ras Al Khaimah",
+                    "latitude": 8.5714731,
+                    "longitude": 76.8979696,
+                    "image": "assets/images/img_branch_1.png",
+                    "rating": 4.2,
+                    "distance": "8 Km"
+                },
+                {
+                    "id": "3",
+                    "name": "Al Dana Station 3",
+                    "location": "Ras Al Khaimah",
+                    "latitude": 8.5678277,
+                    "longitude": 76.8929361,
+                    "image": "assets/images/img_branch_1.png",
+                    "rating": 4.1,
+                    "distance": "12 Km"
+                }
             ],
             "price": 183.23,
-            "work": [
-                "washing",
-                "soaping",
-                "washing after soaping",
-                "draining"
+            "works": [
+                {
+                    "id": "1",
+                    "title": "washing",
+                    "sub_title": "string",
+                    "desc": "string",
+                    "price": 123.3,
+                    "is_item_change": true,
+                    "categoy_id": "string"
+                },
+                {
+                    "id": "2",
+                    "title": "soaping",
+                    "sub_title": "string",
+                    "desc": "string",
+                    "price": 123.3,
+                    "is_item_change": true,
+                    "categoy_id": "string"
+                },
+                {
+                    "id": "3",
+                    "title": "washing after soaping",
+                    "sub_title": "string",
+                    "desc": "string",
+                    "price": 123.3,
+                    "is_item_change": true,
+                    "categoy_id": "string"
+                },
+                {
+                    "id": "4",
+                    "title": "draining",
+                    "sub_title": "string",
+                    "desc": "string",
+                    "price": 123.3,
+                    "is_item_change": true,
+                    "categoy_id": "string"
+                }
             ],
             "spare_category": {
                 "id": "2",
@@ -130,17 +307,76 @@
             "desc": "In publishing and graphic design of car wash",
             "image": "assets/images/img_vehicle_5.png",
             "bg_card_color": "#118AB2",
-            "station": [
-                "12eoriu545f7g87gfg",
-                "12eoriu545f7g87gff",
-                "12eoriu545f7g87gfr"
+            "branch": [
+                {
+                    "id": "1",
+                    "name": "Al Dana Station 1",
+                    "location": "Ras Al Khaimah",
+                    "latitude": 8.5908657,
+                    "longitude": 76.8505975,
+                    "image": "assets/images/img_branch_1.png",
+                    "rating": 4.3,
+                    "distance": "6 Km"
+                },
+                {
+                    "id": "2",
+                    "name": "Al Dana Station 2",
+                    "location": "Ras Al Khaimah",
+                    "latitude": 8.5714731,
+                    "longitude": 76.8979696,
+                    "image": "assets/images/img_branch_1.png",
+                    "rating": 4.2,
+                    "distance": "8 Km"
+                },
+                {
+                    "id": "3",
+                    "name": "Al Dana Station 3",
+                    "location": "Ras Al Khaimah",
+                    "latitude": 8.5678277,
+                    "longitude": 76.8929361,
+                    "image": "assets/images/img_branch_1.png",
+                    "rating": 4.1,
+                    "distance": "12 Km"
+                }
             ],
             "price": 183.23,
-            "work": [
-                "washing",
-                "soaping",
-                "washing after soaping",
-                "draining"
+            "works": [
+                {
+                    "id": "1",
+                    "title": "washing",
+                    "sub_title": "string",
+                    "desc": "string",
+                    "price": 123.3,
+                    "is_item_change": true,
+                    "categoy_id": "string"
+                },
+                {
+                    "id": "2",
+                    "title": "soaping",
+                    "sub_title": "string",
+                    "desc": "string",
+                    "price": 123.3,
+                    "is_item_change": true,
+                    "categoy_id": "string"
+                },
+                {
+                    "id": "3",
+                    "title": "washing after soaping",
+                    "sub_title": "string",
+                    "desc": "string",
+                    "price": 123.3,
+                    "is_item_change": true,
+                    "categoy_id": "string"
+                },
+                {
+                    "id": "4",
+                    "title": "draining",
+                    "sub_title": "string",
+                    "desc": "string",
+                    "price": 123.3,
+                    "is_item_change": true,
+                    "categoy_id": "string"
+                }
             ],
             "spare_category": {
                 "id": "3",

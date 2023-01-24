@@ -10,6 +10,10 @@ import '../modules/add_package/bindings/add_package_binding.dart';
 import '../modules/add_package/views/add_package_view.dart';
 import '../modules/add_service/bindings/add_service_binding.dart';
 import '../modules/add_service/views/add_service_view.dart';
+import '../modules/add_spare/bindings/add_spare_binding.dart';
+import '../modules/add_spare/views/add_spare_view.dart';
+import '../modules/add_spare_category/bindings/add_spare_category_binding.dart';
+import '../modules/add_spare_category/views/add_spare_category_view.dart';
 import '../modules/add_vehicle/bindings/add_vehicle_binding.dart';
 import '../modules/add_vehicle/views/add_vehicle_view.dart';
 import '../modules/add_work/bindings/add_work_binding.dart';
@@ -42,6 +46,10 @@ import '../modules/service_list/bindings/service_list_binding.dart';
 import '../modules/service_list/views/service_list_view.dart';
 import '../modules/slider/bindings/slider_binding.dart';
 import '../modules/slider/views/slider_view.dart';
+import '../modules/spare/bindings/spare_binding.dart';
+import '../modules/spare/views/spare_view.dart';
+import '../modules/spare_category/bindings/spare_category_binding.dart';
+import '../modules/spare_category/views/spare_category_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
 import '../modules/track_page/bindings/track_page_binding.dart';
@@ -66,7 +74,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.AUTH,
-      page: () => AuthView(),
+      page: () => const AuthView(),
       binding: AuthBinding(),
     ),
     GetPage(
@@ -116,7 +124,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.MAP_PAGE,
-      page: () => MapPageView(),
+      page: () => const MapPageView(),
       binding: MapPageBinding(),
     ),
     GetPage(
@@ -126,7 +134,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.SLIDER,
-      page: () => SliderView(),
+      page: () => const SliderView(),
       binding: SliderBinding(),
     ),
     GetPage(
@@ -171,7 +179,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ADD_CATEGORY,
-      page: () =>  AddCategoryView(),
+      page: () => AddCategoryView(),
       binding: AddCategoryBinding(),
     ),
     GetPage(
@@ -181,8 +189,28 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ADD_PACKAGE,
-      page: () => const AddPackageView(),
+      page: () =>  AddPackageView(),
       binding: AddPackageBinding(),
+    ),
+    GetPage(
+      name: _Paths.SPARE_CATEGORY,
+      page: () => const SpareCategoryView(),
+      binding: SpareCategoryBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_SPARE_CATEGORY,
+      page: () =>  AddSpareCategoryView(),
+      binding: AddSpareCategoryBinding(),
+    ),
+    GetPage(
+      name: _Paths.SPARE,
+      page: () => const SpareView(),
+      binding: SpareBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_SPARE,
+      page: () =>  AddSpareView(),
+      binding: AddSpareBinding(),
     ),
   ];
 }

@@ -9,15 +9,7 @@ class PackageListController extends GetxController {
     getPackages();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   void getPackages() async {
     packageResult.value = await PackageProvider().getDummyData();

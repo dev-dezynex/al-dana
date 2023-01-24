@@ -9,15 +9,7 @@ class CategoryListController extends GetxController {
     getCategories();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   void getCategories() async {
     categoryResult.value = await CategoryProvider().getDummyData();

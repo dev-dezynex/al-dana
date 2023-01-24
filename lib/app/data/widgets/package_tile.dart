@@ -4,16 +4,18 @@ import 'package:get/get.dart';
 import '../data.dart';
 
 class PackageTile extends StatelessWidget {
-  const PackageTile(
-      {Key? key,
-      required this.package,
-      this.onTap,
-      this.onChanged,
-      this.isSelected = false})
-      : super(key: key);
+  const PackageTile({
+    Key? key,
+    required this.package,
+    this.onTap,
+    this.onEdit,
+    this.onChanged,
+    this.isSelected = false,
+    this.isManage = false,
+  }) : super(key: key);
   final PackageModel package;
-  final GestureTapCallback? onTap;
-  final bool isSelected;
+  final GestureTapCallback? onTap, onEdit;
+  final bool isSelected, isManage;
   final void Function(bool?)? onChanged;
   @override
   Widget build(BuildContext context) {
@@ -79,19 +81,26 @@ class PackageTile extends StatelessWidget {
             Positioned(
                 top: 0,
                 right: 0,
+                bottom: 15,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
+                  mainAxisSize: MainAxisSize.max,
+                  mainAxisAlignment: isManage
+                      ? MainAxisAlignment.end
+                      : MainAxisAlignment.spaceBetween,
                   children: [
-                    Radio(
-                      fillColor:
-                          MaterialStateColor.resolveWith((states) => white),
-                      value: isSelected,
-                      groupValue: true,
-                      onChanged: onChanged,
-                    ),
+                    if (!isManage)
+                      Radio(
+                        fillColor:
+                            MaterialStateColor.resolveWith((states) => white),
+                        value: isSelected,
+                        groupValue: true,
+                        onChanged: onChanged,
+                      ),
                     Container(
-                      height: Get.width * .25,
-                      width: Get.width * .35,
+                      height: Get.width * .3,
+                      width: Get.width * .4,
+                      alignment: Alignment.bottomCenter,
                       padding:
                           const EdgeInsets.only(top: 18.0, left: 5, right: 5),
                       child: Image.network(
@@ -112,7 +121,20 @@ class PackageTile extends StatelessWidget {
                       ),
                     ),
                   ],
-                ))
+                )),
+            if (isManage)
+              Positioned(
+                top: 0,
+                right: 0,
+                child: IconButton(
+                  onPressed: onEdit,
+                  icon: const Icon(
+                    Icons.edit,
+                    color: white,
+                    size: 15,
+                  ),
+                ),
+              )
           ],
         ),
       ),

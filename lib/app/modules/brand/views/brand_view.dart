@@ -13,7 +13,7 @@ class BrandView extends GetView<BrandController> {
         title: const Text('BrandView'),
         centerTitle: true,
       ),
-      body: Center(
+      body: const Center(
         child: Text(
           'BrandView is working',
           style: TextStyle(fontSize: 20),

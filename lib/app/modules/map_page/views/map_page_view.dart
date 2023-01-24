@@ -1,4 +1,3 @@
-import 'dart:async';
 
 import 'package:al_dana/app/data/data.dart';
 import 'package:flutter/material.dart';

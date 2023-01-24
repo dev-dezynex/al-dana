@@ -30,7 +30,7 @@ class _BranchTileState extends State<BranchTile> {
             image: bgCardImage,
             onError: (exception, stackTrace) {
               setState(() {
-                bgCardImage = AssetImage('assets/images/img_branch_1.png');
+                bgCardImage = const AssetImage('assets/images/img_branch_1.png');
               });
             },
           ),

@@ -20,7 +20,7 @@ class WorkResult {
     final data = <String, dynamic>{};
     data['status'] = status;
     data['message'] = message;
-    data['data'] = this.workList.map((v) => v.toJson()).toList();
+    data['data'] = workList.map((v) => v.toJson()).toList();
     return data;
   }
 }

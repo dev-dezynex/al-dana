@@ -10,10 +10,6 @@ class SplashController extends GetxController {
     initSplash();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
   @override
   void onClose() {}

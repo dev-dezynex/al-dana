@@ -1,7 +1,4 @@
 import 'package:al_dana/app/data/data.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter/src/scheduler/ticker.dart';
-import 'package:flutter/src/foundation/diagnostics.dart';
 import 'package:get/get.dart';
 
 class TrackPageController extends GetxController {
@@ -16,13 +13,5 @@ class TrackPageController extends GetxController {
     print("bokking ${booking.value.id}");
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 }

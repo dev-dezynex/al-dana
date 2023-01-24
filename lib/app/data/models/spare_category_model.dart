@@ -22,23 +22,22 @@ class SpareCategoryResult {
     final data = <String, dynamic>{};
     data['status'] = status;
     data['message'] = message;
-    if (data != null) {
-      data['data'] = spareCategoryList?.map((v) => v.toJson()).toList();
-    }
+    data['data'] = spareCategoryList?.map((v) => v.toJson()).toList();
     return data;
   }
 }
 
 class SpareCategory {
   String? id;
-  String? name;
+  String? name,image;
   List<Spare>? spareList;
 
-  SpareCategory({this.id, this.name, this.spareList});
+  SpareCategory({this.id, this.name,this.image, this.spareList});
 
   SpareCategory.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     name = json['name'];
+    image = json['image'];
     if (json['spare'] != null) {
       spareList = <Spare>[];
       json['spare'].forEach((v) {
@@ -51,6 +50,7 @@ class SpareCategory {
     final data = <String, dynamic>{};
     data['id'] = id;
     data['name'] = name;
+    data['image'] = image;
     if (spareList != null) {
       data['spare'] = spareList?.map((v) => v.toJson()).toList();
     }

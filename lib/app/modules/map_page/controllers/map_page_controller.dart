@@ -1,5 +1,4 @@
 import 'dart:async';
-import 'dart:ui';
 
 import 'package:al_dana/app/routes/app_pages.dart';
 import 'package:flutter/cupertino.dart';
@@ -17,12 +16,12 @@ class MapPageController extends GetxController {
     target: LatLng(9.8959, 76.7184),
     zoom: 14.4746,
   ).obs;
-  var originLocation = LatLng(9.8959, 76.7184);
-  var destinationLocation = LatLng(9.9075, 76.7303);
+  var originLocation = const LatLng(9.8959, 76.7184);
+  var destinationLocation = const LatLng(9.9075, 76.7303);
   var polylineCoordinates = <LatLng>[].obs;
   late LocationData currentLocation;
   var branchResult = BranchResult().obs;
-  var markers = Set<Marker>().obs;
+  var markers = <Marker>{}.obs;
   late BitmapDescriptor customIconSelected,
       customIconUnSelected,
       currentLocIcon;
@@ -36,15 +35,7 @@ class MapPageController extends GetxController {
     getDetails();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   getPolyPoints() async {
     PolylinePoints polylinePoints = PolylinePoints();
@@ -56,9 +47,9 @@ class MapPageController extends GetxController {
             destinationLocation.latitude, destinationLocation.longitude));
 
     if (result.points.isNotEmpty) {
-      result.points.forEach((PointLatLng point) {
+      for (var point in result.points) {
         polylineCoordinates.add(LatLng(point.latitude, point.longitude));
-      });
+      }
     } else {
       print('poliline points are empty');
     }
@@ -78,8 +69,8 @@ class MapPageController extends GetxController {
   addCurrentLocMarker(LocationData loc) {
     markers.removeWhere((element) => element.markerId == 'currentloc');
     Marker resultMarker = Marker(
-      markerId: MarkerId('currentloc'),
-      infoWindow: InfoWindow(title: "your location"),
+      markerId: const MarkerId('currentloc'),
+      infoWindow: const InfoWindow(title: "your location"),
       position: LatLng(loc.latitude!, loc.longitude!),
       icon: currentLocIcon,
     );
@@ -120,9 +111,9 @@ class MapPageController extends GetxController {
     markers.clear();
     for (int i = 0; i < branchResult.value.branchList!.length; i++) {
       Marker resultMarker = Marker(
-        markerId: MarkerId('${branchResult.value.branchList![i].id}'),
+        markerId: MarkerId(branchResult.value.branchList![i].id),
         infoWindow:
-            InfoWindow(title: "${branchResult.value.branchList![i].name}"),
+            InfoWindow(title: branchResult.value.branchList![i].name),
         position: LatLng(branchResult.value.branchList![i].latitude,
             branchResult.value.branchList![i].longitude),
         icon: selectedBranch.value.id == branchResult.value.branchList![i].id
@@ -134,7 +125,7 @@ class MapPageController extends GetxController {
       markers.add(resultMarker);
     }
     print('adding markers ${markers.length}');
-    print('markers ${markers}');
+    print('markers $markers');
     markers.refresh();
   }
 

@@ -1,7 +1,5 @@
 import 'package:al_dana/app/data/data.dart';
-import 'package:al_dana/app/data/models/service_model.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class CategoryTile extends StatelessWidget {
   const CategoryTile(
@@ -68,7 +66,7 @@ class CategoryTile extends StatelessWidget {
                           // const SizedBox(height: 5),
                           Container(
                             alignment: Alignment.bottomRight,
-                            child: Icon(
+                            child: const Icon(
                               Icons.arrow_forward_sharp,
                               color: white,
                             ),

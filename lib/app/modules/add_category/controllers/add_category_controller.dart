@@ -13,7 +13,7 @@ class AddCategoryController extends GetxController {
   TextEditingController serviceModeController = TextEditingController();
   TextEditingController thumbController = TextEditingController();
 
-  var bgCardColor = Color(0xff443a49).obs;
+  var bgCardColor = const Color(0xff443a49).obs;
   var isUpdate = false.obs;
   var isLoading = false.obs;
   var thumbFile = File('').obs;
@@ -28,15 +28,7 @@ class AddCategoryController extends GetxController {
     getDetails();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   void createCategory() {}
 

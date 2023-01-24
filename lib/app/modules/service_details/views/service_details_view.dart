@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../data/data.dart';
-import '../../../routes/app_pages.dart';
 import '../controllers/service_details_controller.dart';
 
 class ServiceDetailsView extends GetView<ServiceDetailsController> {
@@ -83,7 +82,7 @@ class ServiceDetailsView extends GetView<ServiceDetailsController> {
                         children: [
                           Obx(
                             () => Text(
-                                '${controller.booking.value.price.toStringAsFixed(2)}',
+                                controller.booking.value.price.toStringAsFixed(2),
                                 style: tsPoppins(
                                     size: 18,
                                     weight: FontWeight.w600,

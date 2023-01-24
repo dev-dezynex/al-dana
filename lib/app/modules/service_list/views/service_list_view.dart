@@ -33,7 +33,6 @@ class ServiceListView extends GetView<ServiceListController> {
           child: Obx(
             () => GridView.builder(
                 shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: Get.width ~/ 166,
                   crossAxisSpacing: 8,
@@ -46,7 +45,11 @@ class ServiceListView extends GetView<ServiceListController> {
                 itemBuilder: (con, i) {
                   return ServiceTile(
                       isManage: true,
-                      onEdit: () {},
+                      onEdit: () {
+                        Get.toNamed(Routes.ADD_SERVICE,
+                            arguments:
+                                controller.serviceResult.value.serviceList[i]);
+                      },
                       service: controller.serviceResult.value.serviceList[i]);
                 }),
           ),

@@ -15,15 +15,7 @@ class PaymentPageController extends GetxController {
     booking.value = Get.arguments;
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   void onNextClick(BuildContext context) {
     isPaymentSuccess.value = true;

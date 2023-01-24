@@ -28,6 +28,10 @@ abstract class Routes {
   static const ADD_CATEGORY = _Paths.ADD_CATEGORY;
   static const PACKAGE_LIST = _Paths.PACKAGE_LIST;
   static const ADD_PACKAGE = _Paths.ADD_PACKAGE;
+  static const SPARE_CATEGORY = _Paths.SPARE_CATEGORY;
+  static const ADD_SPARE_CATEGORY = _Paths.ADD_SPARE_CATEGORY;
+  static const SPARE = _Paths.SPARE;
+  static const ADD_SPARE = _Paths.ADD_SPARE;
 }
 
 abstract class _Paths {
@@ -57,4 +61,8 @@ abstract class _Paths {
   static const ADD_CATEGORY = '/add-category';
   static const PACKAGE_LIST = '/package-list';
   static const ADD_PACKAGE = '/add-package';
+  static const SPARE_CATEGORY = '/spare-category';
+  static const ADD_SPARE_CATEGORY = '/add-spare-category';
+  static const SPARE = '/spare';
+  static const ADD_SPARE = '/add-spare';
 }

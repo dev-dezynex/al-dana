@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 import '../../../data/data.dart';
-import '../../../routes/app_pages.dart';
 import '../controllers/payment_page_controller.dart';
 
 class PaymentSuccessView extends GetView<PaymentPageController> {
@@ -19,11 +17,11 @@ class PaymentSuccessView extends GetView<PaymentPageController> {
         width: Get.width,
         child: Column(
           children: [
-            Spacer(
+            const Spacer(
               flex: 1,
             ),
             SvgPicture.asset('assets/icons/ic_payment_success.svg'),
-            Spacer(
+            const Spacer(
               flex: 1,
             ),
             Text('Payment Success',
@@ -35,11 +33,11 @@ class PaymentSuccessView extends GetView<PaymentPageController> {
             Text('Sit back and relax.our superhero will\ncome to you',
                 textAlign: TextAlign.center,
                 style: tsRubik(color: textColor10.withOpacity(.5), size: 12)),
-            Spacer(
+            const Spacer(
               flex: 5,
             ),
             SvgPicture.asset('assets/icons/ic_award.svg'),
-            Spacer(
+            const Spacer(
               flex: 1,
             ),
             Text('Your order has been Scheduled',
@@ -51,7 +49,7 @@ class PaymentSuccessView extends GetView<PaymentPageController> {
                 '${outputDateFormat2.format(outputDateFormat.parse(controller.booking.value.date!))}, ${controller.booking.value.slot}',
                 textAlign: TextAlign.center,
                 style: tsRubik(color: textDark40, weight: FontWeight.w400)),
-            Spacer(
+            const Spacer(
               flex: 3,
             ),
             ElevatedButton(
@@ -68,7 +66,7 @@ class PaymentSuccessView extends GetView<PaymentPageController> {
                   style: tsPoppins(
                       color: white, size: 14, weight: FontWeight.w400),
                 )),
-            Spacer(
+            const Spacer(
               flex: 2,
             ),
           ],

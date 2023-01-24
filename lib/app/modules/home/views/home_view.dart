@@ -1,6 +1,4 @@
-import 'package:al_dana/app/modules/home/views/admin_home.dart';
 import 'package:al_dana/app/modules/home/views/category_view.dart';
-import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -34,7 +32,7 @@ class HomeView extends GetView<HomeController> {
               Icons.location_on_outlined,
               color: primary,
             ),
-            SizedBox(
+            const SizedBox(
               width: 5,
             ),
             Column(
@@ -128,6 +126,22 @@ class HomeView extends GetView<HomeController> {
             onTap: () {
               Get.back();
               Get.toNamed(Routes.BOOKING_PAGE);
+            },
+          ),
+          NavItem(
+            title: "Manage Spare",
+            icon: "assets/icons/ic_nav_4.svg",
+            onTap: () {
+              Get.back();
+              Get.toNamed(Routes.SPARE_CATEGORY);
+            },
+          ),
+          NavItem(
+            title: "Manage Work",
+            icon: "assets/icons/ic_nav_4.svg",
+            onTap: () {
+              Get.back();
+              Get.toNamed(Routes.WORK);
             },
           ),
           NavItem(

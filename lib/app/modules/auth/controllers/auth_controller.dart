@@ -30,10 +30,6 @@ class AuthController extends GetxController {
     }
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
   @override
   void onClose() {}
@@ -45,7 +41,7 @@ class AuthController extends GetxController {
   changeOTP(String digit, int index) {
     print('before otp $otp');
     if (digit.isEmpty) {
-      otp.value = otp.substring(0, index) + '*' + otp.substring(index + 1);
+      otp.value = '${otp.substring(0, index)}*${otp.substring(index + 1)}';
     } else {
       otp.value = otp.substring(0, index) + digit + otp.substring(index + 1);
     }

@@ -4,7 +4,7 @@
     "data": [
         {
             "id": "1",
-            "title": "string",
+            "title": "test work 1",
             "sub_title": "string",
             "desc": "string",
             "price": 123.3,
@@ -13,7 +13,7 @@
         },
         {
             "id": "2",
-            "title": "string",
+            "title": "test work 2",
             "sub_title": "string",
             "desc": "string",
             "price": 123.3,
@@ -22,7 +22,7 @@
         },
         {
             "id": "3",
-            "title": "string",
+            "title": "test work 3",
             "sub_title": "string",
             "desc": "string",
             "price": 123.3,
@@ -31,7 +31,7 @@
         },
         {
             "id": "4",
-            "title": "string",
+            "title": "test work 4",
             "sub_title": "string",
             "desc": "string",
             "price": 123.3,

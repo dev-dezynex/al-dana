@@ -5,7 +5,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../data/data.dart';
-import '../../../routes/app_pages.dart';
 import '../controllers/payment_page_controller.dart';
 
 class PaymentPageView extends GetView<PaymentPageController> {
@@ -90,7 +89,7 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                 children: [
                                   Obx(
                                     () => Text(
-                                        '${controller.booking.value.price.toStringAsFixed(2)}',
+                                        controller.booking.value.price.toStringAsFixed(2),
                                         style: tsPoppins(
                                             size: 18,
                                             weight: FontWeight.w600,
@@ -361,7 +360,7 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                            '${controller.booking.value.services![i].title}',
+                                            controller.booking.value.services![i].title,
                                             style: tsPoppins(
                                                 weight: FontWeight.w400,
                                                 size: 14,

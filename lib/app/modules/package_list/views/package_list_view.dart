@@ -10,8 +10,8 @@ class PackageListView extends GetView<PackageListController> {
   const PackageListView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-   return Scaffold(
-         appBar: AppBar(
+    return Scaffold(
+        appBar: AppBar(
           title: Text(
             'Packages',
             style:
@@ -30,25 +30,26 @@ class PackageListView extends GetView<PackageListController> {
           ),
         ),
         body: SafeArea(
-          child:   Obx(
-                    () => ListView.builder(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        physics: const NeverScrollableScrollPhysics(),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 2),
-                        itemCount:
-                            controller.packageResult.value.packageList!.length,
-                        itemBuilder: (con, i) {
-                          return PackageTile(
-                          
-                            package:
-                                controller.packageResult.value.packageList![i],
-                        
-                          );
-                        }),
-                  ),
-              
+          child: Obx(
+            () => ListView.builder(
+                shrinkWrap: true,
+                scrollDirection: Axis.vertical,
+                physics: const NeverScrollableScrollPhysics(),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 2),
+                itemCount: controller.packageResult.value.packageList!.length,
+                itemBuilder: (con, i) {
+                  return PackageTile(
+                    isManage: true,
+                    onEdit: () {
+                      Get.toNamed(Routes.ADD_PACKAGE,
+                          arguments:
+                              controller.packageResult.value.packageList![i]);
+                    },
+                    package: controller.packageResult.value.packageList![i],
+                  );
+                }),
+          ),
         ));
- }
+  }
 }

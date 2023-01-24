@@ -1,10 +1,7 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:get/get.dart';
 
 import '../../../data/data.dart';
-import '../../../routes/app_pages.dart';
 import '../controllers/add_vehicle_controller.dart';
 
 class BrandSelection extends GetView<AddVehicleController> {

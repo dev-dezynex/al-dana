@@ -1,6 +1,5 @@
 import 'package:al_dana/app/data/data.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 
 class WorkTile extends StatelessWidget {
   const WorkTile({Key? key, required this.work, this.onTap, this.onEdit})
@@ -30,7 +29,7 @@ class WorkTile extends StatelessWidget {
                       style: tsPoppins(),
                     ),
                     Text(
-                      '${work.price}',
+                      '${work.desc}',
                       style: tsPoppins(),
                     )
                   ],

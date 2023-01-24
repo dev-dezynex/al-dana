@@ -20,9 +20,7 @@ class SpareResult {
     final data = <String, dynamic>{};
     data['status'] = status;
     data['message'] = message;
-    if (data != null) {
-      data['data'] = this.data?.map((v) => v.toJson()).toList();
-    }
+    data['data'] = this.data?.map((v) => v.toJson()).toList();
     return data;
   }
 }
@@ -33,8 +31,9 @@ class Spare {
   String? name;
   double? price;
   String? image;
+  int? qty;
 
-  Spare({this.id, this.categoryId, this.name, this.price, this.image});
+  Spare({this.id, this.categoryId, this.name, this.price, this.image,this.qty});
 
   Spare.fromJson(Map<String, dynamic> json) {
     id = json['id'];
@@ -42,6 +41,7 @@ class Spare {
     name = json['name'];
     price = json['price'];
     image = json['image'];
+    qty = json['quantity'];
   }
 
   Map<String, dynamic> toJson() {
@@ -51,6 +51,7 @@ class Spare {
     data['name'] = name;
     data['price'] = price;
     data['image'] = image;
+    data['quantity'] = qty;
     return data;
   }
 }

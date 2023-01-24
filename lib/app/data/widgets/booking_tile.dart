@@ -193,7 +193,7 @@ class BookingTile2 extends StatelessWidget {
                   Container(
                     constraints: BoxConstraints(
                         maxWidth: Get.width * .3, maxHeight: 100),
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     child: Image.network(
                       booking.packageList![0].image!,
                       fit: BoxFit.contain,
@@ -293,7 +293,7 @@ class BookingTile2 extends StatelessWidget {
                       )),
                 ],
               ),
-              SizedBox(
+              const SizedBox(
                 height: 10,
               )
             ],
