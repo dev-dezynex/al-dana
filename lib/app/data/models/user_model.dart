@@ -1,13 +1,34 @@
 class UserResult {
   late String status, message;
   late User user;
+  late List<User> userList;
 
-  UserResult({this.status = '', this.message = '', required this.user});
+  UserResult({
+    this.status = '',
+    this.message = '',
+    required this.user,
+  });
+
+  UserResult.list({
+    this.status = '',
+    this.message = '',
+    this.userList = const [],
+  });
 
   UserResult.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
     user = json['data'] != null ? User?.fromJson(json['data']) : User();
+  }
+  UserResult.listFromJson(Map<String, dynamic> json) {
+    status = json['status'];
+    message = json['message'];
+    if (json['data'] != null) {
+      userList = <User>[];
+      json['data'].forEach((v) {
+        userList.add(User.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
@@ -15,6 +36,14 @@ class UserResult {
     data['status'] = status;
     data['message'] = message;
     data['data'] = user.toJson();
+    return data;
+  }
+
+  Map<String, dynamic> listToJson() {
+    final data = <String, dynamic>{};
+    data['status'] = status;
+    data['message'] = message;
+    data['data'] = userList.map((e) => e.toJson()).toList();
     return data;
   }
 }

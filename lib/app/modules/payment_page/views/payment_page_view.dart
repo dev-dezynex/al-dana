@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../data/data.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/payment_page_controller.dart';
 
 class PaymentPageView extends GetView<PaymentPageController> {
@@ -24,6 +25,25 @@ class PaymentPageView extends GetView<PaymentPageController> {
                   'Payment Details',
                   style: tsPoppins(
                       size: 18, weight: FontWeight.w600, color: textDark80),
+                ),
+                bottom: PreferredSize(
+                  preferredSize: Size(Get.width, 40),
+                  child: InkWell(
+                    onTap: () {
+                      Get.toNamed(Routes.SUBSCRIPTION_PAGE,
+                          arguments: controller.booking);
+                    },
+                    child: Container(
+                      width: Get.width,
+                      height: 35,
+                      alignment: Alignment.center,
+                      color: Colors.yellow,
+                      child: Text(
+                        'Subscribe now save upto 50%',
+                        style: tsPoppins(size: 15),
+                      ),
+                    ),
+                  ),
                 ),
               ),
               bottomSheet: Container(
@@ -89,7 +109,8 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                 children: [
                                   Obx(
                                     () => Text(
-                                        controller.booking.value.price.toStringAsFixed(2),
+                                        controller.booking.value.price
+                                            .toStringAsFixed(2),
                                         style: tsPoppins(
                                             size: 18,
                                             weight: FontWeight.w600,
@@ -134,7 +155,8 @@ class PaymentPageView extends GetView<PaymentPageController> {
                   slivers: [
                     SliverToBoxAdapter(
                       child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                        padding: const EdgeInsets.only(
+                            left: 15.0, right: 15, top: 15),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -360,7 +382,8 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
-                                            controller.booking.value.services![i].title,
+                                            controller.booking.value
+                                                .services![i].title,
                                             style: tsPoppins(
                                                 weight: FontWeight.w400,
                                                 size: 14,
@@ -386,7 +409,8 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                         weight: FontWeight.w600,
                                         size: 14,
                                         color: textDark80)),
-                                Text('AED: ${controller.booking.value.price.toStringAsFixed(2)}',
+                                Text(
+                                    'AED: ${controller.booking.value.price.toStringAsFixed(2)}',
                                     style: tsPoppins(
                                         weight: FontWeight.w600,
                                         size: 14,

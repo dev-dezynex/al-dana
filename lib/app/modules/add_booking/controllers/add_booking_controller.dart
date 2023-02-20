@@ -14,6 +14,7 @@ class AddBookingController extends GetxController {
   var availableTimeSlots = <String>[].obs;
   var selectedTimeSlot = ''.obs;
   var booking = Booking().obs;
+  
   @override
   void onInit() {
     super.onInit();

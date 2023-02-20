@@ -32,6 +32,11 @@ abstract class Routes {
   static const ADD_SPARE_CATEGORY = _Paths.ADD_SPARE_CATEGORY;
   static const SPARE = _Paths.SPARE;
   static const ADD_SPARE = _Paths.ADD_SPARE;
+  static const USERS = _Paths.USERS;
+  static const ADD_USERS = _Paths.ADD_USERS;
+  static const BRANCH_LIST = _Paths.BRANCH_LIST;
+  static const ADD_BRANCH = _Paths.ADD_BRANCH;
+  static const SUBSCRIPTION_PAGE = _Paths.SUBSCRIPTION_PAGE;
 }
 
 abstract class _Paths {
@@ -65,4 +70,9 @@ abstract class _Paths {
   static const ADD_SPARE_CATEGORY = '/add-spare-category';
   static const SPARE = '/spare';
   static const ADD_SPARE = '/add-spare';
+  static const USERS = '/users';
+  static const ADD_USERS = '/add-users';
+  static const BRANCH_LIST = '/branch-list';
+  static const ADD_BRANCH = '/add-branch';
+  static const SUBSCRIPTION_PAGE = '/subscription-page';
 }

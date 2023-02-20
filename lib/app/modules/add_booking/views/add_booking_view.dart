@@ -82,7 +82,8 @@ class AddBookingView extends GetView<AddBookingController> {
                         children: [
                           Obx(
                             () => Text(
-                                controller.booking.value.price.toStringAsFixed(2),
+                                controller.booking.value.price
+                                    .toStringAsFixed(2),
                                 style: tsPoppins(
                                     size: 18,
                                     weight: FontWeight.w600,
@@ -218,32 +219,34 @@ class AddBookingView extends GetView<AddBookingController> {
                           scrollDirection: Axis.horizontal,
                           itemCount: controller.availableTimeSlots.length,
                           itemBuilder: (con, i) {
-                            return InkWell(
-                              onTap: () {
-                                controller.selectedTimeSlot.value =
-                                    controller.availableTimeSlots[i];
-                                controller.booking.value.slot =
-                                    controller.availableTimeSlots[i];
-                                controller.availableTimeSlots.refresh();
-                              },
-                              child: Container(
-                                padding:
-                                    const EdgeInsets.symmetric(horizontal: 20),
-                                margin: const EdgeInsets.only(right: 14),
-                                alignment: Alignment.center,
-                                decoration: BoxDecoration(
-                                  border: Border.all(
-                                      color: controller
-                                                  .selectedTimeSlot.value ==
-                                              controller.availableTimeSlots[i]
-                                          ? bgColor27
-                                          : Colors.transparent),
-                                  borderRadius: BorderRadius.circular(8),
-                                  color: white,
-                                ),
-                                child: Text(
-                                  controller.availableTimeSlots[i],
-                                  style: tsInter(size: 13, color: textDark80),
+                            return Container(
+                              margin: const EdgeInsets.only(right: 14),
+                              child: InkWell(
+                                onTap: () {
+                                  controller.selectedTimeSlot.value =
+                                      controller.availableTimeSlots[i];
+                                  controller.booking.value.slot =
+                                      controller.availableTimeSlots[i];
+                                  controller.availableTimeSlots.refresh();
+                                },
+                                child: Container(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 20),
+                                  alignment: Alignment.center,
+                                  decoration: BoxDecoration(
+                                    border: Border.all(
+                                        color: controller
+                                                    .selectedTimeSlot.value ==
+                                                controller.availableTimeSlots[i]
+                                            ? bgColor27
+                                            : Colors.transparent),
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: white,
+                                  ),
+                                  child: Text(
+                                    controller.availableTimeSlots[i],
+                                    style: tsInter(size: 13, color: textDark80),
+                                  ),
                                 ),
                               ),
                             );

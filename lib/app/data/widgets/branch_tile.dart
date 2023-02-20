@@ -5,35 +5,49 @@ import 'package:get/get.dart';
 import '../data.dart';
 
 class BranchTile extends StatefulWidget {
-  const BranchTile({Key? key,required this.branch,this.onTap}) : super(key: key);
+  const BranchTile({
+    Key? key,
+    required this.branch,
+    this.onTap,
+    this.onEdit,
+    this.isManage = false,
+  }) : super(key: key);
   final Branch branch;
-final GestureTapCallback? onTap;
+  final GestureTapCallback? onTap, onEdit;
+  final bool isManage;
   @override
   State<BranchTile> createState() => _BranchTileState();
 }
 
 class _BranchTileState extends State<BranchTile> {
-     var bgCardImage;
- 
-   @override
+  var bgCardImage;
+
+  @override
   void initState() {
     super.initState();
     bgCardImage = NetworkImage(widget.branch.image);
   }
+
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: Get.width * .6,
-      margin: const EdgeInsets.only(left: 15),
+      constraints: BoxConstraints(
+          minHeight: 130,
+          maxHeight: 170,
+          minWidth: Get.width * .6,
+          maxWidth: Get.width),
+      margin: const EdgeInsets.all(10),
       decoration: BoxDecoration(
-        image:   DecorationImage(
-            image: bgCardImage,
-            onError: (exception, stackTrace) {
-              setState(() {
-                bgCardImage = const AssetImage('assets/images/img_branch_1.png');
-              });
-            },
-          ),
+        borderRadius: BorderRadius.circular(10),
+        image: DecorationImage(
+          image: bgCardImage,
+          fit: BoxFit.cover,
+          onError: (exception, stackTrace) {
+            setState(() {
+              bgCardImage = const AssetImage('assets/images/img_branch_1.png');
+            });
+          },
+        ),
       ),
       child: InkWell(
         onTap: widget.onTap,
@@ -47,8 +61,10 @@ class _BranchTileState extends State<BranchTile> {
                   padding: const EdgeInsets.all(3),
                   child: Row(
                     children: [
-                      SvgPicture.asset('assets/icons/ic_star.svg', color: white),
-                      Text('${widget.branch.rating}', style: tsPoppins(size: 10, color: white))
+                      SvgPicture.asset('assets/icons/ic_star.svg',
+                          color: white),
+                      Text('${widget.branch.rating}',
+                          style: tsPoppins(size: 10, color: white))
                     ],
                   ),
                 )),
@@ -87,7 +103,26 @@ class _BranchTileState extends State<BranchTile> {
                           tsPoppins(color: textDark10, weight: FontWeight.w400),
                     ),
                   ],
-                ))
+                )),
+            if (widget.isManage)
+              Positioned(
+                top: 0,
+                right: 0,
+                child: IconButton(
+                  padding: EdgeInsets.zero,
+                  onPressed: widget.onEdit,
+                  icon: Container(
+                    padding:const EdgeInsets.all(8),
+                    decoration: const BoxDecoration(
+                        color: white, shape: BoxShape.circle),
+                    child: const Icon(
+                      Icons.edit,
+                      color: textDark80,
+                      size: 12,
+                    ),
+                  ),
+                ),
+              )
           ],
         ),
       ),

@@ -2,6 +2,8 @@ import 'package:get/get.dart';
 
 import '../modules/add_booking/bindings/add_booking_binding.dart';
 import '../modules/add_booking/views/add_booking_view.dart';
+import '../modules/add_branch/bindings/add_branch_binding.dart';
+import '../modules/add_branch/views/add_branch_view.dart';
 import '../modules/add_brand/bindings/add_brand_binding.dart';
 import '../modules/add_brand/views/add_brand_view.dart';
 import '../modules/add_category/bindings/add_category_binding.dart';
@@ -14,6 +16,8 @@ import '../modules/add_spare/bindings/add_spare_binding.dart';
 import '../modules/add_spare/views/add_spare_view.dart';
 import '../modules/add_spare_category/bindings/add_spare_category_binding.dart';
 import '../modules/add_spare_category/views/add_spare_category_view.dart';
+import '../modules/add_users/bindings/add_users_binding.dart';
+import '../modules/add_users/views/add_users_view.dart';
 import '../modules/add_vehicle/bindings/add_vehicle_binding.dart';
 import '../modules/add_vehicle/views/add_vehicle_view.dart';
 import '../modules/add_work/bindings/add_work_binding.dart';
@@ -24,6 +28,8 @@ import '../modules/booking_page/bindings/booking_page_binding.dart';
 import '../modules/booking_page/views/booking_page_view.dart';
 import '../modules/branch/bindings/branch_binding.dart';
 import '../modules/branch/views/branch_view.dart';
+import '../modules/branch_list/bindings/branch_list_binding.dart';
+import '../modules/branch_list/views/branch_list_view.dart';
 import '../modules/brand/bindings/brand_binding.dart';
 import '../modules/brand/views/brand_view.dart';
 import '../modules/category_list/bindings/category_list_binding.dart';
@@ -52,8 +58,12 @@ import '../modules/spare_category/bindings/spare_category_binding.dart';
 import '../modules/spare_category/views/spare_category_view.dart';
 import '../modules/splash/bindings/splash_binding.dart';
 import '../modules/splash/views/splash_view.dart';
+import '../modules/subscription_page/bindings/subscription_page_binding.dart';
+import '../modules/subscription_page/views/subscription_page_view.dart';
 import '../modules/track_page/bindings/track_page_binding.dart';
 import '../modules/track_page/views/track_page_view.dart';
+import '../modules/users/bindings/users_binding.dart';
+import '../modules/users/views/users_view.dart';
 import '../modules/vehicle/bindings/vehicle_binding.dart';
 import '../modules/vehicle/views/vehicle_view.dart';
 import '../modules/work/bindings/work_binding.dart';
@@ -189,7 +199,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ADD_PACKAGE,
-      page: () =>  AddPackageView(),
+      page: () => AddPackageView(),
       binding: AddPackageBinding(),
     ),
     GetPage(
@@ -199,7 +209,7 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ADD_SPARE_CATEGORY,
-      page: () =>  AddSpareCategoryView(),
+      page: () => AddSpareCategoryView(),
       binding: AddSpareCategoryBinding(),
     ),
     GetPage(
@@ -209,8 +219,33 @@ class AppPages {
     ),
     GetPage(
       name: _Paths.ADD_SPARE,
-      page: () =>  AddSpareView(),
+      page: () => AddSpareView(),
       binding: AddSpareBinding(),
+    ),
+    GetPage(
+      name: _Paths.USERS,
+      page: () => const UsersView(),
+      binding: UsersBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_USERS,
+      page: () => AddUsersView(),
+      binding: AddUsersBinding(),
+    ),
+    GetPage(
+      name: _Paths.BRANCH_LIST,
+      page: () => const BranchListView(),
+      binding: BranchListBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADD_BRANCH,
+      page: () => AddBranchView(),
+      binding: AddBranchBinding(),
+    ),
+    GetPage(
+      name: _Paths.SUBSCRIPTION_PAGE,
+      page: () => const SubscriptionPageView(),
+      binding: SubscriptionPageBinding(),
     ),
   ];
 }

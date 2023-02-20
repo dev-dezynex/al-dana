@@ -7,7 +7,7 @@ import '../../../routes/app_pages.dart';
 
 class AuthController extends GetxController {
   var isLoading = false.obs;
-  String contryCode = '91';
+  String contryCode = '971';
   TextEditingController phoneController = TextEditingController();
 
   final shakeKey = GlobalKey<ShakeWidgetState>();

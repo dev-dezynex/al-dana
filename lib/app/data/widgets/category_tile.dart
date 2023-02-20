@@ -3,7 +3,11 @@ import 'package:flutter/material.dart';
 
 class CategoryTile extends StatelessWidget {
   const CategoryTile(
-      {Key? key, required this.category, this.onTap, this.onEdit,this.isManage=false})
+      {Key? key,
+      required this.category,
+      this.onTap,
+      this.onEdit,
+      this.isManage = false})
       : super(key: key);
   final Category category;
   final GestureTapCallback? onTap, onEdit;
@@ -82,11 +86,17 @@ class CategoryTile extends StatelessWidget {
                   top: 0,
                   right: 0,
                   child: IconButton(
+                    padding: EdgeInsets.zero,
                     onPressed: onEdit,
-                    icon: const Icon(
-                      Icons.edit,
-                      color: white,
-                      size: 15,
+                    icon: Container(
+                      padding: EdgeInsets.all(8),
+                      decoration: const BoxDecoration(
+                          color: white, shape: BoxShape.circle),
+                      child: const Icon(
+                        Icons.edit,
+                        color: textDark80,
+                        size: 12,
+                      ),
                     ),
                   ),
                 )

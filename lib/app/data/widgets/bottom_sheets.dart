@@ -292,15 +292,14 @@ yearSelectionBottomSheet(
       });
 }
 
-modeSelectionBottomSheet({
-  required BuildContext context,
-  required RxList<ServiceMode> modeList,
-   Rx<ServiceMode>? selectedMode,
-  RxList<ServiceMode>? selectedModeList ,
-  required Function(ServiceMode) onModeSelected,
-  required VoidCallback? onSubmit,
-  bool isMultiSelect = false
-}) {
+modeSelectionBottomSheet(
+    {required BuildContext context,
+    required RxList<ServiceMode> modeList,
+    Rx<ServiceMode>? selectedMode,
+    RxList<ServiceMode>? selectedModeList,
+    required Function(ServiceMode) onModeSelected,
+    required VoidCallback? onSubmit,
+    bool isMultiSelect = false}) {
   return showModalBottomSheet(
       backgroundColor: Colors.transparent,
       shape: const RoundedRectangleBorder(
@@ -356,68 +355,19 @@ modeSelectionBottomSheet({
                         itemCount: modeList.length,
                         itemBuilder: (con, i) {
                           print('mode ${modeList[i].title!}');
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: InkWell(
+                          return ServiceModeTile(
                               onTap: () {
                                 onModeSelected.call(modeList[i]);
+                                modeList.refresh();
                               },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(8),
-                                  color: hexToColor(modeList[i].bgCardColor!),
-                                ),
-                                child: Stack(
-                                  children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(14.0),
-                                      child: Column(
-                                        mainAxisSize: MainAxisSize.min,
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            modeList[i].title!,
-                                            style: tsPoppins(
-                                                weight: FontWeight.w600,
-                                                color: white),
-                                          ),
-                                          Text(
-                                            modeList[i].desc!,
-                                            style: tsPoppins(
-                                                size: 11,
-                                                weight: FontWeight.w400,
-                                                color: white),
-                                          ),
-                                        ],
-                                      ),
-                                    ),
-                                    Positioned(
-                                      top: 0,
-                                      right: 0,
-                                      child: Theme(
-                                        data: Theme.of(context).copyWith(
-                                          unselectedWidgetColor: white,
-                                        ),
-                                        child: Obx(
-                                          () => Radio(
-                                              value:isMultiSelect? selectedModeList!.contains(modeList[i]): selectedMode!.value ==
-                                                  modeList[i],
-                                              groupValue: true,
-                                              activeColor: white,
-                                              toggleable: true,
-                                              onChanged: (v) {
-                                                onModeSelected
-                                                    .call(modeList[i]);
-                                              }),
-                                        ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          );
+                              onChanged: (value) {
+                                onModeSelected.call(modeList[i]);
+                                modeList.refresh();
+                              },
+                              isSelect: isMultiSelect
+                                  ? selectedModeList!.contains(modeList[i])
+                                  : selectedMode!.value == modeList[i],
+                              mode: modeList[i]);
                         }),
                   ),
                 ),
@@ -562,7 +512,7 @@ spareSelectionBottomSheet({
   required Function(bool) onAutoSelectChange,
   required Function(Spare?) onSpareSelected,
   required RxBool isAutoSelect,
-   required VoidCallback? onSubmit,
+  required VoidCallback? onSubmit,
 }) {
   return showModalBottomSheet(
       backgroundColor: Colors.transparent,
@@ -689,7 +639,7 @@ spareSelectionBottomSheet({
                 SizedBox(
                   height: Get.height * 0.020,
                 ),
-                   Container(
+                Container(
                   margin:
                       const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
                   child: ElevatedButton(
@@ -709,7 +659,6 @@ spareSelectionBottomSheet({
             ));
       });
 }
-
 
 chooseImagePickerSource(
     {String title = 'Choose Image',
@@ -734,7 +683,6 @@ chooseImagePickerSource(
           Row(
             children: [
               InkWell(
-                
                 onTap: onCameraTap,
                 child: Column(
                   mainAxisSize: MainAxisSize.min,

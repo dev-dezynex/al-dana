@@ -17,3 +17,6 @@ export 'booking_tile.dart';
 export 'order_tracker.dart';
 export 'spare_category_tile.dart';
 export 'spare_tile.dart';
+export 'user_tile.dart';
+export 'service_mode_tile.dart';
+export 'decorated_tab_bar.dart';

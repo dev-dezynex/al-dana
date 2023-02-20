@@ -129,6 +129,22 @@ class HomeView extends GetView<HomeController> {
             },
           ),
           NavItem(
+            title: "Manage Branch",
+            icon: "assets/icons/ic_nav_4.svg",
+            onTap: () {
+              Get.back();
+              Get.toNamed(Routes.BRANCH_LIST);
+            },
+          ),
+          NavItem(
+            title: "Manage Users",
+            icon: "assets/icons/ic_nav_4.svg",
+            onTap: () {
+              Get.back();
+              Get.toNamed(Routes.USERS);
+            },
+          ),
+          NavItem(
             title: "Manage Spare",
             icon: "assets/icons/ic_nav_4.svg",
             onTap: () {
@@ -169,14 +185,14 @@ class HomeView extends GetView<HomeController> {
             },
           ),
           NavItem(
-            title: "Payment",
+            title: "Notifications",
             icon: "assets/icons/ic_nav_5.svg",
             onTap: () {
               Get.back();
             },
           ),
           NavItem(
-            title: "Contact",
+            title: "Rewards",
             icon: "assets/icons/ic_nav_6.svg",
             onTap: () {
               Get.back();

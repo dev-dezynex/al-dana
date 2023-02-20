@@ -122,7 +122,7 @@ class PhoneView extends GetView<AuthController> {
                                 disabledBorder: const UnderlineInputBorder(
                                     borderSide: BorderSide(color: textDark20)),
                               ),
-                              initialCountryCode: 'IN',
+                              initialCountryCode: 'AE',
                               onCountryChanged: (code) {
                                 controller.contryCode = code.dialCode;
                               },
@@ -133,9 +133,7 @@ class PhoneView extends GetView<AuthController> {
                       ),
                       Obx(
                         () => controller.isLoading.value
-                            ? const CircularProgressIndicator(
-                                color: white,
-                              )
+                            ? const CircularProgressIndicator(color: white)
                             : InkWell(
                                 customBorder: const CircleBorder(),
                                 onTap: () {
