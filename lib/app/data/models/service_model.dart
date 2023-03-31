@@ -31,32 +31,29 @@ class ServiceResult {
 class Service {
   late String id;
   late String title;
-  late String subTitle;
   late String desc;
   late String image;
   late String bgCardColor;
   late List<Branch> branchList;
   late double price;
-  late List<Work> work;
   late SpareCategory spareCategory;
+  late List<ServiceMode> serviceModeList;
 
   Service(
       {this.id = '',
       this.title = '',
-      this.subTitle = '',
       this.desc = '',
       this.image = '',
       this.bgCardColor = '',
       this.branchList = const [],
       this.price = 0,
-      this.work = const [],
+      this.serviceModeList = const [],
       required this.spareCategory});
 
   Service.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = json['_id'];
     title = json['title'];
-    subTitle = json['sub_title'];
-    desc = json['desc'];
+    desc = json['description'];
     image = json['image'];
     bgCardColor = json['bg_card_color'];
     if (json['branch'] != null) {
@@ -66,10 +63,11 @@ class Service {
       });
     }
     price = json['price'];
-       if (json['works'] != null) {
-      work = <Work>[];
-      json['works'].forEach((v) {
-        work.add(Work.fromJson(v));
+
+    if (json['serviceModeId'] != null) {
+      serviceModeList = <ServiceMode>[];
+      json['serviceModeId'].forEach((v) {
+        serviceModeList.add(ServiceMode.fromJson(v));
       });
     }
     spareCategory = json['spare_category'] != null
@@ -79,15 +77,14 @@ class Service {
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
-    data['id'] = id;
+    data['_id'] = id;
     data['title'] = title;
-    data['sub_title'] = subTitle;
-    data['desc'] = desc;
+    data['description'] = desc;
     data['image'] = image;
     data['bg_card_color'] = bgCardColor;
     data['branch'] = branchList.map((v) => v.toJson()).toList();
     data['price'] = price;
-    data['works'] = work.map((v) => v.toJson()).toList();
+
     return data;
   }
 }

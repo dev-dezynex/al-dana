@@ -57,7 +57,7 @@ class PaymentSuccessView extends GetView<PaymentPageController> {
                   controller.isPaymentSuccess.value = true;
                 },
                 style: ElevatedButton.styleFrom(
-                    primary: bgColor27,
+                    backgroundColor: bgColor27,
                     minimumSize: Size(Get.width, 50),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(6))),

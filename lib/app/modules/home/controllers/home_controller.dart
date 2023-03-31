@@ -15,49 +15,52 @@ class HomeController extends GetxController {
   var categoryResult = CategoryResult().obs;
   TextEditingController vehicleController = TextEditingController();
   LocationData? currentLocation;
-  var modeList = <ServiceMode>[].obs;
-  var selectedMode = ServiceMode().obs;
+  // var modeList = <ServiceMode>[].obs;
+  // var selectedMode = ServiceMode().obs;
   var vehicleList = <Vehicle>[].obs;
   var selectedVehicle = Vehicle().obs;
   //for admin home
   var bookingResult = BookingResult().obs;
   var adminTabIndex = 0.obs;
 
-  //for profile 
-    var file = File('').obs;
+  //for profile
+  var file = File('').obs;
   var currentUser = Common().currentUser.obs;
-  TextEditingController nameController = TextEditingController(text: 'Harps Joseph');
-  TextEditingController phoneController = TextEditingController(text: '+974 453875636');
-  TextEditingController emailController = TextEditingController(text: 'harpsjoseph@gmail.com');
-  TextEditingController addressController = TextEditingController(text: 'Gold Palace, UAE, Baniyas Road Dubai,');
+  TextEditingController nameController =
+      TextEditingController(text: 'Harps Joseph');
+  TextEditingController phoneController =
+      TextEditingController(text: '+974 453875636');
+  TextEditingController emailController =
+      TextEditingController(text: 'harpsjoseph@gmail.com');
+  TextEditingController addressController =
+      TextEditingController(text: 'Gold Palace, UAE, Baniyas Road Dubai,');
   var isLoading = false.obs;
-  
-  
+
   @override
   void onInit() {
     super.onInit();
     getDetails();
   }
 
-
   @override
   void onClose() {}
 
   getDetails() {
     // if (common.currentUser.scope == 'admin') {
-      getBookings();
+    // getBookings();
     // }
-    getService();
+    // getModeList();
+    getCategories();
     getVehicles();
   }
 
-  getService() async {
-    categoryResult.value = await CategoryProvider().getDummyData();
+  getCategories() async {
+    categoryResult.value = await CategoryProvider().getCategories();
     categoryResult.refresh();
   }
 
   getVehicles() async {
-    vehicleList.value = (await VehicleProvider().getDummyData()).vehicleList!;
+    vehicleList.value = (await VehicleProvider().getVehicles()).vehicleList!;
     vehicleList.refresh();
   }
 
@@ -78,26 +81,26 @@ class HomeController extends GetxController {
         onVehicleSelected: (Vehicle vehicle) {
           selectedVehicle.value = vehicle;
           vehicleController.text =
-              '${vehicle.brand!.name} - ${vehicle.variant!.name}';
+              '${vehicle.brand!.title} - ${vehicle.variant!.name}';
           storage.write(selected_vehicle, vehicle.toJson());
           Get.back();
         });
   }
 
-  void chooseMode(BuildContext context, Category category) {
-    modeSelectionBottomSheet(
-        context: context,
-        modeList: modeList,
-        selectedMode: selectedMode,
-        onModeSelected: (ServiceMode mode) {
-          selectedMode.value = mode;
-          storage.write(selected_mode, mode.toJson());
-        },
-        onSubmit: () {
-          Get.back();
-          Get.toNamed(Routes.SERVICE, arguments: category);
-        });
-  }
+  // void chooseMode(BuildContext context, Category category) {
+  //   modeSelectionBottomSheet(
+  //       context: context,
+  //       modeList: modeList,
+  //       selectedMode: selectedMode,
+  //       onModeSelected: (ServiceMode mode) {
+  //         selectedMode.value = mode;
+  //         storage.write(selected_mode, mode.toJson());
+  //       },
+  //       onSubmit: () {
+  //         Get.back();
+  //         Get.toNamed(Routes.SERVICE, arguments: category);
+  //       });
+  // }
 
   void logout() {
     Get.dialog(
@@ -140,11 +143,9 @@ class HomeController extends GetxController {
     bookingResult.refresh();
   }
 
-
-
   //for profile
 
-    pickImage(ImageSource sourse) async {
+  pickImage(ImageSource sourse) async {
     var image = (await FileProvider().pickImage(imageSource: sourse))!;
 
     print('file picked ${file.value.path.split('/').last}');
@@ -153,4 +154,9 @@ class HomeController extends GetxController {
   }
 
   void updateProfile() {}
+
+  // void getModeList() async {
+  //   modeList.value = (await ServiceModeProvider().getModes()).serviceModeList!;
+  //   modeList.refresh();
+  // }
 }

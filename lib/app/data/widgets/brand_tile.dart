@@ -24,17 +24,19 @@ class BrandTile extends StatelessWidget {
               mainAxisSize: MainAxisSize.min,
               children: [
                 Image.network(
-                  brand.image,
+                  '$domainName${brand.image}',
                   fit: BoxFit.contain,
+                  width: Get.width * .15,
                   errorBuilder: (context, error, stackTrace) {
                     return Image.asset(
                       brand.image,
                       fit: BoxFit.contain,
-                      width: Get.width * .1,
+                      width: Get.width * .15,
                       errorBuilder: (context, error, stackTrace) {
                         return Image.asset(
                           'assets/images/img_placeholder.png',
                           fit: BoxFit.contain,
+                          width: Get.width * .15,
                         );
                       },
                     );
@@ -44,7 +46,7 @@ class BrandTile extends StatelessWidget {
                   width: 13,
                 ),
                 Text(
-                  brand.name,
+                  brand.title,
                   style: tsPoppins(
                       weight: FontWeight.w400, size: 14, color: textDark40),
                 )

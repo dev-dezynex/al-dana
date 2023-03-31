@@ -244,7 +244,7 @@ class AddCategoryView extends GetView<AddCategoryController> {
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(
-                                    primary: primary,
+                                    backgroundColor: primary,
                                     minimumSize: Size(Get.width, 50),
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
@@ -273,7 +273,7 @@ class AddCategoryView extends GetView<AddCategoryController> {
                                           });
                                     },
                                     style: ElevatedButton.styleFrom(
-                                        primary: white,
+                                        backgroundColor: white,
                                         minimumSize: Size(Get.width * .4, 50),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
@@ -292,7 +292,7 @@ class AddCategoryView extends GetView<AddCategoryController> {
                                       }
                                     },
                                     style: ElevatedButton.styleFrom(
-                                        primary: primary,
+                                        backgroundColor: primary,
                                         minimumSize: Size(Get.width * .4, 50),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:

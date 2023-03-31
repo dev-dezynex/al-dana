@@ -1,9 +1,5 @@
 import 'package:al_dana/app/data/data.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/foundation/key.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:get/get.dart';
 
 class ServiceModeTile extends StatelessWidget {
   const ServiceModeTile(
@@ -26,7 +22,7 @@ class ServiceModeTile extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: hexToColor(mode.bgCardColor!),
+            color: hexToColor(mode.bgCardColor),
           ),
           child: Stack(
             children: [
@@ -37,11 +33,11 @@ class ServiceModeTile extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      mode.title!,
+                      mode.title,
                       style: tsPoppins(weight: FontWeight.w600, color: white),
                     ),
                     Text(
-                      mode.desc!,
+                      mode.desc,
                       style: tsPoppins(
                           size: 11, weight: FontWeight.w400, color: white),
                     ),

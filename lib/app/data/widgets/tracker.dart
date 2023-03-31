@@ -61,10 +61,7 @@ class TrackerTile extends StatelessWidget {
                   padding: const EdgeInsets.only(left: 14),
                   child: SizedBox(
                     width: 2,
-                    height: booking.services![serviceIndex].work.isNotEmpty
-                        ? booking.services![serviceIndex].work.length *
-                            30
-                        : 60,
+                    height: 60,
                     child: RotatedBox(
                       quarterTurns: 1,
                       child: LinearProgressIndicator(
@@ -88,7 +85,7 @@ class TrackerTile extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              booking.services![serviceIndex].work[index].title,
+                              'status',
                               style: tsPoppins(),
                             ),
                             const SizedBox(
@@ -102,9 +99,7 @@ class TrackerTile extends StatelessWidget {
                           height: 4,
                         );
                       },
-                      itemCount: booking.services![serviceIndex].work.isNotEmpty
-                          ? booking.services![serviceIndex].work.length
-                          : 0),
+                      itemCount:2),
                 )
               ],
             ),

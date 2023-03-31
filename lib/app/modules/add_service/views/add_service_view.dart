@@ -332,158 +332,159 @@ class AddServiceView extends GetView<AddServiceController> {
                           const SizedBox(
                             height: 15,
                           ),
-                          Autocomplete<Work>(
-                            optionsBuilder:
-                                (TextEditingValue textEditingValue) {
-                              return controller.workResult.value.workList
-                                  .where((Work value) => value.title
-                                      .toLowerCase()
-                                      .startsWith(
-                                          textEditingValue.text.toLowerCase()))
-                                  .toList();
-                            },
-                            displayStringForOption: (Work option) =>
-                                option.title,
-                            fieldViewBuilder: (BuildContext context,
-                                TextEditingController tec,
-                                FocusNode fieldFocusNode,
-                                VoidCallback onFieldSubmitted) {
-                              controller.workController = tec;
-                              focusNode2 = fieldFocusNode;
-                              return TextFormField(
-                                controller: tec,
-                                focusNode: fieldFocusNode,
-                                validator: (value) {
-                                  if (controller.selectedWork.isEmpty) {
-                                    return "Please select at least one work";
-                                  } else {
-                                    return null;
-                                  }
-                                },
-                                style: tsPoppins(
-                                    size: 14,
-                                    weight: FontWeight.w400,
-                                    color: textDark80),
-                                decoration: InputDecoration(
-                                  contentPadding:
-                                      const EdgeInsets.only(left: 0),
-                                  labelText: "Work",
-                                  labelStyle: tsPoppins(
-                                      size: 14,
-                                      weight: FontWeight.w400,
-                                      color: textColor02),
-                                  enabledBorder: const UnderlineInputBorder(
-                                    borderSide: BorderSide(
-                                      color: borderColor,
-                                    ),
-                                  ),
-                                  focusedBorder: const UnderlineInputBorder(
-                                    borderSide: BorderSide(color: borderColor),
-                                  ),
-                                ),
-                              );
-                            },
-                            onSelected: (Work selection) {
-                              print('Selected: ${selection.title}');
-                              controller.workController.text = '';
-                              focusNode2.unfocus();
-                            },
-                            optionsViewBuilder: (BuildContext context,
-                                AutocompleteOnSelected<Work> onSelected,
-                                Iterable<Work> options) {
-                              return Align(
-                                alignment: Alignment.topLeft,
-                                child: Material(
-                                  child: Container(
-                                    width: 300,
-                                    color: Colors.white,
-                                    child: ListView.builder(
-                                      shrinkWrap: true,
-                                      padding: const EdgeInsets.all(10.0),
-                                      itemCount: options.length,
-                                      itemBuilder:
-                                          (BuildContext context, int index) {
-                                        final Work option =
-                                            options.elementAt(index);
 
-                                        return GestureDetector(
-                                          onTap: () {
-                                            onSelected(option);
-                                            if (!controller.selectedWork
-                                                .contains(option)) {
-                                              // controller.branchController.text =
-                                              //     '';
-                                              controller.selectedWork
-                                                  .add(option);
-                                              controller.selectedBranch
-                                                  .refresh();
-                                            }
-                                          },
-                                          child: ListTile(
-                                            title: Text(option.title,
-                                                style: tsPoppins(
-                                                  color: textDark40,
-                                                  size: 14,
-                                                )),
-                                          ),
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ),
-                              );
-                            },
-                          ),
-                          if (controller.selectedWork.isNotEmpty)
-                            const SizedBox(
-                              height: 8,
-                            ),
-                          if (controller.selectedWork.isNotEmpty)
-                            SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.start,
-                                children: List.generate(
-                                    controller.selectedWork.length,
-                                    (i) => Container(
-                                          constraints: const BoxConstraints(
-                                              maxWidth: 180),
-                                          padding: const EdgeInsets.symmetric(
-                                              vertical: 5, horizontal: 8),
-                                          margin:
-                                              const EdgeInsets.only(right: 5),
-                                          decoration: BoxDecoration(
-                                              color: textDark10,
-                                              borderRadius:
-                                                  BorderRadius.circular(5)),
-                                          child: Row(
-                                            mainAxisSize: MainAxisSize.min,
-                                            children: [
-                                              Flexible(
-                                                child: Text(
-                                                  '${controller.selectedWork[i].title}  ',
-                                                  overflow:
-                                                      TextOverflow.ellipsis,
-                                                  style: tsPoppins(
-                                                      color: textDark80),
-                                                ),
-                                              ),
-                                              GestureDetector(
-                                                onTap: () {
-                                                  controller.selectedWork
-                                                      .remove(controller
-                                                          .selectedWork[i]);
-                                                },
-                                                child: const Icon(
-                                                  Icons.close,
-                                                  color: textDark40,
-                                                ),
-                                              )
-                                            ],
-                                          ),
-                                        )),
-                              ),
-                            ),
+                          // Autocomplete<Work>(
+                          //   optionsBuilder:
+                          //       (TextEditingValue textEditingValue) {
+                          //     return controller.workResult.value.workList
+                          //         .where((Work value) => value.title
+                          //             .toLowerCase()
+                          //             .startsWith(
+                          //                 textEditingValue.text.toLowerCase()))
+                          //         .toList();
+                          //   },
+                          //   displayStringForOption: (Work option) =>
+                          //       option.title,
+                          //   fieldViewBuilder: (BuildContext context,
+                          //       TextEditingController tec,
+                          //       FocusNode fieldFocusNode,
+                          //       VoidCallback onFieldSubmitted) {
+                          //     controller.workController = tec;
+                          //     focusNode2 = fieldFocusNode;
+                          //     return TextFormField(
+                          //       controller: tec,
+                          //       focusNode: fieldFocusNode,
+                          //       validator: (value) {
+                          //         if (controller.selectedWork.isEmpty) {
+                          //           return "Please select at least one work";
+                          //         } else {
+                          //           return null;
+                          //         }
+                          //       },
+                          //       style: tsPoppins(
+                          //           size: 14,
+                          //           weight: FontWeight.w400,
+                          //           color: textDark80),
+                          //       decoration: InputDecoration(
+                          //         contentPadding:
+                          //             const EdgeInsets.only(left: 0),
+                          //         labelText: "Work",
+                          //         labelStyle: tsPoppins(
+                          //             size: 14,
+                          //             weight: FontWeight.w400,
+                          //             color: textColor02),
+                          //         enabledBorder: const UnderlineInputBorder(
+                          //           borderSide: BorderSide(
+                          //             color: borderColor,
+                          //           ),
+                          //         ),
+                          //         focusedBorder: const UnderlineInputBorder(
+                          //           borderSide: BorderSide(color: borderColor),
+                          //         ),
+                          //       ),
+                          //     );
+                          //   },
+                          //   onSelected: (Work selection) {
+                          //     print('Selected: ${selection.title}');
+                          //     controller.workController.text = '';
+                          //     focusNode2.unfocus();
+                          //   },
+                          //   optionsViewBuilder: (BuildContext context,
+                          //       AutocompleteOnSelected<Work> onSelected,
+                          //       Iterable<Work> options) {
+                          //     return Align(
+                          //       alignment: Alignment.topLeft,
+                          //       child: Material(
+                          //         child: Container(
+                          //           width: 300,
+                          //           color: Colors.white,
+                          //           child: ListView.builder(
+                          //             shrinkWrap: true,
+                          //             padding: const EdgeInsets.all(10.0),
+                          //             itemCount: options.length,
+                          //             itemBuilder:
+                          //                 (BuildContext context, int index) {
+                          //               final Work option =
+                          //                   options.elementAt(index);
+                          //               return GestureDetector(
+                          //                 onTap: () {
+                          //                   onSelected(option);
+                          //                   if (!controller.selectedWork
+                          //                       .contains(option)) {
+                          //                     // controller.branchController.text =
+                          //                     //     '';
+                          //                     controller.selectedWork
+                          //                         .add(option);
+                          //                     controller.selectedBranch
+                          //                         .refresh();
+                          //                   }
+                          //                 },
+                          //                 child: ListTile(
+                          //                   title: Text(option.title,
+                          //                       style: tsPoppins(
+                          //                         color: textDark40,
+                          //                         size: 14,
+                          //                       )),
+                          //                 ),
+                          //               );
+                          //             },
+                          //           ),
+                          //         ),
+                          //       ),
+                          //     );
+                          //   },
+                          // ),
+                          // if (controller.selectedWork.isNotEmpty)
+                          //   const SizedBox(
+                          //     height: 8,
+                          //   ),
+                          // if (controller.selectedWork.isNotEmpty)
+                          //   SingleChildScrollView(
+                          //     scrollDirection: Axis.horizontal,
+                          //     child: Row(
+                          //       mainAxisAlignment: MainAxisAlignment.start,
+                          //       children: List.generate(
+                          //           controller.selectedWork.length,
+                          //           (i) => Container(
+                          //                 constraints: const BoxConstraints(
+                          //                     maxWidth: 180),
+                          //                 padding: const EdgeInsets.symmetric(
+                          //                     vertical: 5, horizontal: 8),
+                          //                 margin:
+                          //                     const EdgeInsets.only(right: 5),
+                          //                 decoration: BoxDecoration(
+                          //                     color: textDark10,
+                          //                     borderRadius:
+                          //                         BorderRadius.circular(5)),
+                          //                 child: Row(
+                          //                   mainAxisSize: MainAxisSize.min,
+                          //                   children: [
+                          //                     Flexible(
+                          //                       child: Text(
+                          //                         '${controller.selectedWork[i].title}  ',
+                          //                         overflow:
+                          //                             TextOverflow.ellipsis,
+                          //                         style: tsPoppins(
+                          //                             color: textDark80),
+                          //                       ),
+                          //                     ),
+                          //                     GestureDetector(
+                          //                       onTap: () {
+                          //                         controller.selectedWork
+                          //                             .remove(controller
+                          //                                 .selectedWork[i]);
+                          //                       },
+                          //                       child: const Icon(
+                          //                         Icons.close,
+                          //                         color: textDark40,
+                          //                       ),
+                          //                     )
+                          //                   ],
+                          //                 ),
+                          //               )),
+                          //     ),
+                          //   ),
+
                           const SizedBox(
                             height: 15,
                           ),
@@ -570,7 +571,8 @@ class AddServiceView extends GetView<AddServiceController> {
                                     width: 10,
                                   ),
                                   Text(
-                                    colorToHexValue(controller.bgCardColor.value),
+                                    colorToHexValue(
+                                        controller.bgCardColor.value),
                                     style: tsPoppins(color: textDark),
                                   ),
                                 ],
@@ -591,7 +593,7 @@ class AddServiceView extends GetView<AddServiceController> {
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(
-                                    primary: primary,
+                                    backgroundColor: primary,
                                     minimumSize: Size(Get.width, 50),
                                     shape: RoundedRectangleBorder(
                                         borderRadius:
@@ -620,7 +622,7 @@ class AddServiceView extends GetView<AddServiceController> {
                                           });
                                     },
                                     style: ElevatedButton.styleFrom(
-                                        primary: white,
+                                        backgroundColor: white,
                                         minimumSize: Size(Get.width * .4, 50),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
@@ -640,7 +642,7 @@ class AddServiceView extends GetView<AddServiceController> {
                                       }
                                     },
                                     style: ElevatedButton.styleFrom(
-                                        primary: primary,
+                                        backgroundColor: primary,
                                         minimumSize: Size(Get.width * .4, 50),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:

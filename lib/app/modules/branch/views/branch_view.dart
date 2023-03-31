@@ -54,13 +54,16 @@ class BranchView extends GetView<BranchController> {
                         itemCount:
                             controller.branchResult.value.branchList!.length,
                         itemBuilder: (con, i) {
-                          return BranchTile(
-                            onTap: () {
-                              controller.selectBranch(
-                                  controller.branchResult.value.branchList![i]);
-                            },
-                            branch:
-                                controller.branchResult.value.branchList![i],
+                          return SizedBox(
+                            width: Get.width * .7,
+                            child: BranchTile(
+                              onTap: () {
+                                controller.selectBranch(controller
+                                    .branchResult.value.branchList![i]);
+                              },
+                              branch:
+                                  controller.branchResult.value.branchList![i],
+                            ),
                           );
                         }),
                   ),
@@ -74,7 +77,7 @@ class BranchView extends GetView<BranchController> {
                     controller.onConfirmPressed();
                   },
                   style: ElevatedButton.styleFrom(
-                      primary: bgColor27,
+                      backgroundColor: bgColor27,
                       minimumSize: Size(Get.width, 50),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8))),

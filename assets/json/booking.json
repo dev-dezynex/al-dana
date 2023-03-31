@@ -7,16 +7,16 @@
             "date": "22/12/2022",
             "slot": "10 am - 11 am",
             "approval_status": "PENDING",
-            "price":450.50,
-            "auto_spare_select":true,
-            "packages":[
+            "price": 450.50,
+            "auto_spare_select": true,
+            "packages": [
                 {
-                    "id":"1",
-                    "title":"Car Wash Platinum",
+                    "id": "1",
+                    "title": "Car Wash Platinum",
                     "image": "assets/images/img_service_5.png",
-                    "price":120.32,
+                    "price": 120.32,
                     "bg_card_color": "#00BDFE",
-                    "services":[
+                    "services": [
                         {
                             "id": "isdksdjfj12k23nnkf",
                             "title": "Indoor Perfumery",
@@ -33,7 +33,7 @@
                                     "longitude": 76.8505975,
                                     "image": "assets/images/img_branch_1.png",
                                     "rating": 4.3,
-                                    "distance": "6 Km"
+                                    "distance": 6.0
                                 },
                                 {
                                     "id": "2",
@@ -43,7 +43,7 @@
                                     "longitude": 76.8979696,
                                     "image": "assets/images/img_branch_1.png",
                                     "rating": 4.2,
-                                    "distance": "8 Km"
+                                    "distance": 8.0
                                 },
                                 {
                                     "id": "3",
@@ -53,7 +53,7 @@
                                     "longitude": 76.8929361,
                                     "image": "assets/images/img_branch_1.png",
                                     "rating": 4.1,
-                                    "distance": "12 Km"
+                                    "distance": 12.0
                                 }
                             ],
                             "price": 183.23,
@@ -112,7 +112,7 @@
                                     "longitude": 76.8505975,
                                     "image": "assets/images/img_branch_1.png",
                                     "rating": 4.3,
-                                    "distance": "6 Km"
+                                    "distance": 6.0
                                 },
                                 {
                                     "id": "2",
@@ -122,7 +122,7 @@
                                     "longitude": 76.8979696,
                                     "image": "assets/images/img_branch_1.png",
                                     "rating": 4.2,
-                                    "distance": "8 Km"
+                                    "distance": 8.0
                                 },
                                 {
                                     "id": "3",
@@ -132,7 +132,7 @@
                                     "longitude": 76.8929361,
                                     "image": "assets/images/img_branch_1.png",
                                     "rating": 4.1,
-                                    "distance": "12 Km"
+                                    "distance": 12.0
                                 }
                             ],
                             "price": 183.23,
@@ -181,7 +181,7 @@
                             "sub_title": "In publishing and graphic design of car wash",
                             "desc": "In publishing and graphic design of car wash",
                             "image": "assets/images/img_service_4.png",
-                            "bg_card_color":"#06D39E",
+                            "bg_card_color": "#06D39E",
                             "branch": [
                                 {
                                     "id": "1",
@@ -191,7 +191,7 @@
                                     "longitude": 76.8505975,
                                     "image": "assets/images/img_branch_1.png",
                                     "rating": 4.3,
-                                    "distance": "6 Km"
+                                    "distance": 6.0
                                 },
                                 {
                                     "id": "2",
@@ -201,7 +201,7 @@
                                     "longitude": 76.8979696,
                                     "image": "assets/images/img_branch_1.png",
                                     "rating": 4.2,
-                                    "distance": "8 Km"
+                                    "distance": 8.0
                                 },
                                 {
                                     "id": "3",
@@ -211,7 +211,7 @@
                                     "longitude": 76.8929361,
                                     "image": "assets/images/img_branch_1.png",
                                     "rating": 4.1,
-                                    "distance": "12 Km"
+                                    "distance": 12.0
                                 }
                             ],
                             "price": 183.23,
@@ -260,7 +260,7 @@
                             "sub_title": "In publishing and graphic design of car wash",
                             "desc": "In publishing and graphic design of car wash",
                             "image": "assets/images/img_service_4.png",
-                            "bg_card_color":"#118AB2",
+                            "bg_card_color": "#118AB2",
                             "branch": [
                                 {
                                     "id": "1",
@@ -270,7 +270,7 @@
                                     "longitude": 76.8505975,
                                     "image": "assets/images/img_branch_1.png",
                                     "rating": 4.3,
-                                    "distance": "6 Km"
+                                    "distance": 6.0
                                 },
                                 {
                                     "id": "2",
@@ -280,7 +280,7 @@
                                     "longitude": 76.8979696,
                                     "image": "assets/images/img_branch_1.png",
                                     "rating": 4.2,
-                                    "distance": "8 Km"
+                                    "distance": 8.0
                                 },
                                 {
                                     "id": "3",
@@ -290,7 +290,7 @@
                                     "longitude": 76.8929361,
                                     "image": "assets/images/img_branch_1.png",
                                     "rating": 4.1,
-                                    "distance": "12 Km"
+                                    "distance": 12.0
                                 }
                             ],
                             "price": 183.23,
@@ -333,9 +333,8 @@
                                 }
                             ]
                         }
-                      
                     ]
-                   }
+                }
             ],
             "services": [
                 {
@@ -354,7 +353,7 @@
                             "longitude": 76.8505975,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.3,
-                            "distance": "6 Km"
+                            "distance": 6.0
                         },
                         {
                             "id": "2",
@@ -364,7 +363,7 @@
                             "longitude": 76.8979696,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.2,
-                            "distance": "8 Km"
+                            "distance": 18.0
                         },
                         {
                             "id": "3",
@@ -374,7 +373,7 @@
                             "longitude": 76.8929361,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.1,
-                            "distance": "12 Km"
+                            "distance": 12.0
                         }
                     ],
                     "price": 183.23,
@@ -459,15 +458,14 @@
                 "longitude": 76.8505975,
                 "image": "assets/images/img_branch_1.png",
                 "rating": 4.3,
-                "distance": "6 Km"
+                "distance": 16.0
             },
-            "mode":{
+            "mode": {
                 "id": "1",
                 "title": "DOORSTEP",
                 "desc": "In publishing and graphic design of car wash",
                 "bg_card_color": "#FF3868"
             }
-           
         }
     ]
 }

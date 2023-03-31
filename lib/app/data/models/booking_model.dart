@@ -39,7 +39,7 @@ class Booking {
   Branch? branch;
   ServiceMode? mode;
   late bool autoSpareSelect;
-  late double price;
+  late double price,subscribedPrice;
 
   Booking({
     this.id,
@@ -54,6 +54,7 @@ class Booking {
     this.mode,
     this.autoSpareSelect = true,
     this.price = 0.0,
+    this.subscribedPrice = 0.0,
   });
 
   Booking.fromJson(Map<String, dynamic> json) {
@@ -63,6 +64,7 @@ class Booking {
     approvalStatus = json['approval_status'];
     autoSpareSelect = json['auto_spare_select'] ?? true;
     price = json['price'];
+    subscribedPrice = json['subscribed_price']??0.0;
     if (json['packages'] != null) {
       packageList = <PackageModel>[];
       json['packages'].forEach((v) {

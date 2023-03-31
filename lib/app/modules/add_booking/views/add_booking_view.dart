@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../data/data.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/add_booking_controller.dart';
 
 class AddBookingView extends GetView<AddBookingController> {
@@ -19,6 +20,24 @@ class AddBookingView extends GetView<AddBookingController> {
           'Shedule Order',
           style:
               tsPoppins(size: 18, weight: FontWeight.w600, color: textDark80),
+        ),
+        bottom: PreferredSize(
+          preferredSize: Size(Get.width, 40),
+          child: InkWell(
+            onTap: () {
+              controller.onNextClick(Routes.SUBSCRIPTION_PAGE);
+            },
+            child: Container(
+              width: Get.width,
+              height: 35,
+              alignment: Alignment.center,
+              color: Colors.yellow,
+              child: Text(
+                'Subscribe now save upto 50%',
+                style: tsPoppins(size: 15),
+              ),
+            ),
+          ),
         ),
       ),
       bottomSheet: Container(
@@ -103,10 +122,10 @@ class AddBookingView extends GetView<AddBookingController> {
                   ),
                   ElevatedButton(
                       onPressed: () {
-                        controller.onNextClick();
+                        controller.onNextClick(Routes.PAYMENT_PAGE);
                       },
                       style: ElevatedButton.styleFrom(
-                          primary: primary,
+                          backgroundColor: primary,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(6))),
                       child: Text(

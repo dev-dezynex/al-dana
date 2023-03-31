@@ -20,3 +20,4 @@ export 'spare_tile.dart';
 export 'user_tile.dart';
 export 'service_mode_tile.dart';
 export 'decorated_tab_bar.dart';
+export 'invoice_widget.dart';

@@ -7,9 +7,8 @@ class SplashController extends GetxController {
   @override
   void onInit() {
     super.onInit();
-    initSplash();
+    chackInstalation();
   }
-
 
   @override
   void onClose() {}
@@ -29,5 +28,10 @@ class SplashController extends GetxController {
         await storage.read(is_login) != null && storage.read(is_login);
 
     Get.offAndToNamed(isLoggedIn ? Routes.HOME : Routes.AUTH);
+  }
+
+  void chackInstalation() async {
+    await AppSetup.setup();
+    initSplash();
   }
 }

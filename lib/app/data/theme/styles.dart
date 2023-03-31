@@ -11,13 +11,12 @@ TextStyle tsPoppins(
         TextDecoration decoration = TextDecoration.none,
         double? height}) =>
     GoogleFonts.poppins(
-        textStyle: TextStyle(
       fontSize: size,
       height: height,
       fontWeight: weight,
       color: color.withOpacity(opacity),
       decoration: decoration,
-    ));
+    );
 
 TextStyle tsInter(
         {double size = 12.0,
@@ -27,13 +26,12 @@ TextStyle tsInter(
         TextDecoration decoration = TextDecoration.none,
         double? height}) =>
     GoogleFonts.inter(
-        textStyle: TextStyle(
       fontSize: size,
       height: height,
       fontWeight: weight,
       color: color.withOpacity(opacity),
       decoration: decoration,
-    ));
+    );
 
 TextStyle tsRubik(
         {double size = 12.0,
@@ -43,13 +41,12 @@ TextStyle tsRubik(
         TextDecoration decoration = TextDecoration.none,
         double? height}) =>
     GoogleFonts.rubik(
-        textStyle: TextStyle(
       fontSize: size,
       height: height,
       fontWeight: weight,
       color: color.withOpacity(opacity),
       decoration: decoration,
-    ));
+    );
 
 TextStyle tsPoppinsFormLabel(
         {double size = 14.0,
@@ -58,12 +55,11 @@ TextStyle tsPoppinsFormLabel(
         Color color = textDark40,
         TextDecoration decoration = TextDecoration.none}) =>
     GoogleFonts.poppins(
-        textStyle: TextStyle(
       fontSize: size,
       fontWeight: weight,
       color: color.withOpacity(opacity),
       decoration: decoration,
-    ));
+    );
 
 TextStyle tsPoppinsFormTextHInt(
         {double size = 12.0,
@@ -72,12 +68,11 @@ TextStyle tsPoppinsFormTextHInt(
         Color color = textDark80,
         TextDecoration decoration = TextDecoration.none}) =>
     GoogleFonts.poppins(
-        textStyle: TextStyle(
       fontSize: size,
       fontWeight: weight,
       color: color.withOpacity(opacity),
       decoration: decoration,
-    ));
+    );
 
 class InputFormDecoration {
   static InputDecoration outLinedInputTextDecoration({
@@ -95,6 +90,7 @@ class InputFormDecoration {
     BorderSide borderSide = const BorderSide(color: bgColor3),
     Widget? prefixIcon,
     Widget? suffixIcon,
+    Widget? suffix,
     Color? fillColor,
     BoxConstraints? constraints,
     FloatingLabelBehavior floatingLabelBehavior = FloatingLabelBehavior.auto,
@@ -112,6 +108,7 @@ class InputFormDecoration {
       fillColor: fillColor,
       prefixIcon: prefixIcon,
       suffixIcon: suffixIcon,
+      suffix: suffix,
       border: OutlineInputBorder(
           borderRadius: BorderRadius.all(Radius.circular(radius)),
           borderSide: borderSide),

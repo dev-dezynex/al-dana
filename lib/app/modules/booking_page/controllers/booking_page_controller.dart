@@ -10,14 +10,14 @@ class BookingPageController extends GetxController {
     getDetails();
   }
 
-
-
   getDetails() {
     getBookingHistory();
   }
 
   getBookingHistory() async {
+    isLoading(true);
     bookingResult.value = await BookingProvider().getBookingHistory();
     bookingResult.refresh();
+    isLoading(false);
   }
 }

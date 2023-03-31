@@ -106,7 +106,7 @@ class ServiceDetailsView extends GetView<ServiceDetailsController> {
                    
                       },
                       style: ElevatedButton.styleFrom(
-                          primary: primary,
+                          backgroundColor: primary,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(6))),
                       child: Text(

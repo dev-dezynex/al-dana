@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
+import '../data.dart';
 import '../models/category_model.dart';
 
 class CategoryProvider extends GetConnect {
@@ -12,4 +13,25 @@ class CategoryProvider extends GetConnect {
     CategoryResult result = CategoryResult.fromJson(data);
     return result;
   }
+
+
+
+  Future<CategoryResult> getCategories() async {
+    CategoryResult result;
+    Map<String, dynamic> qParams = {};
+    final response = await get(
+      apiListCategory,
+      query: qParams,
+      headers: Auth().requestHeaders,
+    );
+    print('qparams $qParams');
+    print('path $apiListCategory');
+    print('response ${response.body}');
+    if (response.statusCode == 401) {
+      Auth().authFailed(response.body['message']);
+    }
+    result = CategoryResult.listFromJson(response.body);
+    return result;
+  }
+
 }

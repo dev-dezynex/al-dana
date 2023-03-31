@@ -26,8 +26,8 @@ class BranchResult {
 }
 
 class Branch {
-  late String id, name, location, image, distance;
-  late double latitude, longitude, rating;
+  late String id, name, location, image;
+  late double latitude, longitude, rating,distance;
 
   Branch(
       {this.id = '',
@@ -37,7 +37,7 @@ class Branch {
       this.longitude = 0.0,
       this.image = '',
       this.rating = 0,
-      this.distance = ''});
+      this.distance = 0.0});
 
   Branch.fromJson(Map<String, dynamic> json) {
     id = json['id'] ?? '';
@@ -47,7 +47,7 @@ class Branch {
     longitude = json['longitude'] ?? 0.0;
     image = json['image'] ?? "";
     rating = json['rating'] ?? 0;
-    distance = json['distance'] ?? "";
+    distance = json['distance'] ?? 0.0;
   }
 
   Map<String, dynamic> toJson() {
@@ -59,7 +59,6 @@ class Branch {
     data['latitude'] = latitude;
     data['image'] = image;
     data['rating'] = rating;
-    data['distance'] = distance;
     return data;
   }
 }

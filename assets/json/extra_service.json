@@ -18,7 +18,7 @@
                     "longitude": 76.8505975,
                     "image": "assets/images/img_branch_1.png",
                     "rating": 4.3,
-                    "distance": "6 Km"
+                    "distance":6.0
                 },
                 {
                     "id": "2",
@@ -28,7 +28,7 @@
                     "longitude": 76.8979696,
                     "image": "assets/images/img_branch_1.png",
                     "rating": 4.2,
-                    "distance": "8 Km"
+                    "distance":8.0
                 },
                 {
                     "id": "3",
@@ -38,7 +38,7 @@
                     "longitude": 76.8929361,
                     "image": "assets/images/img_branch_1.png",
                     "rating": 4.1,
-                    "distance": "12 Km"
+                    "distance": 2.0
                 }
             ],
             "price": 183.23,
@@ -97,7 +97,7 @@
                     "longitude": 76.8505975,
                     "image": "assets/images/img_branch_1.png",
                     "rating": 4.3,
-                    "distance": "6 Km"
+                    "distance":6.0
                 },
                 {
                     "id": "2",
@@ -107,7 +107,7 @@
                     "longitude": 76.8979696,
                     "image": "assets/images/img_branch_1.png",
                     "rating": 4.2,
-                    "distance": "8 Km"
+                    "distance":8.0
                 },
                 {
                     "id": "3",
@@ -117,7 +117,7 @@
                     "longitude": 76.8929361,
                     "image": "assets/images/img_branch_1.png",
                     "rating": 4.1,
-                    "distance": "12 Km"
+                    "distance": 2.0
                 }
             ],
             "price": 183.23,
@@ -210,7 +210,7 @@
                     "longitude": 76.8505975,
                     "image": "assets/images/img_branch_1.png",
                     "rating": 4.3,
-                    "distance": "6 Km"
+                    "distance":6.0
                 },
                 {
                     "id": "2",
@@ -220,7 +220,7 @@
                     "longitude": 76.8979696,
                     "image": "assets/images/img_branch_1.png",
                     "rating": 4.2,
-                    "distance": "8 Km"
+                    "distance":8.0
                 },
                 {
                     "id": "3",
@@ -230,7 +230,7 @@
                     "longitude": 76.8929361,
                     "image": "assets/images/img_branch_1.png",
                     "rating": 4.1,
-                    "distance": "12 Km"
+                    "distance": 2.0
                 }
             ],
             "price": 183.23,
@@ -316,7 +316,7 @@
                     "longitude": 76.8505975,
                     "image": "assets/images/img_branch_1.png",
                     "rating": 4.3,
-                    "distance": "6 Km"
+                    "distance":6.0
                 },
                 {
                     "id": "2",
@@ -326,7 +326,7 @@
                     "longitude": 76.8979696,
                     "image": "assets/images/img_branch_1.png",
                     "rating": 4.2,
-                    "distance": "8 Km"
+                    "distance":8.0
                 },
                 {
                     "id": "3",
@@ -336,7 +336,7 @@
                     "longitude": 76.8929361,
                     "image": "assets/images/img_branch_1.png",
                     "rating": 4.1,
-                    "distance": "12 Km"
+                    "distance": 2.0
                 }
             ],
             "price": 183.23,

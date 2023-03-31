@@ -93,7 +93,7 @@ class MapPageView extends GetView<MapPageController> {
                     controller.onConfirmPressed();
                   },
                   style: ElevatedButton.styleFrom(
-                      primary: bgColor27,
+                      backgroundColor: bgColor27,
                       minimumSize: Size(Get.width, 50),
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(8))),

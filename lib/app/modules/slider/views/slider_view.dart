@@ -117,7 +117,7 @@ class SliderView extends GetView<SliderController> {
                             Get.toNamed(Routes.AUTH);
                           },
                           style: ElevatedButton.styleFrom(
-                              primary: primary,
+                              backgroundColor: primary,
                               minimumSize: Size(Get.width, 50),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(20))),

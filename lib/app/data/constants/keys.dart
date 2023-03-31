@@ -17,3 +17,9 @@ const String selected_service = "selected_service";
 
 //google api key
 const googleApiKey = 'AIzaSyBaZF1ks831cshYzJ7sWQ8sz-LsgrgFF9Y';
+
+
+
+//file paths
+const String path_main = 'AlDana';
+const String path_invoice = 'AlDana/Invoice';

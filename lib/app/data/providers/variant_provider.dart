@@ -1,25 +1,29 @@
 import 'package:get/get.dart';
 
+import '../data.dart';
 import '../models/variant_model.dart';
 
 class VariantProvider extends GetConnect {
-  @override
-  void onInit() {
-    httpClient.defaultDecoder = (map) {
-      if (map is Map<String, dynamic>) return VariantResult.fromJson(map);
-      if (map is List) {
-        return map.map((item) => VariantResult.fromJson(item)).toList();
-      }
-    };
-    httpClient.baseUrl = 'YOUR-API-URL';
-  }
 
-  Future<VariantResult?> getVariant(int id) async {
-    final response = await get('variant/$id');
-    return response.body;
-  }
+    Future<VariantResult> getCarVariants({String? modelId}) async {
+    VariantResult result;
+    Map<String, dynamic> qParams = {};
+    if (modelId != null) {  
+      qParams['filter[carModelId]'] = modelId;
+    }
+    final response = await get(apiListCarVariant,
+        query: qParams, headers: Auth().requestHeaders);
+    print('auth ${Auth().requestHeaders}');
+    print('qparams $qParams');
+    print('path $apiListCarVariant');
+    print('response ${response.body}');
+    if (response.statusCode == 200) {
+      result = VariantResult.listFromJson(response.body);
+    } else {
+      result = VariantResult.listFromJson(
+          {"status": "error", "message": "Server error !", "data": []});
+    }
 
-  Future<Response<VariantResult>> postVariant(VariantResult variant) async =>
-      await post('variant', variant);
-  Future<Response> deleteVariant(int id) async => await delete('variant/$id');
-}
+    return result;
+  }
+ }

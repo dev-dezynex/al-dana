@@ -1,34 +1,187 @@
+import 'package:al_dana/app/data/data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
-class SubscriptionPageController extends GetxController {
+import '../../../routes/app_pages.dart';
+
+class SubscriptionPageController extends GetxController
+    with GetSingleTickerProviderStateMixin {
+  // var startDateController =
+  //     TextEditingController(text: outputDateFormat.format(DateTime.now()));
+  // var endDateController = TextEditingController(
+  //     text: outputDateFormat
+  //         .format(DateTime.now().add(const Duration(days: 15))));
+  late TabController tabController;
   var startDate = DateTime.now().obs;
-  var endDate = DateTime.now().obs;
+  var endDate = DateTime.now().add(const Duration(days: 15)).obs;
   var selectedTab = 0.obs;
-  var tabs = ['Daily', 'Alternate', 'Custom'].obs;
+  var totalAmount = 0.0.obs;
+  var tabs = ['Daily', 'Monthly', 'Weekly', 'Custom'].obs;
   var dateRangeController1 = DateRangePickerController();
   var dateRangeController2 = DateRangePickerController();
   var dateRangeController3 = DateRangePickerController();
-  var pickDateRange = PickerDateRange(DateTime.now(), DateTime.now()).obs;
-  RxList<DateTime> alternateDateList = <DateTime>[].obs;
+  var dateRangeController4 = DateRangePickerController();
+  var pickDateRange = PickerDateRange(
+          DateTime.now(), DateTime.now().add(const Duration(days: 15)))
+      .obs;
+  RxList<DateTime> dateList = RxList<DateTime>();
+  RxList<DateTime> monthlyDateList = <DateTime>[].obs;
+  RxList<DateTime> weeklyDateList = <DateTime>[].obs;
   RxList<DateTime> multiDateList = <DateTime>[].obs;
+  var booking = Booking().obs;
   @override
   void onInit() {
     super.onInit();
+    booking.value = Get.arguments;
+    tabController = TabController(vsync: this, length: tabs.length);
+    setDateRange();
+    initDateList();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
+
+
+  // void setDateRange() {}
+
+  // void setDateList() {
+  //   alternateDateList.clear();
+  //   multiDateList.clear();
+  //   for (DateTime i = DateTime.now();
+  //       i.isBefore(endDate.value);
+  //       i.add(const Duration(days: 1))) {
+  //     alternateDateList.add(i);
+  //   }
+  // }
+
+  void onNextClick(BuildContext context) {
+    switch (selectedTab.value) {
+      case 0:
+        //please add minimum bookings in subscription here
+        if (dateList.length < 5) {
+          Get.snackbar('Error', 'Please choose a minimum of 5 days',
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: textDark20,
+              colorText: textDark80);
+        } else {
+          booking.value.subscribedPrice = totalAmount.value;
+          Get.toNamed(Routes.PAYMENT_PAGE, arguments: booking.value);
+        }
+        break;
+      case 1:
+        //please add minimum bookings in subscription here
+        if (monthlyDateList.length < 5) {
+          Get.snackbar('Error', 'Please choose a minimum of 5 days',
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: textDark20,
+              colorText: textDark80);
+        } else {
+          booking.value.subscribedPrice = totalAmount.value;
+          Get.toNamed(Routes.PAYMENT_PAGE, arguments: booking.value);
+        }
+        break;
+      case 2:
+        //please add minimum bookings in subscription here
+        if (multiDateList.length < 5) {
+          Get.snackbar('Error', 'Please choose a minimum of 5 days',
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: textDark20,
+              colorText: textDark80);
+        } else {
+          booking.value.subscribedPrice = totalAmount.value;
+          Get.toNamed(Routes.PAYMENT_PAGE, arguments: booking.value);
+        }
+        break;
+    }
   }
 
-  @override
-  void onClose() {
-    super.onClose();
+  setTotalAmount() {
+    totalAmount.value = 0.0;
+    switch (selectedTab.value) {
+      case 0:
+        for (DateTime date in dateList) {
+          totalAmount.value += booking.value.price;
+        }
+        break;
+      case 1:
+        for (DateTime date in monthlyDateList) {
+          totalAmount.value += booking.value.price;
+        }
+        break;
+      case 2:
+        for (DateTime date in weeklyDateList) {
+          totalAmount.value += booking.value.price;
+        }
+        break;
+      case 3:
+        for (DateTime date in multiDateList) {
+          totalAmount.value += booking.value.price;
+        }
+        break;
+    }
   }
 
-  void setDateRange() {}
+  initDateList() {
+    dateList.clear();
+    monthlyDateList.clear();
+    weeklyDateList.clear();
+    multiDateList.clear();
+    int n = 0;
+    for (DateTime i = startDate.value;
+        (i.isBefore(endDate.value) || i.day == endDate.value.day);
+        i = i.add(const Duration(days: 1))) {
+      dateList.add(i);
+    }
+    for (DateTime i = startDate.value;
+        (i.year == endDate.value.year);
+        i = DateTime(i.year, i.month + 1, i.day)) {
+      monthlyDateList.add(i);
+    }
+    for (DateTime i = startDate.value;
+        (i.isBefore(endDate.value) || i.day == endDate.value.day);
+        i = i.add(const Duration(days: 7))) {
+      weeklyDateList.add(i);
+    }
 
-  void setDateList() {}
+    setTotalAmount();
+  }
+
+  void setDateList() {
+    dateList.clear();
+    for (DateTime i = startDate.value;
+        (i.isBefore(endDate.value) || i.day == endDate.value.day);
+        i = i.add(const Duration(days: 1))) {
+      dateList.add(i);
+    }
+    dateList.refresh();
+    print(dateList);
+    setTotalAmount();
+  }
+
+  setWeeklyDateList(List<DateTime> dateList) {
+    weeklyDateList.clear();
+    weeklyDateList.addAll(dateList);
+    print(weeklyDateList);
+    setTotalAmount();
+  }
+
+  setMonthlyDateList(List<DateTime> dateList) {
+    monthlyDateList.clear();
+    monthlyDateList.addAll(dateList);
+    print(monthlyDateList);
+    setTotalAmount();
+  }
+
+  setMultipleDateList(List<DateTime> dateList) {
+    multiDateList.clear();
+    multiDateList.addAll(dateList);
+    print(multiDateList);
+    setTotalAmount();
+  }
+
+  void setDateRange() {
+    pickDateRange.value = PickerDateRange(startDate.value, endDate.value);
+    // dateRangeController1.refresh();
+    // dateRangeController2.refresh();
+    // dateRangeController3.refresh();
+  }
 }

@@ -13,7 +13,7 @@
                     "id": "isdksdjfj12k23nnkf",
                     "title": "Indoor Perfumery",
                     "sub_title": "In publishing and graphic design of car wash",
-                    "desc": "In publishing and graphic design of car wash",
+                    "description": "In publishing and graphic design of car wash",
                     "image": "assets/images/img_service_4.png",
                     "bg_card_color": "#FF3868",
                     "branch": [
@@ -25,7 +25,7 @@
                             "longitude": 76.8505975,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.3,
-                            "distance": "6 Km"
+                            "distance":6.0
                         },
                         {
                             "id": "2",
@@ -35,7 +35,7 @@
                             "longitude": 76.8979696,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.2,
-                            "distance": "8 Km"
+                            "distance":8.0
                         },
                         {
                             "id": "3",
@@ -45,7 +45,7 @@
                             "longitude": 76.8929361,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.1,
-                            "distance": "12 Km"
+                            "distance": 2.0
                         }
                     ],
                     "price": 183.23,
@@ -54,7 +54,7 @@
                             "id": "1",
                             "title": "washing",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -63,7 +63,7 @@
                             "id": "2",
                             "title": "soaping",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -72,7 +72,7 @@
                             "id": "3",
                             "title": "washing after soaping",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -81,7 +81,7 @@
                             "id": "4",
                             "title": "draining",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -92,7 +92,7 @@
                     "id": "isdksdjfj12k23nnkf",
                     "title": "Interior & Exterior Washing",
                     "sub_title": "In publishing and graphic design of car wash",
-                    "desc": "In publishing and graphic design of car wash",
+                    "description": "In publishing and graphic design of car wash",
                     "image": "assets/images/img_service_4.png",
                     "bg_card_color": "#FFC643",
                     "branch": [
@@ -104,7 +104,7 @@
                             "longitude": 76.8505975,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.3,
-                            "distance": "6 Km"
+                            "distance":6.0
                         },
                         {
                             "id": "2",
@@ -114,7 +114,7 @@
                             "longitude": 76.8979696,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.2,
-                            "distance": "8 Km"
+                            "distance":8.0
                         },
                         {
                             "id": "3",
@@ -124,7 +124,7 @@
                             "longitude": 76.8929361,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.1,
-                            "distance": "12 Km"
+                            "distance": 2.0
                         }
                     ],
                     "price": 183.23,
@@ -133,7 +133,7 @@
                             "id": "1",
                             "title": "washing",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -142,7 +142,7 @@
                             "id": "2",
                             "title": "soaping",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -151,7 +151,7 @@
                             "id": "3",
                             "title": "washing after soaping",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -160,7 +160,7 @@
                             "id": "4",
                             "title": "draining",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -171,7 +171,7 @@
                     "id": "isdksdjfj12k23nnkf",
                     "title": "Polishing the Tyre",
                     "sub_title": "In publishing and graphic design of car wash",
-                    "desc": "In publishing and graphic design of car wash",
+                    "description": "In publishing and graphic design of car wash",
                     "image": "assets/images/img_service_4.png",
                     "bg_card_color": "#06D39E",
                     "branch": [
@@ -183,7 +183,7 @@
                             "longitude": 76.8505975,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.3,
-                            "distance": "6 Km"
+                            "distance":6.0
                         },
                         {
                             "id": "2",
@@ -193,7 +193,7 @@
                             "longitude": 76.8979696,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.2,
-                            "distance": "8 Km"
+                            "distance":8.0
                         },
                         {
                             "id": "3",
@@ -203,7 +203,7 @@
                             "longitude": 76.8929361,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.1,
-                            "distance": "12 Km"
+                            "distance": 2.0
                         }
                     ],
                     "price": 183.23,
@@ -212,7 +212,7 @@
                             "id": "1",
                             "title": "washing",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -221,7 +221,7 @@
                             "id": "2",
                             "title": "soaping",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -230,7 +230,7 @@
                             "id": "3",
                             "title": "washing after soaping",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -239,7 +239,7 @@
                             "id": "4",
                             "title": "draining",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -250,7 +250,7 @@
                     "id": "isdksdjfj12k23nnkf",
                     "title": "Doorstep car wash",
                     "sub_title": "In publishing and graphic design of car wash",
-                    "desc": "In publishing and graphic design of car wash",
+                    "description": "In publishing and graphic design of car wash",
                     "image": "assets/images/img_service_4.png",
                     "bg_card_color": "#118AB2",
                     "branch": [
@@ -262,7 +262,7 @@
                             "longitude": 76.8505975,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.3,
-                            "distance": "6 Km"
+                            "distance":6.0
                         },
                         {
                             "id": "2",
@@ -272,7 +272,7 @@
                             "longitude": 76.8979696,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.2,
-                            "distance": "8 Km"
+                            "distance":8.0
                         },
                         {
                             "id": "3",
@@ -282,7 +282,7 @@
                             "longitude": 76.8929361,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.1,
-                            "distance": "12 Km"
+                            "distance": 2.0
                         }
                     ],
                     "price": 183.23,
@@ -291,7 +291,7 @@
                             "id": "1",
                             "title": "washing",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -300,7 +300,7 @@
                             "id": "2",
                             "title": "soaping",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -309,7 +309,7 @@
                             "id": "3",
                             "title": "washing after soaping",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -318,12 +318,32 @@
                             "id": "4",
                             "title": "draining",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
                         }
                     ]
+                }
+            ],
+            "serviceModeId": [
+                {
+                    "id": "1",
+                    "title": "DOORSTEP",
+                    "description": "In publishing and graphic design of car wash",
+                    "bg_card_color": "#FF3868"
+                },
+                {
+                    "id": "2",
+                    "title": "DRIVE-THRU",
+                    "description": "In publishing and graphic design of car wash",
+                    "bg_card_color": "#06D39E"
+                },
+                {
+                    "id": "3",
+                    "title": "PICK UP & DROP",
+                    "description": "In publishing and graphic design of car wash",
+                    "bg_card_color": "#118AB2"
                 }
             ]
         },
@@ -338,7 +358,7 @@
                     "id": "isdksdjfj12k23nnkf",
                     "title": "Indoor Perfumery",
                     "sub_title": "In publishing and graphic design of car wash",
-                    "desc": "In publishing and graphic design of car wash",
+                    "description": "In publishing and graphic design of car wash",
                     "image": "assets/images/img_service_4.png",
                     "bg_card_color": "#FF3868",
                     "branch": [
@@ -350,7 +370,7 @@
                             "longitude": 76.8505975,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.3,
-                            "distance": "6 Km"
+                            "distance":6.0
                         },
                         {
                             "id": "2",
@@ -360,7 +380,7 @@
                             "longitude": 76.8979696,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.2,
-                            "distance": "8 Km"
+                            "distance":8.0
                         },
                         {
                             "id": "3",
@@ -370,7 +390,7 @@
                             "longitude": 76.8929361,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.1,
-                            "distance": "12 Km"
+                            "distance": 2.0
                         }
                     ],
                     "price": 183.23,
@@ -379,7 +399,7 @@
                             "id": "1",
                             "title": "washing",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -388,7 +408,7 @@
                             "id": "2",
                             "title": "soaping",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -397,7 +417,7 @@
                             "id": "3",
                             "title": "washing after soaping",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -406,7 +426,7 @@
                             "id": "4",
                             "title": "draining",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -417,7 +437,7 @@
                     "id": "isdksdjfj12k23nnkf",
                     "title": "Interior & Exterior Washing",
                     "sub_title": "In publishing and graphic design of car wash",
-                    "desc": "In publishing and graphic design of car wash",
+                    "description": "In publishing and graphic design of car wash",
                     "image": "assets/images/img_service_4.png",
                     "bg_card_color": "#FFC643",
                     "branch": [
@@ -429,7 +449,7 @@
                             "longitude": 76.8505975,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.3,
-                            "distance": "6 Km"
+                            "distance":6.0
                         },
                         {
                             "id": "2",
@@ -439,7 +459,7 @@
                             "longitude": 76.8979696,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.2,
-                            "distance": "8 Km"
+                            "distance":8.0
                         },
                         {
                             "id": "3",
@@ -449,7 +469,7 @@
                             "longitude": 76.8929361,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.1,
-                            "distance": "12 Km"
+                            "distance": 2.0
                         }
                     ],
                     "price": 183.23,
@@ -458,7 +478,7 @@
                             "id": "1",
                             "title": "washing",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -467,7 +487,7 @@
                             "id": "2",
                             "title": "soaping",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -476,7 +496,7 @@
                             "id": "3",
                             "title": "washing after soaping",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -485,7 +505,7 @@
                             "id": "4",
                             "title": "draining",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -496,7 +516,7 @@
                     "id": "isdksdjfj12k23nnkf",
                     "title": "Polishing the Tyre",
                     "sub_title": "In publishing and graphic design of car wash",
-                    "desc": "In publishing and graphic design of car wash",
+                    "description": "In publishing and graphic design of car wash",
                     "image": "assets/images/img_service_4.png",
                     "bg_card_color": "#06D39E",
                     "branch": [
@@ -508,7 +528,7 @@
                             "longitude": 76.8505975,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.3,
-                            "distance": "6 Km"
+                            "distance":6.0
                         },
                         {
                             "id": "2",
@@ -518,7 +538,7 @@
                             "longitude": 76.8979696,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.2,
-                            "distance": "8 Km"
+                            "distance":8.0
                         },
                         {
                             "id": "3",
@@ -528,7 +548,7 @@
                             "longitude": 76.8929361,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.1,
-                            "distance": "12 Km"
+                            "distance": 2.0
                         }
                     ],
                     "price": 183.23,
@@ -537,7 +557,7 @@
                             "id": "1",
                             "title": "washing",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -546,7 +566,7 @@
                             "id": "2",
                             "title": "soaping",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -555,7 +575,7 @@
                             "id": "3",
                             "title": "washing after soaping",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -564,7 +584,7 @@
                             "id": "4",
                             "title": "draining",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -575,7 +595,7 @@
                     "id": "isdksdjfj12k23nnkf",
                     "title": "Doorstep car wash",
                     "sub_title": "In publishing and graphic design of car wash",
-                    "desc": "In publishing and graphic design of car wash",
+                    "description": "In publishing and graphic design of car wash",
                     "image": "assets/images/img_service_4.png",
                     "bg_card_color": "#118AB2",
                     "branch": [
@@ -587,7 +607,7 @@
                             "longitude": 76.8505975,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.3,
-                            "distance": "6 Km"
+                            "distance":6.0
                         },
                         {
                             "id": "2",
@@ -597,7 +617,7 @@
                             "longitude": 76.8979696,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.2,
-                            "distance": "8 Km"
+                            "distance":8.0
                         },
                         {
                             "id": "3",
@@ -607,7 +627,7 @@
                             "longitude": 76.8929361,
                             "image": "assets/images/img_branch_1.png",
                             "rating": 4.1,
-                            "distance": "12 Km"
+                            "distance": 2.0
                         }
                     ],
                     "price": 183.23,
@@ -616,7 +636,7 @@
                             "id": "1",
                             "title": "washing",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -625,7 +645,7 @@
                             "id": "2",
                             "title": "soaping",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -634,7 +654,7 @@
                             "id": "3",
                             "title": "washing after soaping",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
@@ -643,12 +663,27 @@
                             "id": "4",
                             "title": "draining",
                             "sub_title": "string",
-                            "desc": "string",
+                            "description": "string",
                             "price": 123.3,
                             "is_item_change": true,
                             "categoy_id": "string"
                         }
                     ]
+                }
+            ],
+            "serviceModeId": [
+               
+                {
+                    "id": "2",
+                    "title": "DRIVE-THRU",
+                    "description": "In publishing and graphic design of car wash",
+                    "bg_card_color": "#06D39E"
+                },
+                {
+                    "id": "3",
+                    "title": "PICK UP & DROP",
+                    "description": "In publishing and graphic design of car wash",
+                    "bg_card_color": "#118AB2"
                 }
             ]
         }

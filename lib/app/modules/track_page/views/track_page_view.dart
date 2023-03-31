@@ -1,3 +1,4 @@
+import 'package:al_dana/app/data/providers/invoice_provider.dart';
 import 'package:al_dana/app/data/widgets/tracker.dart';
 import 'package:card_swiper/card_swiper.dart';
 import 'package:flutter/material.dart';
@@ -33,7 +34,7 @@ class TrackPageView extends GetView<TrackPageController> {
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: 2,
+      length: 3,
       child: Scaffold(
         backgroundColor: bgColor1,
         appBar: AppBar(
@@ -62,8 +63,8 @@ class TrackPageView extends GetView<TrackPageController> {
                           vehicle: controller.booking.value.vehicle!),
                     ),
                     Container(
-                      margin: const EdgeInsets.symmetric(
-                          horizontal: 20, vertical: 10),
+                      // margin: const EdgeInsets.symmetric(
+                      //     horizontal: 20, vertical: 10),
                       decoration: const BoxDecoration(color: bgColor36),
                       child: TabBar(
                         unselectedLabelColor: bgColor36,
@@ -78,6 +79,7 @@ class TrackPageView extends GetView<TrackPageController> {
                             child: Obx(
                               () => Text(
                                 'Service Tracking',
+                                maxLines: 1,
                                 style: tsPoppins(
                                     color: controller.tabIndex.value == 0
                                         ? white
@@ -90,8 +92,22 @@ class TrackPageView extends GetView<TrackPageController> {
                             child: Obx(
                               () => Text(
                                 'Vehicle Photos',
+                                maxLines: 1,
                                 style: tsPoppins(
                                     color: controller.tabIndex.value == 1
+                                        ? white
+                                        : textDark80,
+                                    weight: FontWeight.w400),
+                              ),
+                            ),
+                          ),
+                          Tab(
+                            child: Obx(
+                              () => Text(
+                                'Invoice',
+                                maxLines: 1,
+                                style: tsPoppins(
+                                    color: controller.tabIndex.value == 2
                                         ? white
                                         : textDark80,
                                     weight: FontWeight.w400),
@@ -103,10 +119,13 @@ class TrackPageView extends GetView<TrackPageController> {
                     ),
                     Obx(
                       () {
-                        if (controller.tabIndex.value == 0) {
-                          return trackView();
-                        } else {
-                          return imagesView();
+                        switch (controller.tabIndex.value) {
+                          case 1:
+                            return imagesView();
+                          case 2:
+                            return invoiceView();
+                          default:
+                            return trackView();
                         }
                       },
                     ),
@@ -297,6 +316,55 @@ class TrackPageView extends GetView<TrackPageController> {
             ],
           ),
         )
+      ],
+    );
+  }
+
+  Widget invoiceView() {
+    Invoice invoice = Invoice(
+      customerDetails: CustomerDetails(
+          name: 'Amal Mohanan',
+          address: 'Kazhakkoottam, Trivandrum',
+          paymentInfo: ''),
+      suplierDetails: SuplierDetails(
+          name: 'Dezynex',
+          address: '4th Floor Gayathri, Technopark Phase 1, Trivandrum'),
+      invoiceInfo: InvoiceInfo(
+          date: '24/2/2023', dueDate: '7 Days', desc: '', number: '123456'),
+      invoiceItems: [
+        InvoiceItem(
+            name:
+                'Car wash lorrem ippsum is a simply dummy text for testing and printing',
+            unitPrice: 550,
+            quantity: 1,
+            vat: 5,
+            total: 550),
+        InvoiceItem(
+            name: 'Car wash', unitPrice: 550, quantity: 1, vat: 5, total: 550),
+        InvoiceItem(
+            name: 'Car wash', unitPrice: 550, quantity: 1, vat: 5, total: 550),
+        InvoiceItem(
+            name: 'Car wash', unitPrice: 550, quantity: 1, vat: 5, total: 550),
+        InvoiceItem(
+            name: 'Car wash', unitPrice: 550, quantity: 1, vat: 5, total: 550),
+        InvoiceItem(
+            name: 'Car wash', unitPrice: 550, quantity: 1, vat: 5, total: 550),
+      ],
+    );
+    return Column(
+      children: [
+        const SizedBox(
+          height: 20,
+        ),
+        InvoiceWidget(invoice: invoice),
+        ElevatedButton(
+            onPressed: () {
+              InvoiceProvider(invoice: invoice).generatePdf();
+            },
+            child: Text(
+              'Save as PDF',
+              style: tsPoppins(),
+            ))
       ],
     );
   }

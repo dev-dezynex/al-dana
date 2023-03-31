@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 import '../../../data/data.dart';
-import '../../../routes/app_pages.dart';
 
 class AddBookingController extends GetxController {
   TextEditingController dateController = TextEditingController(
@@ -55,11 +54,11 @@ class AddBookingController extends GetxController {
     availableTimeSlots.refresh();
   }
 
-  onNextClick() {
+  onNextClick(String route) {
     if (selectedTimeSlot.isNotEmpty) {
       booking.value.date = DateFormat('dd-MM-yyyy').format(selectedDate.value);
       booking.value.slot = selectedTimeSlot.value;
-      Get.toNamed(Routes.PAYMENT_PAGE, arguments: booking.value);
+      Get.toNamed(route, arguments: booking.value);
     } else {
       Get.snackbar('Error', 'Please choose a time slot to continue.',
           snackPosition: SnackPosition.BOTTOM,

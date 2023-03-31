@@ -140,7 +140,7 @@ class CategoryView extends GetView<HomeController> {
                                   Get.toNamed(Routes.ADD_VEHICLE);
                                 },
                                 style: ElevatedButton.styleFrom(
-                                    primary: bgColor24),
+                                    backgroundColor: bgColor24),
                                 child: Text(
                                   'Add Vehicle',
                                   style: tsPoppins(color: white),
@@ -193,18 +193,12 @@ class CategoryView extends GetView<HomeController> {
                                         .categoryResult.value.categoryList[i]);
                               },
                               onTap: () {
-                                controller.modeList.value = controller
-                                    .categoryResult
-                                    .value
-                                    .categoryList[i]
-                                    .modeList;
                                 if (controller.selectedVehicle.value.id !=
                                         null &&
                                     controller
                                         .selectedVehicle.value.id!.isNotEmpty) {
-                                  controller.chooseMode(
-                                      context,
-                                      controller.categoryResult.value
+                                  Get.toNamed(Routes.SERVICE,
+                                      arguments: controller.categoryResult.value
                                           .categoryList[i]);
                                 } else {
                                   controller.chooseVehicle(context);
@@ -214,7 +208,6 @@ class CategoryView extends GetView<HomeController> {
                                   .categoryResult.value.categoryList[i]);
                         }),
                   ),
-                
                 ],
               ),
             ),

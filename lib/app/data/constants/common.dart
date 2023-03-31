@@ -1,8 +1,11 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:intl/intl.dart';
 
+import '../../routes/app_pages.dart';
 import '../data.dart';
 
 final storage = GetStorage();
@@ -44,4 +47,55 @@ class Common {
   ServiceMode selectedMode =
       ServiceMode.fromJson(storage.read(selected_mode) ?? {});
   List<dynamic> selectedServiceList = storage.read(selected_service) ?? [];
+}
+
+class Auth {
+   Map<String, String> requestHeaders = {
+    'Authorization':
+        'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NDE5NWJkNTQ3MzlkNGI3YmQ4YTA1ZjciLCJyb2xlIjoic3VwZXJBZG1pbiIsImVtYWlsIjoic3VwZXJhZG1pbkBnbWFpbC5jb20iLCJpYXQiOjE2ODAxNzM5MjksImV4cCI6MTY4MDI2MDMyOX0.9JNwfbX5IFnHiWT4_tiniBl36RJUL30vD1g4UyfqIc4' //storage.read(auth),
+  };
+
+    authFailed(message) {
+     Get.dialog(
+        WillPopScope(
+          onWillPop: () async => false,
+          child: AlertDialog(
+            title: Text(
+              "Failure",
+              style:
+                  tsPoppins(color: primary, weight: FontWeight.w600, size: 18),
+            ),
+            content: Text(
+              "$message ",
+              style: tsPoppins(
+                  color: textDark40, weight: FontWeight.w400, size: 12),
+            ),
+            actions: <Widget>[
+              TextButton(
+                child: Text("Ok",
+                    style: tsPoppins(
+                        color: textDark80, weight: FontWeight.w600, size: 14)),
+                onPressed: () {
+                  storage.erase();
+                  Get.offAllNamed(Routes.AUTH);
+                  Get.back();
+                },
+              ),
+            ],
+          ),
+        ),
+        barrierDismissible: false,
+      );
+   
+  }
+
+}
+
+double calculateDistance(lat1, lon1, lat2, lon2) {
+  var p = 0.017453292519943295;
+  var c = cos;
+  var a = 0.5 -
+      c((lat2 - lat1) * p) / 2 +
+      c(lat1 * p) * c(lat2 * p) * (1 - c((lon2 - lon1) * p)) / 2;
+  return 12742 * asin(sqrt(a));
 }

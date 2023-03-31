@@ -10,8 +10,8 @@ import 'package:location/location.dart';
 import '../../../data/data.dart';
 
 class MapPageController extends GetxController {
-  Completer<GoogleMapController> mapController = Completer();
   var isLoading = false.obs;
+  Completer<GoogleMapController> mapController = Completer();
   var camPosition = const CameraPosition(
     target: LatLng(9.8959, 76.7184),
     zoom: 14.4746,
@@ -77,7 +77,7 @@ class MapPageController extends GetxController {
     markers.add(resultMarker);
   }
 
-  addMarker() async {
+  addMarkerIcons() async {
 // make sure to initialize before map loading
     customIconSelected = await BitmapDescriptor.fromAssetImage(
         const ImageConfiguration(size: Size(12, 12)),
@@ -92,7 +92,7 @@ class MapPageController extends GetxController {
 
   getDetails() async {
     isLoading(true);
-    await addMarker();
+    await addMarkerIcons();
     await getBranches();
     await getCurrentLocation();
     // await getPolyPoints();
@@ -100,7 +100,7 @@ class MapPageController extends GetxController {
   }
 
   getBranches() async {
-    branchResult.value = await BranchProvider().getDummyData();
+    branchResult.value = await BranchProvider().getBranches();
     branchResult.refresh();
     selectBranch(booking.value.branch!);
   }

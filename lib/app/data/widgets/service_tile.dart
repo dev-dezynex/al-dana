@@ -164,7 +164,7 @@ class ServiceTile2 extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text(
-                      service.subTitle,
+                      service.desc,
                       textAlign: TextAlign.center,
                       style: tsPoppins(
                         weight: FontWeight.w500,

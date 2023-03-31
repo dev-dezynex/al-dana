@@ -46,14 +46,19 @@ class BrandSelection extends GetView<AddVehicleController> {
                   itemBuilder: (con, i) {
                     return BrandTile(
                       onTap: () {
-                        controller.selectedBrand.value =
-                            controller.filterBrands[i];
-                        controller.variantList.value =
-                            controller.filterBrands[i].variantList!;
+                        // controller.selectedBrand.value =
+                        //     controller.filterBrands[i];
+                        // controller.variantList.value =
+                        //     controller.filterBrands[i].variantList!;
+                        // controller.selectedVehicle.value.brand =
+                        //     controller.filterBrands[i];
+                        // controller.selectedVehicle.value.image =
+                        //     controller.filterBrands[i].image;
+
                         controller.selectedVehicle.value.brand =
                             controller.filterBrands[i];
-                        controller.selectedVehicle.value.image =
-                            controller.filterBrands[i].image;
+                       
+                        controller.getModels(brandId:   controller.filterBrands[i].id);
                         controller.title.value = 'Car Details';
                         controller.progress.value = .6;
                         controller.pageIndex.value = 1;

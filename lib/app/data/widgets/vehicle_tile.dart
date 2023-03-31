@@ -19,7 +19,7 @@ class VehicleTile extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(5),
               child: Image.network(
-                vehicle.image!,
+                '$domainName${vehicle.brand!.image}',
                 fit: BoxFit.contain,
                 width: Get.width * .15,
                 errorBuilder: (context, error, stackTrace) {
@@ -44,9 +44,9 @@ class VehicleTile extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('${vehicle.brand!.name} - ${vehicle.variant!.name}',
+                Text('${vehicle.brand!.title} - ${vehicle.variant!.name}',
                     style: tsPoppins(color: textDark80, size: 16)),
-                Text('Year ${vehicle.year!.name} | ${vehicle.colour!.name}',
+                Text('Year ${vehicle.year!} | ${vehicle.colour!.name}',
                     style: tsPoppins(
                       color: textDark40,
                     )),

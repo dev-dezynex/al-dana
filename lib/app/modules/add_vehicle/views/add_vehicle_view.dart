@@ -40,7 +40,7 @@ class AddVehicleView extends GetView<AddVehicleController> {
         body: SafeArea(
             child: Obx(
           () => controller.pageIndex.value > 0
-              ? const AddVehicleDetails()
+              ?  AddVehicleDetails()
               : const BrandSelection(),
         )));
   }

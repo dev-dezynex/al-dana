@@ -31,7 +31,7 @@ class BookingPageView extends GetView<BookingPageController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Obx(
-                    () => ListView.builder(
+                    () =>controller.isLoading.value?const Center(child: CircularProgressIndicator(),): ListView.builder(
                         shrinkWrap: true,
                         physics: const NeverScrollableScrollPhysics(),
                         padding: const EdgeInsets.symmetric(

@@ -8,9 +8,9 @@ import 'package:intl_phone_field/intl_phone_field.dart';
 import '../../../data/data.dart';
 
 class PhoneView extends GetView<AuthController> {
-  final GlobalKey<FormState> formKeySignIn = GlobalKey<FormState>();
-
   PhoneView({Key? key}) : super(key: key);
+  
+  final GlobalKey<FormState> formKeySignIn = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {

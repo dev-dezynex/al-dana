@@ -43,6 +43,131 @@ openMapsSheet(context, String title) async {
 }
 
 //if isSingleSelection true must provide selectedVariant else must provide selectedVariantList otherwise it will crash
+modelSelectionBottomSheet(
+    {required BuildContext context,
+    required RxList<CarModel> carModelList,
+    RxList<CarModel>? selectedCarModelList,
+    Rx<CarModel>? selectedCarModel,
+    required Function(CarModel) onCarModelSelected,
+    required bool isSingleSelection}) {
+  return showModalBottomSheet(
+      backgroundColor: Colors.transparent,
+      shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(22.0), topRight: Radius.circular(22.0))),
+      context: context,
+      builder: (builder) {
+        return Container(
+            decoration: const BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(22.0),
+                    topRight: Radius.circular(22.0))),
+            child: Column(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(
+                        'Select CarModel',
+                        style: tsPoppins(
+                            size: 14,
+                            weight: FontWeight.w600,
+                            color: textDark80),
+                      ),
+                      InkWell(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: SvgPicture.asset(
+                            "assets/icons/ic_incorrect_ans.svg",
+                            width: 10,
+                            height: 10,
+                            color: textDark80,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                const Divider(
+                  thickness: 1,
+                  color: textDark20,
+                ),
+                Expanded(
+                  child: Obx(
+                    () => ListView.builder(
+                        physics: const BouncingScrollPhysics(),
+                        itemCount: carModelList.value.length,
+                        itemBuilder: (con, i) {
+                          return InkWell(
+                            onTap: () {
+                              onCarModelSelected.call(carModelList.value[i]);
+                              if (isSingleSelection) {
+                                Get.back();
+                              }
+                            },
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Row(
+                                  children: [
+                                    Obx(
+                                      () => Theme(
+                                        data: Theme.of(context).copyWith(
+                                          unselectedWidgetColor: textColor01,
+                                        ),
+                                        child: Radio(
+                                            value: isSingleSelection
+                                                ? selectedCarModel!.value ==
+                                                    carModelList[i]
+                                                : selectedCarModelList!.value
+                                                    .contains(
+                                                        carModelList.value[i]),
+                                            groupValue: true,
+                                            activeColor: primary,
+                                            toggleable: true,
+                                            onChanged: (v) {
+                                              onCarModelSelected
+                                                  .call(carModelList.value[i]);
+                                              if (isSingleSelection) {
+                                                Get.back();
+                                              }
+                                            }),
+                                      ),
+                                    ),
+                                    Text(
+                                      carModelList.value[i].name,
+                                      style: tsPoppins(
+                                          size: 14,
+                                          weight: FontWeight.w400,
+                                          color: primary),
+                                    ),
+                                  ],
+                                ),
+                                const Divider(
+                                  thickness: 1,
+                                  color: textDark20,
+                                ),
+                              ],
+                            ),
+                          );
+                        }),
+                  ),
+                ),
+                SizedBox(
+                  height: Get.height * 0.020,
+                )
+              ],
+            ));
+      });
+}
+
+//if isSingleSelection true must provide selectedVariant else must provide selectedVariantList otherwise it will crash
 variantSelectionBottomSheet(
     {required BuildContext context,
     required RxList<Variant> variantList,
@@ -167,130 +292,6 @@ variantSelectionBottomSheet(
       });
 }
 
-//if isSingleSelection true must provide selectedVariant else must provide selectedVariantList otherwise it will crash
-yearSelectionBottomSheet(
-    {required BuildContext context,
-    required RxList<VehicleYear> yearList,
-    RxList<VehicleYear>? selectedYearList,
-    Rx<VehicleYear>? selectedYear,
-    required Function(VehicleYear) onYearSelected,
-    required bool isSingleSelection}) {
-  return showModalBottomSheet(
-      backgroundColor: Colors.transparent,
-      shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(22.0), topRight: Radius.circular(22.0))),
-      context: context,
-      builder: (builder) {
-        return Container(
-            decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(22.0),
-                    topRight: Radius.circular(22.0))),
-            child: Column(
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        'Select Year',
-                        style: tsPoppins(
-                            size: 14,
-                            weight: FontWeight.w600,
-                            color: textDark80),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: SvgPicture.asset(
-                            "assets/icons/ic_incorrect_ans.svg",
-                            width: 10,
-                            height: 10,
-                            color: textDark80,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                const Divider(
-                  thickness: 1,
-                  color: textDark20,
-                ),
-                Expanded(
-                  child: Obx(
-                    () => ListView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: yearList.value.length,
-                        itemBuilder: (con, i) {
-                          return InkWell(
-                            onTap: () {
-                              onYearSelected.call(yearList.value[i]);
-                              if (isSingleSelection) {
-                                Get.back();
-                              }
-                            },
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Row(
-                                  children: [
-                                    Obx(
-                                      () => Theme(
-                                        data: Theme.of(context).copyWith(
-                                          unselectedWidgetColor: textColor01,
-                                        ),
-                                        child: Radio(
-                                            value: isSingleSelection
-                                                ? selectedYear!.value ==
-                                                    yearList[i]
-                                                : selectedYearList!.value
-                                                    .contains(
-                                                        yearList.value[i]),
-                                            groupValue: true,
-                                            activeColor: primary,
-                                            toggleable: true,
-                                            onChanged: (v) {
-                                              onYearSelected
-                                                  .call(yearList.value[i]);
-                                              if (isSingleSelection) {
-                                                Get.back();
-                                              }
-                                            }),
-                                      ),
-                                    ),
-                                    Text(
-                                      yearList.value[i].name!,
-                                      style: tsPoppins(
-                                          size: 14,
-                                          weight: FontWeight.w400,
-                                          color: primary),
-                                    ),
-                                  ],
-                                ),
-                                const Divider(
-                                  thickness: 1,
-                                  color: textDark20,
-                                ),
-                              ],
-                            ),
-                          );
-                        }),
-                  ),
-                ),
-                SizedBox(
-                  height: Get.height * 0.020,
-                )
-              ],
-            ));
-      });
-}
 
 modeSelectionBottomSheet(
     {required BuildContext context,
@@ -354,7 +355,7 @@ modeSelectionBottomSheet(
                         physics: const BouncingScrollPhysics(),
                         itemCount: modeList.length,
                         itemBuilder: (con, i) {
-                          print('mode ${modeList[i].title!}');
+                          print('mode ${modeList[i].title}');
                           return ServiceModeTile(
                               onTap: () {
                                 onModeSelected.call(modeList[i]);
@@ -377,7 +378,7 @@ modeSelectionBottomSheet(
                   child: ElevatedButton(
                       onPressed: onSubmit,
                       style: ElevatedButton.styleFrom(
-                          primary: bgColor27,
+                          backgroundColor: bgColor27,
                           minimumSize: Size(Get.width, 50),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8))),
@@ -645,7 +646,7 @@ spareSelectionBottomSheet({
                   child: ElevatedButton(
                       onPressed: onSubmit,
                       style: ElevatedButton.styleFrom(
-                          primary: bgColor27,
+                          backgroundColor: bgColor27,
                           minimumSize: Size(Get.width, 50),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8))),

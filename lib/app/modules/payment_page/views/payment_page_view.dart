@@ -5,7 +5,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../data/data.dart';
-import '../../../routes/app_pages.dart';
 import '../controllers/payment_page_controller.dart';
 
 class PaymentPageView extends GetView<PaymentPageController> {
@@ -26,25 +25,7 @@ class PaymentPageView extends GetView<PaymentPageController> {
                   style: tsPoppins(
                       size: 18, weight: FontWeight.w600, color: textDark80),
                 ),
-                bottom: PreferredSize(
-                  preferredSize: Size(Get.width, 40),
-                  child: InkWell(
-                    onTap: () {
-                      Get.toNamed(Routes.SUBSCRIPTION_PAGE,
-                          arguments: controller.booking);
-                    },
-                    child: Container(
-                      width: Get.width,
-                      height: 35,
-                      alignment: Alignment.center,
-                      color: Colors.yellow,
-                      child: Text(
-                        'Subscribe now save upto 50%',
-                        style: tsPoppins(size: 15),
-                      ),
-                    ),
-                  ),
-                ),
+               
               ),
               bottomSheet: Container(
                 decoration: const BoxDecoration(
@@ -109,8 +90,14 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                 children: [
                                   Obx(
                                     () => Text(
-                                        controller.booking.value.price
-                                            .toStringAsFixed(2),
+                                        controller.booking.value
+                                                    .subscribedPrice >
+                                                0
+                                            ? controller
+                                                .booking.value.subscribedPrice
+                                                .toStringAsFixed(2)
+                                            : controller.booking.value.price
+                                                .toStringAsFixed(2),
                                         style: tsPoppins(
                                             size: 18,
                                             weight: FontWeight.w600,
@@ -134,7 +121,7 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                 controller.onNextClick(context);
                               },
                               style: ElevatedButton.styleFrom(
-                                  primary: primary,
+                                  backgroundColor: primary,
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(6))),
                               child: Text(
@@ -166,6 +153,7 @@ class PaymentPageView extends GetView<PaymentPageController> {
                             const SizedBox(
                               height: 15,
                             ),
+                            if(controller.booking.value.subscribedPrice <= 0)
                             TextFormField(
                                 controller: controller.promoCodeController,
                                 validator: (value) {
@@ -213,9 +201,11 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                       weight: FontWeight.w400,
                                       color: textColor02),
                                 )),
+                             if(controller.booking.value.subscribedPrice <= 0)
                             const SizedBox(
                               height: 15,
                             ),
+                             if(controller.booking.value.subscribedPrice <= 0)
                             Container(
                               decoration: BoxDecoration(
                                   color: white,
@@ -255,7 +245,7 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                         controller.onNextClick(context);
                                       },
                                       style: ElevatedButton.styleFrom(
-                                          primary: primary,
+                                          backgroundColor: primary,
                                           shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(6))),

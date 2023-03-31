@@ -9,22 +9,14 @@ class BranchListController extends GetxController {
     getDetails();
   }
 
-  @override
-  void onReady() {
-    super.onReady();
-  }
 
-  @override
-  void onClose() {
-    super.onClose();
-  }
 
   void getDetails() {
     getBranches();
   }
 
   void getBranches() async {
-    branchResult.value = await BranchProvider().getDummyData();
+    branchResult.value = await BranchProvider().getBranches();
     branchResult.refresh();
   }
 }

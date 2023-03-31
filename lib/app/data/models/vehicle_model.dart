@@ -10,6 +10,11 @@ class VehicleResult {
   VehicleResult.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
+  }
+
+  VehicleResult.listFromJson(Map<String, dynamic> json) {
+    status = json['status'];
+    message = json['message'];
     if (json['data'] != null) {
       vehicleList = <Vehicle>[];
       json['data'].forEach((v) {
@@ -30,54 +35,90 @@ class VehicleResult {
 class Vehicle {
   String? id;
   Brand? brand;
+  CarModel? carModel;
   Variant? variant;
-  VehicleYear? year;
+  String? year;
   VehicleColor? colour;
   String? plateCode;
-  String? plateNumber;
+  String? plateNumber, city;
   String? image;
 
   Vehicle(
       {this.id,
       this.brand,
+      this.carModel,
       this.variant,
       this.year,
       this.colour,
       this.plateCode,
       this.plateNumber,
+      this.city,
       this.image});
 
   Vehicle.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    brand = json['brand'] != null ? Brand?.fromJson(json['brand']) : null;
+    id = json['_id'];
+    brand =
+        json['carBrandId'] != null ? Brand?.fromJson(json['carBrandId']) : null;
+    carModel = json['carModelId'] != null
+        ? CarModel?.fromJson(json['carModelId'])
+        : null;
     variant =
-        json['variant'] != null ? Variant?.fromJson(json['variant']) : null;
-    year = json['year'] != null ? VehicleYear?.fromJson(json['year']) : null;
-    colour = json['color'] != null ? VehicleColor?.fromJson(json['color']) : null;
-    plateCode = json['plate_code'];
-    plateNumber = json['plate_number'];
+        json['carVariantId'] != null ? Variant?.fromJson(json['carVariantId']) : null;
+    year = json['year'] ?? '';
+    colour =
+        json['color'] != null ? VehicleColor?.fromJson(json['color']) : null;
+    plateCode = json['plateCode'];
+    plateNumber = json['plateNumber'];
+    city = json['city'];
     image = json['image'];
   }
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
-    data['id'] = id;
     if (brand != null) {
-      data['brand'] = brand?.toJson();
+      data['carBrandId'] = brand?.toJson();
+    }
+    if (carModel != null) {
+      data['carModelId'] = carModel?.toJson();
     }
     if (variant != null) {
-      data['variant'] = variant?.toJson();
+      data['carVariantId'] = variant?.toJson();
     }
     if (year != null) {
-      data['year'] = year?.toJson();
+      data['year'] = year;
     }
     if (colour != null) {
       data['color'] = colour?.toJson();
     }
-    data['plate_code'] = plateCode;
-    data['plate_number'] = plateNumber;
+    data['plateCode'] = plateCode;
+    data['plateNumber'] = plateNumber;
+    data['city'] = city;
+    data['image'] = image;
+    return data;
+  }
+
+  Map<String, dynamic> toPost() {
+    final data = <String, dynamic>{};
+    data['customerId'] = "641d36d719d46e11c8253d85";
+    if (brand != null) {
+      data['carBrandId'] = brand?.id;
+    }
+    if (carModel != null) {
+      data['carModelId'] = carModel?.id;
+    }
+    if (variant != null) {
+      data['carVariantId'] = variant?.id;
+    }
+    if (year != null) {
+      data['year'] = year;
+    }
+    if (colour != null) {
+      data['color'] = colour?.toJson();
+    }
+    data['plateCode'] = plateCode;
+    data['plateNumber'] = plateNumber;
+    data['city'] = city;
     data['image'] = image;
     return data;
   }
 }
-

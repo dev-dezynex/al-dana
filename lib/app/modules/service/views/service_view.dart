@@ -81,7 +81,8 @@ class ServiceView extends GetView<ServiceController> {
                       Row(
                         children: [
                           Obx(
-                            () => Text(controller.price.value.toStringAsFixed(2),
+                            () => Text(
+                                controller.price.value.toStringAsFixed(2),
                                 style: tsPoppins(
                                     size: 18,
                                     weight: FontWeight.w600,
@@ -101,10 +102,10 @@ class ServiceView extends GetView<ServiceController> {
                   ),
                   ElevatedButton(
                       onPressed: () {
-                        controller.gotoDetailsPage();
+                        controller.chooseMode(context);
                       },
                       style: ElevatedButton.styleFrom(
-                          primary: primary,
+                          backgroundColor: primary,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(6))),
                       child: Text(
@@ -118,7 +119,6 @@ class ServiceView extends GetView<ServiceController> {
           ],
         ),
       ),
-     
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
@@ -168,40 +168,48 @@ class ServiceView extends GetView<ServiceController> {
                   SizedBox(
                     height: Get.height * .2,
                     child: Obx(
-                      () => ListView.builder(
-                          shrinkWrap: true,
-                          scrollDirection: Axis.horizontal,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 10, vertical: 2),
-                          itemCount:
-                              controller.serviceResult.value.serviceList.length,
-                          itemBuilder: (con, i) {
-                            return ServiceTile(
-                              onTap: () {
-                                controller.selectedService.value = controller
-                                    .serviceResult.value.serviceList[i];
-                                controller.isServiceSelected.value = true;
-                                controller.price.value = controller
-                                    .serviceResult.value.serviceList[i].price;
-                                controller.isSelected.value = true;
-                                controller.serviceResult.refresh();
-                                controller.packageResult.refresh();
-                              },
-                              service:
-                                  controller.serviceResult.value.serviceList[i],
-                              isSelected: (controller.isServiceSelected.value &&
-                                  controller.selectedService.value ==
-                                      controller
-                                          .serviceResult.value.serviceList[i]),
-                              onChanged: (bool? c) {
-                                controller.selectedService.value = controller
-                                    .serviceResult.value.serviceList[i];
-                                controller.isServiceSelected.value = true;
-                                controller.serviceResult.refresh();
-                                controller.packageResult.refresh();
-                              },
-                            );
-                          }),
+                      () => controller.isLoading.value
+                          ? Container()
+                          : ListView.builder(
+                              shrinkWrap: true,
+                              scrollDirection: Axis.horizontal,
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 10, vertical: 2),
+                              itemCount: controller
+                                  .serviceResult.value.serviceList.length,
+                              itemBuilder: (con, i) {
+                                return ServiceTile(
+                                  onTap: () {
+                                    controller.selectedService.value =
+                                        controller
+                                            .serviceResult.value.serviceList[i];
+                                    controller.isServiceSelected.value = true;
+                                    controller.price.value = controller
+                                        .serviceResult
+                                        .value
+                                        .serviceList[i]
+                                        .price;
+                                    controller.isSelected.value = true;
+                                    controller.serviceResult.refresh();
+                                    controller.packageResult.refresh();
+                                  },
+                                  service: controller
+                                      .serviceResult.value.serviceList[i],
+                                  isSelected:
+                                      (controller.isServiceSelected.value &&
+                                          controller.selectedService.value ==
+                                              controller.serviceResult.value
+                                                  .serviceList[i]),
+                                  onChanged: (bool? c) {
+                                    controller.selectedService.value =
+                                        controller
+                                            .serviceResult.value.serviceList[i];
+                                    controller.isServiceSelected.value = true;
+                                    controller.serviceResult.refresh();
+                                    controller.packageResult.refresh();
+                                  },
+                                );
+                              }),
                     ),
                   ),
                   Container(
@@ -224,41 +232,47 @@ class ServiceView extends GetView<ServiceController> {
                     ),
                   ),
                   Obx(
-                    () => ListView.builder(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        physics: const NeverScrollableScrollPhysics(),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 2),
-                        itemCount:
-                            controller.packageResult.value.packageList!.length,
-                        itemBuilder: (con, i) {
-                          return PackageTile(
-                            onTap: () {
-                              controller.selectedPackage.value = controller
-                                  .packageResult.value.packageList![i];
-                              controller.isServiceSelected.value = false;
-                              controller.price.value = controller
-                                  .packageResult.value.packageList![i].price!;
-                              controller.isSelected.value = true;
-                              controller.serviceResult.refresh();
-                              controller.packageResult.refresh();
-                            },
-                            package:
-                                controller.packageResult.value.packageList![i],
-                            isSelected: (!controller.isServiceSelected.value &&
-                                controller.selectedPackage.value ==
-                                    controller
-                                        .packageResult.value.packageList![i]),
-                            onChanged: (bool? c) {
-                              controller.selectedPackage.value = controller
-                                  .packageResult.value.packageList![i];
-                              controller.isServiceSelected.value = false;
-                              controller.serviceResult.refresh();
-                              controller.packageResult.refresh();
-                            },
-                          );
-                        }),
+                    () => controller.isLoading.value
+                        ? Container()
+                        : ListView.builder(
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            physics: const NeverScrollableScrollPhysics(),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 2),
+                            itemCount: controller
+                                .packageResult.value.packageList!.length,
+                            itemBuilder: (con, i) {
+                              return PackageTile(
+                                onTap: () {
+                                  controller.selectedPackage.value = controller
+                                      .packageResult.value.packageList![i];
+                                  controller.isServiceSelected.value = false;
+                                  controller.price.value = controller
+                                      .packageResult
+                                      .value
+                                      .packageList![i]
+                                      .price!;
+                                  controller.isSelected.value = true;
+                                  controller.serviceResult.refresh();
+                                  controller.packageResult.refresh();
+                                },
+                                package: controller
+                                    .packageResult.value.packageList![i],
+                                isSelected:
+                                    (!controller.isServiceSelected.value &&
+                                        controller.selectedPackage.value ==
+                                            controller.packageResult.value
+                                                .packageList![i]),
+                                onChanged: (bool? c) {
+                                  controller.selectedPackage.value = controller
+                                      .packageResult.value.packageList![i];
+                                  controller.isServiceSelected.value = false;
+                                  controller.serviceResult.refresh();
+                                  controller.packageResult.refresh();
+                                },
+                              );
+                            }),
                   ),
                   SizedBox(height: Get.height * .2),
                 ],

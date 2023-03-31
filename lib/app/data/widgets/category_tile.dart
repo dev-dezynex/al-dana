@@ -33,7 +33,7 @@ class CategoryTile extends StatelessWidget {
                       padding:
                           const EdgeInsets.only(top: 8.0, left: 5, right: 5),
                       child: Image.network(
-                        category.image,
+                        '$domainName${category.image}',
                         errorBuilder: (context, error, stackTrace) {
                           return Image.asset(
                             category.image,
@@ -89,7 +89,7 @@ class CategoryTile extends StatelessWidget {
                     padding: EdgeInsets.zero,
                     onPressed: onEdit,
                     icon: Container(
-                      padding: EdgeInsets.all(8),
+                      padding: const EdgeInsets.all(8),
                       decoration: const BoxDecoration(
                           color: white, shape: BoxShape.circle),
                       child: const Icon(

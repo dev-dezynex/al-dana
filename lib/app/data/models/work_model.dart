@@ -47,7 +47,7 @@ class Work {
     id = json['id'];
     title = json['title'];
     subTitle = json['sub_title'];
-    desc = json['desc'];
+    desc = json['description'];
     price = json['price'];
     isItemChange = json['is_item_change'];
     categoyId = json['categoy_id'];
@@ -58,7 +58,7 @@ class Work {
     data['id'] = id;
     data['title'] = title;
     data['sub_title'] = subTitle;
-    data['desc'] = desc;
+    data['description'] = desc;
     data['price'] = price;
     data['is_item_change'] = isItemChange;
     data['categoy_id'] = categoyId;

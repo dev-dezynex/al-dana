@@ -39,7 +39,6 @@ class VehicleColor {
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
-    data['id'] = id;
     data['name'] = name;
     data['code'] = code;
     return data;

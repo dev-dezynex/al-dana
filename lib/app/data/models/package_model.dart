@@ -1,3 +1,5 @@
+import 'package:al_dana/app/data/models/service_mode_model.dart';
+
 import 'service_model.dart';
 
 class PackageResult {
@@ -32,20 +34,34 @@ class PackageModel {
   String? title, image, bgCardColor;
   double? price;
   List<Service>? services;
+  List<ServiceMode>? serviceModeList;
 
-  PackageModel(
-      {this.id, this.title, this.services, this.image, this.bgCardColor,this.price});
+  PackageModel({
+    this.id,
+    this.title,
+    this.services,
+    this.image,
+    this.bgCardColor,
+    this.price,
+    this.serviceModeList,
+  });
 
   PackageModel.fromJson(Map<String, dynamic> json) {
     id = json['id'];
     title = json['title'];
     image = json['image'];
-    price = json['price'];
+    price = double.parse(json['price']);
     bgCardColor = json['bg_card_color'];
     if (json['services'] != null) {
       services = <Service>[];
       json['services'].forEach((v) {
         services?.add(Service.fromJson(v));
+      });
+    }
+    if (json['serviceModeId'] != null) {
+      serviceModeList = <ServiceMode>[];
+      json['serviceModeId'].forEach((v) {
+        serviceModeList!.add(ServiceMode.fromJson(v));
       });
     }
   }

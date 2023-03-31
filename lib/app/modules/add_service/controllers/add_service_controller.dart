@@ -21,7 +21,6 @@ class AddServiceController extends GetxController {
   var thumbFile = File('').obs;
   var bgCardColor = const Color(0xff09DDBD).obs;
   var selectedBranch = <Branch>[].obs;
-  var selectedWork = <Work>[].obs;
   var selectedService = Service(spareCategory: SpareCategory()).obs;
   @override
   void onInit() {
@@ -51,12 +50,10 @@ class AddServiceController extends GetxController {
 
   void setFields() {
     titleController.text = selectedService.value.title;
-    subTitleController.text = selectedService.value.subTitle;
     descController.text = selectedService.value.desc;
     priceController.text = selectedService.value.price.toString();
     thumbController.text = selectedService.value.image.split('/').last;
     selectedBranch.value = selectedService.value.branchList;
-    selectedWork.value = selectedService.value.work;
   }
 
   void getDetails() {
@@ -65,7 +62,7 @@ class AddServiceController extends GetxController {
   }
 
   void getBranches() async {
-    branchResult.value = await BranchProvider().getDummyData();
+    branchResult.value = await BranchProvider().getBranches();
     branchResult.refresh();
   }
 

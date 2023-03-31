@@ -4,11 +4,18 @@ class CategoryResult {
   late String status;
   late String message;
   late List<Category> categoryList;
+  Category? category;
 
   CategoryResult(
       {this.status = '', this.message = '', this.categoryList = const []});
 
   CategoryResult.fromJson(Map<String, dynamic> json) {
+    status = json['status'];
+    message = json['message'];
+    category = json['data'];
+  }
+  
+  CategoryResult.listFromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
     if (json['data'] != null) {
@@ -33,19 +40,19 @@ class Category {
   late String title, desc, image, bgCardColor;
   late List<ServiceMode> modeList;
 
-  Category(
-      {this.id = '',
-      this.title = '',
-      this.desc = '',
-      this.image = '',
-      this.bgCardColor = '',
-      this.modeList = const [],
-      });
+  Category({
+    this.id = '',
+    this.title = '',
+    this.desc = '',
+    this.image = '',
+    this.bgCardColor = '',
+    this.modeList = const [],
+  });
 
   Category.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = json['_id'];
     title = json['title'];
-    desc = json['desc'];
+    desc = json['description'];
     image = json['image'];
     bgCardColor = json['bg_card_color'];
     if (json['service_mode'] != null) {
@@ -58,12 +65,12 @@ class Category {
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
-    data['id'] = id;
+    data['_id'] = id;
     data['title'] = title;
-    data['desc'] = desc;
+    data['description'] = desc;
     data['image'] = image;
     data['bg_card_color'] = bgCardColor;
-     data['service_mode'] = modeList.map((v) => v.toJson()).toList();
+    data['service_mode'] = modeList.map((v) => v.toJson()).toList();
     return data;
   }
 }
