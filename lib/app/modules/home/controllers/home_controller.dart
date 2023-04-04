@@ -1,5 +1,9 @@
+import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
+import 'package:al_dana/app/data/models/banner_model.dart';
+import 'package:al_dana/app/data/providers/banner_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
@@ -10,8 +14,11 @@ import '../../../routes/app_pages.dart';
 
 class HomeController extends GetxController {
   var common = Common();
+  var currentUser = User().obs;
+  var addressList = <Address>[].obs;
   var bottomBarIndex = 1.obs;
   var bannerIndex = 0.obs;
+  var bannerResult = BannerResult().obs;
   var categoryResult = CategoryResult().obs;
   TextEditingController vehicleController = TextEditingController();
   LocationData? currentLocation;
@@ -25,16 +32,12 @@ class HomeController extends GetxController {
 
   //for profile
   var file = File('').obs;
-  var currentUser = Common().currentUser.obs;
-  TextEditingController nameController =
-      TextEditingController(text: 'Harps Joseph');
-  TextEditingController phoneController =
-      TextEditingController(text: '+974 453875636');
-  TextEditingController emailController =
-      TextEditingController(text: 'harpsjoseph@gmail.com');
-  TextEditingController addressController =
-      TextEditingController(text: 'Gold Palace, UAE, Baniyas Road Dubai,');
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
+
   var isLoading = false.obs;
+  var isProfileEdited = false.obs;
 
   @override
   void onInit() {
@@ -52,6 +55,9 @@ class HomeController extends GetxController {
     // getModeList();
     getCategories();
     getVehicles();
+    getUserProfile();
+    getBanners();
+    print('selected branch ${jsonEncode(Common().selectedBranch)}');
   }
 
   getCategories() async {
@@ -151,9 +157,60 @@ class HomeController extends GetxController {
     print('file picked ${file.value.path.split('/').last}');
 
     file.value = (await FileProvider().cropImage(image))!;
+
+    if (file.value.path.isNotEmpty) {
+      updateProfile();
+    }
   }
 
-  void updateProfile() {}
+  Future<String> imageUpload() async {
+    if (file.value.path.isNotEmpty) {
+      var result = await FileProvider().uploadSingleFile(file: file.value);
+      if (result['status'] == 'success') {
+        return result['data'][0];
+      }
+    }
+    return currentUser.value.image;
+  }
+
+  void updateProfile() async {
+    isLoading(true);
+    String imagePath = await imageUpload();
+    var result = await UserProvider().updateProfile(
+        userProfile: currentUser.value.copyWith(
+      name: nameController.text,
+      email: emailController.text,
+      image: imagePath,
+    ));
+
+    if (result.status == 'success') {
+      getUserProfile();
+    } else {
+      Get.snackbar('Error', result.message,
+          snackPosition: SnackPosition.BOTTOM,
+          backgroundColor: textDark20,
+          colorText: textDark80);
+    }
+  }
+
+  void getUserProfile() async {
+    currentUser.value = (await UserProvider().getProfile()).user;
+    log('&&&&&&current User ${jsonEncode(currentUser.value)}');
+    storage.write(user_details, currentUser.value.toJson());
+    setProfileFields();
+  }
+
+  void setProfileFields() {
+    nameController.text = currentUser.value.name;
+    emailController.text = currentUser.value.email;
+    phoneController.text = currentUser.value.mobile.toString();
+    addressList.addAll(currentUser.value.addressList);
+  }
+
+  void getBanners() async {
+    bannerResult.value = await BannerProvider().getBanners();
+    bannerResult.refresh();
+  }
 
   // void getModeList() async {
   //   modeList.value = (await ServiceModeProvider().getModes()).serviceModeList!;

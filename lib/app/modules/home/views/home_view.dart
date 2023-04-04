@@ -18,6 +18,7 @@ class HomeView extends GetView<HomeController> {
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: bgColor1,
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,

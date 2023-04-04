@@ -33,7 +33,7 @@ class _BranchTileState extends State<BranchTile> {
     return InkWell(
       onTap: widget.onTap,
       child: Container(
-        margin: const EdgeInsets.all(10),
+        margin: const EdgeInsets.only(right: 10),
         child: Stack(
           children: [
             Container(
@@ -69,7 +69,7 @@ class _BranchTileState extends State<BranchTile> {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                     )),
-                padding: EdgeInsets.all(8),
+                padding:const EdgeInsets.all(4),
                 child: Stack(
                   children: [
                     Positioned(
@@ -88,8 +88,9 @@ class _BranchTileState extends State<BranchTile> {
                           ),
                         )),
                     Positioned(
-                        bottom: 16,
+                        bottom: 0,
                         left: 15,
+                        right: 0,
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -102,26 +103,26 @@ class _BranchTileState extends State<BranchTile> {
                             ),
                             Text(
                               widget.branch.location,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
                               style: tsPoppins(
                                   color: textDark10, weight: FontWeight.w400),
                             ),
-                          ],
-                        )),
-                    Positioned(
-                        bottom: 16,
-                        right: 15,
-                        child: Row(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            const Icon(
-                              Icons.location_on_outlined,
-                              color: white,
-                              size: 15,
-                            ),
-                            Text(
-                              ' ${widget.branch.distance} Km',
-                              style: tsPoppins(color: white, size: 13),
-                            ),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.end,
+                              children: [
+                                const Icon(
+                                  Icons.location_on_outlined,
+                                  color: white,
+                                  size: 15,
+                                ),
+                                Text(
+                                  ' ${widget.branch.distance.toStringAsFixed(2)} Km',
+                                  style: tsPoppins(color: white, size: 13),
+                                ),
+                              ],
+                            )
                           ],
                         )),
                     if (widget.isManage)

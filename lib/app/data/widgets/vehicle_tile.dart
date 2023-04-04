@@ -16,7 +16,7 @@ class VehicleTile extends StatelessWidget {
         padding: const EdgeInsets.all(8.0),
         child: Row(
           children: [
-            Container(
+            Padding(
               padding: const EdgeInsets.all(5),
               child: Image.network(
                 '$domainName${vehicle.brand!.image}',
@@ -24,14 +24,14 @@ class VehicleTile extends StatelessWidget {
                 width: Get.width * .15,
                 errorBuilder: (context, error, stackTrace) {
                   return Image.asset(
-                    vehicle.image!,
+                    vehicle.brand!.image,
                     fit: BoxFit.contain,
                     width: Get.width * .15,
                     errorBuilder: (context, error, stackTrace) {
                       return Image.asset(
                         'assets/images/img_placeholder.png',
                         fit: BoxFit.contain,
-                        width: Get.width * .2,
+                        width: Get.width * .15,
                       );
                     },
                   );

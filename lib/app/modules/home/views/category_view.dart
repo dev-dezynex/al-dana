@@ -23,46 +23,59 @@ class CategoryView extends GetView<HomeController> {
                 children: [
                   SizedBox(
                     height: Get.height * .25,
-                    child: Swiper(
-                      itemWidth: Get.width,
-                      containerWidth: Get.width,
-                      itemBuilder: (BuildContext context, int index) {
-                        return Container(
-                          margin: const EdgeInsets.only(bottom: 15.0),
-                          child: Card(
-                              color: Colors.transparent,
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(10.0)),
-                              elevation: 0.0,
-                              child: Image.asset(
-                                  'assets/images/img_banner_1.png',
-                                  fit: BoxFit.contain)),
-                        );
-                      },
-                      onTap: (index) {
-                        //Constants().showMessageInScaffold(context, banners[index]);
-                      },
-                      onIndexChanged: (index) {
-                        controller.bannerIndex.value = index;
-                      },
-                      itemCount: 3,
-                      pagination: SwiperCustomPagination(
-                        builder: (context, config) {
-                          return Container(
-                              alignment: Alignment.bottomCenter,
-                              child: Obx(() => LinearIndicator(
-                                    index: controller.bannerIndex.value,
-                                    length: 3,
-                                    activeColor: bgColor4,
-                                    inactiveColor: textDark20,
-                                  )));
-                        },
-                      ),
-                      autoplay: true,
-                      autoplayDelay: 4000,
-                      duration: 800,
-                      viewportFraction: 0.85,
-                      scale: 1.0,
+                    child: Obx(
+                      () => controller.isLoading.value
+                          ? SizedBox()
+                          : Swiper(
+                              itemWidth: Get.width,
+                              containerWidth: Get.width,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Container(
+                                  margin: const EdgeInsets.only(bottom: 15.0),
+                                  child: Card(
+                                      color: Colors.transparent,
+                                      shape: RoundedRectangleBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10.0)),
+                                      elevation: 0.0,
+                                      child: Image.network(
+                                        '$domainName${controller.bannerResult.value.bannerList![index].image}',
+                                        fit: BoxFit.contain,
+                                        errorBuilder: (context, error,
+                                                stackTrace) =>
+                                            Image.asset(
+                                                'assets/images/img_banner_1.png',
+                                                fit: BoxFit.contain),
+                                      )),
+                                );
+                              },
+                              onTap: (index) {
+                                //Constants().showMessageInScaffold(context, banners[index]);
+                              },
+                              onIndexChanged: (index) {
+                                controller.bannerIndex.value = index;
+                              },
+                              itemCount: controller
+                                  .bannerResult.value.bannerList!.length,
+                              pagination: SwiperCustomPagination(
+                                builder: (context, config) {
+                                  return Container(
+                                      alignment: Alignment.bottomCenter,
+                                      child: Obx(() => LinearIndicator(
+                                            index: controller.bannerIndex.value,
+                                            length: controller.bannerResult
+                                                .value.bannerList!.length,
+                                            activeColor: bgColor4,
+                                            inactiveColor: textDark20,
+                                          )));
+                                },
+                              ),
+                              autoplay: true,
+                              autoplayDelay: 4000,
+                              duration: 800,
+                              viewportFraction: 0.85,
+                              scale: 1.0,
+                            ),
                     ),
                   ),
                   Container(

@@ -22,6 +22,8 @@ import '../modules/add_vehicle/bindings/add_vehicle_binding.dart';
 import '../modules/add_vehicle/views/add_vehicle_view.dart';
 import '../modules/add_work/bindings/add_work_binding.dart';
 import '../modules/add_work/views/add_work_view.dart';
+import '../modules/address_map/bindings/address_map_binding.dart';
+import '../modules/address_map/views/address_map_view.dart';
 import '../modules/auth/bindings/auth_binding.dart';
 import '../modules/auth/views/auth_view.dart';
 import '../modules/booking_page/bindings/booking_page_binding.dart';
@@ -246,6 +248,11 @@ class AppPages {
       name: _Paths.SUBSCRIPTION_PAGE,
       page: () => const SubscriptionPageView(),
       binding: SubscriptionPageBinding(),
+    ),
+    GetPage(
+      name: _Paths.ADDRESS_MAP,
+      page: () => AddressMapView(),
+      binding: AddressMapBinding(),
     ),
   ];
 }

@@ -7,7 +7,6 @@ import '../constants/constants.dart';
 import '../models/service_model.dart';
 
 class ServiceProvider extends GetConnect {
-
   Future<ServiceResult> getDummyData() async {
     final file = await rootBundle.loadString('assets/json/service.json');
     final data = await jsonDecode(file);
@@ -22,18 +21,47 @@ class ServiceProvider extends GetConnect {
     return result;
   }
 
-
-
-  Future<ServiceResult> getServices() async {
+  Future<ServiceResult> getServices({required String categoryId}) async {
     ServiceResult result;
-
+    Map<String, dynamic> params = {
+      'filter[branchId]': Common().selectedBranch.id,
+      'filter[variantId]': Common().selectedVehicle.variant!.id,
+      'filter[categoryId]': categoryId,
+    };
     final response = await get(
       apiListService,
       headers: Auth().requestHeaders,
+      query: params,
     ).timeout(Duration(minutes: 1));
 
     print('auth ${Auth().requestHeaders}');
     print('path $apiListService');
+    print('params ${jsonEncode(params)}');
+    print('responseCode ${response.statusCode}');
+    print('response ${response.body}');
+    if (response.statusCode == 401) {
+      Auth().authFailed(response.body['message']);
+    }
+    result = ServiceResult.fromJson(response.body);
+    return result;
+  }
+
+  Future<ServiceResult> getExtraServices({String? categoryId}) async {
+    ServiceResult result;
+    Map<String, dynamic> params = {
+      'filter[branchId]': Common().selectedBranch.id,
+      'filter[variantId]': Common().selectedVehicle.variant!.id,
+      'filter[categoryId]': categoryId,
+    };
+    final response = await get(
+      apiListService,
+      headers: Auth().requestHeaders,
+      query: params,
+    ).timeout(Duration(minutes: 1));
+
+    print('auth ${Auth().requestHeaders}');
+    print('path $apiListService');
+    print('params ${jsonEncode(params)}');
     print('responseCode ${response.statusCode}');
     print('response ${response.body}');
     if (response.statusCode == 401) {

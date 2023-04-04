@@ -38,7 +38,7 @@ class ServiceTile extends StatelessWidget {
                         const EdgeInsets.only(top: 18.0, left: 5, right: 5),
                     alignment: Alignment.center,
                     child: Image.network(
-                      service.image,
+                      '$domainName${service.image}',
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
                         return Image.asset(

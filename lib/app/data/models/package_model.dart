@@ -39,7 +39,7 @@ class PackageModel {
   PackageModel({
     this.id,
     this.title,
-    this.services,
+    this.services=const [],
     this.image,
     this.bgCardColor,
     this.price,
@@ -50,10 +50,10 @@ class PackageModel {
     id = json['id'];
     title = json['title'];
     image = json['image'];
-    price = double.parse(json['price']);
+    price = double.parse(json['price'].toString());
     bgCardColor = json['bg_card_color'];
+    services = <Service>[];
     if (json['services'] != null) {
-      services = <Service>[];
       json['services'].forEach((v) {
         services?.add(Service.fromJson(v));
       });

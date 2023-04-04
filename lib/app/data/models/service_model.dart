@@ -62,11 +62,11 @@ class Service {
         branchList.add(Branch.fromJson(v));
       });
     }
-    price = json['price'];
+    price = double.parse(json['price'].toString());
 
-    if (json['serviceModeId'] != null) {
+    if (json['serviceDetails'] != null) {
       serviceModeList = <ServiceMode>[];
-      json['serviceModeId'].forEach((v) {
+      json['serviceDetails'].forEach((v) {
         serviceModeList.add(ServiceMode.fromJson(v));
       });
     }

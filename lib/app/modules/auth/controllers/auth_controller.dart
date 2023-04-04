@@ -8,6 +8,8 @@ import '../../../routes/app_pages.dart';
 class AuthController extends GetxController {
   var isLoading = false.obs;
   String contryCode = '971';
+  TextEditingController nameController = TextEditingController();
+  TextEditingController emailController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
 
   final shakeKey = GlobalKey<ShakeWidgetState>();
@@ -30,7 +32,6 @@ class AuthController extends GetxController {
     }
   }
 
-
   @override
   void onClose() {}
 
@@ -48,8 +49,56 @@ class AuthController extends GetxController {
     print('after otp $otp');
   }
 
-  void verifyOTP() {
-    storage.write(is_login, true);
-    Get.offAllNamed(Routes.BRANCH);
+  void verifyOTP() async {
+    isLoading(true);
+    var result = await UserProvider().verifyOTP(
+        phoneNumber: '$contryCode${phoneController.text}', otp: otp.value);
+
+    if (result.status == 'success') {
+      var result = await UserProvider().getProfile();
+      if (result.status == 'success') {
+        storage.write(user_details, result.user.toJson());
+        storage.write(is_login, true);
+        Get.offAllNamed(Routes.BRANCH);
+      } else {
+        showError(result.message);
+      }
+    } else if (result.message.toLowerCase() == 'new user') {
+      authView.value = AuthStatus.signup;
+    } else {
+      showError(result.message);
+    }
+
+    isLoading(false);
+  }
+
+  showError(String message) {
+    Get.snackbar('Error', message,
+        snackPosition: SnackPosition.BOTTOM,
+        backgroundColor: textDark20,
+        colorText: textDark80);
+  }
+
+  void signup() async {
+    isLoading(true);
+    var result = await UserProvider().signUp(
+        user: User(
+            name: nameController.text,
+            mobile: int.parse('$contryCode${phoneController.text}'),
+            email: emailController.text));
+
+    if (result.status == 'success') {
+      var result = await UserProvider().getProfile();
+      if (result.status == 'success') {
+        storage.write(user_details, result.user.toJson());
+        storage.write(is_login, true);
+        Get.offAllNamed(Routes.BRANCH);
+      } else {
+        showError(result.message);
+      }
+    } else {
+      showError(result.message);
+    }
+    isLoading(false);
   }
 }

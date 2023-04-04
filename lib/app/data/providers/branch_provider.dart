@@ -8,22 +8,19 @@ import '../data.dart';
 import '../models/branch_model.dart';
 
 class BranchProvider extends GetConnect {
-  Future<BranchResult> getDummyData() async {
-    final file = await rootBundle.loadString('assets/json/branch.json');
-    final data = await jsonDecode(file);
-    BranchResult result = BranchResult.fromJson(data);
-    return result;
-  }
+  // Future<BranchResult> getDummyData() async {
+  //   final file = await rootBundle.loadString('assets/json/branch.json');
+  //   final data = await jsonDecode(file);
+  //   BranchResult result = BranchResult.fromJson(data);
+  //   return result;
+  // }
 
   Future<BranchResult> getBranches() async {
     BranchResult result;
-    Map<String, dynamic> qParams = {'filter[status]': 'true'};
     final response = await get(
       apiListBranch,
-      query: qParams,
       headers: Auth().requestHeaders,
     );
-    print('qparams $qParams');
     print('path $apiListBranch');
     print('response ${response.body}');
     if (response.statusCode == 200) {

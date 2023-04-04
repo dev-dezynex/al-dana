@@ -26,6 +26,49 @@ class PackageTile extends StatelessWidget {
         color: hexToColor(package.bgCardColor!),
         child: Stack(
           children: [
+            Align(
+              alignment: Alignment.bottomRight,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: isManage
+                    ? MainAxisAlignment.end
+                    : MainAxisAlignment.spaceBetween,
+                children: [
+                  if (!isManage)
+                    Radio(
+                      fillColor:
+                          MaterialStateColor.resolveWith((states) => white),
+                      value: isSelected,
+                      groupValue: true,
+                      onChanged: onChanged,
+                    ),
+                  Container(
+                    height: Get.width * .3,
+                    width: Get.width * .4,
+                    alignment: Alignment.bottomCenter,
+                    padding:
+                        const EdgeInsets.only(top: 18.0, left: 5, right: 5),
+                    child: Image.network(
+                      '$domainName${package.image!}',
+                      fit: BoxFit.cover,
+                      errorBuilder: (context, error, stackTrace) {
+                        return Image.asset(
+                          package.image!,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Image.asset(
+                              'assets/images/img_placeholder.png',
+                              fit: BoxFit.cover,
+                            );
+                          },
+                        );
+                      },
+                    ),
+                  ),
+                ],
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.all(8.0),
               child: Column(
@@ -78,50 +121,6 @@ class PackageTile extends StatelessWidget {
                 ],
               ),
             ),
-            Positioned(
-                top: 0,
-                right: 0,
-                bottom: 15,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  mainAxisSize: MainAxisSize.max,
-                  mainAxisAlignment: isManage
-                      ? MainAxisAlignment.end
-                      : MainAxisAlignment.spaceBetween,
-                  children: [
-                    if (!isManage)
-                      Radio(
-                        fillColor:
-                            MaterialStateColor.resolveWith((states) => white),
-                        value: isSelected,
-                        groupValue: true,
-                        onChanged: onChanged,
-                      ),
-                    Container(
-                      height: Get.width * .3,
-                      width: Get.width * .4,
-                      alignment: Alignment.bottomCenter,
-                      padding:
-                          const EdgeInsets.only(top: 18.0, left: 5, right: 5),
-                      child: Image.network(
-                        package.image!,
-                        fit: BoxFit.cover,
-                        errorBuilder: (context, error, stackTrace) {
-                          return Image.asset(
-                            package.image!,
-                            fit: BoxFit.cover,
-                            errorBuilder: (context, error, stackTrace) {
-                              return Image.asset(
-                                'assets/images/img_placeholder.png',
-                                fit: BoxFit.cover,
-                              );
-                            },
-                          );
-                        },
-                      ),
-                    ),
-                  ],
-                )),
             if (isManage)
               Positioned(
                 top: 0,

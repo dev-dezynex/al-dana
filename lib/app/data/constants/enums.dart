@@ -1,1 +1,1 @@
-enum AuthStatus {phone,otp}
+enum AuthStatus {phone,otp,signup}

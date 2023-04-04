@@ -37,6 +37,7 @@ abstract class Routes {
   static const BRANCH_LIST = _Paths.BRANCH_LIST;
   static const ADD_BRANCH = _Paths.ADD_BRANCH;
   static const SUBSCRIPTION_PAGE = _Paths.SUBSCRIPTION_PAGE;
+  static const ADDRESS_MAP = _Paths.ADDRESS_MAP;
 }
 
 abstract class _Paths {
@@ -75,4 +76,5 @@ abstract class _Paths {
   static const BRANCH_LIST = '/branch-list';
   static const ADD_BRANCH = '/add-branch';
   static const SUBSCRIPTION_PAGE = '/subscription-page';
+  static const ADDRESS_MAP = '/address-map';
 }

@@ -15,3 +15,4 @@ export 'booking_model.dart';
 export 'spare_category_model.dart';
 export 'invoice.dart';
 export 'car_model_model.dart';
+export 'address_model.dart';

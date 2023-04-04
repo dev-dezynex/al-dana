@@ -1,3 +1,6 @@
+// ignore_for_file: public_member_api_docs, sort_constructors_first
+import '../data.dart';
+
 class UserResult {
   late String status, message;
   late User user;
@@ -52,35 +55,71 @@ class User {
   late String id, name, email, image, scope;
   late int mobile;
   late bool status;
+  late List<Address> addressList;
 
-  User(
-      {this.id = '',
-      this.name = '',
-      this.mobile = 0,
-      this.email = '',
-      this.image = '',
-      this.scope = '',
-      this.status = false});
+  User({
+    this.id = '',
+    this.name = '',
+    this.mobile = 0,
+    this.email = '',
+    this.image = '',
+    this.scope = '',
+    this.addressList = const [],
+    this.status = false,
+  });
 
   User.fromJson(Map<String, dynamic> json) {
-    id = json['id'] ?? '';
+    id = json['_id'] ?? '';
     name = json['name'] ?? '';
-    mobile = json['mobile'] ?? 0;
+    mobile = json['phoneNumber'] ?? 0;
     email = json['email'] ?? '';
     image = json['image'] ?? '';
-    scope = json['scope'] ?? '';
+    scope = json['role'] ?? '';
     status = json['status'] ?? false;
+    addressList = <Address>[];
+    if (json['address'] != null) {
+      json['address'].forEach((v) {
+        addressList.add(Address.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
-    data['id'] = id;
+    data['_id'] = id;
     data['name'] = name;
-    data['mobile'] = mobile;
+    data['phoneNumber'] = mobile;
     data['email'] = email;
     data['image'] = image;
-    data['scope'] = scope;
+    data['role'] = scope;
     data['status'] = status;
+    data['address'] = addressList.map((e) => e.toJson()).toList();
     return data;
+  }
+
+  Map<String, dynamic> toPost() {
+    final data = <String, dynamic>{};
+    data['name'] = name;
+    data['phoneNumber'] = mobile;
+    data['email'] = email;
+    return data;
+  }
+
+  User copyWith({
+     String? id, name, email, image, scope,
+     int? mobile,
+     bool? status,
+     List<Address>? addressList,
+  }) {
+    return User(
+      id: id ?? this.id,
+      name: name ?? this.name,
+      email: email ?? this.email,
+      image: image ?? this.image,
+      scope: scope ?? this.scope,
+      mobile: mobile ?? this.mobile,
+      status: status ?? this.status,
+      addressList: addressList ?? this.addressList,
+    );
   }
 }

@@ -5,13 +5,13 @@ class BookingResult {
   String? message;
   List<Booking>? bookingList;
 
-  BookingResult({this.status, this.message, this.bookingList});
+  BookingResult({this.status, this.message, this.bookingList=const[]});
 
   BookingResult.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
-    if (json['data'] != null) {
       bookingList = <Booking>[];
+    if (json['data'] != null) {
       json['data'].forEach((v) {
         bookingList?.add(Booking.fromJson(v));
       });

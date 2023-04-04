@@ -6,6 +6,8 @@ const String session = "session";
 const String auth = "auth";
 //logged in user details
 const String user_details = "user_details";
+//selected user address details
+const String user_address = "user_address";
 //selected branch details
 const String selected_branch = "selected_branch";
 //selected vehicle details

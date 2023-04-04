@@ -33,7 +33,7 @@ class ServiceMode {
   ServiceMode({this.id='', this.title='', this.desc='', this.bgCardColor='',this.status=false});
 
   ServiceMode.fromJson(Map<String, dynamic> json) {
-    id = json['id']??'';
+    id = json['_id']??'';
     title = json['title']??'';
     desc = json['description']??'';
     bgCardColor = json['bg_card_color']??'';
@@ -42,7 +42,7 @@ class ServiceMode {
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
-    data['id'] = id;
+    data['_id'] = id;
     data['title'] = title;
     data['description'] = desc;
     data['bg_card_color'] = bgCardColor;

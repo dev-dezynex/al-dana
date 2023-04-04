@@ -11,6 +11,7 @@ class ServiceController extends GetxController {
   var packageResult = PackageResult().obs;
   var selectedService = Service(spareCategory: SpareCategory()).obs;
   var selectedPackage = PackageModel().obs;
+  var selectedCategory = Category().obs;
   var isServiceSelected = false.obs;
   var selectedVehicle = Vehicle().obs;
   var price = 0.0.obs;
@@ -25,6 +26,9 @@ class ServiceController extends GetxController {
 
   void getDetails() async {
     isLoading(true);
+    if (Get.arguments != null) {
+      selectedCategory.value = Get.arguments;
+    }
     await getServices();
     await getPackages();
     isLoading(false);
@@ -36,7 +40,7 @@ class ServiceController extends GetxController {
   }
 
   getServices() async {
-    serviceResult.value = await ServiceProvider().getServices();
+    serviceResult.value = await ServiceProvider().getServices(categoryId: selectedCategory.value.id);
     serviceResult.refresh();
   }
 
