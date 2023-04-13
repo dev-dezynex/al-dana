@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 
 import '../../../data/data.dart';
+import '../../../routes/app_pages.dart';
 import '../controllers/payment_page_controller.dart';
 
 class PaymentSuccessView extends GetView<PaymentPageController> {
@@ -46,7 +47,7 @@ class PaymentSuccessView extends GetView<PaymentPageController> {
               height: 5,
             ),
             Text(
-                '${outputDateFormat2.format(outputDateFormat.parse(controller.booking.value.date!))}, ${controller.booking.value.slot}',
+                '${outputDateFormat2.format(inputDateFormat.parse(controller.booking.value.date!))}, ${controller.booking.value.slot}',
                 textAlign: TextAlign.center,
                 style: tsRubik(color: textDark40, weight: FontWeight.w400)),
             const Spacer(
@@ -54,7 +55,9 @@ class PaymentSuccessView extends GetView<PaymentPageController> {
             ),
             ElevatedButton(
                 onPressed: () {
-                  controller.isPaymentSuccess.value = true;
+                  Get.offNamedUntil(Routes.HOME, (route) => false);
+                  Get.toNamed(Routes.TRACK_PAGE,
+                      arguments: controller.booking.value);
                 },
                 style: ElevatedButton.styleFrom(
                     backgroundColor: bgColor27,

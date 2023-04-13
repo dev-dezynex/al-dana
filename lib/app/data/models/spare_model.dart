@@ -27,31 +27,49 @@ class SpareResult {
 
 class Spare {
   String? id;
-  String? categoryId;
-  String? name;
+  String? categoryId, branchId;
+  String? name, desc;
   double? price;
   String? image;
   int? qty;
 
-  Spare({this.id, this.categoryId, this.name, this.price, this.image,this.qty});
+  Spare(
+      {this.id,
+      this.categoryId,
+      this.branchId,
+      this.name,
+      this.desc,
+      this.price,
+      this.image,
+      this.qty});
 
   Spare.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    categoryId = json['category_id'];
-    name = json['name'];
-    price = json['price'];
+    id = json['_id'];
+    categoryId = json['spareCategoryId'];
+    branchId = json['branchId'];
+    name = json['title'];
+    desc = json['description'];
+    price = double.parse(json['price'].toString());
     image = json['image'];
     qty = json['quantity'];
   }
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
-    data['id'] = id;
-    data['category_id'] = categoryId;
-    data['name'] = name;
+    data['_id'] = id;
+    data['spareCategoryId'] = categoryId;
+    data['title'] = name;
+    data['description'] = desc;
     data['price'] = price;
     data['image'] = image;
     data['quantity'] = qty;
+    return data;
+  }
+
+  Map<String, dynamic> toPost() {
+    final data = <String, dynamic>{};
+    data['spareId'] = id;
+    data['spareAmount'] = price;
     return data;
   }
 }

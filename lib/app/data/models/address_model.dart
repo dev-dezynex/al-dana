@@ -1,10 +1,10 @@
 class AddressResult {
   String? status;
   String? message;
-  List<Address>? data;
+  List<Address>? addressList;
   Address? address;
 
-  AddressResult({this.status, this.message, this.data, this.address});
+  AddressResult({this.status, this.message, this.addressList, this.address});
 
   AddressResult.fromJson(Map<String, dynamic> json) {
     status = json['status'];
@@ -16,9 +16,9 @@ class AddressResult {
     status = json['status'];
     message = json['message'];
     if (json['data'] != null) {
-      data = <Address>[];
+      addressList = <Address>[];
       json['data'].forEach((v) {
-        data?.add(Address.fromJson(v));
+        addressList?.add(Address.fromJson(v));
       });
     }
   }
@@ -28,7 +28,7 @@ class AddressResult {
     data['status'] = status;
     data['message'] = message;
     if (data != null) {
-      data['data'] = this.data?.map((v) => v.toJson()).toList();
+      data['data'] = this.addressList?.map((v) => v.toJson()).toList();
     }
     return data;
   }

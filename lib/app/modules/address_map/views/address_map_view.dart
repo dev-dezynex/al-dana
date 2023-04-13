@@ -42,26 +42,94 @@ class AddressMapView extends GetView<AddressMapController> {
             ),
             Positioned(
               top: Get.height * .02,
-              left: Get.width * .01,
-              right: Get.width * .01,
+              left: 0,
+              right: 0,
               child: Container(
                 color: Colors.transparent,
-                margin: EdgeInsets.fromLTRB(
-                    Get.width * .05, 0, Get.width * .05, 15),
-                child: TextFormField(
-                  autofocus: false,
-                  onChanged: (value) {
-                    controller.search(key: value);
-                  },
-                  style: tsPoppins(color: primary, size: 14),
-                  decoration: InputFormDecoration.outLinedInputTextDecoration(
-                      prefixIcon: const Icon(
-                        Icons.search,
-                        color: textDark40,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Padding(
+                      padding:
+                          EdgeInsets.symmetric(horizontal: Get.width * .08),
+                      child: TextFormField(
+                        autofocus: false,
+                        onChanged: (value) {
+                          controller.search(key: value);
+                        },
+                        style: tsPoppins(color: primary, size: 14),
+                        decoration:
+                            InputFormDecoration.outLinedInputTextDecoration(
+                                prefixIcon: const Icon(
+                                  Icons.search,
+                                  color: textDark40,
+                                ),
+                                radius: 100,
+                                filled: true,
+                                fillColor: white),
                       ),
-                      radius: 100,
-                      filled: true,
-                      fillColor: white),
+                    ),
+                    const SizedBox(
+                      height: 10,
+                    ),
+                    if (controller.addressPageMode ==
+                        AddressPageMode.addAndContinue)
+                      Container(
+                        alignment: Alignment.centerLeft,
+                        child: SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                              crossAxisAlignment: CrossAxisAlignment.center,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              mainAxisSize: MainAxisSize.max,
+                              children: List.generate(
+                                  controller.currentUser.addressList.length,
+                                  (i) => Container(
+                                        padding: const EdgeInsets.all(10),
+                                        margin: const EdgeInsets.only(
+                                            left: 15, right: 5),
+                                        constraints: BoxConstraints(
+                                            maxWidth: Get.width * .5),
+                                        decoration: BoxDecoration(
+                                            color: white,
+                                            borderRadius:
+                                                BorderRadius.circular(5),
+                                            border: Border.all(
+                                                width: 1, color: textDark10)),
+                                        child: InkWell(
+                                          onTap: () {
+                                            controller.setAddressFromList(
+                                                controller.currentUser
+                                                    .addressList[i]);
+                                          },
+                                          child: Column(
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            mainAxisSize: MainAxisSize.min,
+                                            children: [
+                                              Text(
+                                                  controller
+                                                      .currentUser
+                                                      .addressList[i]
+                                                      .addressType,
+                                                  style: tsPoppins(
+                                                      color: textDark80,
+                                                      weight: FontWeight.w600)),
+                                              Text(
+                                                  controller.currentUser
+                                                      .addressList[i].location,
+                                                  maxLines: 2,
+                                                  overflow:
+                                                      TextOverflow.ellipsis,
+                                                  style: tsPoppins(
+                                                      color: textDark40)),
+                                            ],
+                                          ),
+                                        ),
+                                      ))),
+                        ),
+                      ),
+                  ],
                 ),
               ),
             ),
@@ -168,8 +236,7 @@ class AddressMapView extends GetView<AddressMapController> {
                                             .toLowerCase(),
                                         onChanged: (String? value) {
                                           controller.selectedAddress.value
-                                                  .addressType =
-                                              value!;
+                                              .addressType = value!;
                                           controller.selectedAddress.refresh();
                                         },
                                       ),
@@ -192,8 +259,7 @@ class AddressMapView extends GetView<AddressMapController> {
                                             .toLowerCase(),
                                         onChanged: (String? value) {
                                           controller.selectedAddress.value
-                                                  .addressType =
-                                              value!;
+                                              .addressType = value!;
                                           controller.selectedAddress.refresh();
                                         },
                                       ),
@@ -216,8 +282,7 @@ class AddressMapView extends GetView<AddressMapController> {
                                             .toLowerCase(),
                                         onChanged: (String? value) {
                                           controller.selectedAddress.value
-                                                  .addressType =
-                                              value!;
+                                              .addressType = value!;
                                           controller.selectedAddress.refresh();
                                         },
                                       ),
@@ -233,78 +298,82 @@ class AddressMapView extends GetView<AddressMapController> {
                             const SizedBox(
                               height: 30,
                             ),
-                            if(controller.isLoading.value)
-                            Center(child: CircularProgressIndicator()),
-                            if(!controller.isLoading.value && controller.isUpdate.value)
-                             Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                              children: [
-                                ElevatedButton(
-                                    onPressed: () {
-                                      myAlertDialog(
-                                          title: 'Confirm',
-                                          message:
-                                              'Do you want to delete this branch ?',
-                                          onCancel: () {
-                                            Get.back();
-                                          },
-                                          onSubmit: () {
-                                            controller.deleteAddress();
-                                          });
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                        backgroundColor: white,
-                                        minimumSize: Size(Get.width * .4, 50),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            side: const BorderSide(
-                                                color: primary, width: 2))),
-                                    child: Text('Delete',
-                                        style: tsPoppins(
-                                            color: primary,
-                                            weight: FontWeight.w600,
-                                            size: 15))),
-                                ElevatedButton(
-                                    onPressed: () {
-                                      if (formKeyAdd.currentState!.validate()) {
-                                        controller.updateAddress();
-                                      }
-                                    },
-                                    style: ElevatedButton.styleFrom(
-                                        backgroundColor: primary,
-                                        minimumSize: Size(Get.width * .4, 50),
-                                        shape: RoundedRectangleBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10))),
-                                    child: Text('Update',
-                                        style: tsPoppins(
-                                            color: white,
-                                            weight: FontWeight.w600,
-                                            size: 15))),
-                              ],
-                            ),
-                        
-                            if(!controller.isLoading.value && !controller.isUpdate.value)
-                            ElevatedButton(
-                              onPressed: () {
-                                if (formKeyAdd.currentState!.validate()) {
-                                  controller.onConfirmPressed();
-                                }
-                              },
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: bgColor27,
-                                  minimumSize: Size(Get.width, 50),
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(8))),
-                              child: Text(
-                                'Confirm Address',
-                                style: tsPoppins(
-                                    color: white,
-                                    size: 16,
-                                    weight: FontWeight.w600),
+                            if (controller.isLoading.value)
+                              Center(child: CircularProgressIndicator()),
+                            if (!controller.isLoading.value &&
+                                controller.isUpdate.value)
+                              Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
+                                children: [
+                                  ElevatedButton(
+                                      onPressed: () {
+                                        myAlertDialog(
+                                            title: 'Confirm',
+                                            message:
+                                                'Do you want to delete this branch ?',
+                                            onCancel: () {
+                                              Get.back();
+                                            },
+                                            onSubmit: () {
+                                              controller.deleteAddress();
+                                            });
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: white,
+                                          minimumSize: Size(Get.width * .4, 50),
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10),
+                                              side: const BorderSide(
+                                                  color: primary, width: 2))),
+                                      child: Text('Delete',
+                                          style: tsPoppins(
+                                              color: primary,
+                                              weight: FontWeight.w600,
+                                              size: 15))),
+                                  ElevatedButton(
+                                      onPressed: () {
+                                        if (formKeyAdd.currentState!
+                                            .validate()) {
+                                          controller.updateAddress();
+                                        }
+                                      },
+                                      style: ElevatedButton.styleFrom(
+                                          backgroundColor: primary,
+                                          minimumSize: Size(Get.width * .4, 50),
+                                          shape: RoundedRectangleBorder(
+                                              borderRadius:
+                                                  BorderRadius.circular(10))),
+                                      child: Text('Update',
+                                          style: tsPoppins(
+                                              color: white,
+                                              weight: FontWeight.w600,
+                                              size: 15))),
+                                ],
                               ),
-                            ),
+                            if (!controller.isLoading.value &&
+                                !controller.isUpdate.value)
+                              ElevatedButton(
+                                onPressed: () {
+                                  if (formKeyAdd.currentState!.validate()) {
+                                    controller.onConfirmPressed();
+                                  }
+                                },
+                                style: ElevatedButton.styleFrom(
+                                    backgroundColor: bgColor27,
+                                    minimumSize: Size(Get.width, 50),
+                                    shape: RoundedRectangleBorder(
+                                        borderRadius:
+                                            BorderRadius.circular(8))),
+                                child: Text(
+                                  'Confirm Address',
+                                  style: tsPoppins(
+                                      color: white,
+                                      size: 16,
+                                      weight: FontWeight.w600),
+                                ),
+                              ),
                           ],
                         ),
                       ),

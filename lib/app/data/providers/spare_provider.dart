@@ -1,25 +1,33 @@
+import 'dart:convert';
+
 import 'package:get/get.dart';
 
+import '../data.dart';
 import '../models/spare_model.dart';
 
 class SpareProvider extends GetConnect {
-  @override
-  void onInit() {
-    httpClient.defaultDecoder = (map) {
-      if (map is Map<String, dynamic>) return SpareResult.fromJson(map);
-      if (map is List) {
-        return map.map((item) => SpareResult.fromJson(item)).toList();
-      }
+  Future<SpareResult> getSpares({required String spareCategoryId}) async {
+    SpareResult result;
+    var common = Common();
+    Map<String, dynamic> params = {
+      'filter[branchId]': common.selectedBranch.id,
+      'filter[spareCategoryId]': spareCategoryId,
     };
-    httpClient.baseUrl = 'YOUR-API-URL';
-  }
+    final response = await get(
+      apiListActiveSpare,
+      headers: Auth().requestHeaders,
+      query: params,
+    ).timeout(Duration(minutes: 1));
 
-  Future<SpareResult?> getSpare(int id) async {
-    final response = await get('spare/$id');
-    return response.body;
+    print('auth ${Auth().requestHeaders}');
+    print('path $apiListActiveSpare');
+    print('params ${jsonEncode(params)}');
+    print('responseCode ${response.statusCode}');
+    print('response ${response.body}');
+    if (response.statusCode == 401) {
+      Auth().authFailed(response.body['message']);
+    }
+    result = SpareResult.fromJson(response.body);
+    return result;
   }
-
-  Future<Response<SpareResult>> postSpare(SpareResult spare) async =>
-      await post('spare', spare);
-  Future<Response> deleteSpare(int id) async => await delete('spare/$id');
 }

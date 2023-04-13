@@ -4,10 +4,21 @@ class SpareCategoryResult {
   String? status;
   String? message;
   List<SpareCategory>? spareCategoryList;
+  SpareCategory? spareCategory;
 
-  SpareCategoryResult({this.status, this.message, this.spareCategoryList});
+  SpareCategoryResult(
+      {this.status, this.message, this.spareCategoryList, this.spareCategory});
 
   SpareCategoryResult.fromJson(Map<String, dynamic> json) {
+    status = json['status'];
+    message = json['message'];
+    spareCategory = json['data'] != null
+        ? SpareCategory.fromJson(json['data'])
+        : SpareCategory();
+
+  }
+
+  SpareCategoryResult.listFromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
     if (json['data'] != null) {
@@ -29,10 +40,10 @@ class SpareCategoryResult {
 
 class SpareCategory {
   String? id;
-  String? name,image;
+  String? name, image;
   List<Spare>? spareList;
 
-  SpareCategory({this.id, this.name,this.image, this.spareList});
+  SpareCategory({this.id, this.name, this.image, this.spareList});
 
   SpareCategory.fromJson(Map<String, dynamic> json) {
     id = json['id'];

@@ -272,7 +272,8 @@ class ProfileView extends GetView<HomeController> {
                                   color: textDark40)),
                           InkWell(
                             onTap: () {
-                              Get.toNamed(Routes.ADDRESS_MAP)!.then((value) =>
+                              Get.toNamed(Routes.ADDRESS_MAP,arguments: [ AddressPageMode
+                                                          .addAndReturn,false])!.then((value) =>
                                   value ? controller.getUserProfile() : null);
                             },
                             child: const Icon(
@@ -327,10 +328,12 @@ class ProfileView extends GetView<HomeController> {
                                             child: InkWell(
                                               onTap: () {
                                                 Get.toNamed(Routes.ADDRESS_MAP,
-                                                        arguments: controller
-                                                            .currentUser
-                                                            .value
-                                                            .addressList[i])!
+                                                        arguments: [
+                                                      AddressPageMode
+                                                          .addAndReturn,true,
+                                                      controller.currentUser
+                                                          .value.addressList[i]
+                                                    ])!
                                                     .then((value) => value
                                                         ? controller
                                                             .getUserProfile()

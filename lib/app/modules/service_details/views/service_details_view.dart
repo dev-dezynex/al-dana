@@ -16,7 +16,7 @@ class ServiceDetailsView extends GetView<ServiceDetailsController> {
         centerTitle: true,
         leading: const GoBack(),
         title: Text(
-          'Car wash',
+          controller.selectedCategory.value.title,
           style:
               tsPoppins(size: 18, weight: FontWeight.w600, color: textDark80),
         ),
@@ -82,7 +82,8 @@ class ServiceDetailsView extends GetView<ServiceDetailsController> {
                         children: [
                           Obx(
                             () => Text(
-                                controller.booking.value.price.toStringAsFixed(2),
+                                controller.booking.value.price
+                                    .toStringAsFixed(2),
                                 style: tsPoppins(
                                     size: 18,
                                     weight: FontWeight.w600,
@@ -103,7 +104,6 @@ class ServiceDetailsView extends GetView<ServiceDetailsController> {
                   ElevatedButton(
                       onPressed: () {
                         controller.onNextClick(context);
-                   
                       },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: primary,
@@ -209,28 +209,8 @@ class ServiceDetailsView extends GetView<ServiceDetailsController> {
                         itemBuilder: (con, i) {
                           return ServiceTile2(
                             onTap: () {
-                              if (controller.booking.value.services!.contains(
-                                  controller.extraServiceResult.value
-                                      .serviceList[i])) {
-                                controller.booking.value.services!.remove(
-                                    controller.extraServiceResult.value
-                                        .serviceList[i]);
-                                controller.booking.value.price =
-                                    controller.booking.value.price -
-                                        controller.extraServiceResult.value
-                                            .serviceList[i].price;
-                              } else {
-                                controller.booking.value.services!.add(
-                                    controller.extraServiceResult.value
-                                        .serviceList[i]);
-
-                                controller.booking.value.price =
-                                    controller.booking.value.price +
-                                        controller.extraServiceResult.value
-                                            .serviceList[i].price;
-                              }
-                              controller.booking.refresh();
-                              controller.extraServiceResult.refresh();
+                              controller.addExtraService(controller
+                                  .extraServiceResult.value.serviceList[i]);
                             },
                             service: controller
                                 .extraServiceResult.value.serviceList[i],
@@ -238,27 +218,8 @@ class ServiceDetailsView extends GetView<ServiceDetailsController> {
                                 .contains(controller
                                     .extraServiceResult.value.serviceList[i])),
                             onChanged: (bool? c) {
-                              if (controller.booking.value.services!.contains(
-                                  controller.extraServiceResult.value
-                                      .serviceList[i])) {
-                                controller.booking.value.services!.remove(
-                                    controller.extraServiceResult.value
-                                        .serviceList[i]);
-                                controller.booking.value.price =
-                                    controller.booking.value.price -
-                                        controller.extraServiceResult.value
-                                            .serviceList[i].price;
-                              } else {
-                                controller.booking.value.services!.add(
-                                    controller.extraServiceResult.value
-                                        .serviceList[i]);
-                                controller.booking.value.price =
-                                    controller.booking.value.price +
-                                        controller.extraServiceResult.value
-                                            .serviceList[i].price;
-                              }
-                              controller.booking.refresh();
-                              controller.extraServiceResult.refresh();
+                              controller.addExtraService(controller
+                                  .extraServiceResult.value.serviceList[i]);
                             },
                           );
                         }),

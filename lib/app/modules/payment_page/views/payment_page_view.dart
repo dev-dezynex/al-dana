@@ -25,224 +25,121 @@ class PaymentPageView extends GetView<PaymentPageController> {
                   style: tsPoppins(
                       size: 18, weight: FontWeight.w600, color: textDark80),
                 ),
-               
               ),
-              bottomSheet: Container(
-                decoration: const BoxDecoration(
-                    color: white,
-                    borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10),
-                        topRight: Radius.circular(10))),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Container(
-                      height: 5,
-                      width: 100,
-                      decoration: BoxDecoration(
-                          color: textDark20,
-                          borderRadius: BorderRadius.circular(100)),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 20.0, right: 20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Branch',
-                                  style: tsPoppins(
-                                      size: 10,
-                                      weight: FontWeight.w400,
-                                      color: textDark40)),
-                              Text(controller.booking.value.branch!.name,
-                                  style: tsPoppins(color: textDark40)),
-                            ],
-                          ),
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Text('Mode',
-                                  style: tsPoppins(
-                                      size: 10,
-                                      weight: FontWeight.w400,
-                                      color: textDark40)),
-                              Text('${controller.booking.value.mode!.title}',
-                                  style: tsPoppins(color: textDark40)),
-                            ],
-                          ),
-                        ],
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.all(20),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              Row(
-                                children: [
-                                  Obx(
-                                    () => Text(
-                                        controller.booking.value
-                                                    .subscribedPrice >
-                                                0
-                                            ? controller
-                                                .booking.value.subscribedPrice
-                                                .toStringAsFixed(2)
-                                            : controller.booking.value.price
-                                                .toStringAsFixed(2),
-                                        style: tsPoppins(
-                                            size: 18,
-                                            weight: FontWeight.w600,
-                                            color: primary)),
-                                  ),
-                                  Text('AED',
-                                      style: tsPoppins(
-                                          size: 16,
-                                          weight: FontWeight.w400,
-                                          color: textDark40)),
-                                ],
-                              ),
-                              Text('Incl. 5% VAT',
-                                  style: tsPoppins(
-                                      weight: FontWeight.w400,
-                                      color: textColor08)),
-                            ],
-                          ),
-                          ElevatedButton(
-                              onPressed: () {
-                                controller.onNextClick(context);
-                              },
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: primary,
-                                  shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(6))),
-                              child: Text(
-                                '    Next   ',
-                                style: tsPoppins(
-                                    color: white,
-                                    size: 14,
-                                    weight: FontWeight.w400),
-                              )),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              body: SafeArea(
-                child: CustomScrollView(
-                  slivers: [
-                    SliverToBoxAdapter(
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 15.0, right: 15, top: 15),
+              bottomSheet: Obx(
+                () => controller.isLoading.value
+                    ? Container()
+                    : Container(
+                        decoration: const BoxDecoration(
+                            color: white,
+                            borderRadius: BorderRadius.only(
+                                topLeft: Radius.circular(10),
+                                topRight: Radius.circular(10))),
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
-                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            VehicleTile(
-                                vehicle: controller.booking.value.vehicle!),
                             const SizedBox(
-                              height: 15,
+                              height: 10,
                             ),
-                            if(controller.booking.value.subscribedPrice <= 0)
-                            TextFormField(
-                                controller: controller.promoCodeController,
-                                validator: (value) {
-                                  if (value == null || value.isEmpty) {
-                                    return "Invalid Promo code";
-                                  } else {
-                                    return null;
-                                  }
-                                },
-                                textAlignVertical: TextAlignVertical.center,
-                                style: tsPoppins(
-                                    size: 14,
-                                    weight: FontWeight.w400,
-                                    color: textDark80),
-                                decoration: InputFormDecoration
-                                    .outLinedInputTextDecoration(
-                                  borderSide: const BorderSide(
-                                      color: textDark20, width: 1),
-                                  filled: true,
-                                  fillColor: white,
-                                  contentPadding:
-                                      const EdgeInsets.only(left: 20),
-                                  suffixIcon: Container(
-                                    margin:
-                                        const EdgeInsets.fromLTRB(5, 5, 10, 5),
-                                    child: TextButton(
-                                        onPressed: () {},
-                                        style: TextButton.styleFrom(
-                                            backgroundColor: bgColor27,
-                                            maximumSize: const Size(77, 36),
-                                            shape: RoundedRectangleBorder(
-                                                borderRadius:
-                                                    BorderRadius.circular(6))),
-                                        child: Text(
-                                          'Apply',
-                                          style: tsPoppins(
-                                              color: white,
-                                              size: 14,
-                                              weight: FontWeight.w400),
-                                        )),
-                                  ),
-                                  labelText: "Enter promo code",
-                                  labelStyle: tsPoppins(
-                                      size: 14,
-                                      weight: FontWeight.w400,
-                                      color: textColor02),
-                                )),
-                             if(controller.booking.value.subscribedPrice <= 0)
-                            const SizedBox(
-                              height: 15,
-                            ),
-                             if(controller.booking.value.subscribedPrice <= 0)
                             Container(
+                              height: 5,
+                              width: 100,
                               decoration: BoxDecoration(
-                                  color: white,
-                                  borderRadius: BorderRadius.circular(8)),
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 21, vertical: 16),
+                                  color: textDark20,
+                                  borderRadius: BorderRadius.circular(100)),
+                            ),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.only(left: 20.0, right: 20),
                               child: Row(
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Row(
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      SvgPicture.asset(
-                                          'assets/icons/ic_redeem_point.svg'),
-                                      const SizedBox(
-                                        width: 20,
-                                      ),
-                                      Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
+                                      Text('Branch',
+                                          style: tsPoppins(
+                                              size: 10,
+                                              weight: FontWeight.w400,
+                                              color: textDark40)),
+                                      Text(
+                                          controller.booking.value.branch!.name,
+                                          style: tsPoppins(color: textDark40)),
+                                    ],
+                                  ),
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Text('Mode',
+                                          style: tsPoppins(
+                                              size: 10,
+                                              weight: FontWeight.w400,
+                                              color: textDark40)),
+                                      Text(
+                                          '${controller.booking.value.mode!.title}',
+                                          style: tsPoppins(color: textDark40)),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Padding(
+                              padding: const EdgeInsets.all(20),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Column(
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
+                                    children: [
+                                      Row(
                                         children: [
-                                          Text('Points',
+                                          Obx(
+                                            () => Text(
+                                                controller.booking.value
+                                                            .subscribedPrice >
+                                                        0
+                                                    ? controller.booking.value
+                                                        .subscribedPrice
+                                                        .toStringAsFixed(2)
+                                                    : controller
+                                                        .booking.value.price
+                                                        .toStringAsFixed(2),
+                                                style: tsPoppins(
+                                                    size: 18,
+                                                    weight: FontWeight.w600,
+                                                    color: primary)),
+                                          ),
+                                          Text('AED',
                                               style: tsPoppins(
+                                                  size: 16,
                                                   weight: FontWeight.w400,
-                                                  color: bgColor25)),
-                                          Text('4682',
-                                              style: tsPoppins(
-                                                  weight: FontWeight.w600,
-                                                  color: bgColor27,
-                                                  size: 20))
+                                                  color: textDark40)),
                                         ],
-                                      )
+                                      ),
+                                      Text('Incl. 5% VAT',
+                                          style: tsPoppins(
+                                              weight: FontWeight.w400,
+                                              color: textColor08)),
                                     ],
                                   ),
                                   ElevatedButton(
                                       onPressed: () {
-                                        controller.onNextClick(context);
+                                        if (controller
+                                            .selectedPaymentOption.isNotEmpty) {
+                                          controller.postBooking();
+                                        } else {
+                                          Get.snackbar('Error',
+                                              'Please select a payment mode',
+                                              snackPosition:
+                                                  SnackPosition.BOTTOM,
+                                              backgroundColor: textDark20,
+                                              colorText: textDark80);
+                                        }
                                       },
                                       style: ElevatedButton.styleFrom(
                                           backgroundColor: primary,
@@ -250,7 +147,7 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                               borderRadius:
                                                   BorderRadius.circular(6))),
                                       child: Text(
-                                        '    Radeem   ',
+                                        '   Payment  ',
                                         style: tsPoppins(
                                             color: white,
                                             size: 14,
@@ -258,39 +155,209 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                       )),
                                 ],
                               ),
-                            ),
-                            Obx(() => ListView.builder(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                padding:
-                                    const EdgeInsets.symmetric(vertical: 15),
-                                itemCount: controller.paymentOptions.length,
-                                itemBuilder: (con, i) {
-                                  return Container(
-                                    margin: const EdgeInsets.only(bottom: 10),
-                                    child: InkWell(
-                                      onTap: () {
-                                        controller.selectedPaymentOption.value =
-                                            controller.paymentOptions[i];
-                                        controller.paymentOptions.refresh();
-                                      },
-                                      child: Container(
+                            )
+                          ],
+                        ),
+                      ),
+              ),
+              body: Obx(
+                () => controller.isLoading.value
+                    ? const Center(child: CircularProgressIndicator())
+                    : SafeArea(
+                        child: CustomScrollView(
+                          slivers: [
+                            SliverToBoxAdapter(
+                              child: Padding(
+                                padding: const EdgeInsets.only(
+                                    left: 15.0, right: 15, top: 15),
+                                child: Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    VehicleTile(
+                                        vehicle:
+                                            controller.booking.value.vehicle!),
+                                    const SizedBox(
+                                      height: 15,
+                                    ),
+                                    if (controller.booking.value
+                                                .subscribedPrice <=
+                                            0 &&
+                                        controller
+                                            .booking.value.couponCode.isEmpty)
+                                      TextFormField(
+                                          controller:
+                                              controller.promoCodeController,
+                                          validator: (value) {
+                                            if (value == null ||
+                                                value.isEmpty) {
+                                              return "Invalid Promo code";
+                                            } else {
+                                              return null;
+                                            }
+                                          },
+                                          textAlignVertical:
+                                              TextAlignVertical.center,
+                                          style: tsPoppins(
+                                              size: 14,
+                                              weight: FontWeight.w400,
+                                              color: textDark80),
+                                          decoration: InputFormDecoration
+                                              .outLinedInputTextDecoration(
+                                            borderSide: const BorderSide(
+                                                color: textDark20, width: 1),
+                                            filled: true,
+                                            fillColor: white,
+                                            contentPadding:
+                                                const EdgeInsets.only(left: 20),
+                                            suffixIcon: Container(
+                                              margin: const EdgeInsets.fromLTRB(
+                                                  5, 5, 10, 5),
+                                              child: TextButton(
+                                                  onPressed: () {
+                                                    controller.applyCoupon();
+                                                  },
+                                                  style: TextButton.styleFrom(
+                                                      backgroundColor:
+                                                          bgColor27,
+                                                      maximumSize:
+                                                          const Size(77, 36),
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          6))),
+                                                  child: Text(
+                                                    'Apply',
+                                                    style: tsPoppins(
+                                                        color: white,
+                                                        size: 14,
+                                                        weight:
+                                                            FontWeight.w400),
+                                                  )),
+                                            ),
+                                            labelText: "Enter promo code",
+                                            labelStyle: tsPoppins(
+                                                size: 14,
+                                                weight: FontWeight.w400,
+                                                color: textColor02),
+                                          )),
+                                    if (controller
+                                            .booking.value.subscribedPrice <=
+                                        0)
+                                      const SizedBox(
+                                        height: 15,
+                                      ),
+                                    if (controller.booking.value
+                                                .subscribedPrice <=
+                                            0 &&
+                                        !controller.isLoading.value &&
+                                        controller.walletResult.value.wallet!
+                                                .rewardPoint! >
+                                            0)
+                                      Container(
                                         decoration: BoxDecoration(
                                             color: white,
                                             borderRadius:
                                                 BorderRadius.circular(8)),
-                                        child: Row(
+                                        padding: const EdgeInsets.symmetric(
+                                            horizontal: 21, vertical: 16),
+                                        child: Column(
                                           children: [
-                                            Radio(
-                                              fillColor: MaterialStateColor
-                                                  .resolveWith(
-                                                      (states) => textDark80),
-                                              value: controller
-                                                      .selectedPaymentOption
-                                                      .value ==
-                                                  controller.paymentOptions[i],
-                                              groupValue: true,
-                                              onChanged: (value) {
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Row(
+                                                  children: [
+                                                    SvgPicture.asset(
+                                                        'assets/icons/ic_redeem_point.svg'),
+                                                    const SizedBox(
+                                                      width: 20,
+                                                    ),
+                                                    Column(
+                                                      crossAxisAlignment:
+                                                          CrossAxisAlignment
+                                                              .start,
+                                                      children: [
+                                                        Text('Points',
+                                                            style: tsPoppins(
+                                                                weight:
+                                                                    FontWeight
+                                                                        .w400,
+                                                                color:
+                                                                    bgColor25)),
+                                                        Text(
+                                                            '${controller.selectedRedeemPoints.value}',
+                                                            style: tsPoppins(
+                                                                weight:
+                                                                    FontWeight
+                                                                        .w600,
+                                                                color:
+                                                                    bgColor27,
+                                                                size: 20))
+                                                      ],
+                                                    )
+                                                  ],
+                                                ),
+                                                ElevatedButton(
+                                                    onPressed: () {
+                                                      controller.redeemPoints();
+                                                    },
+                                                    style: ElevatedButton.styleFrom(
+                                                        backgroundColor:
+                                                            primary,
+                                                        shape: RoundedRectangleBorder(
+                                                            borderRadius:
+                                                                BorderRadius
+                                                                    .circular(
+                                                                        6))),
+                                                    child: Text(
+                                                      '    Radeem   ',
+                                                      style: tsPoppins(
+                                                          color: white,
+                                                          size: 14,
+                                                          weight:
+                                                              FontWeight.w400),
+                                                    )),
+                                              ],
+                                            ),
+                                            Slider(
+                                              value: double.parse(controller
+                                                  .selectedRedeemPoints.value
+                                                  .toString()),
+                                              max: double.parse(controller
+                                                  .walletResult
+                                                  .value
+                                                  .wallet!
+                                                  .rewardPoint
+                                                  .toString()),
+                                              divisions: controller.walletResult
+                                                  .value.wallet!.rewardPoint,
+                                              onChanged: (double value) {
+                                                controller.selectedRedeemPoints
+                                                    .value = value.round();
+                                              },
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    Obx(() => ListView.builder(
+                                        shrinkWrap: true,
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        padding: const EdgeInsets.symmetric(
+                                            vertical: 15),
+                                        itemCount:
+                                            controller.paymentOptions.length,
+                                        itemBuilder: (con, i) {
+                                          return Container(
+                                            margin: const EdgeInsets.only(
+                                                bottom: 10),
+                                            child: InkWell(
+                                              onTap: () {
                                                 controller.selectedPaymentOption
                                                         .value =
                                                     controller
@@ -298,122 +365,164 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                                 controller.paymentOptions
                                                     .refresh();
                                               },
+                                              child: Container(
+                                                decoration: BoxDecoration(
+                                                    color: white,
+                                                    borderRadius:
+                                                        BorderRadius.circular(
+                                                            8)),
+                                                child: Row(
+                                                  children: [
+                                                    Radio(
+                                                      fillColor:
+                                                          MaterialStateColor
+                                                              .resolveWith(
+                                                                  (states) =>
+                                                                      textDark80),
+                                                      value: controller
+                                                              .selectedPaymentOption
+                                                              .value ==
+                                                          controller
+                                                              .paymentOptions[i],
+                                                      groupValue: true,
+                                                      onChanged: (value) {
+                                                        controller
+                                                                .selectedPaymentOption
+                                                                .value =
+                                                            controller
+                                                                .paymentOptions[i];
+                                                        controller
+                                                            .paymentOptions
+                                                            .refresh();
+                                                      },
+                                                    ),
+                                                    Text(
+                                                      controller
+                                                          .paymentOptions[i],
+                                                      style: tsPoppins(
+                                                          size: 14,
+                                                          color: textDark80),
+                                                    )
+                                                  ],
+                                                ),
+                                              ),
                                             ),
-                                            Text(
-                                              controller.paymentOptions[i],
-                                              style: tsPoppins(
-                                                  size: 14, color: textDark80),
-                                            )
-                                          ],
-                                        ),
-                                      ),
+                                          );
+                                        })),
+                                    const SizedBox(
+                                      height: 10,
                                     ),
-                                  );
-                                })),
-                            const SizedBox(
-                              height: 10,
-                            ),
-                            Text('Order Summary',
-                                style: tsPoppins(
-                                    color: textDark80,
-                                    weight: FontWeight.w600)),
-                            Container(
-                              height: 2,
-                              width: 20,
-                              decoration: BoxDecoration(
-                                  color: accent60,
-                                  borderRadius: BorderRadius.circular(100)),
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            Obx(() => ListView.builder(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                padding: const EdgeInsets.only(top: 15),
-                                itemCount: controller
-                                    .booking.value.packageList!.length,
-                                itemBuilder: (con, i) {
-                                  return Column(children: [
+                                    Text('Order Summary',
+                                        style: tsPoppins(
+                                            color: textDark80,
+                                            weight: FontWeight.w600)),
+                                    Container(
+                                      height: 2,
+                                      width: 20,
+                                      decoration: BoxDecoration(
+                                          color: accent60,
+                                          borderRadius:
+                                              BorderRadius.circular(100)),
+                                    ),
+                                    const SizedBox(
+                                      height: 15,
+                                    ),
+                                    Obx(() => ListView.builder(
+                                        shrinkWrap: true,
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        padding: const EdgeInsets.only(top: 15),
+                                        itemCount: controller
+                                            .booking.value.packageList!.length,
+                                        itemBuilder: (con, i) {
+                                          return Column(children: [
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                    controller.booking.value
+                                                        .packageList![i].title!,
+                                                    style: tsPoppins(
+                                                        weight: FontWeight.w400,
+                                                        size: 14,
+                                                        color: textDark80)),
+                                                Text(
+                                                    'AED: ${controller.booking.value.packageList![i].price!.toStringAsFixed(2)}',
+                                                    style: tsPoppins(
+                                                        size: 14,
+                                                        color: textDark80)),
+                                              ],
+                                            ),
+                                            const Divider(
+                                              color: textDark20,
+                                              thickness: 1,
+                                              height: 20,
+                                            ),
+                                          ]);
+                                        })),
+                                    Obx(() => ListView.builder(
+                                        shrinkWrap: true,
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        padding:
+                                            const EdgeInsets.only(bottom: 15),
+                                        itemCount: controller
+                                            .booking.value.services!.length,
+                                        itemBuilder: (con, i) {
+                                          return Column(children: [
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                    controller.booking.value
+                                                        .services![i].title,
+                                                    style: tsPoppins(
+                                                        weight: FontWeight.w400,
+                                                        size: 14,
+                                                        color: textDark80)),
+                                                Text(
+                                                    'AED: ${controller.booking.value.services![i].price.toStringAsFixed(2)}',
+                                                    style: tsPoppins(
+                                                        size: 14,
+                                                        color: textDark80)),
+                                              ],
+                                            ),
+                                            const Divider(
+                                              color: textDark20,
+                                              thickness: 1,
+                                              height: 20,
+                                            ),
+                                          ]);
+                                        })),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text(
-                                            controller.booking.value
-                                                .packageList![i].title!,
+                                        Text('Grand Total',
                                             style: tsPoppins(
-                                                weight: FontWeight.w400,
+                                                weight: FontWeight.w600,
                                                 size: 14,
                                                 color: textDark80)),
                                         Text(
-                                            'AED: ${controller.booking.value.packageList![i].price!.toStringAsFixed(2)}',
+                                            'AED: ${controller.booking.value.price.toStringAsFixed(2)}',
                                             style: tsPoppins(
-                                                size: 14, color: textDark80)),
-                                      ],
-                                    ),
-                                    const Divider(
-                                      color: textDark20,
-                                      thickness: 1,
-                                      height: 20,
-                                    ),
-                                  ]);
-                                })),
-                            Obx(() => ListView.builder(
-                                shrinkWrap: true,
-                                physics: const NeverScrollableScrollPhysics(),
-                                padding: const EdgeInsets.only(bottom: 15),
-                                itemCount:
-                                    controller.booking.value.services!.length,
-                                itemBuilder: (con, i) {
-                                  return Column(children: [
-                                    Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                            controller.booking.value
-                                                .services![i].title,
-                                            style: tsPoppins(
-                                                weight: FontWeight.w400,
+                                                weight: FontWeight.w600,
                                                 size: 14,
                                                 color: textDark80)),
-                                        Text(
-                                            'AED: ${controller.booking.value.services![i].price.toStringAsFixed(2)}',
-                                            style: tsPoppins(
-                                                size: 14, color: textDark80)),
                                       ],
                                     ),
-                                    const Divider(
-                                      color: textDark20,
-                                      thickness: 1,
-                                      height: 20,
-                                    ),
-                                  ]);
-                                })),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text('Grand Total',
-                                    style: tsPoppins(
-                                        weight: FontWeight.w600,
-                                        size: 14,
-                                        color: textDark80)),
-                                Text(
-                                    'AED: ${controller.booking.value.price.toStringAsFixed(2)}',
-                                    style: tsPoppins(
-                                        weight: FontWeight.w600,
-                                        size: 14,
-                                        color: textDark80)),
-                              ],
+                                    SizedBox(height: Get.height * .3),
+                                  ],
+                                ),
+                              ),
                             ),
-                            SizedBox(height: Get.height * .3),
                           ],
                         ),
                       ),
-                    ),
-                  ],
-                ),
               ),
             ),
     );

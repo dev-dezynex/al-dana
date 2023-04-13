@@ -8,7 +8,10 @@ class ServiceDetailsController extends GetxController {
   var isLoading = false.obs;
   var extraServiceResult = ServiceResult().obs;
   var booking = Booking().obs;
-
+  var selectedCategory = Category().obs;
+  var isSpareInclude = false.obs;
+  RxList<SpareCategory> spareCategoryList = <SpareCategory>[].obs;
+  Rx<Spare> selectedSpare = Spare().obs;
   @override
   void onInit() {
     super.onInit();
@@ -16,31 +19,63 @@ class ServiceDetailsController extends GetxController {
     getDetails();
   }
 
-
-
-  void getDetails() {
-    getServices();
+  void getDetails() async {
+    isLoading(true);
+    selectedCategory.value = Common().selectedCategory;
+    await getExtraServices();
+    await checkSpare();
+    isLoading(false);
   }
 
-  void getServices() async {
-    extraServiceResult.value = await ServiceProvider().getExtraDummyData();
+  getExtraServices() async {
+    extraServiceResult.value = await ServiceProvider().getExtraServices();
     extraServiceResult.refresh();
   }
 
-  void onNextClick(BuildContext context) {
-    bool isNeedSpare = false;
-    RxList<SpareCategory> spareCategoryList = <SpareCategory>[].obs;
-
-    for (Service service in booking.value.services!) {
-      if (service.spareCategory.id != null &&
-          service.spareCategory.id!.isNotEmpty) {
-        isNeedSpare = true;
-        spareCategoryList.add(service.spareCategory);
+  checkSpare() async {
+    print('booking service${booking.value.services!.length}');
+    for (int i = 0; i < booking.value.services!.length; i++) {
+      if (booking.value.services![i].spareCategoryId.isNotEmpty) {
+        booking.value.services![i].spareCategory =
+            await getSpareCategory(booking.value.services![i].spareCategoryId);
+        spareCategoryList.add(booking.value.services![i].spareCategory);
+        isSpareInclude(true);
       }
     }
+  }
 
-    if (isNeedSpare) {
-      Rx<Spare> selectedSpare = Spare().obs;
+  checkSpareExtraService(Service service) async {
+    isLoading(true);
+    if (service.spareCategoryId.isNotEmpty) {
+      service.spareCategory = await getSpareCategory(service.spareCategoryId);
+      spareCategoryList.add(service.spareCategory);
+      isSpareInclude(true);
+    }
+    isLoading(false);
+  }
+
+  Future<SpareCategory> getSpareCategory(String spareCategoryId) async {
+    var spareResult = await SpareCategoryProvider()
+        .getSpareCategory(spareCategoryId: spareCategoryId);
+    return spareResult.spareCategory ?? SpareCategory();
+  }
+
+  addExtraService(Service service) {
+    if (booking.value.services!.contains(service)) {
+      booking.value.services!.removeWhere((e) => e.id == service.id);
+      booking.value.price = booking.value.price - service.price;
+    } else {
+      booking.value.services!.add(service);
+      booking.value.price = booking.value.price + service.price;
+      checkSpareExtraService(service);
+    }
+
+    booking.refresh();
+    extraServiceResult.refresh();
+  }
+
+  void onNextClick(BuildContext context) async {
+    if (isSpareInclude.value) {
       spareSelectionBottomSheet(
           context: context,
           spareCategoryList: spareCategoryList,
@@ -59,10 +94,20 @@ class ServiceDetailsController extends GetxController {
           },
           isAutoSelect: true.obs,
           onSubmit: () {
-            Get.toNamed(Routes.MAP_PAGE, arguments: booking.value);
+            nextPage();
           });
     } else {
-      Get.toNamed(Routes.MAP_PAGE, arguments: booking.value);
+      nextPage();
+    }
+  }
+
+  nextPage() {
+    var selectedMode = Common().selectedMode;
+    if (selectedMode.isNeedAddress) {
+      Get.toNamed(Routes.ADDRESS_MAP,
+          arguments: [AddressPageMode.addAndContinue, false, booking.value]);
+    } else {
+      Get.toNamed(Routes.ADD_BOOKING, arguments: booking.value);
     }
   }
 }

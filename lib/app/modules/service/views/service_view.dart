@@ -15,10 +15,12 @@ class ServiceView extends GetView<ServiceController> {
         backgroundColor: Colors.transparent,
         centerTitle: true,
         leading: const GoBack(),
-        title: Text(
-          'Car wash',
-          style:
-              tsPoppins(size: 18, weight: FontWeight.w600, color: textDark80),
+        title: Obx(()=>
+           Text(
+            controller.selectedCategory.value.title,
+            style:
+                tsPoppins(size: 18, weight: FontWeight.w600, color: textDark80),
+          ),
         ),
       ),
       bottomSheet: Container(

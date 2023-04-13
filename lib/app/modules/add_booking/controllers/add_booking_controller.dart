@@ -5,15 +5,15 @@ import 'package:intl/intl.dart';
 import '../../../data/data.dart';
 
 class AddBookingController extends GetxController {
-  TextEditingController dateController = TextEditingController(
-      text: DateFormat('dd-MM-yyyy').format(DateTime.now()));
+  TextEditingController dateController =
+      TextEditingController(text: outputDateFormat2.format(DateTime.now()));
   var selectedDate = DateTime.now().obs;
   var isLoading = false.obs;
   var timeSlotResult = TimeSlotResult().obs;
-  var availableTimeSlots = <String>[].obs;
-  var selectedTimeSlot = ''.obs;
+  // var availableTimeSlots = <String>[].obs;
+  var selectedTimeSlot = TimeSlot();
   var booking = Booking().obs;
-  
+
   @override
   void onInit() {
     super.onInit();
@@ -21,14 +21,11 @@ class AddBookingController extends GetxController {
     getDetails();
   }
 
-
-
   chooseDate() async {
     selectedDate.value = await pickDate(firstDate: DateTime.now());
-    dateController.text = DateFormat('dd-MM-yyyy').format(selectedDate.value);
-    if (timeSlotResult.value.timeSlotList.isNotEmpty) {
-      setAvailableTimeSlots();
-    }
+    dateController.text = outputDateFormat2.format(selectedDate.value);
+
+    getTimeSlots();
   }
 
   void getDetails() {
@@ -36,28 +33,30 @@ class AddBookingController extends GetxController {
   }
 
   void getTimeSlots() async {
-    timeSlotResult.value = await TimeSlotProvider().getDummyData();
+    isLoading(true);
+    timeSlotResult.value = await TimeSlotProvider().getTimeSlots();
     timeSlotResult.refresh();
-    if (timeSlotResult.value.timeSlotList.isNotEmpty) {
-      setAvailableTimeSlots();
-    }
+    isLoading(false);
+    // if (timeSlotResult.value.timeSlotList.isNotEmpty) {
+    //   setAvailableTimeSlots();
+    // }
   }
 
-  setAvailableTimeSlots() {
-    TimeSlot slot = timeSlotResult.value.timeSlotList.firstWhere(
-        (element) =>
-            element.day.toLowerCase() ==
-            DateFormat('EEEE').format(selectedDate.value).toLowerCase(),
-        orElse: () => TimeSlot());
+  // setAvailableTimeSlots() {
+  //   TimeSlot slot = timeSlotResult.value.timeSlotList.firstWhere(
+  //       (element) =>
+  //           element.day.toLowerCase() ==
+  //           dayFormat.format(selectedDate.value).toLowerCase(),
+  //       orElse: () => TimeSlot());
 
-    availableTimeSlots.value = slot.slotes;
-    availableTimeSlots.refresh();
-  }
+  //   availableTimeSlots.value = slot.slotes;
+  //   availableTimeSlots.refresh();
+  // }
 
   onNextClick(String route) {
-    if (selectedTimeSlot.isNotEmpty) {
-      booking.value.date = DateFormat('dd-MM-yyyy').format(selectedDate.value);
-      booking.value.slot = selectedTimeSlot.value;
+    if (selectedTimeSlot.sId!.isNotEmpty) {
+      booking.value.date = inputDateFormat.format(selectedDate.value);
+      booking.value.slot = selectedTimeSlot.sId;
       Get.toNamed(route, arguments: booking.value);
     } else {
       Get.snackbar('Error', 'Please choose a time slot to continue.',

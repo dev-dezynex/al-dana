@@ -16,3 +16,6 @@ export 'spare_category_model.dart';
 export 'invoice.dart';
 export 'car_model_model.dart';
 export 'address_model.dart';
+export 'wallet_model.dart';
+export 'coupon_model.dart';
+export 'payment_model.dart';

@@ -35,8 +35,16 @@ class AuthController extends GetxController {
   @override
   void onClose() {}
 
-  void requestOTP() {
-    authView.value = AuthStatus.otp;
+  void requestOTP() async {
+    isLoading(true);
+    final result = await UserProvider()
+        .requestOTP(phoneNumber: '+$contryCode${phoneController.text}');
+    if (result.status == 'success') {
+      authView.value = AuthStatus.otp;
+    } else {
+      showError(result.message);
+    }
+    isLoading(false);
   }
 
   changeOTP(String digit, int index) {
@@ -52,7 +60,7 @@ class AuthController extends GetxController {
   void verifyOTP() async {
     isLoading(true);
     var result = await UserProvider().verifyOTP(
-        phoneNumber: '$contryCode${phoneController.text}', otp: otp.value);
+        phoneNumber: '+$contryCode${phoneController.text}', otp: otp.value);
 
     if (result.status == 'success') {
       var result = await UserProvider().getProfile();
@@ -72,19 +80,12 @@ class AuthController extends GetxController {
     isLoading(false);
   }
 
-  showError(String message) {
-    Get.snackbar('Error', message,
-        snackPosition: SnackPosition.BOTTOM,
-        backgroundColor: textDark20,
-        colorText: textDark80);
-  }
-
   void signup() async {
     isLoading(true);
     var result = await UserProvider().signUp(
         user: User(
             name: nameController.text,
-            mobile: int.parse('$contryCode${phoneController.text}'),
+            mobile: '+$contryCode${phoneController.text}',
             email: emailController.text));
 
     if (result.status == 'success') {

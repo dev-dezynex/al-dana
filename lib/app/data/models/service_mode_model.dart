@@ -26,18 +26,24 @@ class ServiceModeResult {
 }
 
 class ServiceMode {
- late String id,title,desc, bgCardColor;
- late bool status;
-  
+  late String id, title, desc, bgCardColor;
+  late bool status, isNeedAddress;
 
-  ServiceMode({this.id='', this.title='', this.desc='', this.bgCardColor='',this.status=false});
+  ServiceMode(
+      {this.id = '',
+      this.title = '',
+      this.desc = '',
+      this.bgCardColor = '',
+      this.status = false,
+      this.isNeedAddress = false});
 
   ServiceMode.fromJson(Map<String, dynamic> json) {
-    id = json['_id']??'';
-    title = json['title']??'';
-    desc = json['description']??'';
-    bgCardColor = json['bg_card_color']??'';
-    status = json['status']??false;
+    id = json['_id'] ?? '';
+    title = json['title'] ?? '';
+    desc = json['description'] ?? '';
+    bgCardColor = json['bg_card_color'] ?? '';
+    status = json['status'] ?? false;
+    isNeedAddress = json['needAddress'] ?? false;
   }
 
   Map<String, dynamic> toJson() {
@@ -47,6 +53,7 @@ class ServiceMode {
     data['description'] = desc;
     data['bg_card_color'] = bgCardColor;
     data['status'] = status;
+    data['needAddress'] = isNeedAddress;
     return data;
   }
 }

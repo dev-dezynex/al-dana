@@ -48,16 +48,17 @@ class HomeController extends GetxController {
   @override
   void onClose() {}
 
-  getDetails() {
+  getDetails() async {
+    isLoading(true);
     // if (common.currentUser.scope == 'admin') {
     // getBookings();
     // }
     // getModeList();
-    getCategories();
-    getVehicles();
-    getUserProfile();
-    getBanners();
-    print('selected branch ${jsonEncode(Common().selectedBranch)}');
+    await getCategories();
+    await getVehicles();
+    await getUserProfile();
+    await getBanners();
+    isLoading(false);
   }
 
   getCategories() async {
@@ -193,7 +194,7 @@ class HomeController extends GetxController {
     }
   }
 
-  void getUserProfile() async {
+  getUserProfile() async {
     currentUser.value = (await UserProvider().getProfile()).user;
     log('&&&&&&current User ${jsonEncode(currentUser.value)}');
     storage.write(user_details, currentUser.value.toJson());
@@ -207,7 +208,7 @@ class HomeController extends GetxController {
     addressList.addAll(currentUser.value.addressList);
   }
 
-  void getBanners() async {
+  getBanners() async {
     bannerResult.value = await BannerProvider().getBanners();
     bannerResult.refresh();
   }

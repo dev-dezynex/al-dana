@@ -58,9 +58,9 @@ class PackageModel {
         services?.add(Service.fromJson(v));
       });
     }
-    if (json['serviceModeId'] != null) {
+    if (json['packageDetails'] != null) {
       serviceModeList = <ServiceMode>[];
-      json['serviceModeId'].forEach((v) {
+      json['packageDetails'].forEach((v) {
         serviceModeList!.add(ServiceMode.fromJson(v));
       });
     }
@@ -76,6 +76,12 @@ class PackageModel {
     if (services != null) {
       data['services'] = services?.map((v) => v.toJson()).toList();
     }
+    return data;
+  }
+  Map<String, dynamic> toPost() {
+    final data = <String, dynamic>{};
+    data['packageId'] = id;
+    data['packageAmount'] = price;
     return data;
   }
 }

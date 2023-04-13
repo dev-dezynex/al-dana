@@ -11,8 +11,8 @@ class ServiceResult {
   ServiceResult.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     message = json['message'];
+    serviceList = <Service>[];
     if (json['data'] != null) {
-      serviceList = <Service>[];
       json['data'].forEach((v) {
         serviceList.add(Service.fromJson(v));
       });
@@ -34,6 +34,7 @@ class Service {
   late String desc;
   late String image;
   late String bgCardColor;
+  late String spareCategoryId;
   late List<Branch> branchList;
   late double price;
   late SpareCategory spareCategory;
@@ -45,6 +46,7 @@ class Service {
       this.desc = '',
       this.image = '',
       this.bgCardColor = '',
+      this.spareCategoryId = '',
       this.branchList = const [],
       this.price = 0,
       this.serviceModeList = const [],
@@ -56,6 +58,7 @@ class Service {
     desc = json['description'];
     image = json['image'];
     bgCardColor = json['bg_card_color'];
+    spareCategoryId = json['spareCategoryId']??'';
     if (json['branch'] != null) {
       branchList = <Branch>[];
       json['branch'].forEach((v) {
@@ -82,9 +85,16 @@ class Service {
     data['description'] = desc;
     data['image'] = image;
     data['bg_card_color'] = bgCardColor;
+    data['spareCategoryId'] = spareCategoryId;
     data['branch'] = branchList.map((v) => v.toJson()).toList();
     data['price'] = price;
 
+    return data;
+  }
+  Map<String, dynamic> toPost() {
+    final data = <String, dynamic>{};
+    data['serviceId'] = id;
+    data['serviceAmount'] = price;
     return data;
   }
 }

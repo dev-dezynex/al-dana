@@ -62,8 +62,9 @@ class Vehicle {
     carModel = json['carModelId'] != null
         ? CarModel?.fromJson(json['carModelId'])
         : null;
-    variant =
-        json['carVariantId'] != null ? Variant?.fromJson(json['carVariantId']) : null;
+    variant = json['carVariantId'] != null
+        ? Variant?.fromJson(json['carVariantId'])
+        : null;
     year = json['year'] ?? '';
     colour =
         json['color'] != null ? VehicleColor?.fromJson(json['color']) : null;
@@ -75,6 +76,7 @@ class Vehicle {
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
+    data['_id'] = id;
     if (brand != null) {
       data['carBrandId'] = brand?.toJson();
     }
@@ -99,7 +101,7 @@ class Vehicle {
 
   Map<String, dynamic> toPost() {
     final data = <String, dynamic>{};
-    data['customerId'] = "641d36d719d46e11c8253d85";
+    data['customerId'] = Common().currentUser.id;
     if (brand != null) {
       data['carBrandId'] = brand?.id;
     }

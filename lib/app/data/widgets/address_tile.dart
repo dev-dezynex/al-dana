@@ -4,8 +4,10 @@ import 'package:flutter_svg/svg.dart';
 import '../data.dart';
 
 class AddressTile extends StatelessWidget {
-  const AddressTile({Key? key}) : super(key: key);
-
+  const AddressTile({Key? key, required this.address, this.distance = 0})
+      : super(key: key);
+  final Address address;
+  final double distance;
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -15,11 +17,11 @@ class AddressTile extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 13),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start  ,
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text('Home Address',
+            Text(address.addressType,
                 style: tsPoppins(weight: FontWeight.w400, color: textDark80)),
-            Text('Mohammed Bin Rashid, Building, Dubai, \nUnited arab emirates',
+            Text(address.location,
                 style: tsPoppins(weight: FontWeight.w600, color: textDark80)),
             const SizedBox(
               height: 14,
@@ -31,7 +33,7 @@ class AddressTile extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     SvgPicture.asset('assets/icons/ic_call.svg'),
-                    Text(' +974 9547362817 ',
+                    Text('${Common().currentUser.mobile}',
                         style: tsPoppins(
                             weight: FontWeight.w400, color: textDark80)),
                   ],
@@ -44,7 +46,7 @@ class AddressTile extends StatelessWidget {
                       color: textDark80,
                       size: 10,
                     ),
-                    Text(' 12 km ',
+                    Text('${distance.toStringAsFixed(2)} km',
                         style: tsPoppins(
                             weight: FontWeight.w400, color: textDark80)),
                   ],

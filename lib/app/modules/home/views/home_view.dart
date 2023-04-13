@@ -130,59 +130,11 @@ class HomeView extends GetView<HomeController> {
             },
           ),
           NavItem(
-            title: "Manage Branch",
-            icon: "assets/icons/ic_nav_4.svg",
-            onTap: () {
-              Get.back();
-              Get.toNamed(Routes.BRANCH_LIST);
-            },
-          ),
-          NavItem(
-            title: "Manage Users",
-            icon: "assets/icons/ic_nav_4.svg",
-            onTap: () {
-              Get.back();
-              Get.toNamed(Routes.USERS);
-            },
-          ),
-          NavItem(
-            title: "Manage Spare",
-            icon: "assets/icons/ic_nav_4.svg",
-            onTap: () {
-              Get.back();
-              Get.toNamed(Routes.SPARE_CATEGORY);
-            },
-          ),
-          NavItem(
             title: "Manage Work",
             icon: "assets/icons/ic_nav_4.svg",
             onTap: () {
               Get.back();
               Get.toNamed(Routes.WORK);
-            },
-          ),
-          NavItem(
-            title: "Manage Category",
-            icon: "assets/icons/ic_nav_4.svg",
-            onTap: () {
-              Get.back();
-              Get.toNamed(Routes.CATEGORY_LIST);
-            },
-          ),
-          NavItem(
-            title: "Manage Service",
-            icon: "assets/icons/ic_nav_4.svg",
-            onTap: () {
-              Get.back();
-              Get.toNamed(Routes.SERVICE_LIST);
-            },
-          ),
-          NavItem(
-            title: "Manage Package",
-            icon: "assets/icons/ic_nav_4.svg",
-            onTap: () {
-              Get.back();
-              Get.toNamed(Routes.PACKAGE_LIST);
             },
           ),
           NavItem(

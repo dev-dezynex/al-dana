@@ -16,22 +16,17 @@ class BranchProvider extends GetConnect {
   // }
 
   Future<BranchResult> getBranches() async {
-    BranchResult result;
+    Auth auth = Auth();
     final response = await get(
       apiListBranch,
-      headers: Auth().requestHeaders,
+      headers: auth.requestHeaders,
     );
     print('path $apiListBranch');
     print('response ${response.body}');
-    if (response.statusCode == 200) {
-      result = BranchResult.fromJson(response.body);
-    } else {
-      result = BranchResult.fromJson(
-          {"status": "error", "message": "Server error !", "data": []});
+    if (response.statusCode == 401) {
+      auth.authFailed(response.body['message']);
     }
 
-    return result;
+    return BranchResult.fromJson(response.body);
   }
-
-
 }

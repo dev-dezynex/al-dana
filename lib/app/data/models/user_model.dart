@@ -53,14 +53,14 @@ class UserResult {
 
 class User {
   late String id, name, email, image, scope;
-  late int mobile;
+  late String mobile;
   late bool status;
   late List<Address> addressList;
 
   User({
     this.id = '',
     this.name = '',
-    this.mobile = 0,
+    this.mobile = '',
     this.email = '',
     this.image = '',
     this.scope = '',
@@ -71,7 +71,7 @@ class User {
   User.fromJson(Map<String, dynamic> json) {
     id = json['_id'] ?? '';
     name = json['name'] ?? '';
-    mobile = json['phoneNumber'] ?? 0;
+    mobile = json['phoneNumber'] ?? '';
     email = json['email'] ?? '';
     image = json['image'] ?? '';
     scope = json['role'] ?? '';
@@ -102,12 +102,13 @@ class User {
     data['name'] = name;
     data['phoneNumber'] = mobile;
     data['email'] = email;
+    data['image'] = image;
     return data;
   }
 
   User copyWith({
      String? id, name, email, image, scope,
-     int? mobile,
+     String? mobile,
      bool? status,
      List<Address>? addressList,
   }) {

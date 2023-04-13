@@ -35,6 +35,7 @@ class MapPageView extends GetView<MapPageController> {
                       markers: controller.markers,
                     ),
             ),
+            
             // Positioned(
             //     bottom: 100,
             //     left: 0,
@@ -59,6 +60,8 @@ class MapPageView extends GetView<MapPageController> {
             //             }),
             //       ),
             //     )),
+           
+           
             Positioned(
               top: Get.height * .02,
               left: Get.width * .01,

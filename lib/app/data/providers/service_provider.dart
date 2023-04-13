@@ -21,12 +21,13 @@ class ServiceProvider extends GetConnect {
     return result;
   }
 
-  Future<ServiceResult> getServices({required String categoryId}) async {
+  Future<ServiceResult> getServices() async {
     ServiceResult result;
+    var common = Common();
     Map<String, dynamic> params = {
-      'filter[branchId]': Common().selectedBranch.id,
-      'filter[variantId]': Common().selectedVehicle.variant!.id,
-      'filter[categoryId]': categoryId,
+      'filter[branchId]': common.selectedBranch.id,
+      'filter[variantId]': common.selectedVehicle.variant!.id,
+      'filter[categoryId]': common.selectedCategory.id,
     };
     final response = await get(
       apiListService,
@@ -46,21 +47,22 @@ class ServiceProvider extends GetConnect {
     return result;
   }
 
-  Future<ServiceResult> getExtraServices({String? categoryId}) async {
+  Future<ServiceResult> getExtraServices() async {
     ServiceResult result;
+    var common = Common();
     Map<String, dynamic> params = {
-      'filter[branchId]': Common().selectedBranch.id,
-      'filter[variantId]': Common().selectedVehicle.variant!.id,
-      'filter[categoryId]': categoryId,
+      'filter[branchId]': common.selectedBranch.id,
+      'filter[variantId]': common.selectedVehicle.variant!.id,
+      'filter[categoryId]': common.selectedCategory.id,
     };
     final response = await get(
-      apiListService,
+      apiListExtraService,
       headers: Auth().requestHeaders,
       query: params,
     ).timeout(Duration(minutes: 1));
 
     print('auth ${Auth().requestHeaders}');
-    print('path $apiListService');
+    print('path $apiListExtraService');
     print('params ${jsonEncode(params)}');
     print('responseCode ${response.statusCode}');
     print('response ${response.body}');

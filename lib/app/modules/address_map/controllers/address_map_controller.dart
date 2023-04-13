@@ -2,9 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 
 import 'package:al_dana/app/data/providers/address_provider.dart';
+import 'package:al_dana/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 import 'package:geocoding/geocoding.dart' as geo;
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
 
@@ -14,6 +16,7 @@ import '../../../data/models/address_model.dart';
 class AddressMapController extends GetxController {
   var isLoading = false.obs;
   var isUpdate = false.obs;
+  var currentUser = Common().currentUser;
   Completer<GoogleMapController> mapController = Completer();
   var camPosition = const CameraPosition(
     target: LatLng(9.8959, 76.7184),
@@ -24,17 +27,25 @@ class AddressMapController extends GetxController {
   TextEditingController locationController = TextEditingController();
   TextEditingController landMarkController = TextEditingController();
   var selectedAddress = Address().obs;
+  var addressPageMode = AddressPageMode.addAndReturn;
+  var booking = Booking().obs;
   @override
   void onInit() {
     super.onInit();
     if (Get.arguments != null) {
-      isUpdate(true);
-      selectedAddress.value = Get.arguments;
-      addCurrentLocMarker(LatLng(
-          selectedAddress.value.latitude, selectedAddress.value.longitude));
-      landMarkController.text = selectedAddress.value.landmark;
-    } else {
-      getCurrentLocation();
+      addressPageMode = Get.arguments[0];
+      if (addressPageMode == AddressPageMode.addAndReturn && Get.arguments[1]) {
+        isUpdate(true);
+        selectedAddress.value = Get.arguments[2];
+        addCurrentLocMarker(LatLng(
+            selectedAddress.value.latitude, selectedAddress.value.longitude));
+        landMarkController.text = selectedAddress.value.landmark;
+      } else if (addressPageMode == AddressPageMode.addAndContinue) {
+        booking.value = Get.arguments[2];
+        getCurrentLocation();
+      } else {
+        getCurrentLocation();
+      }
     }
   }
 
@@ -46,6 +57,12 @@ class AddressMapController extends GetxController {
   @override
   void onClose() {
     super.onClose();
+  }
+
+  setAddressFromList(Address address) {
+    selectedAddress.value = address;
+    addCurrentLocMarker(LatLng(address.latitude, address.longitude));
+    landMarkController.text = address.landmark;
   }
 
   getCurrentLocation() async {
@@ -118,15 +135,24 @@ class AddressMapController extends GetxController {
 
   void onConfirmPressed() async {
     print('selectedAddress ${jsonEncode(selectedAddress)}');
-
-    var result = await AddressProvider().postAddress(
-        address: selectedAddress.value.copyWith(
-      landmark: landMarkController.text,
-      relationId: [Common().currentUser.id],
-    ));
-
+    var result;
+    if (selectedAddress.value.sId.isEmpty) {
+      result = await AddressProvider().postAddress(
+          address: selectedAddress.value.copyWith(
+        landmark: landMarkController.text,
+        relationId: [currentUser.id],
+      ));
+    } else {
+      result = AddressResult(
+          status: 'success', message: '', address: selectedAddress.value);
+    }
     if (result.status == 'success') {
-      Get.back(result: true);
+      if (addressPageMode == AddressPageMode.addAndContinue) {
+        booking.value.address = result.address;
+        Get.toNamed(Routes.ADD_BOOKING, arguments: booking.value);
+      } else {
+        Get.back(result: true);
+      }
     } else {
       Get.snackbar('Error', result.message!,
           snackPosition: SnackPosition.BOTTOM,

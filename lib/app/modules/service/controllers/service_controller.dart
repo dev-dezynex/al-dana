@@ -21,14 +21,12 @@ class ServiceController extends GetxController {
   void onInit() {
     super.onInit();
     selectedVehicle.value = common.selectedVehicle;
+    selectedCategory.value = common.selectedCategory;
     getDetails();
   }
 
   void getDetails() async {
     isLoading(true);
-    if (Get.arguments != null) {
-      selectedCategory.value = Get.arguments;
-    }
     await getServices();
     await getPackages();
     isLoading(false);
@@ -40,7 +38,7 @@ class ServiceController extends GetxController {
   }
 
   getServices() async {
-    serviceResult.value = await ServiceProvider().getServices(categoryId: selectedCategory.value.id);
+    serviceResult.value = await ServiceProvider().getServices();
     serviceResult.refresh();
   }
 
@@ -75,7 +73,7 @@ class ServiceController extends GetxController {
   gotoDetailsPage() {
     Booking booking = Booking(
         branch: common.selectedBranch,
-        mode: common.selectedMode,
+        mode: selectedMode.value,
         vehicle: selectedVehicle.value,
         services: [],
         packageList: [],
@@ -83,6 +81,7 @@ class ServiceController extends GetxController {
         approvalStatus: "PENDING",
         date: "",
         slot: "",
+        address: Address(),
         price: price.value);
     if (isServiceSelected.value) {
       booking.services!.add(selectedService.value);

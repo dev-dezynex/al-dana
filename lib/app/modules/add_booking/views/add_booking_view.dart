@@ -33,7 +33,7 @@ class AddBookingView extends GetView<AddBookingController> {
               alignment: Alignment.center,
               color: Colors.yellow,
               child: Text(
-                'Subscribe now save upto 50%',
+                'Subscribe now save upto 50% ->',
                 style: tsPoppins(size: 15),
               ),
             ),
@@ -232,44 +232,67 @@ class AddBookingView extends GetView<AddBookingController> {
                   SizedBox(
                     height: 40,
                     child: Obx(
-                      () => ListView.builder(
-                          shrinkWrap: true,
-                          padding: const EdgeInsets.symmetric(horizontal: 20),
-                          scrollDirection: Axis.horizontal,
-                          itemCount: controller.availableTimeSlots.length,
-                          itemBuilder: (con, i) {
-                            return Container(
-                              margin: const EdgeInsets.only(right: 14),
-                              child: InkWell(
-                                onTap: () {
-                                  controller.selectedTimeSlot.value =
-                                      controller.availableTimeSlots[i];
-                                  controller.booking.value.slot =
-                                      controller.availableTimeSlots[i];
-                                  controller.availableTimeSlots.refresh();
-                                },
-                                child: Container(
+                      () => (controller.isLoading.value)
+                          ? const Center(child: CircularProgressIndicator())
+                          : (controller.timeSlotResult.value.timeSlotList ==
+                                      null &&
+                                  controller.timeSlotResult.value.timeSlotList!
+                                      .isEmpty)
+                              ? Center(
+                                  child: Text(
+                                    'No timeslots available',
+                                    style: tsPoppins(),
+                                  ),
+                                )
+                              : ListView.builder(
+                                  shrinkWrap: true,
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 20),
-                                  alignment: Alignment.center,
-                                  decoration: BoxDecoration(
-                                    border: Border.all(
-                                        color: controller
-                                                    .selectedTimeSlot.value ==
-                                                controller.availableTimeSlots[i]
-                                            ? bgColor27
-                                            : Colors.transparent),
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: white,
-                                  ),
-                                  child: Text(
-                                    controller.availableTimeSlots[i],
-                                    style: tsInter(size: 13, color: textDark80),
-                                  ),
-                                ),
-                              ),
-                            );
-                          }),
+                                  scrollDirection: Axis.horizontal,
+                                  itemCount: controller.timeSlotResult.value
+                                      .timeSlotList!.length,
+                                  itemBuilder: (con, i) {
+                                    return Container(
+                                      margin: const EdgeInsets.only(right: 14),
+                                      child: InkWell(
+                                        onTap: () {
+                                          controller.selectedTimeSlot =
+                                              controller.timeSlotResult.value
+                                                  .timeSlotList![i];
+                                          controller.booking.value.slot =
+                                              controller.timeSlotResult.value
+                                                  .timeSlotList![i].sId;
+                                          controller.timeSlotResult.refresh();
+                                        },
+                                        child: Container(
+                                          padding: const EdgeInsets.symmetric(
+                                              horizontal: 20),
+                                          alignment: Alignment.center,
+                                          decoration: BoxDecoration(
+                                            border: Border.all(
+                                                color: controller
+                                                            .selectedTimeSlot
+                                                            .sId ==
+                                                        controller
+                                                            .timeSlotResult
+                                                            .value
+                                                            .timeSlotList![i]
+                                                            .sId
+                                                    ? bgColor27
+                                                    : Colors.transparent),
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            color: white,
+                                          ),
+                                          child: Text(
+                                            '${controller.timeSlotResult.value.timeSlotList![i].startTime} - ${controller.timeSlotResult.value.timeSlotList![i].endTime}',
+                                            style: tsInter(
+                                                size: 13, color: textDark80),
+                                          ),
+                                        ),
+                                      ),
+                                    );
+                                  }),
                     ),
                   ),
                   const Divider(
@@ -296,7 +319,14 @@ class AddBookingView extends GetView<AddBookingController> {
                         const SizedBox(
                           height: 15,
                         ),
-                        const AddressTile(),
+                        AddressTile(
+                          address: controller.booking.value.address!,
+                          distance: calculateDistance(
+                              controller.booking.value.branch!.latitude,
+                              controller.booking.value.branch!.longitude,
+                              controller.booking.value.address!.latitude,
+                              controller.booking.value.address!.longitude),
+                        ),
                         const SizedBox(
                           height: 12,
                         ),

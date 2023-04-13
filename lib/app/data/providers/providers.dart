@@ -15,3 +15,6 @@ export 'branch_provider.dart';
 export 'booking_provider.dart';
 export 'spare_category_provider.dart';
 export 'car_model_provider.dart';
+export 'wallet_provider.dart';
+export 'coupon_provider.dart';
+export 'payment_provider.dart';

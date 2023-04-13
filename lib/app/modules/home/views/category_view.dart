@@ -200,19 +200,17 @@ class CategoryView extends GetView<HomeController> {
                             controller.categoryResult.value.categoryList.length,
                         itemBuilder: (con, i) {
                           return CategoryTile(
-                              onEdit: () {
-                                Get.toNamed(Routes.ADD_SERVICE,
-                                    arguments: controller
-                                        .categoryResult.value.categoryList[i]);
-                              },
                               onTap: () {
                                 if (controller.selectedVehicle.value.id !=
                                         null &&
                                     controller
                                         .selectedVehicle.value.id!.isNotEmpty) {
-                                  Get.toNamed(Routes.SERVICE,
-                                      arguments: controller.categoryResult.value
-                                          .categoryList[i]);
+                                  storage.write(
+                                      selected_category,
+                                      controller
+                                          .categoryResult.value.categoryList[i]
+                                          .toJson());
+                                  Get.toNamed(Routes.SERVICE);
                                 } else {
                                   controller.chooseVehicle(context);
                                 }

@@ -37,11 +37,14 @@ pickDate({DateTime? initDate, DateTime? firstDate, DateTime? lastDate}) async {
 }
 
 final DateFormat outputDateFormat = DateFormat('dd-MM-yyyy');
+final DateFormat inputDateFormat = DateFormat('dd/MM/yyyy');
+final DateFormat dayFormat = DateFormat('EEEE');
 final DateFormat outputDateFormat2 = DateFormat('EEE, dd MMM yyyy');
 
 class Common {
   User currentUser = User.fromJson(storage.read(user_details) ?? {});
   Branch selectedBranch = Branch.fromJson(storage.read(selected_branch) ?? {});
+  Category selectedCategory = Category.fromJson(storage.read(selected_category) ?? {});
   Vehicle selectedVehicle =
       Vehicle.fromJson(storage.read(selected_vehicle) ?? {});
   ServiceMode selectedMode =

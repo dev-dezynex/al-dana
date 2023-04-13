@@ -14,12 +14,23 @@ const String selected_branch = "selected_branch";
 const String selected_vehicle = "selected_vehicle";
 //selected service mode details
 const String selected_mode = "selected_mode";
+//selected category
+const String selected_category = "selected_category";
 //selected service list
 const String selected_service = "selected_service";
+//selected package
+const String selected_package = "selected_package";
 
 //google api key
 const googleApiKey = 'AIzaSyBaZF1ks831cshYzJ7sWQ8sz-LsgrgFF9Y';
 
+
+//razorpay keyId
+const razorKeyId = "rzp_test_r5p0n7ioSfr096";
+const razorSecretKey = "Xn5Z95nZRUwtCubL4SdoAS58";
+
+//oneSignal
+const appId = "380e62a4-d452-4986-a3e0-574792df3113";
 
 
 //file paths

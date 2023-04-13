@@ -14,6 +14,27 @@ class UserProvider extends GetConnect {
     return result;
   }
 
+  Future<UserResult> requestOTP(
+      {required String phoneNumber}) async {
+    final UserResult result;
+    var body = {"phoneNumber": phoneNumber};
+    final response = await post(apiRequiestOtp, body);
+
+    print('body $body');
+    print('path $apiRequiestOtp');
+    print('response ${response.body}');
+    print('response code ${response.statusCode}');
+    if (response.statusCode == 200) {
+      result = UserResult.fromJson({'status':response.body['status'],'message':''});
+      var authValue = response.body['data'];
+
+    } else {
+      result = UserResult.fromJson(response.body);
+    }
+
+    return result;
+  }
+
   Future<UserResult> verifyOTP(
       {required String phoneNumber, required String otp}) async {
     final UserResult result;
