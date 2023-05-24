@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:flutter/services.dart';
@@ -23,6 +24,7 @@ class BranchProvider extends GetConnect {
     );
     print('path $apiListBranch');
     print('response ${response.body}');
+    log('headers: ${auth.requestHeaders}');
     if (response.statusCode == 401) {
       auth.authFailed(response.body['message']);
     }
