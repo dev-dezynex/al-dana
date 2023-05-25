@@ -72,18 +72,18 @@ class BranchView extends GetView<BranchController> {
                 )),
             Positioned(
                 bottom: 10,
-                left: 20,
-                right: 20,
+                left: 70,
+                right: 70,
                 child: Obx(
                   () => controller.isLoading.value
-                      ? SizedBox()
+                      ? const SizedBox()
                       : ElevatedButton(
                           onPressed: () {
                             controller.onConfirmPressed();
                           },
                           style: ElevatedButton.styleFrom(
                               backgroundColor: bgColor27,
-                              minimumSize: Size(Get.width, 50),
+                              minimumSize: Size(Get.width * 0.6, 50),
                               shape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(8))),
                           child: Text(
