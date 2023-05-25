@@ -479,7 +479,7 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                               children: [
                                                 Text(
                                                     controller.booking.value
-                                                        .services![i].title,
+                                                        .services?[i].title ?? '',
                                                     style: tsPoppins(
                                                         weight: FontWeight.w400,
                                                         size: 14,

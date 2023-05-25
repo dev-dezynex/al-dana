@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../data.dart';
-import '../models/booking_model.dart';
 
 class BookingProvider extends GetConnect {
   Future<BookingResult> getDummyBookingHistory() async {
@@ -19,9 +18,11 @@ class BookingProvider extends GetConnect {
   Future<BookingResult> getBookingHistory() async {
     Auth auth = Auth();
     final response = await get(apiGetBooking, headers: auth.requestHeaders);
+    
     if (response.statusCode == 401) {
       auth.authFailed(response.body['message']);
     }
+    
     return BookingResult.listFromJson(response.body);
   }
 

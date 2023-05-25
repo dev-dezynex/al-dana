@@ -42,7 +42,7 @@ class ServiceTile extends StatelessWidget {
                       fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
                         return Image.asset(
-                          service.image,
+                          service.image ?? '',
                           fit: BoxFit.cover,
                           errorBuilder: (context, error, stackTrace) {
                             return Image.asset(
@@ -58,7 +58,7 @@ class ServiceTile extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text(
-                      service.title,
+                      service.title ?? '',
                       style: tsPoppins(
                         weight: FontWeight.w600,
                         color: bgColor25,
@@ -136,7 +136,7 @@ class ServiceTile2 extends StatelessWidget {
                         fit: BoxFit.contain,
                         errorBuilder: (context, error, stackTrace) {
                           return Image.asset(
-                            service.image,
+                            service.image ?? '',
                             fit: BoxFit.contain,
                             errorBuilder: (context, error, stackTrace) {
                               return Image.asset(
@@ -153,7 +153,7 @@ class ServiceTile2 extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text(
-                      service.title,
+                      service.title ?? '',
                       style: tsPoppins(
                         weight: FontWeight.w600,
                         color: textDark80,
@@ -164,7 +164,7 @@ class ServiceTile2 extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8.0),
                     child: Text(
-                      service.desc,
+                      service.desc ?? '',
                       textAlign: TextAlign.center,
                       style: tsPoppins(
                         weight: FontWeight.w500,

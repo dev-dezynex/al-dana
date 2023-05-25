@@ -70,20 +70,20 @@ class Booking {
   Booking.fromJson(Map<String, dynamic> json) {
     id = json['_id'];
     date = json['date'];
-    slot = json['slot'];
+    slot = json['timeSlotId'];
     approvalStatus = json['approval_status'];
     autoSpareSelect = json['auto_spare_select'] ?? true;
     price = double.parse(json['totalAmount'].toString());
     subscribedPrice = json['subscribed_price'] ?? 0.0;
-    if (json['packages'] != null) {
+    if (json['package'] != null) {
       packageList = <PackageModel>[];
-      json['packages'].forEach((v) {
+      json['package'].forEach((v) {
         packageList?.add(PackageModel.fromJson(v));
       });
     }
-    if (json['services'] != null) {
+    if (json['service'] != null) {
       services = <Service>[];
-      json['services'].forEach((v) {
+      json['service'].forEach((v) {
         services?.add(Service.fromJson(v));
       });
     }
@@ -111,10 +111,10 @@ class Booking {
     data['totalAmount'] = price;
     data['approval_status'] = approvalStatus;
     if (packageList != null) {
-      data['packages'] = packageList?.map((v) => v.toJson()).toList();
+      data['package'] = packageList?.map((v) => v.toJson()).toList();
     }
     if (services != null) {
-      data['services'] = services?.map((v) => v.toJson()).toList();
+      data['service'] = services?.map((v) => v.toJson()).toList();
     }
     if (spares != null) {
       data['spares'] = spares?.map((v) => v.toJson()).toList();

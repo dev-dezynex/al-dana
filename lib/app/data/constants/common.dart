@@ -44,7 +44,8 @@ final DateFormat outputDateFormat2 = DateFormat('EEE, dd MMM yyyy');
 class Common {
   User currentUser = User.fromJson(storage.read(user_details) ?? {});
   Branch selectedBranch = Branch.fromJson(storage.read(selected_branch) ?? {});
-  Category selectedCategory = Category.fromJson(storage.read(selected_category) ?? {});
+  Category selectedCategory =
+      Category.fromJson(storage.read(selected_category) ?? {});
   Vehicle selectedVehicle =
       Vehicle.fromJson(storage.read(selected_vehicle) ?? {});
   ServiceMode selectedMode =
@@ -56,7 +57,7 @@ class Auth {
   Map<String, String> requestHeaders = {
     'Authorization': 'Bearer ${storage.read(auth)}',
   };
-
+  
   authFailed(message) {
     Get.dialog(
       WillPopScope(

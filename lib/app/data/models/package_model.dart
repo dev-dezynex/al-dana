@@ -39,7 +39,7 @@ class PackageModel {
   PackageModel({
     this.id,
     this.title,
-    this.services=const [],
+    this.services = const [],
     this.image,
     this.bgCardColor,
     this.price,
@@ -50,7 +50,8 @@ class PackageModel {
     id = json['id'];
     title = json['title'];
     image = json['image'];
-    price = double.parse(json['price'].toString());
+    price =
+        double.parse(json['price'] != null ? json['price'].toString() : '0');
     bgCardColor = json['bg_card_color'];
     services = <Service>[];
     if (json['services'] != null) {
@@ -78,6 +79,7 @@ class PackageModel {
     }
     return data;
   }
+
   Map<String, dynamic> toPost() {
     final data = <String, dynamic>{};
     data['packageId'] = id;

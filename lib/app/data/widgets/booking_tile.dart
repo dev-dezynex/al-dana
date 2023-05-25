@@ -37,7 +37,10 @@ class BookingTile extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    booking.packageList![0].title!,
+                    booking.packageList != null &&
+                            booking.packageList!.isNotEmpty
+                        ? booking.packageList![0].title ?? ''
+                        : '',
                     style: tsPoppins(
                       weight: FontWeight.w600,
                       color: textDark80,
@@ -71,7 +74,7 @@ class BookingTile extends StatelessWidget {
                               color: textDark80,
                             ),
                             Text(
-                              booking.packageList![0].services![i].title,
+                              booking.packageList?[0].services?[i].title ?? '',
                               style: tsPoppins(
                                   color: textDark80, weight: FontWeight.w400),
                             )
@@ -98,7 +101,7 @@ class BookingTile extends StatelessWidget {
                               color: textDark80,
                             ),
                             Text(
-                              booking.services![i].title,
+                              booking.services?[i].title ?? '',
                               style: tsPoppins(
                                   color: textDark80, weight: FontWeight.w400),
                             )
@@ -115,8 +118,7 @@ class BookingTile extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.end,
                   children: [
-                    Text(
-                        '${outputDateFormat2.format(outputDateFormat.parse(booking.date!))},\n ${booking.slot}',
+                    Text('${booking.date ?? ''},\n ${booking.slot ?? ''}',
                         textAlign: TextAlign.right,
                         style: tsPoppins(
                             color: textDark80, weight: FontWeight.w400)),
@@ -136,11 +138,11 @@ class BookingTile extends StatelessWidget {
                     width: 150,
                     //padding: const EdgeInsets.only(top: 1.0, left: 5, right: 5),
                     child: Image.network(
-                      booking.packageList![0].image!,
+                      booking.packageList?[0].image ?? '',
                       fit: BoxFit.contain,
                       errorBuilder: (context, error, stackTrace) {
-                        return Image.asset(
-                          booking.packageList![0].image!,
+                        return Image.network(
+                          booking.packageList?[0].image ?? '',
                           fit: BoxFit.contain,
                           errorBuilder: (context, error, stackTrace) {
                             return Image.asset(
@@ -154,7 +156,8 @@ class BookingTile extends StatelessWidget {
                   ),
                   ElevatedButton(
                       onPressed: onTap,
-                      style: ElevatedButton.styleFrom(backgroundColor: bgColor27),
+                      style:
+                          ElevatedButton.styleFrom(backgroundColor: bgColor27),
                       child: Text(
                         'Track >>',
                         style: tsPoppins(weight: FontWeight.w600, color: white),
@@ -272,21 +275,24 @@ class BookingTile2 extends StatelessWidget {
                 children: [
                   ElevatedButton(
                       onPressed: () {},
-                      style: ElevatedButton.styleFrom(backgroundColor: bgColor29),
+                      style:
+                          ElevatedButton.styleFrom(backgroundColor: bgColor29),
                       child: Text(
                         '   Cancel   ',
                         style: tsPoppins(weight: FontWeight.w600, color: white),
                       )),
                   ElevatedButton(
                       onPressed: () {},
-                      style: ElevatedButton.styleFrom(backgroundColor: bgColor37),
+                      style:
+                          ElevatedButton.styleFrom(backgroundColor: bgColor37),
                       child: Text(
                         '  Reassign  ',
                         style: tsPoppins(weight: FontWeight.w600, color: white),
                       )),
                   ElevatedButton(
                       onPressed: () {},
-                      style: ElevatedButton.styleFrom(backgroundColor: bgColor38),
+                      style:
+                          ElevatedButton.styleFrom(backgroundColor: bgColor38),
                       child: Text(
                         '   Accept   ',
                         style: tsPoppins(weight: FontWeight.w600, color: white),

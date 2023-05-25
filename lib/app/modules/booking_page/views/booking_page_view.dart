@@ -31,24 +31,28 @@ class BookingPageView extends GetView<BookingPageController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Obx(
-                    () =>controller.isLoading.value?const Center(child: CircularProgressIndicator(),): ListView.builder(
-                        shrinkWrap: true,
-                        physics: const NeverScrollableScrollPhysics(),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 2),
-                        itemCount:
-                            controller.bookingResult.value.bookingList!.length,
-                        itemBuilder: (con, i) {
-                          return BookingTile(
-                            onTap: () {
-                              Get.toNamed(Routes.TRACK_PAGE,
-                                  arguments: controller
-                                      .bookingResult.value.bookingList![i]);
-                            },
-                            booking:
-                                controller.bookingResult.value.bookingList![i],
-                          );
-                        }),
+                    () => controller.isLoading.value
+                        ? const Center(
+                            child: CircularProgressIndicator(),
+                          )
+                        : ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 2),
+                            itemCount: controller
+                                .bookingResult.value.bookingList!.length,
+                            itemBuilder: (con, i) {
+                              return BookingTile(
+                                onTap: () {
+                                  Get.toNamed(Routes.TRACK_PAGE,
+                                      arguments: controller
+                                          .bookingResult.value.bookingList![i]);
+                                },
+                                booking: controller
+                                    .bookingResult.value.bookingList![i],
+                              );
+                            }),
                   ),
                   SizedBox(height: Get.height * .2),
                 ],

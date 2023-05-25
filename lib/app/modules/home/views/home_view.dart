@@ -105,7 +105,7 @@ class HomeView extends GetView<HomeController> {
             icon: "assets/icons/ic_nav_1.svg",
             onTap: () {
               Get.back();
-              
+              Get.toNamed(Routes.PROFILE);
             },
           ),
           NavItem(

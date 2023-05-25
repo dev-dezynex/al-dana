@@ -16,7 +16,9 @@ class BookingPageController extends GetxController {
 
   getBookingHistory() async {
     isLoading(true);
+    print('Loading');
     bookingResult.value = await BookingProvider().getBookingHistory();
+    print('No loading');
     bookingResult.refresh();
     isLoading(false);
   }

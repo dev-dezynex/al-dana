@@ -110,7 +110,7 @@ class PackageTile extends StatelessWidget {
                               color: white,
                             ),
                             Text(
-                              package.services![i].title,
+                              package.services?[i].title ?? '',
                               style: tsPoppins(
                                   color: white, weight: FontWeight.w400),
                             )
