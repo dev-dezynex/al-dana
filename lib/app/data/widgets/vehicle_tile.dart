@@ -19,21 +19,14 @@ class VehicleTile extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(5),
               child: Image.network(
-                '$domainName${vehicle.brand!.image}',
+                '$domainName${vehicle.brand?.image}',
                 fit: BoxFit.contain,
                 width: Get.width * .15,
                 errorBuilder: (context, error, stackTrace) {
                   return Image.asset(
-                    vehicle.brand!.image,
+                    'assets/images/img_placeholder.png',
                     fit: BoxFit.contain,
                     width: Get.width * .15,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Image.asset(
-                        'assets/images/img_placeholder.png',
-                        fit: BoxFit.contain,
-                        width: Get.width * .15,
-                      );
-                    },
                   );
                 },
               ),
@@ -44,9 +37,11 @@ class VehicleTile extends StatelessWidget {
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('${vehicle.brand!.title} - ${vehicle.variant!.name}',
+                Text(
+                    '${vehicle.brand?.title ?? ''} - ${vehicle.variant?.name ?? ''}',
                     style: tsPoppins(color: textDark80, size: 16)),
-                Text('Year ${vehicle.year!} | ${vehicle.colour!.name}',
+                Text(
+                    'Year ${vehicle.year ?? ''} | ${vehicle.colour?.name ?? ''}',
                     style: tsPoppins(
                       color: textDark40,
                     )),

@@ -18,7 +18,9 @@ class BookingTile extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
         color: white,
         child: Stack(
           children: [
@@ -112,24 +114,23 @@ class BookingTile extends StatelessWidget {
                 ],
               ),
             ),
-            Positioned(
-                top: 20,
-                right: 10,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    Text('${booking.date ?? ''},\n ${booking.slot ?? ''}',
-                        textAlign: TextAlign.right,
-                        style: tsPoppins(
-                            color: textDark80, weight: FontWeight.w400)),
-                    Text('AED ${booking.price.toStringAsFixed(2)}',
-                        textAlign: TextAlign.center,
-                        style: tsRubik(color: bgColor27, size: 14)),
-                  ],
-                )),
-            Positioned(
-              bottom: 10,
-              right: 10,
+            // Positioned(
+            //     top: 20,
+            //     right: 10,
+            //     child: Column(
+            //       crossAxisAlignment: CrossAxisAlignment.end,
+            //       children: [
+            //         Text('${booking.date ?? ''},\n ${booking.slot ?? ''}',
+            //             textAlign: TextAlign.right,
+            //             style: tsPoppins(
+            //                 color: textDark80, weight: FontWeight.w400)),
+            //         Text('AED ${booking.price.toStringAsFixed(2)}',
+            //             textAlign: TextAlign.center,
+            //             style: tsRubik(color: bgColor27, size: 14)),
+            //       ],
+            //     )),
+            SizedBox(
+              width: double.infinity,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
@@ -141,19 +142,20 @@ class BookingTile extends StatelessWidget {
                       booking.packageList?[0].image ?? '',
                       fit: BoxFit.contain,
                       errorBuilder: (context, error, stackTrace) {
-                        return Image.network(
-                          booking.packageList?[0].image ?? '',
+                        return Image.asset(
+                          'assets/images/img_placeholder.png',
                           fit: BoxFit.contain,
-                          errorBuilder: (context, error, stackTrace) {
-                            return Image.asset(
-                              'assets/images/img_placeholder.png',
-                              fit: BoxFit.contain,
-                            );
-                          },
                         );
                       },
                     ),
                   ),
+                  Text('${booking.date ?? ''},\n ${booking.slot ?? ''}',
+                      textAlign: TextAlign.right,
+                      style: tsPoppins(
+                          color: textDark80, weight: FontWeight.w400)),
+                  Text('AED ${booking.price.toStringAsFixed(2)}',
+                      textAlign: TextAlign.center,
+                      style: tsRubik(color: bgColor27, size: 14)),
                   ElevatedButton(
                       onPressed: onTap,
                       style:
@@ -198,18 +200,12 @@ class BookingTile2 extends StatelessWidget {
                         maxWidth: Get.width * .3, maxHeight: 100),
                     padding: const EdgeInsets.all(10),
                     child: Image.network(
-                      booking.packageList![0].image!,
+                      booking.packageList?[0].image ?? '',
                       fit: BoxFit.contain,
                       errorBuilder: (context, error, stackTrace) {
                         return Image.asset(
-                          booking.packageList![0].image!,
+                          'assets/images/img_placeholder.png',
                           fit: BoxFit.contain,
-                          errorBuilder: (context, error, stackTrace) {
-                            return Image.asset(
-                              'assets/images/img_placeholder.png',
-                              fit: BoxFit.contain,
-                            );
-                          },
                         );
                       },
                     ),

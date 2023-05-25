@@ -60,7 +60,8 @@ class TrackPageView extends GetView<TrackPageController> {
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: VehicleTile(
-                          vehicle: controller.booking.value.vehicle!),
+                        vehicle: controller.booking.value.vehicle ?? Vehicle(),
+                      ),
                     ),
                     Container(
                       // margin: const EdgeInsets.symmetric(
@@ -178,7 +179,7 @@ class TrackPageView extends GetView<TrackPageController> {
                 height: 10,
               ),
               SizedBox(
-                height: Get.height * .32,
+                height: Get.height * .42,
                 child: Swiper(
                   itemWidth: Get.width,
                   containerWidth: Get.width,
@@ -259,7 +260,7 @@ class TrackPageView extends GetView<TrackPageController> {
                 height: 10,
               ),
               SizedBox(
-                height: Get.height * .32,
+                height: Get.height * .42,
                 child: Swiper(
                   itemWidth: Get.width,
                   containerWidth: Get.width,
