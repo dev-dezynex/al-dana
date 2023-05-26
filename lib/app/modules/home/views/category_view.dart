@@ -25,7 +25,7 @@ class CategoryView extends GetView<HomeController> {
                     height: Get.height * .25,
                     child: Obx(
                       () => controller.isLoading.value
-                          ? SizedBox()
+                          ? const SizedBox()
                           : Swiper(
                               itemWidth: Get.width,
                               containerWidth: Get.width,
@@ -39,7 +39,7 @@ class CategoryView extends GetView<HomeController> {
                                               BorderRadius.circular(10.0)),
                                       elevation: 0.0,
                                       child: Image.network(
-                                        '$domainName${controller.bannerResult.value.bannerList![index].image}',
+                                        '$domainName${controller.bannerResult.value.bannerList?[index].image}',
                                         fit: BoxFit.contain,
                                         errorBuilder: (context, error,
                                                 stackTrace) =>
@@ -56,7 +56,8 @@ class CategoryView extends GetView<HomeController> {
                                 controller.bannerIndex.value = index;
                               },
                               itemCount: controller
-                                  .bannerResult.value.bannerList!.length,
+                                      .bannerResult.value.bannerList?.length ??
+                                  0,
                               pagination: SwiperCustomPagination(
                                 builder: (context, config) {
                                   return Container(
@@ -64,7 +65,8 @@ class CategoryView extends GetView<HomeController> {
                                       child: Obx(() => LinearIndicator(
                                             index: controller.bannerIndex.value,
                                             length: controller.bannerResult
-                                                .value.bannerList!.length,
+                                                    .value.bannerList?.length ??
+                                                0,
                                             activeColor: bgColor4,
                                             inactiveColor: textDark20,
                                           )));

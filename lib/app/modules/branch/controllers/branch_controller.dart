@@ -68,7 +68,7 @@ class BranchController extends GetxController {
       (a, b) => a.distance.compareTo(b.distance),
     );
 
-    selectBranch(branchResult.value.branchList![0]);
+    selectBranch(branchResult.value.branchList![0] );
   }
 
   void setMarkers() {

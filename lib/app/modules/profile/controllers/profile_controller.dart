@@ -9,16 +9,29 @@ import '../../../data/data.dart';
 class ProfileController extends GetxController {
   var file = File('').obs;
   var currentUser = Common().currentUser.obs;
-  TextEditingController nameController = TextEditingController(text: 'Harps Joseph');
-  TextEditingController phoneController = TextEditingController(text: '+974 453875636');
-  TextEditingController emailController = TextEditingController(text: 'harpsjoseph@gmail.com');
-  TextEditingController addressController = TextEditingController(text: 'Gold Palace, UAE, Baniyas Road Dubai,');
+  TextEditingController nameController = TextEditingController();
+  TextEditingController phoneController = TextEditingController();
+  TextEditingController emailController =
+      TextEditingController(text: 'harpsjoseph@gmail.com');
+  TextEditingController addressController =
+      TextEditingController(text: 'Gold Palace, UAE, Baniyas Road Dubai,');
   var isLoading = false.obs;
 
-
+  @override
+  void onInit() {
+    super.onInit();
+    nameController.text = currentUser.value.name;
+    phoneController.text = currentUser.value.mobile;
+    emailController.text = currentUser.value.email;
+  }
 
   @override
-  void onClose() {}
+  void onClose() {
+    nameController.dispose();
+    phoneController.dispose();
+    emailController.dispose();
+    super.onClose();
+  }
 
   pickImage(ImageSource sourse) async {
     var image = (await FileProvider().pickImage(imageSource: sourse))!;

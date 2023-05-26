@@ -88,11 +88,11 @@ class ProfileView extends GetView<ProfileController> {
                   height: 8,
                 ),
                 Text(
-                  'Harps Joseph',
+                  controller.currentUser.value.name,
                   style: tsPoppins(size: 14, color: textDark80),
                 ),
                 Text(
-                  'harpsjoseph@gmail.com',
+                  controller.currentUser.value.email,
                   style: tsPoppins(color: textDark40, weight: FontWeight.w400),
                 ),
                 const SizedBox(
@@ -275,36 +275,36 @@ class ProfileView extends GetView<ProfileController> {
                         height: Get.height * .015,
                       ),
 
-                      TextFormField(
-                        controller: controller.addressController,
-                        textAlignVertical: TextAlignVertical.center,
-                        keyboardType: TextInputType.name,
-                        autocorrect: false,
-                        style: tsPoppins(
-                            size: 14,
-                            weight: FontWeight.w500,
-                            color: textDark80),
-                        validator: (value) {
-                          if (value!.isEmpty) {
-                            return '*Required';
-                          } else {
-                            return null;
-                          }
-                        },
-                        decoration:
-                            InputFormDecoration.underLinedInputTextDecoration(
-                                labelText: 'Address',
-                                labelStyle: tsPoppins(
-                                    weight: FontWeight.w400,
-                                    height: 3,
-                                    size: 11,
-                                    color: textDark40),
-                                borderSide:
-                                    const BorderSide(color: textDark20)),
-                      ),
-                      SizedBox(
-                        height: Get.height * .015,
-                      ),
+                      // TextFormField(
+                      //   controller: controller.addressController,
+                      //   textAlignVertical: TextAlignVertical.center,
+                      //   keyboardType: TextInputType.name,
+                      //   autocorrect: false,
+                      //   style: tsPoppins(
+                      //       size: 14,
+                      //       weight: FontWeight.w500,
+                      //       color: textDark80),
+                      //   validator: (value) {
+                      //     if (value!.isEmpty) {
+                      //       return '*Required';
+                      //     } else {
+                      //       return null;
+                      //     }
+                      //   },
+                      //   decoration:
+                      //       InputFormDecoration.underLinedInputTextDecoration(
+                      //           labelText: 'Address',
+                      //           labelStyle: tsPoppins(
+                      //               weight: FontWeight.w400,
+                      //               height: 3,
+                      //               size: 11,
+                      //               color: textDark40),
+                      //           borderSide:
+                      //               const BorderSide(color: textDark20)),
+                      // ),
+                      // SizedBox(
+                      //   height: Get.height * .015,
+                      // ),
                       // Container(
                       //   alignment: Alignment.center,
                       //   child: Obx(

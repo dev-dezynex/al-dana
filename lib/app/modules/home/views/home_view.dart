@@ -100,14 +100,14 @@ class HomeView extends GetView<HomeController> {
           //     openMapsSheet(context, 'Location');
           //   },
           // ),
-          NavItem(
-            title: "My Profile",
-            icon: "assets/icons/ic_nav_1.svg",
-            onTap: () {
-              Get.back();
-              Get.toNamed(Routes.PROFILE);
-            },
-          ),
+          // NavItem(
+          //   title: "My Profile",
+          //   icon: "assets/icons/ic_nav_1.svg",
+          //   onTap: () {
+          //     Get.back();
+          //     Get.toNamed(Routes.PROFILE);
+          //   },
+          // ),
           NavItem(
             title: "Subscriptions",
             icon: "assets/icons/ic_nav_2.svg",

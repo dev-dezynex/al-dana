@@ -14,7 +14,8 @@ import '../../../routes/app_pages.dart';
 
 class HomeController extends GetxController {
   var common = Common();
-  var currentUser = User().obs;
+  // var currentUser = User().obs;
+  var currentUser = Common().currentUser.obs;
   var addressList = <Address>[].obs;
   var bottomBarIndex = 1.obs;
   var bannerIndex = 0.obs;
@@ -43,12 +44,21 @@ class HomeController extends GetxController {
   void onInit() {
     super.onInit();
     getDetails();
+    nameController.text = currentUser.value.name;
+    phoneController.text = currentUser.value.mobile;
+    emailController.text = currentUser.value.email;
   }
 
   @override
-  void onClose() {}
+  void onClose() {
+    nameController.dispose();
+    phoneController.dispose();
+    emailController.dispose();
+    super.onClose();
+  }
 
   getDetails() async {
+    print('Get details called');
     isLoading(true);
     // if (common.currentUser.scope == 'admin') {
     // getBookings();
@@ -62,8 +72,10 @@ class HomeController extends GetxController {
   }
 
   getCategories() async {
+    isLoading(true);
     categoryResult.value = await CategoryProvider().getCategories();
     categoryResult.refresh();
+    isLoading(false);
   }
 
   getVehicles() async {
@@ -175,6 +187,7 @@ class HomeController extends GetxController {
   }
 
   void updateProfile() async {
+    print('Update profile called');
     isLoading(true);
     String imagePath = await imageUpload();
     var result = await UserProvider().updateProfile(
@@ -183,7 +196,7 @@ class HomeController extends GetxController {
       email: emailController.text,
       image: imagePath,
     ));
-
+    isLoading(false);
     if (result.status == 'success') {
       getUserProfile();
     } else {

@@ -272,9 +272,13 @@ class ProfileView extends GetView<HomeController> {
                                   color: textDark40)),
                           InkWell(
                             onTap: () {
-                              Get.toNamed(Routes.ADDRESS_MAP,arguments: [ AddressPageMode
-                                                          .addAndReturn,false])!.then((value) =>
-                                  value ? controller.getUserProfile() : null);
+                              Get.toNamed(Routes.ADDRESS_MAP, arguments: [
+                                AddressPageMode.addAndReturn,
+                                false
+                              ])!
+                                  .then((value) => value
+                                      ? controller.getUserProfile()
+                                      : null);
                             },
                             child: const Icon(
                               Icons.add_circle_outline_sharp,
@@ -330,7 +334,8 @@ class ProfileView extends GetView<HomeController> {
                                                 Get.toNamed(Routes.ADDRESS_MAP,
                                                         arguments: [
                                                       AddressPageMode
-                                                          .addAndReturn,true,
+                                                          .addAndReturn,
+                                                      true,
                                                       controller.currentUser
                                                           .value.addressList[i]
                                                     ])!
@@ -397,7 +402,7 @@ class ProfileView extends GetView<HomeController> {
                               }
                             },
                             style: ElevatedButton.styleFrom(
-                                primary: primary,
+                                backgroundColor: primary,
                                 shape: RoundedRectangleBorder(
                                     borderRadius: BorderRadius.circular(10)),
                                 minimumSize: Size(Get.width, 50)),
@@ -407,7 +412,8 @@ class ProfileView extends GetView<HomeController> {
                                   size: 16,
                                   weight: FontWeight.w600,
                                   color: white),
-                            )),
+                            ),
+                          ),
                   ),
                 ),
               SizedBox(
