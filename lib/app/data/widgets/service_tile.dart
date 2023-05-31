@@ -22,7 +22,8 @@ class ServiceTile extends StatelessWidget {
       onTap: onTap,
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        color: hexToColor('#09DDBD'),
+        // color: hexToColor('#09DDBD'),
+        color: Colors.transparent,
         child: Stack(
           children: [
             Container(
@@ -33,7 +34,7 @@ class ServiceTile extends StatelessWidget {
                 children: [
                   Container(
                     constraints: BoxConstraints(
-                        maxHeight: Get.width * .25, maxWidth: Get.width * .35),
+                        maxHeight: Get.width * .2, maxWidth: Get.width * .35),
                     padding:
                         const EdgeInsets.only(top: 18.0, left: 5, right: 5),
                     alignment: Alignment.center,
