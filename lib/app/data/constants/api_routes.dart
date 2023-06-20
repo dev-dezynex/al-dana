@@ -1,5 +1,5 @@
 // change the domain name if you want
-const String domainName = "http://192.168.1.17:4000";
+const String domainName = "http://3.110.151.156:3000";
 
 const String apiVersion = "/api/v1/";
 
@@ -62,4 +62,4 @@ const String apiAddBooking = "${apiBase}customer/addBooking";
 const String apiGetBooking = "${apiBase}customer/listBooking";
 
 //TimeSlot
-const String apiGetTimeSlot = "${apiBase}customer/listDefaultTimeSlot";
+const String apiGetTimeSlot = "${apiBase}customer/listTimeSlot";

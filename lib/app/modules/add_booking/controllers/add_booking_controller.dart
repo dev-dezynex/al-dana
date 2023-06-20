@@ -1,6 +1,7 @@
+import 'dart:developer';
+
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
-import 'package:intl/intl.dart';
 
 import '../../../data/data.dart';
 
@@ -23,18 +24,20 @@ class AddBookingController extends GetxController {
 
   chooseDate() async {
     selectedDate.value = await pickDate(firstDate: DateTime.now());
-    dateController.text = outputDateFormat2.format(selectedDate.value);
+    dateController.text = outputDateFormat.format(selectedDate.value);
 
-    getTimeSlots();
+    getTimeSlots(dateController.text);
+    log('date');
+    log(selectedDate.value.toString());
   }
 
   void getDetails() {
-    getTimeSlots();
+    getTimeSlots(dateController.text);
   }
 
-  void getTimeSlots() async {
+  void getTimeSlots(String date) async {
     isLoading(true);
-    timeSlotResult.value = await TimeSlotProvider().getTimeSlots();
+    timeSlotResult.value = await TimeSlotProvider().getTimeSlots(date);
     timeSlotResult.refresh();
     isLoading(false);
     // if (timeSlotResult.value.timeSlotList.isNotEmpty) {

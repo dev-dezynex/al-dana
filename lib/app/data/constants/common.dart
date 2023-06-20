@@ -36,7 +36,7 @@ pickDate({DateTime? initDate, DateTime? firstDate, DateTime? lastDate}) async {
   return selectedDate;
 }
 
-final DateFormat outputDateFormat = DateFormat('dd-MM-yyyy');
+final DateFormat outputDateFormat = DateFormat('yyyy-MM-dd');
 final DateFormat inputDateFormat = DateFormat('dd/MM/yyyy');
 final DateFormat dayFormat = DateFormat('EEEE');
 final DateFormat outputDateFormat2 = DateFormat('EEE, dd MMM yyyy');

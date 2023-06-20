@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:get/get.dart';
 
 import '../data.dart';
@@ -10,20 +12,26 @@ class TimeSlotProvider extends GetConnect {
   //   return result;
   // }
 
-  Future<TimeSlotResult> getTimeSlots() async {
+  Future<TimeSlotResult> getTimeSlots(String date) async {
     Auth auth = Auth();
-    Map<String, dynamic> qParams = {
-      'filter[branchId]': "64141211eee221aaf21fed9c",
-      'filter[categoryId]': "6406e003355da5fc60f38cac",
-      'filter[date]': "21/03/2023",
-    };
-    final response =
-        await get(apiGetTimeSlot, headers: auth.requestHeaders, query: qParams);
+    var common = Common();
+    log(common.selectedBranch.id);
+    log(common.selectedCategory.id);
+    log(date);
+
+    final response = await get(
+      '$apiGetTimeSlot?filter[branchId]=${common.selectedBranch.id}&filter[categoryId]=${common.selectedCategory.id}&filter[date]=$date',
+      headers: auth.requestHeaders,
+    );
+    log('Time Slots');
+    log(response.statusCode.toString());
 
     if (response.statusCode == 401) {
       auth.authFailed(response.body['message']);
     }
-
+    log('-----------------------------------------------------------------------------');
+    log(response.body.toString());
+    log('-----------------------------------------------------------------------------');
     return TimeSlotResult.fromJson(response.body);
   }
 }
