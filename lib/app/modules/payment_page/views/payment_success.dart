@@ -47,7 +47,8 @@ class PaymentSuccessView extends GetView<PaymentPageController> {
               height: 5,
             ),
             Text(
-                '${outputDateFormat2.format(inputDateFormat.parse(controller.booking.value.date!))}, ${controller.booking.value.slot}',
+                // '${outputDateFormat2.format(inputDateFormat.parse(controller.booking.value.date!))}, ${controller.booking.value.slot}',
+                '${controller.booking.value.date}, ${controller.booking.value.slot}',
                 textAlign: TextAlign.center,
                 style: tsRubik(color: textDark40, weight: FontWeight.w400)),
             const Spacer(

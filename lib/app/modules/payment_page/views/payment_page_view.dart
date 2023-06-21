@@ -78,8 +78,7 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                               size: 10,
                                               weight: FontWeight.w400,
                                               color: textDark40)),
-                                      Text(
-                                          '${controller.booking.value.mode!.title}',
+                                      Text(controller.booking.value.mode!.title,
                                           style: tsPoppins(color: textDark40)),
                                     ],
                                   ),
@@ -478,8 +477,12 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                                       .spaceBetween,
                                               children: [
                                                 Text(
-                                                    controller.booking.value
-                                                        .services?[i].title ?? '',
+                                                    controller
+                                                            .booking
+                                                            .value
+                                                            .services?[i]
+                                                            .title ??
+                                                        '',
                                                     style: tsPoppins(
                                                         weight: FontWeight.w400,
                                                         size: 14,

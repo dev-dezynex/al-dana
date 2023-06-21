@@ -12,7 +12,7 @@ class AddBookingController extends GetxController {
   var isLoading = false.obs;
   var timeSlotResult = TimeSlotResult().obs;
   // var availableTimeSlots = <String>[].obs;
-  var selectedTimeSlot = TimeSlot();
+  var selectedTimeSlot = TimeSlotId();
   var booking = Booking().obs;
 
   @override
@@ -58,8 +58,11 @@ class AddBookingController extends GetxController {
 
   onNextClick(String route) {
     if (selectedTimeSlot.sId!.isNotEmpty) {
-      booking.value.date = inputDateFormat.format(selectedDate.value);
+      booking.value.date = outputDateFormat.format(selectedDate.value);
       booking.value.slot = selectedTimeSlot.sId;
+      
+      log('Next click');
+      log(selectedTimeSlot.sId.toString());
       Get.toNamed(route, arguments: booking.value);
     } else {
       Get.snackbar('Error', 'Please choose a time slot to continue.',

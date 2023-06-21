@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:al_dana/app/data/data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -8,7 +10,7 @@ class PaymentPageController extends GetxController {
   TextEditingController promoCodeController = TextEditingController();
   var isLoading = false.obs;
   var isCouponApplied = false.obs;
-  Razorpay _razorpay = Razorpay();
+  final Razorpay _razorpay = Razorpay();
   var paymentOptions = ['Pay by Credit Card / Debit Card', 'Pay with Cash'].obs;
   var selectedPaymentOption = ''.obs;
   var isPaymentSuccess = false.obs;
@@ -16,6 +18,7 @@ class PaymentPageController extends GetxController {
   var isRewardApplied = false.obs;
   var walletResult = WalletResult().obs;
   var booking = Booking().obs;
+  String? bookingId;
   @override
   void onInit() {
     super.onInit();
@@ -128,7 +131,7 @@ class PaymentPageController extends GetxController {
       'description': 'We take care of the vehicle that take care of you',
       'timeout': 150, // in seconds
       'prefill': {
-        'contact': '${common.currentUser.mobile}',
+        'contact': common.currentUser.mobile,
         'email': common.currentUser.email
       }
     };
@@ -142,10 +145,14 @@ class PaymentPageController extends GetxController {
 
   postBooking() async {
     isLoading(true);
+    // print("booking.value");
+    // print(booking.value.slot);
     var result = await BookingProvider().postBooking(booking: booking.value);
     if (result.status == 'success') {
       if (selectedPaymentOption.value != paymentOptions[1]) {
         startPayment(result.booking!.id!);
+        log("result.booking!.id!");
+        log(result.booking!.id!);
       } else {
         isLoading(false);
         isPaymentSuccess.value = true;
@@ -161,6 +168,17 @@ class PaymentPageController extends GetxController {
 
   void verifyPayment(PaymentSuccessResponse response) async {
     isLoading(true);
+
+    // log('body: ${jsonEncode(booking.value)}');
+    log('========================================================Verify payment========================================================');
+    log('razorpay_payment_id:${response.paymentId}');
+    log('razorpay_order_id:${response.orderId}');
+    log('razorpay_signature:${response.signature}');
+    log('bookingId:${booking.value.id}');
+    log('slot:${booking.value.slot}');
+    log('totalAmount:${booking.value.price}');
+    log('branchId:${booking.value.branch!.id}');
+    log('========================================================Verify payment========================================================');
     Map<String, dynamic> body = {
       "razorpay_payment_id": response.paymentId,
       "razorpay_order_id": response.orderId,

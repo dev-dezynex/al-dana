@@ -18,11 +18,11 @@ class BookingProvider extends GetConnect {
   Future<BookingResult> getBookingHistory() async {
     Auth auth = Auth();
     final response = await get(apiGetBooking, headers: auth.requestHeaders);
-    
+
     if (response.statusCode == 401) {
       auth.authFailed(response.body['message']);
     }
-    
+
     return BookingResult.listFromJson(response.body);
   }
 
@@ -33,7 +33,9 @@ class BookingProvider extends GetConnect {
     if (response.statusCode == 401) {
       auth.authFailed(response.body['message']);
     }
-
+    log("response.body id");
+    
+    log('post booking');
     print('path $apiAddBooking');
     print('headers ${jsonEncode(auth.requestHeaders)}');
     log('body ${jsonEncode(booking.toPost())}');
@@ -51,6 +53,7 @@ class BookingProvider extends GetConnect {
       auth.authFailed(response.body['message']);
     }
 
+    log('verifyPayment');
     print('path $apiPaymentVerify');
     print('headers ${jsonEncode(auth.requestHeaders)}');
     log('body ${jsonEncode(body)}');

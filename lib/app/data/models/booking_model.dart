@@ -163,7 +163,7 @@ class Booking {
 
     data['discountAmount'] = 0;
     data['date'] = date;
-    data['timeSlotId'] = "643413e05251bf1ca375588e";
+    data['timeSlotId'] = slot;
     if (address != null) {
       data['AddressId'] = address?.sId;
     }

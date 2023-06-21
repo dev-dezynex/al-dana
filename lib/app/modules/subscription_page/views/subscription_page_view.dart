@@ -66,7 +66,7 @@ class SubscriptionPageView extends GetView<SubscriptionPageController> {
                                 weight: FontWeight.w400,
                                 color: textDark40)),
                         Obx(
-                          () => Text('${controller.booking.value.mode!.title}',
+                          () => Text(controller.booking.value.mode!.title,
                               style: tsPoppins(color: textDark40)),
                         ),
                       ],
@@ -296,29 +296,27 @@ class SubscriptionPageView extends GetView<SubscriptionPageController> {
                 SizedBox(
                   height: Get.height * .4,
                   child: TabBarView(
-                    
                     children: [
                       SfDateRangePicker(
-                          controller: controller.dateRangeController1,
-                          view: DateRangePickerView.month,
-                          headerStyle: const DateRangePickerHeaderStyle(
-                              textAlign: TextAlign.center),
-                          initialSelectedRange: controller.pickDateRange.value,
-                          initialSelectedDates: controller.dateList.value,
-                          selectionMode: DateRangePickerSelectionMode.range,
-                          startRangeSelectionColor: primary,
-                          endRangeSelectionColor: primary,
-                          selectionColor: primary,
-                          enablePastDates: false,
-                          onSelectionChanged: (args) {
-                            if (args.value is PickerDateRange) {
-                              controller.startDate.value = args.value.startDate;
-                              controller.endDate.value = args.value.endDate;
-                              controller.setDateList();
-                            }
-                          },
-                        ),
-                      
+                        controller: controller.dateRangeController1,
+                        view: DateRangePickerView.month,
+                        headerStyle: const DateRangePickerHeaderStyle(
+                            textAlign: TextAlign.center),
+                        initialSelectedRange: controller.pickDateRange.value,
+                        initialSelectedDates: controller.dateList.value,
+                        selectionMode: DateRangePickerSelectionMode.range,
+                        startRangeSelectionColor: primary,
+                        endRangeSelectionColor: primary,
+                        selectionColor: primary,
+                        enablePastDates: false,
+                        onSelectionChanged: (args) {
+                          if (args.value is PickerDateRange) {
+                            controller.startDate.value = args.value.startDate;
+                            controller.endDate.value = args.value.endDate;
+                            controller.setDateList();
+                          }
+                        },
+                      ),
                       SfDateRangePicker(
                         controller: controller.dateRangeController2,
                         view: DateRangePickerView.month,
@@ -337,7 +335,6 @@ class SubscriptionPageView extends GetView<SubscriptionPageController> {
                         onSelectionChanged: (args) {
                           print(args);
                           if (args.value is List<DateTime>) {
-                          
                             controller.setMonthlyDateList(args.value);
                           }
                         },
@@ -360,7 +357,6 @@ class SubscriptionPageView extends GetView<SubscriptionPageController> {
                         onSelectionChanged: (args) {
                           print(args);
                           if (args.value is List<DateTime>) {
-                       
                             controller.setWeeklyDateList(args.value);
                           }
                         },

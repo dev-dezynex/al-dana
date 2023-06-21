@@ -82,7 +82,7 @@ class AddBookingView extends GetView<AddBookingController> {
                               size: 10,
                               weight: FontWeight.w400,
                               color: textDark40)),
-                      Text('${controller.booking.value.mode!.title}',
+                      Text(controller.booking.value.mode!.title,
                           style: tsPoppins(color: textDark40)),
                     ],
                   ),
@@ -234,10 +234,11 @@ class AddBookingView extends GetView<AddBookingController> {
                     child: Obx(
                       () => (controller.isLoading.value)
                           ? const Center(child: CircularProgressIndicator())
-                          : (controller.timeSlotResult.value.timeSlotList ==
+                          : (controller.timeSlotResult.value.data?.timeSlotId ==
                                       null &&
-                                  controller.timeSlotResult.value.timeSlotList!
-                                      .isEmpty)
+                                  controller.timeSlotResult.value.data
+                                          ?.timeSlotId ==
+                                      [])
                               ? Center(
                                   child: Text(
                                     'No timeslots available',
@@ -250,18 +251,23 @@ class AddBookingView extends GetView<AddBookingController> {
                                       horizontal: 20),
                                   scrollDirection: Axis.horizontal,
                                   itemCount: controller.timeSlotResult.value
-                                      .timeSlotList!.length,
+                                      .data?.timeSlotId?.length,
                                   itemBuilder: (con, i) {
                                     return Container(
                                       margin: const EdgeInsets.only(right: 14),
                                       child: InkWell(
                                         onTap: () {
+                                          print('time slot at 0');
+                                          print(controller.timeSlotResult.value
+                                              .data?.timeSlotId?[0].sId);
                                           controller.selectedTimeSlot =
                                               controller.timeSlotResult.value
-                                                  .timeSlotList![i];
+                                                      .data?.timeSlotId?[i] ??
+                                                  TimeSlotId();
                                           controller.booking.value.slot =
                                               controller.timeSlotResult.value
-                                                  .timeSlotList![i].sId;
+                                                  .data?.timeSlotId?[i].sId;
+
                                           controller.timeSlotResult.refresh();
                                         },
                                         child: Container(
@@ -276,7 +282,8 @@ class AddBookingView extends GetView<AddBookingController> {
                                                         controller
                                                             .timeSlotResult
                                                             .value
-                                                            .timeSlotList![i]
+                                                            .data
+                                                            ?.timeSlotId?[i]
                                                             .sId
                                                     ? bgColor27
                                                     : Colors.transparent),
@@ -285,7 +292,7 @@ class AddBookingView extends GetView<AddBookingController> {
                                             color: white,
                                           ),
                                           child: Text(
-                                            '${controller.timeSlotResult.value.timeSlotList![i].startTime} - ${controller.timeSlotResult.value.timeSlotList![i].endTime}',
+                                            '${controller.timeSlotResult.value.data?.timeSlotId?[i].startTime} - ${controller.timeSlotResult.value.data?.timeSlotId?[i].endTime}',
                                             style: tsInter(
                                                 size: 13, color: textDark80),
                                           ),

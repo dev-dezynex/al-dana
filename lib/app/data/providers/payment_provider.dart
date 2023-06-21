@@ -8,7 +8,7 @@ import '../data.dart';
 class PaymentProvider extends GetConnect {
   Future<String> generateOrderIdWithRazorPay(
       String key, String secret, int amount) async {
-    var authn = 'Basic ' + base64Encode(utf8.encode('$key:$secret'));
+    var authn = 'Basic ${base64Encode(utf8.encode('$key:$secret'))}';
 
     var headers = {
       'content-type': 'application/json',
@@ -23,8 +23,9 @@ class PaymentProvider extends GetConnect {
       data,
       headers: headers,
     );
-    if (res.statusCode != 200)
+    if (res.statusCode != 200) {
       throw Exception('http.post error: statusCode= ${res.statusCode}');
+    }
     print('ORDER ID response => ${res.body}');
 
     return res.body['id'].toString();
@@ -38,7 +39,8 @@ class PaymentProvider extends GetConnect {
     var response =
         await post(apiPaymentCheckout, body, headers: auth.requestHeaders);
 
-    print('path: $apiPaymentCheckout');
+    log('path: $apiPaymentCheckout');
+    log('booking id: $bookingId');
     log('body: ${jsonEncode(body)}');
     log('response: ${jsonEncode(response.body)}');
     log('header: ${jsonEncode(auth.requestHeaders)}');
