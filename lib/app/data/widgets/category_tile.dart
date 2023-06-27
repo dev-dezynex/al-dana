@@ -19,7 +19,8 @@ class CategoryTile extends StatelessWidget {
         child: Card(
           elevation: 5,
           shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-          color: hexToColor(category.bgCardColor),
+          // color: hexToColor(category.bgCardColor),
+          color: Colors.white,
           child: Stack(
             children: [
               Column(
@@ -58,21 +59,21 @@ class CategoryTile extends StatelessWidget {
                           Text(
                             category.title,
                             style: tsPoppins(
-                                weight: FontWeight.w600, color: white),
+                                weight: FontWeight.w600, color: black),
                           ),
                           Text(
                             category.desc,
                             style: tsPoppins(
                                 size: 11,
                                 weight: FontWeight.w400,
-                                color: white),
+                                color: black),
                           ),
                           // const SizedBox(height: 5),
                           Container(
                             alignment: Alignment.bottomRight,
                             child: const Icon(
                               Icons.arrow_forward_sharp,
-                              color: white,
+                              color: black,
                             ),
                           )
                         ],

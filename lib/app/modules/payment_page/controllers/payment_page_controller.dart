@@ -18,7 +18,6 @@ class PaymentPageController extends GetxController {
   var isRewardApplied = false.obs;
   var walletResult = WalletResult().obs;
   var booking = Booking().obs;
-  String? bookingId;
   @override
   void onInit() {
     super.onInit();
@@ -74,6 +73,9 @@ class PaymentPageController extends GetxController {
     if (result.status == 'success') {
       booking.value.couponCode = promoCodeController.text;
       booking.value.price = result.coupon!.totalAmount!;
+      booking.value.couponId = result.coupon!.couponId!;
+      booking.value.discountPrice = result.coupon!.discountAmount!;
+      log("Discount amount - ${result.coupon!.discountAmount.toString()}");
     } else {
       Get.snackbar('Error', result.message!,
           snackPosition: SnackPosition.BOTTOM,
@@ -150,6 +152,7 @@ class PaymentPageController extends GetxController {
     var result = await BookingProvider().postBooking(booking: booking.value);
     if (result.status == 'success') {
       if (selectedPaymentOption.value != paymentOptions[1]) {
+        booking.value.id = result.booking?.id;
         startPayment(result.booking!.id!);
         log("result.booking!.id!");
         log(result.booking!.id!);

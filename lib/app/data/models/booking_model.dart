@@ -47,7 +47,8 @@ class Booking {
   Address? address;
   late bool autoSpareSelect;
   late String couponCode;
-  late double price, subscribedPrice;
+  late String couponId;
+  late double price, subscribedPrice, discountPrice;
 
   Booking({
     this.id,
@@ -63,12 +64,16 @@ class Booking {
     this.address,
     this.autoSpareSelect = true,
     this.couponCode = '',
+    this.couponId = '',
     this.price = 0.0,
     this.subscribedPrice = 0.0,
+    this.discountPrice = 0.0,
   });
 
   Booking.fromJson(Map<String, dynamic> json) {
     id = json['_id'];
+    print(id);
+    print('model id');
     date = json['date'];
     slot = json['timeSlotId'];
     approvalStatus = json['approval_status'];
@@ -158,10 +163,10 @@ class Booking {
     }
     data['totalAmount'] = price;
     if (couponCode.isNotEmpty) {
-      data['couponId'] = couponCode;
+      data['couponId'] = couponId;
     }
 
-    data['discountAmount'] = 0;
+    data['discountAmount'] = discountPrice;
     data['date'] = date;
     data['timeSlotId'] = slot;
     if (address != null) {

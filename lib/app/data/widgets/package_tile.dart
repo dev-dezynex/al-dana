@@ -23,7 +23,8 @@ class PackageTile extends StatelessWidget {
       onTap: onTap,
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        color: hexToColor(package.bgCardColor!),
+        // color: hexToColor(package.bgCardColor!),
+        color: Colors.white,
         child: Stack(
           children: [
             Align(
@@ -37,8 +38,8 @@ class PackageTile extends StatelessWidget {
                 children: [
                   if (!isManage)
                     Radio(
-                      fillColor:
-                          MaterialStateColor.resolveWith((states) => white),
+                      fillColor: MaterialStateColor.resolveWith(
+                          (states) => Colors.grey),
                       value: isSelected,
                       groupValue: true,
                       onChanged: onChanged,
@@ -79,7 +80,7 @@ class PackageTile extends StatelessWidget {
                     package.title!,
                     style: tsPoppins(
                       weight: FontWeight.w600,
-                      color: white,
+                      color: black,
                       size: 18,
                     ),
                   ),

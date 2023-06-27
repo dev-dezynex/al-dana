@@ -15,23 +15,21 @@ openMapsSheet(context, String title) async {
       builder: (BuildContext context) {
         return SafeArea(
           child: SingleChildScrollView(
-            child: Container(
-              child: Wrap(
-                children: <Widget>[
-                  for (var map in availableMaps)
-                    ListTile(
-                      onTap: () => map.showDirections(
-                        destination: coords,
-                      ),
-                      title: Text(map.mapName),
-                      leading: SvgPicture.asset(
-                        map.icon,
-                        height: 30.0,
-                        width: 30.0,
-                      ),
+            child: Wrap(
+              children: <Widget>[
+                for (var map in availableMaps)
+                  ListTile(
+                    onTap: () => map.showDirections(
+                      destination: coords,
                     ),
-                ],
-              ),
+                    title: Text(map.mapName),
+                    leading: SvgPicture.asset(
+                      map.icon,
+                      height: 30.0,
+                      width: 30.0,
+                    ),
+                  ),
+              ],
             ),
           ),
         );
@@ -515,150 +513,158 @@ spareSelectionBottomSheet({
   required VoidCallback? onSubmit,
 }) {
   return showModalBottomSheet(
-      backgroundColor: Colors.transparent,
-      shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(22.0), topRight: Radius.circular(22.0))),
-      context: context,
-      builder: (builder) {
-        return Container(
-            decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(22.0),
-                    topRight: Radius.circular(22.0))),
-            child: Column(
+    backgroundColor: Colors.transparent,
+    shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.only(
+            topLeft: Radius.circular(22.0), topRight: Radius.circular(22.0))),
+    context: context,
+    builder: (builder) {
+      return Container(
+        decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(22.0),
+                topRight: Radius.circular(22.0))),
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.all(20.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text(
+                    "Select Spare",
+                    style: tsPoppins(
+                        size: 14, weight: FontWeight.w600, color: textDark80),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Get.back();
+                    },
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: SvgPicture.asset(
+                        "assets/icons/ic_incorrect_ans.svg",
+                        width: 10,
+                        height: 10,
+                        color: textDark80,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+            ),
+            const Divider(
+              thickness: 1,
+              color: textDark20,
+            ),
+            Row(
               children: [
-                Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(
-                        "Select Spare",
-                        style: tsPoppins(
-                            size: 14,
-                            weight: FontWeight.w600,
-                            color: textDark80),
-                      ),
-                      InkWell(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(8.0),
-                          child: SvgPicture.asset(
-                            "assets/icons/ic_incorrect_ans.svg",
-                            width: 10,
-                            height: 10,
-                            color: textDark80,
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
+                Obx(
+                  () => Radio(
+                      value: isAutoSelect.value,
+                      groupValue: true,
+                      activeColor: primary,
+                      toggleable: true,
+                      onChanged: (v) {
+                        isAutoSelect.value = true;
+                        onAutoSelectChange.call(true);
+                      }),
                 ),
-                const Divider(
-                  thickness: 1,
-                  color: textDark20,
+                Text(
+                  'Auto Select',
+                  style: tsPoppins(
+                      weight: FontWeight.w600, size: 13, color: bgColor27),
                 ),
-                Row(
-                  children: [
-                    Obx(
-                      () => Radio(
-                          value: isAutoSelect.value,
-                          groupValue: true,
-                          activeColor: primary,
-                          toggleable: true,
-                          onChanged: (v) {
-                            isAutoSelect.value = true;
-                            onAutoSelectChange.call(true);
-                          }),
-                    ),
-                    Text(
-                      'Auto Select',
-                      style: tsPoppins(
-                          weight: FontWeight.w600, size: 13, color: bgColor27),
-                    ),
-                  ],
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(left: 18.0),
-                  child: Text(
-                    'In publishing and graphic design, Lorem ipsum is a placeholder',
-                    style:
-                        tsPoppins(weight: FontWeight.w400, color: textDark40),
-                  ),
-                ),
-                if (spareCategoryList.isNotEmpty)
-                  Expanded(
-                    child: Obx(
-                      () => ListView.builder(
-                          shrinkWrap: true,
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 15, vertical: 25),
-                          itemCount: spareCategoryList.length,
-                          itemBuilder: (context, i) {
-                            var spareList = spareCategoryList[i].spareList.obs;
-                            return Padding(
-                              padding: const EdgeInsets.only(bottom: 15),
-                              child: DropdownButtonFormField<Spare>(
-                                  isExpanded: true,
-                                  decoration: InputFormDecoration
-                                      .outLinedInputTextDecoration(
-                                          borderSide: BorderSide(
+              ],
+            ),
+            Padding(
+              padding: const EdgeInsets.only(left: 18.0),
+              child: Text(
+                'In publishing and graphic design, Lorem ipsum is a placeholder',
+                style: tsPoppins(weight: FontWeight.w400, color: textDark40),
+              ),
+            ),
+            if (spareCategoryList.isNotEmpty)
+              Expanded(
+                child: Obx(
+                  () => ListView.builder(
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 25),
+                      itemCount: spareCategoryList.length,
+                      itemBuilder: (context, i) {
+                        var spareList = spareCategoryList[i].spareList.obs;
+                        if (spareList.value == null ||
+                            spareList.value!.isEmpty) {
+                          return const Center(
+                              child: Text('No spare available'));
+                        } else {
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 15),
+                            child: DropdownButtonFormField<Spare>(
+                                isExpanded: true,
+                                decoration: InputFormDecoration
+                                    .outLinedInputTextDecoration(
+                                        borderSide: BorderSide(
+                                          color: isAutoSelect.value
+                                              ? textDark40.withOpacity(.5)
+                                              : primary,
+                                        ),
+                                        labelText:
+                                            "Select ${spareCategoryList[i].name}",
+                                        labelStyle: tsPoppins(
                                             color: isAutoSelect.value
                                                 ? textDark40.withOpacity(.5)
                                                 : primary,
-                                          ),
-                                          labelText:
-                                              "Select ${spareCategoryList[i].name}",
-                                          labelStyle: tsPoppins(
-                                              color: isAutoSelect.value
-                                                  ? textDark40.withOpacity(.5)
-                                                  : primary,
-                                              weight: FontWeight.w400)),
-                                  value: spareList.value![0],
-                                  items: spareList.value!.map((value) {
-                                    return DropdownMenuItem<Spare>(
-                                      value: value,
-                                      child: Text(value.name!,
-                                          maxLines: 1,
-                                          overflow: TextOverflow.clip,
-                                          style: tsPoppins(
-                                              color: textDark80, size: 14)),
-                                    );
-                                  }).toList(),
-                                  onChanged: (value) {
-                                    isAutoSelect.value = false;
-                                    onSpareSelected.call(value);
-                                  }),
-                            );
-                          }),
-                    ),
-                  ),
-                SizedBox(
-                  height: Get.height * 0.020,
+                                            weight: FontWeight.w400)),
+                                value: spareList.value != null &&
+                                        spareList.value!.isNotEmpty
+                                    ? spareList.value![0]
+                                    : null,
+                                items: spareList.value?.map((value) {
+                                  return DropdownMenuItem<Spare>(
+                                    value: value,
+                                    child: Text(value.name!,
+                                        maxLines: 1,
+                                        overflow: TextOverflow.clip,
+                                        style: tsPoppins(
+                                            color: textDark80, size: 14)),
+                                  );
+                                }).toList(),
+                                onChanged: (value) {
+                                  isAutoSelect.value = false;
+                                  onSpareSelected.call(value);
+                                }),
+                          );
+                        }
+                      }),
                 ),
-                Container(
-                  margin:
-                      const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-                  child: ElevatedButton(
-                      onPressed: onSubmit,
-                      style: ElevatedButton.styleFrom(
-                          backgroundColor: bgColor27,
-                          minimumSize: Size(Get.width, 50),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(8))),
-                      child: Text(
-                        'OK',
-                        style: tsPoppins(
-                            weight: FontWeight.w600, size: 16, color: white),
-                      )),
+              ),
+            SizedBox(
+              height: Get.height * 0.020,
+            ),
+            Container(
+              margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: ElevatedButton(
+                onPressed: onSubmit,
+                style: ElevatedButton.styleFrom(
+                    backgroundColor: bgColor27,
+                    minimumSize: Size(Get.width, 50),
+                    shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(8))),
+                child: Text(
+                  'OK',
+                  style: tsPoppins(
+                      weight: FontWeight.w600, size: 16, color: white),
                 ),
-              ],
-            ));
-      });
+              ),
+            ),
+          ],
+        ),
+      );
+    },
+  );
 }
 
 chooseImagePickerSource(

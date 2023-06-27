@@ -75,7 +75,7 @@ class ServiceDetailsController extends GetxController {
   }
 
   void onNextClick(BuildContext context) async {
-    if (isSpareInclude.value) {
+    if (isSpareInclude.value ) {
       spareSelectionBottomSheet(
           context: context,
           spareCategoryList: spareCategoryList,

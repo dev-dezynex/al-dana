@@ -1,3 +1,4 @@
+import 'package:al_dana/app/modules/splash&intro/views/intro_view.dart';
 import 'package:get/get.dart';
 
 import '../modules/add_booking/bindings/add_booking_binding.dart';
@@ -32,8 +33,8 @@ import '../modules/service_details/bindings/service_details_binding.dart';
 import '../modules/service_details/views/service_details_view.dart';
 import '../modules/slider/bindings/slider_binding.dart';
 import '../modules/slider/views/slider_view.dart';
-import '../modules/splash/bindings/splash_binding.dart';
-import '../modules/splash/views/splash_view.dart';
+import '../modules/splash&intro/bindings/splash_binding.dart';
+import '../modules/splash&intro/views/splash_view.dart';
 import '../modules/subscription_page/bindings/subscription_page_binding.dart';
 import '../modules/subscription_page/views/subscription_page_view.dart';
 import '../modules/track_page/bindings/track_page_binding.dart';
@@ -64,6 +65,11 @@ class AppPages {
     GetPage(
       name: _Paths.SPLASH,
       page: () => SplashView(),
+      binding: SplashBinding(),
+    ),
+    GetPage(
+      name: _Paths.INTRO,
+      page: () => IntroScreen(),
       binding: SplashBinding(),
     ),
     GetPage(

@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:developer';
 
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
@@ -29,11 +30,15 @@ class ServiceProvider extends GetConnect {
       'filter[variantId]': common.selectedVehicle.variant!.id,
       'filter[categoryId]': common.selectedCategory.id,
     };
+    log('list service');
+    log(common.selectedBranch.id);
+    log(common.selectedVehicle.variant!.id);
+    log(common.selectedCategory.id);
     final response = await get(
       apiListService,
       headers: Auth().requestHeaders,
       query: params,
-    ).timeout(Duration(minutes: 1));
+    ).timeout(const Duration(minutes: 1));
 
     print('auth ${Auth().requestHeaders}');
     print('path $apiListService');
@@ -59,7 +64,7 @@ class ServiceProvider extends GetConnect {
       apiListExtraService,
       headers: Auth().requestHeaders,
       query: params,
-    ).timeout(Duration(minutes: 1));
+    ).timeout(const Duration(minutes: 1));
 
     print('auth ${Auth().requestHeaders}');
     print('path $apiListExtraService');

@@ -45,6 +45,7 @@ class Coupon {
   String? updatedAt;
   int? iV;
   double? totalAmount;
+  String? couponId;
 
   Coupon({
     this.sId,
@@ -59,11 +60,13 @@ class Coupon {
     this.updatedAt,
     this.iV,
     this.totalAmount,
+    this.couponId,
   });
 
   Coupon.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     couponCode = json['couponCode'];
+    couponId = json['couponId'];
     discountAmount = double.parse(json['discountAmount'].toString());
     couponType = json['couponType'];
     amount = json['amount'];

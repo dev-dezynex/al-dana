@@ -73,6 +73,7 @@ const Color textDark20 = Color(0xffCACACA);
 const Color textDark10 = Color(0xffE7E7E7);
 
 const Color icColor1 = Color(0xffCF4222);
+const Color greenAppTheme = Color(0xff53A000);
 
 Color hexToColor(String code) {
   Color color;

@@ -27,7 +27,8 @@ class SplashController extends GetxController {
     bool isLoggedIn =
         await storage.read(is_login) != null && storage.read(is_login);
 
-    Get.offAndToNamed(isLoggedIn ? Routes.BRANCH : Routes.AUTH);
+    // Get.offAndToNamed(isLoggedIn ? Routes.BRANCH : Routes.AUTH);
+    Get.offAndToNamed(isLoggedIn ? Routes.BRANCH : Routes.INTRO);
   }
 
   void chackInstalation() async {

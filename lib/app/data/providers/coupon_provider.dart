@@ -14,6 +14,7 @@ class CouponProvider extends GetConnect {
     };
     final response =
         await post(apiRedeemCoupon, body, headers: auth.requestHeaders);
+    print(response.body);
     if (response.statusCode == 401) {
       auth.authFailed(response.body['message']);
     }

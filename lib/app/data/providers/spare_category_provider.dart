@@ -1,10 +1,8 @@
 import 'dart:convert';
 
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../data.dart';
-import '../models/spare_category_model.dart';
 
 class SpareCategoryProvider extends GetConnect {
   Future<SpareCategoryResult> getSpareCategory(
@@ -19,7 +17,8 @@ class SpareCategoryProvider extends GetConnect {
       headers: Auth().requestHeaders,
       query: params,
     );
-
+    print('Branch id  - ${common.selectedBranch.id}');
+    print('Spare category id - $spareCategoryId');
     print('auth ${Auth().requestHeaders}');
     print('path $apiSpareCategory/$spareCategoryId');
     print('params ${jsonEncode(params)}');
