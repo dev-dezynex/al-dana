@@ -2,6 +2,8 @@ import 'package:flutter/cupertino.dart';
 
 const Color white = Color(0xffffffff);
 const Color black = Color(0xff000000);
+const Color lightTextGrey = Color(0xff939393);
+
 
 const Color bgColor01 = Color(0xff7E3401);
 const Color bgColor1 = Color(0xffF3F3F3);
