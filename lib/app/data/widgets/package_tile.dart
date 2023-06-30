@@ -24,7 +24,7 @@ class PackageTile extends StatelessWidget {
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         // color: hexToColor(package.bgCardColor!),
-        color: Colors.white,
+        color: tileColor,
         child: Stack(
           children: [
             Align(
@@ -39,7 +39,7 @@ class PackageTile extends StatelessWidget {
                   if (!isManage)
                     Radio(
                       fillColor: MaterialStateColor.resolveWith(
-                          (states) => Colors.grey),
+                          (states) => greenAppTheme),
                       value: isSelected,
                       groupValue: true,
                       onChanged: onChanged,

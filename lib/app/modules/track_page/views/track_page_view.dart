@@ -38,17 +38,16 @@ class TrackPageView extends GetView<TrackPageController> {
       child: Scaffold(
         backgroundColor: bgColor1,
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: primary,
           centerTitle: true,
           leading: const GoBack(),
           title: Obx(
             () => Text(
               'Tracking ${controller.booking.value.id}',
-              style: tsPoppins(
-                  size: 18, weight: FontWeight.w600, color: textDark80),
+              style: tsPoppins(size: 18, weight: FontWeight.w600, color: white),
             ),
           ),
-        ),
+        ),  
         body: SafeArea(
           child: CustomScrollView(
             slivers: [
@@ -69,7 +68,7 @@ class TrackPageView extends GetView<TrackPageController> {
                       decoration: const BoxDecoration(color: bgColor36),
                       child: TabBar(
                         unselectedLabelColor: bgColor36,
-                        indicator: const BoxDecoration(color: bgColor27),
+                        indicator: const BoxDecoration(color: greenAppTheme),
                         indicatorColor: bgColor36,
                         padding: EdgeInsets.zero,
                         onTap: (value) {

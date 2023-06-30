@@ -13,7 +13,7 @@ class GoBack extends StatelessWidget {
       onPressed: onPressed ?? () => Get.back(),
       icon: SvgPicture.asset(
         'assets/icons/ic_back_arrow.svg',
-        color: textDark80,
+        color: white,
       ),
     );
   }

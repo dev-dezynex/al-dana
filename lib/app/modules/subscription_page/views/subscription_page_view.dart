@@ -91,7 +91,7 @@ class SubscriptionPageView extends GetView<SubscriptionPageController> {
                                   style: tsPoppins(
                                       size: 18,
                                       weight: FontWeight.w600,
-                                      color: primary)),
+                                      color: greenAppTheme)),
                             ),
                             Text('AED',
                                 style: tsPoppins(
@@ -110,7 +110,7 @@ class SubscriptionPageView extends GetView<SubscriptionPageController> {
                           controller.onNextClick(context);
                         },
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: primary,
+                            backgroundColor: greenAppTheme,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(6))),
                         child: Text(

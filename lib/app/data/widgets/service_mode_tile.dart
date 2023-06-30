@@ -22,7 +22,7 @@ class ServiceModeTile extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(8),
-            color: hexToColor(mode.bgCardColor),
+            color: tileColor,
           ),
           child: Stack(
             children: [
@@ -34,12 +34,12 @@ class ServiceModeTile extends StatelessWidget {
                   children: [
                     Text(
                       mode.title,
-                      style: tsPoppins(weight: FontWeight.w600, color: white),
+                      style: tsPoppins(weight: FontWeight.w600, color: black),
                     ),
                     Text(
                       mode.desc,
                       style: tsPoppins(
-                          size: 11, weight: FontWeight.w400, color: white),
+                          size: 11, weight: FontWeight.w400, color: black),
                     ),
                   ],
                 ),
@@ -54,7 +54,8 @@ class ServiceModeTile extends StatelessWidget {
                   child: Radio(
                       value: isSelect,
                       groupValue: true,
-                      activeColor: white,
+                      fillColor: MaterialStateColor.resolveWith(
+                          (states) => greenAppTheme),
                       toggleable: true,
                       onChanged: onChanged),
                 ),

@@ -71,30 +71,29 @@ class BranchView extends GetView<BranchController> {
                   ),
                 )),
             Positioned(
-                bottom: 10,
-                left: 70,
-                right: 70,
-                child: Obx(
-                  () => controller.isLoading.value
-                      ? const SizedBox()
-                      : ElevatedButton(
-                          onPressed: () {
-                            controller.onConfirmPressed();
-                          },
-                          style: ElevatedButton.styleFrom(
-                              backgroundColor: bgColor27,
-                              minimumSize: Size(Get.width * 0.6, 50),
-                              shape: RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8))),
-                          child: Text(
-                            'Confirm',
-                            style: tsPoppins(
-                                color: white,
-                                size: 16,
-                                weight: FontWeight.w600),
-                          ),
+              bottom: 10,
+              left: 70,
+              right: 70,
+              child: Obx(
+                () => controller.isLoading.value
+                    ? const SizedBox()
+                    : ElevatedButton(
+                        onPressed: () {
+                          controller.onConfirmPressed();
+                        },
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: greenAppTheme,
+                            minimumSize: Size(Get.width * 0.6, 50),
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(8))),
+                        child: Text(
+                          'Confirm',
+                          style: tsPoppins(
+                              color: white, size: 16, weight: FontWeight.w600),
                         ),
-                ))
+                      ),
+              ),
+            )
           ],
         ),
       ),

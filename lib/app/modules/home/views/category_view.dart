@@ -13,7 +13,7 @@ class CategoryView extends GetView<HomeController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: bgColor1,
+      backgroundColor: white,
       body: SafeArea(
         child: CustomScrollView(
           slivers: [
@@ -67,7 +67,7 @@ class CategoryView extends GetView<HomeController> {
                                             length: controller.bannerResult
                                                     .value.bannerList?.length ??
                                                 0,
-                                            activeColor: bgColor4,
+                                            activeColor: greenAppTheme,
                                             inactiveColor: textDark20,
                                           )));
                                 },
@@ -86,7 +86,8 @@ class CategoryView extends GetView<HomeController> {
                     padding: const EdgeInsets.symmetric(
                         horizontal: 14, vertical: 10),
                     decoration: BoxDecoration(
-                        color: white, borderRadius: BorderRadius.circular(10)),
+                        color: tileColor,
+                        borderRadius: BorderRadius.circular(10)),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
@@ -155,7 +156,7 @@ class CategoryView extends GetView<HomeController> {
                                   Get.toNamed(Routes.ADD_VEHICLE);
                                 },
                                 style: ElevatedButton.styleFrom(
-                                    backgroundColor: bgColor24),
+                                    backgroundColor: greenAppTheme),
                                 child: Text(
                                   'Add Vehicle',
                                   style: tsPoppins(color: white),

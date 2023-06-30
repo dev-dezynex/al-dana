@@ -69,14 +69,14 @@ class _BranchTileState extends State<BranchTile> {
                       begin: Alignment.topCenter,
                       end: Alignment.bottomCenter,
                     )),
-                padding:const EdgeInsets.all(4),
+                padding: const EdgeInsets.all(4),
                 child: Stack(
                   children: [
                     Positioned(
                         top: 15,
                         left: 15,
                         child: Container(
-                          color: bgColor28,
+                          color: greenAppTheme,
                           padding: const EdgeInsets.all(3),
                           child: Row(
                             children: [
@@ -97,7 +97,7 @@ class _BranchTileState extends State<BranchTile> {
                             Text(
                               widget.branch.name,
                               style: tsPoppins(
-                                  color: white,
+                                  color: greenAppTheme,
                                   size: 16,
                                   weight: FontWeight.w600),
                             ),

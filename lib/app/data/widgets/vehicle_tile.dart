@@ -9,6 +9,7 @@ class VehicleTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: tileColor,
       shape: RoundedRectangleBorder(
           side: const BorderSide(color: textDark20),
           borderRadius: BorderRadius.circular(8)),

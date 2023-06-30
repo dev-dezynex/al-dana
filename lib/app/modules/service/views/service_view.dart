@@ -12,14 +12,13 @@ class ServiceView extends GetView<ServiceController> {
     return Scaffold(
       backgroundColor: bgColor1,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: primary,
         centerTitle: true,
         leading: const GoBack(),
-        title: Obx(()=>
-           Text(
+        title: Obx(
+          () => Text(
             controller.selectedCategory.value.title,
-            style:
-                tsPoppins(size: 18, weight: FontWeight.w600, color: textDark80),
+            style: tsPoppins(size: 18, weight: FontWeight.w600, color: white),
           ),
         ),
       ),
@@ -65,7 +64,7 @@ class ServiceView extends GetView<ServiceController> {
                               size: 10,
                               weight: FontWeight.w400,
                               color: textDark40)),
-                      Text('${controller.common.selectedMode.title}',
+                      Text(controller.common.selectedMode.title,
                           style: tsPoppins(color: textDark40)),
                     ],
                   ),
@@ -88,7 +87,7 @@ class ServiceView extends GetView<ServiceController> {
                                 style: tsPoppins(
                                     size: 18,
                                     weight: FontWeight.w600,
-                                    color: primary)),
+                                    color: greenAppTheme)),
                           ),
                           Text('AED',
                               style: tsPoppins(
@@ -107,7 +106,7 @@ class ServiceView extends GetView<ServiceController> {
                         controller.chooseMode(context);
                       },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: primary,
+                          backgroundColor: greenAppTheme,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(6))),
                       child: Text(

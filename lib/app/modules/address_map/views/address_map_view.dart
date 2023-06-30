@@ -231,6 +231,9 @@ class AddressMapView extends GetView<AddressMapController> {
                                     children: [
                                       Radio<String>(
                                         value: 'home',
+                                        fillColor:
+                                            MaterialStateColor.resolveWith(
+                                                (states) => greenAppTheme),
                                         groupValue: controller
                                             .selectedAddress.value.addressType
                                             .toLowerCase(),
@@ -253,6 +256,9 @@ class AddressMapView extends GetView<AddressMapController> {
                                     mainAxisSize: MainAxisSize.min,
                                     children: [
                                       Radio<String>(
+                                        fillColor:
+                                            MaterialStateColor.resolveWith(
+                                                (states) => greenAppTheme),
                                         value: 'office',
                                         groupValue: controller
                                             .selectedAddress.value.addressType
@@ -277,6 +283,9 @@ class AddressMapView extends GetView<AddressMapController> {
                                     children: [
                                       Radio<String>(
                                         value: 'other',
+                                        fillColor:
+                                            MaterialStateColor.resolveWith(
+                                                (states) => greenAppTheme),
                                         groupValue: controller
                                             .selectedAddress.value.addressType
                                             .toLowerCase(),
@@ -299,7 +308,7 @@ class AddressMapView extends GetView<AddressMapController> {
                               height: 30,
                             ),
                             if (controller.isLoading.value)
-                              Center(child: CircularProgressIndicator()),
+                              const Center(child: CircularProgressIndicator()),
                             if (!controller.isLoading.value &&
                                 controller.isUpdate.value)
                               Row(
@@ -361,7 +370,7 @@ class AddressMapView extends GetView<AddressMapController> {
                                   }
                                 },
                                 style: ElevatedButton.styleFrom(
-                                    backgroundColor: bgColor27,
+                                    backgroundColor: greenAppTheme,
                                     minimumSize: Size(Get.width, 50),
                                     shape: RoundedRectangleBorder(
                                         borderRadius:

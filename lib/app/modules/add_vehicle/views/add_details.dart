@@ -47,7 +47,7 @@ class AddVehicleDetails extends GetView<AddVehicleController> {
                 }
               },
               style: ElevatedButton.styleFrom(
-                  backgroundColor: bgColor27,
+                  backgroundColor: greenAppTheme,
                   minimumSize: Size(Get.width, 50),
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8))),
@@ -176,8 +176,8 @@ class AddVehicleDetails extends GetView<AddVehicleController> {
                     context: context,
                     builder: (BuildContext context) {
                       return AlertDialog(
-                        title: Text("Select Year"),
-                        content: Container(
+                        title: const Text("Select Year"),
+                        content: SizedBox(
                           // Need to use container to add size constraint.
                           width: 300,
                           height: 300,
@@ -282,7 +282,7 @@ class AddVehicleDetails extends GetView<AddVehicleController> {
                   suffix: Container(
                     width: 35,
                     height: 30,
-                    margin: EdgeInsets.symmetric(horizontal: 15),
+                    margin: const EdgeInsets.symmetric(horizontal: 15),
                     color: controller.selectedColor.value,
                   ),
                   labelText: "Color",

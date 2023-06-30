@@ -25,13 +25,13 @@ class HomeView extends GetView<HomeController> {
           statusBarIconBrightness: Brightness.dark,
           statusBarBrightness: Brightness.dark,
         ),
-        backgroundColor: bgColor1,
+        backgroundColor: primary,
         automaticallyImplyLeading: false,
         title: Row(
           children: [
             const Icon(
               Icons.location_on_outlined,
-              color: primary,
+              color: greenAppTheme,
             ),
             const SizedBox(
               width: 5,
@@ -42,11 +42,11 @@ class HomeView extends GetView<HomeController> {
                 Text(
                   'Your Location',
                   style: tsPoppins(
-                      size: 9, weight: FontWeight.w400, color: textDark40),
+                      size: 12, weight: FontWeight.w400, color: white),
                 ),
                 Text(
                   'Dubai, Al Ain',
-                  style: tsPoppins(size: 10, color: textDark80),
+                  style: tsPoppins(size: 10, color: white),
                 ),
               ],
             ),
@@ -57,7 +57,7 @@ class HomeView extends GetView<HomeController> {
               onPressed: () {},
               icon: const Icon(
                 Icons.notifications_none_outlined,
-                color: textDark80,
+                color: white,
               ))
         ],
       ),
@@ -242,41 +242,45 @@ class HomeView extends GetView<HomeController> {
       // ),
 
       bottomNavigationBar: BottomAppBar(
-          shape: const CircularNotchedRectangle(),
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                IconButton(
+        elevation: 5,
+        notchMargin: 6,
+        color: white,
+        shape: const CircularNotchedRectangle(),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              IconButton(
+                onPressed: () {
+                  _scaffoldKey.currentState!.openDrawer();
+                },
+                icon: SvgPicture.asset(
+                  'assets/icons/ic_bottom_bar_6.svg',
+                  height: 18,
+                  width: 18,
+                ),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 22.0),
+                child: Text(
+                  'Home',
+                  style: tsPoppins(color: primary),
+                ),
+              ),
+              IconButton(
                   onPressed: () {
-                    _scaffoldKey.currentState!.openDrawer();
+                    controller.bottomBarIndex.value = 2;
                   },
                   icon: SvgPicture.asset(
-                    'assets/icons/ic_bottom_bar_6.svg',
-                    height: 18,
-                    width: 18,
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.only(top: 20.0),
-                  child: Text(
-                    'Home',
-                    style: tsPoppins(color: primary),
-                  ),
-                ),
-                IconButton(
-                    onPressed: () {
-                      controller.bottomBarIndex.value = 2;
-                    },
-                    icon: SvgPicture.asset(
-                      'assets/icons/ic_bottom_bar_5.svg',
-                      height: 22,
-                      width: 22,
-                    ))
-              ],
-            ),
-          )),
+                    'assets/icons/ic_bottom_bar_5.svg',
+                    height: 22,
+                    width: 22,
+                  ))
+            ],
+          ),
+        ),
+      ),
     );
   }
 

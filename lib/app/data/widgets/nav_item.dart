@@ -5,12 +5,16 @@ import '../data.dart';
 
 class NavItem extends StatelessWidget {
   const NavItem(
-      {Key? key, required this.title, required this.icon, this.trailing,this.onTap})
+      {Key? key,
+      required this.title,
+      required this.icon,
+      this.trailing,
+      this.onTap})
       : super(key: key);
   final String title;
   final String icon;
   final Widget? trailing;
-  final    GestureTapCallback? onTap;
+  final GestureTapCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -20,13 +24,12 @@ class NavItem extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           ListTile(
-            
             leading: IconButton(
               onPressed: null,
               icon: SvgPicture.asset(
                 icon,
                 fit: BoxFit.fill,
-                color: primary,
+                color: greenAppTheme,
               ),
             ),
             title: Text(
@@ -44,4 +47,3 @@ class NavItem extends StatelessWidget {
     );
   }
 }
-

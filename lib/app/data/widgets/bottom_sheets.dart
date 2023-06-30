@@ -127,7 +127,9 @@ modelSelectionBottomSheet(
                                                     .contains(
                                                         carModelList.value[i]),
                                             groupValue: true,
-                                            activeColor: primary,
+                                            fillColor:
+                                                MaterialStateColor.resolveWith(
+                                                    (states) => greenAppTheme),
                                             toggleable: true,
                                             onChanged: (v) {
                                               onCarModelSelected
@@ -252,7 +254,9 @@ variantSelectionBottomSheet(
                                                     .contains(
                                                         variantList.value[i]),
                                             groupValue: true,
-                                            activeColor: primary,
+                                            fillColor:
+                                                MaterialStateColor.resolveWith(
+                                                    (states) => greenAppTheme),
                                             toggleable: true,
                                             onChanged: (v) {
                                               onVariantSelected
@@ -307,7 +311,7 @@ modeSelectionBottomSheet(
       builder: (builder) {
         return Container(
             decoration: const BoxDecoration(
-                color: Colors.white,
+                color: white,
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(22.0),
                     topRight: Radius.circular(22.0))),
@@ -375,7 +379,7 @@ modeSelectionBottomSheet(
                   child: ElevatedButton(
                       onPressed: onSubmit,
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: bgColor27,
+                          backgroundColor: greenAppTheme,
                           minimumSize: Size(Get.width, 50),
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8))),
@@ -478,7 +482,9 @@ vehicleSelectionBottomSheet({
                                               value: selectedVehicle.value ==
                                                   vehicleList[i],
                                               groupValue: true,
-                                              activeColor: primary,
+                                              fillColor: MaterialStateColor
+                                                  .resolveWith((states) =>
+                                                      greenAppTheme),
                                               toggleable: true,
                                               onChanged: (v) {
                                                 onVehicleSelected
@@ -564,7 +570,8 @@ spareSelectionBottomSheet({
                   () => Radio(
                       value: isAutoSelect.value,
                       groupValue: true,
-                      activeColor: primary,
+                      fillColor: MaterialStateColor.resolveWith(
+                          (states) => greenAppTheme),
                       toggleable: true,
                       onChanged: (v) {
                         isAutoSelect.value = true;
@@ -574,7 +581,7 @@ spareSelectionBottomSheet({
                 Text(
                   'Auto Select',
                   style: tsPoppins(
-                      weight: FontWeight.w600, size: 13, color: bgColor27),
+                      weight: FontWeight.w600, size: 13, color: greenAppTheme),
                 ),
               ],
             ),
@@ -649,7 +656,7 @@ spareSelectionBottomSheet({
               child: ElevatedButton(
                 onPressed: onSubmit,
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: bgColor27,
+                    backgroundColor: greenAppTheme,
                     minimumSize: Size(Get.width, 50),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(8))),

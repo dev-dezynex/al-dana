@@ -31,7 +31,7 @@ class PaymentPageView extends GetView<PaymentPageController> {
                     ? Container()
                     : Container(
                         decoration: const BoxDecoration(
-                            color: white,
+                            color: tileColor,
                             borderRadius: BorderRadius.only(
                                 topLeft: Radius.circular(10),
                                 topRight: Radius.circular(10))),
@@ -111,7 +111,7 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                                 style: tsPoppins(
                                                     size: 18,
                                                     weight: FontWeight.w600,
-                                                    color: primary)),
+                                                    color: greenAppTheme)),
                                           ),
                                           Text('AED',
                                               style: tsPoppins(
@@ -141,7 +141,7 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                         }
                                       },
                                       style: ElevatedButton.styleFrom(
-                                          backgroundColor: primary,
+                                          backgroundColor: greenAppTheme,
                                           shape: RoundedRectangleBorder(
                                               borderRadius:
                                                   BorderRadius.circular(6))),
@@ -206,7 +206,7 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                             borderSide: const BorderSide(
                                                 color: textDark20, width: 1),
                                             filled: true,
-                                            fillColor: white,
+                                            fillColor: tileColor,
                                             contentPadding:
                                                 const EdgeInsets.only(left: 20),
                                             suffixIcon: Container(
@@ -218,7 +218,7 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                                   },
                                                   style: TextButton.styleFrom(
                                                       backgroundColor:
-                                                          bgColor27,
+                                                          greenAppTheme,
                                                       maximumSize:
                                                           const Size(77, 36),
                                                       shape:
@@ -257,7 +257,7 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                             0)
                                       Container(
                                         decoration: BoxDecoration(
-                                            color: white,
+                                            color: tileColor,
                                             borderRadius:
                                                 BorderRadius.circular(8)),
                                         padding: const EdgeInsets.symmetric(
@@ -307,7 +307,7 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                                     },
                                                     style: ElevatedButton.styleFrom(
                                                         backgroundColor:
-                                                            primary,
+                                                            greenAppTheme,
                                                         shape: RoundedRectangleBorder(
                                                             borderRadius:
                                                                 BorderRadius
@@ -324,6 +324,9 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                               ],
                                             ),
                                             Slider(
+                                              activeColor: greenAppTheme,
+                                              inactiveColor: greenAppTheme
+                                                  .withOpacity(0.3),
                                               value: double.parse(controller
                                                   .selectedRedeemPoints.value
                                                   .toString()),
@@ -366,18 +369,17 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                               },
                                               child: Container(
                                                 decoration: BoxDecoration(
-                                                    color: white,
+                                                    color: tileColor,
                                                     borderRadius:
                                                         BorderRadius.circular(
                                                             8)),
                                                 child: Row(
                                                   children: [
                                                     Radio(
-                                                      fillColor:
-                                                          MaterialStateColor
-                                                              .resolveWith(
-                                                                  (states) =>
-                                                                      textDark80),
+                                                      fillColor: MaterialStateColor
+                                                          .resolveWith(
+                                                              (states) =>
+                                                                  greenAppTheme),
                                                       value: controller
                                                               .selectedPaymentOption
                                                               .value ==

@@ -23,7 +23,7 @@ class ServiceTile extends StatelessWidget {
       child: Card(
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
         // color: hexToColor('#09DDBD'),
-        color: Colors.white,
+        color: tileColor,
         child: Stack(
           children: [
             Container(
@@ -75,8 +75,8 @@ class ServiceTile extends StatelessWidget {
                   top: 0,
                   right: 0,
                   child: Radio(
-                    fillColor:
-                        MaterialStateColor.resolveWith((states) => Colors.grey),
+                    fillColor: MaterialStateColor.resolveWith(
+                        (states) => greenAppTheme),
                     value: isSelected,
                     groupValue: true,
                     onChanged: onChanged,
@@ -183,7 +183,7 @@ class ServiceTile2 extends StatelessWidget {
                 right: 0,
                 child: Radio(
                   fillColor:
-                      MaterialStateColor.resolveWith((states) => textDark80),
+                      MaterialStateColor.resolveWith((states) => greenAppTheme),
                   value: isSelected,
                   groupValue: true,
                   onChanged: onChanged,

@@ -4,7 +4,6 @@ const Color white = Color(0xffffffff);
 const Color black = Color(0xff000000);
 const Color lightTextGrey = Color(0xff939393);
 
-
 const Color bgColor01 = Color(0xff7E3401);
 const Color bgColor1 = Color(0xffF3F3F3);
 const Color bgColor2 = Color(0xffE7E7E7);
@@ -47,8 +46,7 @@ const Color bgColor38 = Color(0xff00B989);
 
 const Color borderColor = Color(0xff909090);
 
-const Color primary = Color(0xff091255);
-const Color primary2 = Color(0xff0E206D);
+const Color primary = Color(0xff133B87);
 
 const Color accent = Color(0xff00C165);
 const Color accent60 = Color(0xff03CB6B);
@@ -76,6 +74,7 @@ const Color textDark10 = Color(0xffE7E7E7);
 
 const Color icColor1 = Color(0xffCF4222);
 const Color greenAppTheme = Color(0xff53A000);
+const Color tileColor = Color(0xffEFF7FF);
 
 Color hexToColor(String code) {
   Color color;

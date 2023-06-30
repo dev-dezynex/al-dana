@@ -12,13 +12,16 @@ class ServiceDetailsView extends GetView<ServiceDetailsController> {
     return Scaffold(
       backgroundColor: bgColor1,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: primary,
         centerTitle: true,
         leading: const GoBack(),
         title: Text(
           controller.selectedCategory.value.title,
-          style:
-              tsPoppins(size: 18, weight: FontWeight.w600, color: textDark80),
+          style: tsPoppins(
+            size: 18,
+            weight: FontWeight.w600,
+            color: white,
+          ),
         ),
       ),
       bottomSheet: Container(
@@ -63,7 +66,7 @@ class ServiceDetailsView extends GetView<ServiceDetailsController> {
                               size: 10,
                               weight: FontWeight.w400,
                               color: textDark40)),
-                      Text('${controller.booking.value.mode!.title}',
+                      Text(controller.booking.value.mode!.title,
                           style: tsPoppins(color: textDark40)),
                     ],
                   ),
@@ -87,7 +90,7 @@ class ServiceDetailsView extends GetView<ServiceDetailsController> {
                                 style: tsPoppins(
                                     size: 18,
                                     weight: FontWeight.w600,
-                                    color: primary)),
+                                    color: greenAppTheme)),
                           ),
                           Text('AED',
                               style: tsPoppins(
@@ -106,7 +109,7 @@ class ServiceDetailsView extends GetView<ServiceDetailsController> {
                         controller.onNextClick(context);
                       },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: primary,
+                          backgroundColor: greenAppTheme,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(6))),
                       child: Text(

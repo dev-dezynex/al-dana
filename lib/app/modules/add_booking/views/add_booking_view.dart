@@ -13,13 +13,16 @@ class AddBookingView extends GetView<AddBookingController> {
     return Scaffold(
       backgroundColor: bgColor1,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: primary,
         centerTitle: true,
         leading: const GoBack(),
         title: Text(
-          'Shedule Order',
-          style:
-              tsPoppins(size: 18, weight: FontWeight.w600, color: textDark80),
+          'Schedule Order',
+          style: tsPoppins(
+            size: 18,
+            weight: FontWeight.w600,
+            color: white,
+          ),
         ),
         bottom: PreferredSize(
           preferredSize: Size(Get.width, 40),
@@ -106,7 +109,7 @@ class AddBookingView extends GetView<AddBookingController> {
                                 style: tsPoppins(
                                     size: 18,
                                     weight: FontWeight.w600,
-                                    color: primary)),
+                                    color: greenAppTheme)),
                           ),
                           Text('AED',
                               style: tsPoppins(
@@ -125,7 +128,7 @@ class AddBookingView extends GetView<AddBookingController> {
                         controller.onNextClick(Routes.PAYMENT_PAGE);
                       },
                       style: ElevatedButton.styleFrom(
-                          backgroundColor: primary,
+                          backgroundColor: greenAppTheme,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(6))),
                       child: Text(
@@ -275,7 +278,23 @@ class AddBookingView extends GetView<AddBookingController> {
                                               horizontal: 20),
                                           alignment: Alignment.center,
                                           decoration: BoxDecoration(
-                                            border: Border.all(
+                                            borderRadius:
+                                                BorderRadius.circular(8),
+                                            color: controller
+                                                        .selectedTimeSlot.sId ==
+                                                    controller
+                                                        .timeSlotResult
+                                                        .value
+                                                        .data
+                                                        ?.timeSlotId?[i]
+                                                        .sId
+                                                ? greenAppTheme
+                                                : white,
+                                          ),
+                                          child: Text(
+                                            '${controller.timeSlotResult.value.data?.timeSlotId?[i].startTime} - ${controller.timeSlotResult.value.data?.timeSlotId?[i].endTime}',
+                                            style: tsInter(
+                                                size: 13,
                                                 color: controller
                                                             .selectedTimeSlot
                                                             .sId ==
@@ -285,16 +304,8 @@ class AddBookingView extends GetView<AddBookingController> {
                                                             .data
                                                             ?.timeSlotId?[i]
                                                             .sId
-                                                    ? bgColor27
-                                                    : Colors.transparent),
-                                            borderRadius:
-                                                BorderRadius.circular(8),
-                                            color: white,
-                                          ),
-                                          child: Text(
-                                            '${controller.timeSlotResult.value.data?.timeSlotId?[i].startTime} - ${controller.timeSlotResult.value.data?.timeSlotId?[i].endTime}',
-                                            style: tsInter(
-                                                size: 13, color: textDark80),
+                                                    ? white
+                                                    : textDark80),
                                           ),
                                         ),
                                       ),
