@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:al_dana/app/data/data.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
@@ -15,6 +17,7 @@ class ServiceController extends GetxController {
   var isServiceSelected = false.obs;
   var selectedVehicle = Vehicle().obs;
   var price = 0.0.obs;
+  var packageId = ''.obs;
   var isSelected = false.obs;
   var selectedMode = ServiceMode().obs;
   @override
@@ -33,7 +36,10 @@ class ServiceController extends GetxController {
   }
 
   getPackages() async {
-    packageResult.value = await PackageProvider().getPackageList();
+    log('branch id');
+    log(common.selectedBranch.id);
+    packageResult.value = await PackageProvider()
+        .getPackageList(branchId: common.selectedBranch.id);
     packageResult.refresh();
   }
 

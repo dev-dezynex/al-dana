@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -17,32 +19,31 @@ class BookingTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(8),
-        ),
+      child: Container(
+        margin: const EdgeInsets.all(8),
+        padding: const EdgeInsets.all(8),
         color: white,
-        child: Stack(
+        child: Row(
           children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
+            Expanded(
+              flex: 2,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const SizedBox(height: 5),
-                  Text(
-                    '${booking.id}',
-                    style: tsPoppins(
-                      weight: FontWeight.w600,
-                      color: white,
-                      size: 18,
-                    ),
-                  ),
+                  // Text(
+                  //   '${booking.id}',
+                  //   style: tsPoppins(
+                  //     weight: FontWeight.w600,
+                  //     color: black,
+                  //     size: 18,
+                  //   ),
+                  // ),
+
                   Text(
                     booking.packageList != null &&
                             booking.packageList!.isNotEmpty
                         ? booking.packageList![0].title ?? ''
-                        : '',
+                        : 'Services',
                     style: tsPoppins(
                       weight: FontWeight.w600,
                       color: textDark80,
@@ -55,40 +56,58 @@ class BookingTile extends StatelessWidget {
                       decoration: BoxDecoration(
                           color: accent60,
                           borderRadius: BorderRadius.circular(100))),
-                  const SizedBox(height: 8),
-                  Text(
-                    'Service Includes',
-                    style: tsPoppins(
-                      color: bgColor27,
-                      size: 14,
+                  const SizedBox(height: 5),
+                  Visibility(
+                    visible: booking.packageList != null &&
+                        booking.packageList!.isNotEmpty,
+                    child: Text(
+                      'Service Includes',
+                      style: tsPoppins(
+                        color: bgColor27,
+                        size: 14,
+                      ),
                     ),
                   ),
                   const SizedBox(height: 5),
                   ListView.builder(
                       shrinkWrap: true,
                       physics: const NeverScrollableScrollPhysics(),
-                      itemCount: booking.packageList![0].services!.length,
+                      itemCount: booking.packageList?.length,
                       itemBuilder: (con, i) {
-                        return Row(
-                          children: [
-                            const Icon(
-                              Icons.arrow_right_rounded,
-                              color: textDark80,
-                            ),
-                            Text(
-                              booking.packageList?[0].services?[i].title ?? '',
-                              style: tsPoppins(
-                                  color: textDark80, weight: FontWeight.w400),
-                            )
-                          ],
-                        );
+                        log(booking.packageList.toString());
+                        return ListView.builder(
+                            shrinkWrap: true,
+                            physics: const NeverScrollableScrollPhysics(),
+                            itemCount: booking.packageList?[i].services?.length,
+                            itemBuilder: (context, j) {
+                              return Row(
+                                children: [
+                                  const Icon(
+                                    Icons.arrow_right_rounded,
+                                    color: textDark80,
+                                  ),
+                                  Text(
+                                    booking.packageList?[i].services?[j]
+                                            .title ??
+                                        '',
+                                    style: tsPoppins(
+                                        color: textDark80,
+                                        weight: FontWeight.w400),
+                                  ),
+                                ],
+                              );
+                            });
                       }),
                   const SizedBox(height: 5),
-                  Text(
-                    'Add-Once',
-                    style: tsPoppins(
-                      color: bgColor27,
-                      size: 14,
+                  Visibility(
+                    visible: booking.packageList != null &&
+                        booking.packageList!.isNotEmpty,
+                    child: Text(
+                      'Services',
+                      style: tsPoppins(
+                        color: bgColor27,
+                        size: 14,
+                      ),
                     ),
                   ),
                   ListView.builder(
@@ -96,6 +115,8 @@ class BookingTile extends StatelessWidget {
                       physics: const NeverScrollableScrollPhysics(),
                       itemCount: booking.services!.length,
                       itemBuilder: (con, i) {
+                        log('image url');
+                        log(booking.vehicle?.image.toString() ?? '');
                         return Row(
                           children: [
                             const Icon(
@@ -114,52 +135,27 @@ class BookingTile extends StatelessWidget {
                 ],
               ),
             ),
-            // Positioned(
-            //     top: 20,
-            //     right: 10,
-            //     child: Column(
-            //       crossAxisAlignment: CrossAxisAlignment.end,
-            //       children: [
-            //         Text('${booking.date ?? ''},\n ${booking.slot ?? ''}',
-            //             textAlign: TextAlign.right,
-            //             style: tsPoppins(
-            //                 color: textDark80, weight: FontWeight.w400)),
-            //         Text('AED ${booking.price.toStringAsFixed(2)}',
-            //             textAlign: TextAlign.center,
-            //             style: tsRubik(color: bgColor27, size: 14)),
-            //       ],
-            //     )),
-            SizedBox(
-              width: double.infinity,
+            Expanded(
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  SizedBox(
-                    height: 100,
-                    width: 150,
-                    //padding: const EdgeInsets.only(top: 1.0, left: 5, right: 5),
-                    child: Image.network(
-                      booking.packageList?[0].image ?? '',
-                      fit: BoxFit.contain,
-                      errorBuilder: (context, error, stackTrace) {
-                        return Image.asset(
-                          'assets/images/img_placeholder.png',
-                          fit: BoxFit.contain,
-                        );
-                      },
-                    ),
+                  const SizedBox(height: 20),
+                  Text(
+                    booking.date ?? '',
+                    textAlign: TextAlign.right,
+                    style:
+                        tsPoppins(color: textDark80, weight: FontWeight.w400),
                   ),
-                  Text('${booking.date ?? ''},\n ${booking.slot ?? ''}',
-                      textAlign: TextAlign.right,
-                      style: tsPoppins(
-                          color: textDark80, weight: FontWeight.w400)),
+                  const SizedBox(height: 10),
                   Text('AED ${booking.price.toStringAsFixed(2)}',
                       textAlign: TextAlign.center,
                       style: tsRubik(color: bgColor27, size: 14)),
+                  const SizedBox(height: 10),
                   ElevatedButton(
                       onPressed: onTap,
-                      style:
-                          ElevatedButton.styleFrom(backgroundColor: bgColor27),
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: greenAppTheme),
                       child: Text(
                         'Track >>',
                         style: tsPoppins(weight: FontWeight.w600, color: white),

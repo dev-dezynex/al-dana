@@ -14,9 +14,10 @@ class PackageProvider extends GetConnect {
     return result;
   }
 
-  Future<PackageResult> getPackageList() async {
-    final response =
-        await get(apiListActivePackage, headers: Auth().requestHeaders);
+  Future<PackageResult> getPackageList({required String branchId}) async {
+    final response = await get(
+        '$apiListActivePackage?filter[branchId]=$branchId',
+        headers: Auth().requestHeaders);
     if (response.statusCode == 401) {
       Auth().authFailed(response.body['message']);
     }

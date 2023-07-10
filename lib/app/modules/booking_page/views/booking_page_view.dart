@@ -13,13 +13,12 @@ class BookingPageView extends GetView<BookingPageController> {
     return Scaffold(
       backgroundColor: bgColor1,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: primary,
         centerTitle: true,
         leading: const GoBack(),
         title: Text(
           'My Booking',
-          style:
-              tsPoppins(size: 18, weight: FontWeight.w600, color: textDark80),
+          style: tsPoppins(size: 18, weight: FontWeight.w600, color: white),
         ),
       ),
       body: SafeArea(

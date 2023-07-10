@@ -22,7 +22,8 @@ class BookingProvider extends GetConnect {
     if (response.statusCode == 401) {
       auth.authFailed(response.body['message']);
     }
-
+    log('Vehicle response hklhlkhk');
+    // log(response.body["data"][0]["vehicleId"]["image"].toString());
     return BookingResult.listFromJson(response.body);
   }
 
@@ -33,12 +34,14 @@ class BookingProvider extends GetConnect {
     if (response.statusCode == 401) {
       auth.authFailed(response.body['message']);
     }
-    log("response.body id");
-    
-    log('post booking');
-    print('path $apiAddBooking');
-    print('headers ${jsonEncode(auth.requestHeaders)}');
-    log('body ${jsonEncode(booking.toPost())}');
+    // log("response.body id");
+
+    // log('post booking');
+    // print('path $apiAddBooking');
+    // print('headers ${jsonEncode(auth.requestHeaders)}');
+    // log('body ${jsonEncode(booking.toPost())}');
+    log(apiAddBooking);
+    log('booking body ${booking.toPost()}');
     log('response ${jsonEncode(response.body)}');
 
     return BookingResult.fromJson(response.body);

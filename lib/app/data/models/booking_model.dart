@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import '../data.dart';
 
 class BookingResult {
@@ -83,13 +85,13 @@ class Booking {
     if (json['package'] != null) {
       packageList = <PackageModel>[];
       json['package'].forEach((v) {
-        packageList?.add(PackageModel.fromJson(v));
+        packageList?.add(PackageModel.fromJson(v["packageId"]));
       });
     }
     if (json['service'] != null) {
       services = <Service>[];
       json['service'].forEach((v) {
-        services?.add(Service.fromJson(v));
+        services?.add(Service.fromJson(v["serviceId"]));
       });
     }
     if (json['spares'] != null) {
@@ -99,7 +101,8 @@ class Booking {
       });
     }
     vehicle =
-        json['vehicle'] != null ? Vehicle?.fromJson(json['vehicle']) : null;
+        json['vehicleId'] != null ? Vehicle?.fromJson(json['vehicleId']) : null;
+    log("Vehicle respnse ${vehicle.toString()}");
     branch = json['branch'] != null ? Branch?.fromJson(json['branch']) : null;
     mode = json['mode'] != null ? ServiceMode?.fromJson(json['mode']) : null;
     address =
@@ -154,9 +157,13 @@ class Booking {
     }
     if (packageList != null && packageList!.isNotEmpty) {
       data['package'] = packageList?.map((v) => v.toPost()).toList();
+      log('Package body');
+      log(data['package'].toString());
     }
     if (spares != null && spares!.isNotEmpty) {
-      data['spareId'] = spares?.map((v) => v.toPost()).toList();
+      data['spare'] = spares?.map((v) => v.toPost()).toList();
+      log('Spare id');
+      log(data['spare'].toString());
     }
     if (mode != null) {
       data['serviceModeId'] = mode?.id;

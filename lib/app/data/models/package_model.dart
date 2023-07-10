@@ -47,13 +47,14 @@ class PackageModel {
   });
 
   PackageModel.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
+    id = json['_id'];
     title = json['title'];
     image = json['image'];
     price =
         double.parse(json['price'] != null ? json['price'].toString() : '0');
     bgCardColor = json['bg_card_color'];
     services = <Service>[];
+    
     if (json['services'] != null) {
       json['services'].forEach((v) {
         services?.add(Service.fromJson(v));
@@ -69,7 +70,7 @@ class PackageModel {
 
   Map<String, dynamic> toJson() {
     final data = <String, dynamic>{};
-    data['id'] = id;
+    data['_id'] = id;
     data['title'] = title;
     data['image'] = image;
     data['price'] = price;

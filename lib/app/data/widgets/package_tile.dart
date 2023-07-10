@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -19,6 +21,7 @@ class PackageTile extends StatelessWidget {
   final void Function(bool?)? onChanged;
   @override
   Widget build(BuildContext context) {
+    log('package tile called');
     return InkWell(
       onTap: onTap,
       child: Card(
@@ -108,12 +111,12 @@ class PackageTile extends StatelessWidget {
                           children: [
                             const Icon(
                               Icons.arrow_right_rounded,
-                              color: white,
+                              color: black,
                             ),
                             Text(
                               package.services?[i].title ?? '',
                               style: tsPoppins(
-                                  color: white, weight: FontWeight.w400),
+                                  color: black, weight: FontWeight.w400),
                             )
                           ],
                         );

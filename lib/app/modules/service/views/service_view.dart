@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -190,6 +192,8 @@ class ServiceView extends GetView<ServiceController> {
                                         .value
                                         .serviceList[i]
                                         .price;
+                                    controller.packageId.value = controller
+                                        .serviceResult.value.serviceList[i].id;
                                     controller.isSelected.value = true;
                                     controller.serviceResult.refresh();
                                     controller.packageResult.refresh();
@@ -254,6 +258,11 @@ class ServiceView extends GetView<ServiceController> {
                                       .value
                                       .packageList![i]
                                       .price!;
+                                  log('package id');
+                                  log(controller
+                                      .packageResult.value.packageList![i].id
+                                      .toString());
+
                                   controller.isSelected.value = true;
                                   controller.serviceResult.refresh();
                                   controller.packageResult.refresh();
