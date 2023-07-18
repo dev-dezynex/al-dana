@@ -63,3 +63,5 @@ const String apiGetBooking = "${apiBase}customer/listBooking";
 
 //TimeSlot
 const String apiGetTimeSlot = "${apiBase}customer/listTimeSlot";
+
+const String apiInvoiceList = "${apiBase}customer/getInvoice";

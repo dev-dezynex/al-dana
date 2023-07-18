@@ -1,10 +1,9 @@
 import 'dart:convert';
+import 'dart:developer';
 
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../data.dart';
-import '../models/vehicle_model.dart';
 
 class VehicleProvider extends GetConnect {
   // Future<VehicleResult> getDummyData() async {
@@ -17,7 +16,7 @@ class VehicleProvider extends GetConnect {
   Future<VehicleResult> addVehicle({required Vehicle vehicle}) async {
     final response = await post(apiAddVehicle, vehicle.toPost(),
         headers: Auth().requestHeaders);
-
+    log(vehicle.toPost().toString());
     if (response.statusCode == 401) {
       Auth().authFailed(response.body['message']);
     }
@@ -26,7 +25,7 @@ class VehicleProvider extends GetConnect {
   }
 
   Future<VehicleResult> getVehicles() async {
-    Common common =Common();
+    Common common = Common();
     final response = await get('$apiListActiveVehicle/${common.currentUser.id}',
         headers: Auth().requestHeaders);
 

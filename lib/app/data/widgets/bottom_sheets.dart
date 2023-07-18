@@ -607,7 +607,6 @@ spareSelectionBottomSheet({
                           return const Center(
                               child: Text('No spare available'));
                         } else {
-                          onSpareSelected.call(spareList.value![0]);
                           return Padding(
                             padding: const EdgeInsets.only(bottom: 15),
                             child: DropdownButtonFormField<Spare>(
@@ -642,7 +641,7 @@ spareSelectionBottomSheet({
                                 }).toList(),
                                 onChanged: (value) {
                                   isAutoSelect.value = false;
-                                  
+
                                   onSpareSelected.call(value);
                                 }),
                           );

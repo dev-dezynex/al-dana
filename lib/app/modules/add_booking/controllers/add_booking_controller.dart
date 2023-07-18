@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import '../../../data/data.dart';
 
@@ -19,6 +20,8 @@ class AddBookingController extends GetxController {
   void onInit() {
     super.onInit();
     booking.value = Get.arguments;
+
+    // log("booking controller ${jsonEncode(Get.arguments)}");
     getDetails();
   }
 
@@ -32,6 +35,7 @@ class AddBookingController extends GetxController {
   }
 
   void getDetails() {
+    calculateSparePrice();
     getTimeSlots(dateController.text);
   }
 
@@ -55,12 +59,19 @@ class AddBookingController extends GetxController {
   //   availableTimeSlots.value = slot.slotes;
   //   availableTimeSlots.refresh();
   // }
+  calculateSparePrice() {
+    double spareTotal = 0.0;
+    for (Spare spare in booking.value.spares!) {
+      spareTotal += spare.price!;
+    }
+    booking.value.price = booking.value.price + spareTotal;
+  }
 
   onNextClick(String route) {
     if (selectedTimeSlot.sId!.isNotEmpty) {
       booking.value.date = outputDateFormat.format(selectedDate.value);
       booking.value.slot = selectedTimeSlot.sId;
-      
+
       log('Next click');
       log(selectedTimeSlot.sId.toString());
       Get.toNamed(route, arguments: booking.value);

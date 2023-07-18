@@ -8,6 +8,8 @@ environment:
 dependencies: 
   cupertino_icons: ^1.0.2
   get: 4.6.5
+  http:
+  provider: 
   get_storage: ^2.0.3
   google_fonts: ^3.0.1
   flutter_svg: ^1.1.6

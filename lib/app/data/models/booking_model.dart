@@ -176,7 +176,9 @@ class Booking {
     data['discountAmount'] = discountPrice;
     data['date'] = date;
     data['timeSlotId'] = slot;
-    if (address != null) {
+    log('address id');
+
+    if (address?.sId != "") {
       data['AddressId'] = address?.sId;
     }
     return data;

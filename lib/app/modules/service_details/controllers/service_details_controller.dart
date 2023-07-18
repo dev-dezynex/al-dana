@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -47,9 +49,20 @@ class ServiceDetailsController extends GetxController {
   checkSpareExtraService(Service service) async {
     isLoading(true);
     if (service.spareCategoryId.isNotEmpty) {
+      log('if con');
+
+      spareCategoryList.clear();
       service.spareCategory = await getSpareCategory(service.spareCategoryId);
       spareCategoryList.add(service.spareCategory);
       isSpareInclude(true);
+      // for (int i = 0; i <= spareCategoryList.length - 1; i++) {
+      //   for (int j = 0; j <= spareCategoryList[i].spareList!.length - 1; j++) {
+      //     booking.value.price = booking.value.price +
+      //         spareCategoryList[i].spareList![j].price!.toDouble();
+      //   }
+      // }
+    } else {
+      log('else cond');
     }
     isLoading(false);
   }
@@ -75,7 +88,7 @@ class ServiceDetailsController extends GetxController {
   }
 
   void onNextClick(BuildContext context) async {
-    if (isSpareInclude.value ) {
+    if (isSpareInclude.value) {
       spareSelectionBottomSheet(
           context: context,
           spareCategoryList: spareCategoryList,

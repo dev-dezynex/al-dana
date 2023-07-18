@@ -64,10 +64,11 @@ class HomeController extends GetxController {
     // getBookings();
     // }
     // getModeList();
+    await getBanners();
     await getCategories();
     await getVehicles();
     await getUserProfile();
-    await getBanners();
+    
     isLoading(false);
   }
 

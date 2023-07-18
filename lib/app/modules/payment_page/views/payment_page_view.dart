@@ -503,6 +503,43 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                             ),
                                           ]);
                                         })),
+                                    Obx(() => ListView.builder(
+                                        shrinkWrap: true,
+                                        physics:
+                                            const NeverScrollableScrollPhysics(),
+                                        padding:
+                                            const EdgeInsets.only(bottom: 15),
+                                        itemCount: controller
+                                            .booking.value.spares!.length,
+                                        itemBuilder: (con, i) {
+                                          return Column(children: [
+                                            Row(
+                                              mainAxisAlignment:
+                                                  MainAxisAlignment
+                                                      .spaceBetween,
+                                              children: [
+                                                Text(
+                                                    controller.booking.value
+                                                            .spares?[i].name ??
+                                                        '',
+                                                    style: tsPoppins(
+                                                        weight: FontWeight.w400,
+                                                        size: 14,
+                                                        color: textDark80)),
+                                                Text(
+                                                    'AED: ${controller.booking.value.spares![i].price!.toStringAsFixed(2)}',
+                                                    style: tsPoppins(
+                                                        size: 14,
+                                                        color: textDark80)),
+                                              ],
+                                            ),
+                                            const Divider(
+                                              color: textDark20,
+                                              thickness: 1,
+                                              height: 20,
+                                            ),
+                                          ]);
+                                        })),
                                     Row(
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,

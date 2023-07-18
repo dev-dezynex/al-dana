@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 class AddressResult {
   String? status;
   String? message;
@@ -27,15 +29,13 @@ class AddressResult {
     final data = <String, dynamic>{};
     data['status'] = status;
     data['message'] = message;
-    if (data != null) {
-      data['data'] = this.addressList?.map((v) => v.toJson()).toList();
-    }
+    data['data'] = addressList?.map((v) => v.toJson()).toList();
     return data;
   }
 }
 
 class Address {
-  late String sId,  addressType, location, landmark;
+  late String sId, addressType, location, landmark;
   late double latitude, longitude;
   late List<String> relationId;
 
@@ -52,8 +52,11 @@ class Address {
   Address.fromJson(Map<String, dynamic> json) {
     sId = json['_id'];
     addressType = json['addressType'];
-    relationId = json['relationId']!=null? json['relationId'].cast<String>():[];
-    location = json['location'];
+    relationId =
+        json['relationId'] != null ? json['relationId'].cast<String>() : [];
+    location = json['location'] ?? '';
+    log('location');
+    log(location.toString());
     landmark = json['landMark'];
     latitude = json['latitude'];
     longitude = json['longitude'];

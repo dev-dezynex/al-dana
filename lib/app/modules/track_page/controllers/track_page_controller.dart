@@ -10,8 +10,6 @@ class TrackPageController extends GetxController {
   void onInit() {
     super.onInit();
     booking.value = Get.arguments;
-    print("bokking ${booking.value.id}");
+    print("bokking contorller id ${booking.value.id}");
   }
-
-
 }
