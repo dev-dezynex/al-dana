@@ -33,18 +33,9 @@ class BookingTile extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 20),
-                // Text(
-                //   '${booking.id}',
-                //   style: tsPoppins(
-                //     weight: FontWeight.w600,
-                //     color: black,
-                //     size: 18,
-                //   ),
-                // ),
-
                 Text(
                   booking.packageList != null && booking.packageList!.isNotEmpty
-                      ? booking.packageList![0].title ?? ''
+                      ? 'Packages'
                       : 'Services',
                   style: tsPoppins(
                     weight: FontWeight.w600,
@@ -59,17 +50,15 @@ class BookingTile extends StatelessWidget {
                         color: accent60,
                         borderRadius: BorderRadius.circular(100))),
                 const SizedBox(height: 5),
-                Visibility(
-                  visible: booking.packageList != null &&
-                      booking.packageList!.isNotEmpty,
-                  child: Text(
-                    'Service Includes',
+                if (booking.packageList != null &&
+                    booking.packageList!.isNotEmpty)
+                  Text(
+                    booking.packageList![0].title ?? '',
                     style: tsPoppins(
                       color: bgColor27,
                       size: 14,
                     ),
                   ),
-                ),
                 const SizedBox(height: 5),
                 ListView.builder(
                     shrinkWrap: true,
@@ -99,18 +88,27 @@ class BookingTile extends StatelessWidget {
                             );
                           });
                     }),
-                const SizedBox(height: 5),
-                Visibility(
-                  visible: booking.packageList != null &&
-                      booking.packageList!.isNotEmpty,
-                  child: Text(
-                    'Services',
-                    style: tsPoppins(
-                      color: bgColor27,
-                      size: 14,
-                    ),
+                if (booking.packageList != null &&
+                    booking.packageList!.isNotEmpty)
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Services',
+                        style: tsPoppins(
+                          weight: FontWeight.w600,
+                          color: textDark80,
+                          size: 18,
+                        ),
+                      ),
+                      Container(
+                          height: 2,
+                          width: 30,
+                          decoration: BoxDecoration(
+                              color: accent60,
+                              borderRadius: BorderRadius.circular(100))),
+                    ],
                   ),
-                ),
                 ListView.builder(
                     shrinkWrap: true,
                     physics: const NeverScrollableScrollPhysics(),
