@@ -3,10 +3,12 @@ import 'package:al_dana/app/modules/invoice/provider/invoice_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-
+import 'package:pdf/widgets.dart' as pw;
+import '../../../data/providers/vat_provider.dart';
 import '../widgets/invoice_divider.dart';
 import '../widgets/invoice_spacer.dart';
 import '../widgets/invoice_split.dart';
+import 'package:printing/printing.dart';
 
 class InvoiceView extends StatefulWidget {
   const InvoiceView({super.key});
@@ -16,6 +18,12 @@ class InvoiceView extends StatefulWidget {
 }
 
 class _InvoiceViewState extends State<InvoiceView> {
+  @override
+  void initState() {
+    super.initState();
+    Provider.of<VATProvider>(context, listen: false).fetchVAT();
+  }
+
   @override
   Widget build(BuildContext context) {
     final invoice = Provider.of<InvoiceProvider>(context);
@@ -30,7 +38,22 @@ class _InvoiceViewState extends State<InvoiceView> {
     String invoiceDate =
         dateTime != null ? DateFormat('dd-MM-yyyy').format(dateTime) : '';
     final vehicleDetails = invoiceDetails?.bookingId?.vehicleId;
-    double vatPercentage = 5.0;
+    double vatPercentage = double.parse(
+        Provider.of<VATProvider>(context).vat!.data![0].percentage.toString());
+
+    Future<void> generatePDFAndOpen() async {
+      final pdf = pw.Document();
+      pdf.addPage(pw.Page(
+          build: (pw.Context context) =>
+              pw.Center(child: pw.Text('Hello, this is my PDF!'))));
+
+      // Generate the PDF
+      final pdfData = await pdf.save();
+
+      // Open the PDF with the default PDF viewer app
+      await Printing.sharePdf(bytes: pdfData, filename: 'example.pdf');
+    }
+
     return Scaffold(
       backgroundColor: bgColor1,
       appBar: AppBar(
@@ -330,7 +353,9 @@ class _InvoiceViewState extends State<InvoiceView> {
                           child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
                                   backgroundColor: primary),
-                              onPressed: () {},
+                              onPressed: () {
+                                generatePDFAndOpen();
+                              },
                               child: Row(
                                 mainAxisSize: MainAxisSize.min,
                                 children: const [

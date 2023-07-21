@@ -3,14 +3,20 @@ import 'dart:developer';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import '../../../data/data.dart';
+import '../../../data/providers/vat_provider.dart';
 import '../controllers/service_controller.dart';
 
 class ServiceView extends GetView<ServiceController> {
   const ServiceView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    
+    String vatPercentage =
+        Provider.of<VATProvider>(context).vat?.data?[0].percentage.toString() ??
+            '';
     return Scaffold(
       backgroundColor: bgColor1,
       appBar: AppBar(
@@ -98,7 +104,7 @@ class ServiceView extends GetView<ServiceController> {
                                   color: textDark40)),
                         ],
                       ),
-                      Text('Incl. 5% VAT',
+                      Text('Incl. $vatPercentage% VAT',
                           style: tsPoppins(
                               weight: FontWeight.w400, color: textColor08)),
                     ],

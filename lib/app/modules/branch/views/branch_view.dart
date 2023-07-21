@@ -3,7 +3,9 @@ import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:provider/provider.dart';
 
+import '../../../data/providers/vat_provider.dart';
 import '../controllers/branch_controller.dart';
 
 class BranchView extends GetView<BranchController> {
@@ -62,6 +64,7 @@ class BranchView extends GetView<BranchController> {
                                   onTap: () {
                                     controller.selectBranch(controller
                                         .branchResult.value.branchList![i]);
+                                    
                                   },
                                   branch: controller
                                       .branchResult.value.branchList![i],

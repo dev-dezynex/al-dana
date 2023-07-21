@@ -3,14 +3,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import '../../../data/data.dart';
+import '../../../data/providers/vat_provider.dart';
 import '../controllers/payment_page_controller.dart';
 
 class PaymentPageView extends GetView<PaymentPageController> {
   const PaymentPageView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    
+
+    String vatPercentage =
+        Provider.of<VATProvider>(context).vat?.data?[0].percentage.toString() ?? '';
     return Obx(
       () => controller.isPaymentSuccess.value
           ? const PaymentSuccessView()
@@ -120,7 +126,7 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                                   color: textDark40)),
                                         ],
                                       ),
-                                      Text('Incl. 5% VAT',
+                                      Text('Incl. $vatPercentage% VAT',
                                           style: tsPoppins(
                                               weight: FontWeight.w400,
                                               color: textColor08)),

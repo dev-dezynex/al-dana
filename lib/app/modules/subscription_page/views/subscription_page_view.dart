@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_datepicker/datepicker.dart';
 
 import '../../../data/data.dart';
+import '../../../data/providers/vat_provider.dart';
 import '../controllers/subscription_page_controller.dart';
 
 class SubscriptionPageView extends GetView<SubscriptionPageController> {
@@ -11,6 +13,9 @@ class SubscriptionPageView extends GetView<SubscriptionPageController> {
 
   @override
   Widget build(BuildContext context) {
+    String vatPercentage =
+        Provider.of<VATProvider>(context).vat?.data?[0].percentage.toString() ??
+            '';
     return DefaultTabController(
       length: controller.tabs.length,
       child: Scaffold(
@@ -100,7 +105,7 @@ class SubscriptionPageView extends GetView<SubscriptionPageController> {
                                     color: textDark40)),
                           ],
                         ),
-                        Text('Incl. 5% VAT',
+                        Text('Incl. $vatPercentage% VAT',
                             style: tsPoppins(
                                 weight: FontWeight.w400, color: textColor08)),
                       ],

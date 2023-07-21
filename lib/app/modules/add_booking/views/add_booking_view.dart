@@ -1,6 +1,8 @@
+import 'package:al_dana/app/data/providers/vat_provider.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import '../../../data/data.dart';
 import '../../../routes/app_pages.dart';
@@ -8,8 +10,13 @@ import '../controllers/add_booking_controller.dart';
 
 class AddBookingView extends GetView<AddBookingController> {
   const AddBookingView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
+    
+    String vatPercentage =
+        Provider.of<VATProvider>(context).vat?.data?[0].percentage.toString() ??
+            '';
     return Scaffold(
       backgroundColor: bgColor1,
       appBar: AppBar(
@@ -118,7 +125,7 @@ class AddBookingView extends GetView<AddBookingController> {
                                   color: textDark40)),
                         ],
                       ),
-                      Text('Incl. 5% VAT',
+                      Text('Incl. $vatPercentage% VAT',
                           style: tsPoppins(
                               weight: FontWeight.w400, color: textColor08)),
                     ],
