@@ -1,38 +1,42 @@
 import 'dart:convert';
 import 'package:al_dana/app/data/constants/api_routes.dart';
-import 'package:al_dana/app/data/models/vat_model.dart';
+import 'package:al_dana/app/data/models/tracking_model.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import '../constants/common.dart';
-import '../constants/keys.dart';
+import '../../../data/constants/common.dart';
+import '../../../data/constants/keys.dart';
 
-class VATProvider extends ChangeNotifier {
-  Vat? _vat;
+class TrackingProvider extends ChangeNotifier {
+  Tracking? _tracking;
   bool _isLoading = false;
   bool _hasError = false;
 
-  Vat? get vat => _vat;
+  Tracking? get tracking => _tracking;
   bool get isLoading => _isLoading;
   bool get hasError => _hasError;
 
-  Future<void> fetchVAT() async {
+  Future<void> fetchTracking(
+    String bookingId,
+  ) async {
     try {
       _isLoading = true;
       final response = await http.get(
-        Uri.parse(apiGetVat),
+        Uri.parse("$apiGetTracking/$bookingId"),
         headers: <String, String>{
           'Authorization': 'Bearer ${storage.read(auth)}',
         },
       );
       if (response.statusCode == 200) {
-        _vat = Vat.fromJson(jsonDecode(response.body));
+        _tracking = Tracking.fromJson(
+          jsonDecode(response.body),
+        );
         _hasError = false;
       } else {
-        _vat = null;
+        _tracking = null;
         _hasError = true;
       }
     } catch (_) {
-      _vat = null;
+      _tracking = null;
       _hasError = true;
     } finally {
       _isLoading = false;

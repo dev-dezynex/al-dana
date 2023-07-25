@@ -437,29 +437,29 @@ class AddVehicleDetails extends GetView<AddVehicleController> {
             const SizedBox(
               height: 10,
             ),
-            TextFormField(
-                controller: controller.plateCodeController,
-                validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return "Enter Plate Code";
-                  } else {
-                    return null;
-                  }
-                },
-                textAlignVertical: TextAlignVertical.center,
-                style: tsPoppins(
-                    size: 14, weight: FontWeight.w400, color: textDark80),
-                decoration: InputFormDecoration.outLinedInputTextDecoration(
-                  contentPadding: const EdgeInsets.only(left: 20, right: 15),
-                  filled: true,
-                  fillColor: white,
-                  labelText: "Plate Code",
-                  labelStyle: tsPoppins(
-                      size: 14, weight: FontWeight.w400, color: textColor02),
-                )),
-            const SizedBox(
-              height: 10,
-            ),
+            // TextFormField(
+            //     controller: controller.plateCodeController,
+            //     validator: (value) {
+            //       if (value == null || value.isEmpty) {
+            //         return "Enter Plate Code";
+            //       } else {
+            //         return null;
+            //       }
+            //     },
+            //     textAlignVertical: TextAlignVertical.center,
+            //     style: tsPoppins(
+            //         size: 14, weight: FontWeight.w400, color: textDark80),
+            //     decoration: InputFormDecoration.outLinedInputTextDecoration(
+            //       contentPadding: const EdgeInsets.only(left: 20, right: 15),
+            //       filled: true,
+            //       fillColor: white,
+            //       labelText: "Plate Code",
+            //       labelStyle: tsPoppins(
+            //           size: 14, weight: FontWeight.w400, color: textColor02),
+            //     )),
+            // const SizedBox(
+            //   height: 10,
+            // ),
             TextFormField(
                 controller: controller.plateNumberController,
                 validator: (value) {

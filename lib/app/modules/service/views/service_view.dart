@@ -188,7 +188,7 @@ class ServiceView extends GetView<ServiceController> {
                                   .serviceResult.value.serviceList.length,
                               itemBuilder: (con, i) {
                                 return ServiceTile(
-                                  onTap: () {
+                                  onTap: () { 
                                     controller.selectedService.value =
                                         controller
                                             .serviceResult.value.serviceList[i];

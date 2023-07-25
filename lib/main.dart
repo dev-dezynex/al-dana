@@ -1,12 +1,11 @@
 import 'package:al_dana/app/data/providers/vat_provider.dart';
 import 'package:al_dana/app/modules/invoice/provider/invoice_provider.dart';
+import 'package:al_dana/app/modules/tracking/providers/tracking_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
-
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
-
 import 'app/data/data.dart';
 import 'app/routes/app_pages.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +18,7 @@ void main() async {
       providers: [
         ChangeNotifierProvider(create: (_) => InvoiceProvider()),
         ChangeNotifierProvider(create: (_) => VATProvider()),
+        ChangeNotifierProvider(create: (_) => TrackingProvider()),
       ],
       child: const MyApp(),
     ),

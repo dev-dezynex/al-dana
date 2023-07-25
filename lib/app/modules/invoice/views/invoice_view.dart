@@ -100,7 +100,11 @@ class _InvoiceViewState extends State<InvoiceView> {
                             Text(
                                 'Mob No: ${branchAddress?.mob}, P.O: ${branchAddress?.po}'),
                             const InvoiceSpacer(),
-                            Text(branchAddress?.location ?? ''),
+                            Padding(
+                              padding:
+                                  const EdgeInsets.symmetric(horizontal: 8),
+                              child: Text(branchAddress?.location ?? ''),
+                            ),
                             const InvoiceSpacer(),
                             Text('TRN: ${branchAddress?.trn}'),
                             const InvoiceSpacer(),
@@ -129,7 +133,7 @@ class _InvoiceViewState extends State<InvoiceView> {
                             const InvoiceDivider(),
                             const InvoiceSpacer(),
                             Text(
-                              'Customer: ${vehicleDetails?.plateCode} ${vehicleDetails?.plateNumber} ${vehicleDetails?.carBrandId?.title} ${vehicleDetails?.carModelId?.title}',
+                              'Customer:  ${vehicleDetails?.plateNumber} ${vehicleDetails?.carBrandId?.title} ${vehicleDetails?.carModelId?.title}',
                               style:
                                   const TextStyle(fontWeight: FontWeight.w500),
                             ),
@@ -346,26 +350,26 @@ class _InvoiceViewState extends State<InvoiceView> {
                         ),
                       ),
                       const InvoiceSpacer(),
-                      Align(
-                        alignment: Alignment.centerRight,
-                        child: Padding(
-                          padding: const EdgeInsets.only(right: 20, bottom: 20),
-                          child: ElevatedButton(
-                              style: ElevatedButton.styleFrom(
-                                  backgroundColor: primary),
-                              onPressed: () {
-                                generatePDFAndOpen();
-                              },
-                              child: Row(
-                                mainAxisSize: MainAxisSize.min,
-                                children: const [
-                                  Icon(Icons.picture_as_pdf),
-                                  SizedBox(width: 5),
-                                  Text('Download'),
-                                ],
-                              )),
-                        ),
-                      )
+                      // Align(
+                      //   alignment: Alignment.centerRight,
+                      //   child: Padding(
+                      //     padding: const EdgeInsets.only(right: 20, bottom: 20),
+                      //     child: ElevatedButton(
+                      //         style: ElevatedButton.styleFrom(
+                      //             backgroundColor: primary),
+                      //         onPressed: () {
+                      //           generatePDFAndOpen();
+                      //         },
+                      //         child: Row(
+                      //           mainAxisSize: MainAxisSize.min,
+                      //           children: const [
+                      //             Icon(Icons.picture_as_pdf),
+                      //             SizedBox(width: 5),
+                      //             Text('Download'),
+                      //           ],
+                      //         )),
+                      //   ),
+                      // )
                     ],
                   ),
                 ),

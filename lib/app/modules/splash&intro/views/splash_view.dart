@@ -13,6 +13,7 @@ class SplashView extends GetView<SplashController> {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 0,
@@ -32,8 +33,8 @@ class SplashView extends GetView<SplashController> {
           ),
           Center(
             child: Padding(
-              padding: EdgeInsets.symmetric(
-                  vertical: 8.0, horizontal: Get.width * .2),
+              padding:
+                  EdgeInsets.symmetric(vertical: 8.0, horizontal: width * 0.2),
               child: Image.asset('assets/images/img_logo.png'),
             ),
           ),
@@ -41,5 +42,4 @@ class SplashView extends GetView<SplashController> {
       ),
     );
   }
-
 }

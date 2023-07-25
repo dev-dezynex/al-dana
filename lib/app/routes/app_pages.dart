@@ -37,8 +37,7 @@ import '../modules/splash&intro/bindings/splash_binding.dart';
 import '../modules/splash&intro/views/splash_view.dart';
 import '../modules/subscription_page/bindings/subscription_page_binding.dart';
 import '../modules/subscription_page/views/subscription_page_view.dart';
-import '../modules/track_page/bindings/track_page_binding.dart';
-import '../modules/track_page/views/track_page_view.dart';
+
 import '../modules/vehicle/bindings/vehicle_binding.dart';
 import '../modules/vehicle/views/vehicle_view.dart';
 import '../modules/work/bindings/work_binding.dart';
@@ -147,11 +146,7 @@ class AppPages {
       page: () => const AddBookingView(),
       binding: AddBookingBinding(),
     ),
-    GetPage(
-      name: _Paths.TRACK_PAGE,
-      page: () => TrackPageView(),
-      binding: TrackPageBinding(),
-    ),
+    
     GetPage(
       name: _Paths.SUBSCRIPTION_PAGE,
       page: () => const SubscriptionPageView(),

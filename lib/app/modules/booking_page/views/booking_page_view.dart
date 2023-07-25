@@ -1,4 +1,3 @@
-import 'package:al_dana/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -43,11 +42,6 @@ class BookingPageView extends GetView<BookingPageController> {
                                 .bookingResult.value.bookingList!.length,
                             itemBuilder: (con, i) {
                               return BookingTile(
-                                onTap: () {
-                                  Get.toNamed(Routes.TRACK_PAGE,
-                                      arguments: controller
-                                          .bookingResult.value.bookingList![i]);
-                                },
                                 booking: controller
                                     .bookingResult.value.bookingList![i],
                               );

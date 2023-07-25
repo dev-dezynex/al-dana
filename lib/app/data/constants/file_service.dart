@@ -1,6 +1,8 @@
 import 'dart:io';
 
 // import 'package:flutter_downloader/flutter_downloader.dart';
+import 'package:device_info_plus/device_info_plus.dart';
+
 import 'keys.dart';
 import 'package:get/get.dart';
 import 'package:permission_handler/permission_handler.dart';
@@ -18,21 +20,6 @@ class FileService {
       await _createFolder(path_invoice),
     ];
   }
-
-  // static requestScopedStorage( storage ) async {
-  //   bool? isGranted = await Saf(storage).getDirectoryPermission(isDynamic: false);
-
-  //   if (isGranted != null && isGranted) {
-  //     // Perform some file operations
-  //     return storage;
-  //   } else {
-  //     // failed to get the permission
-  //     Get.snackbar('Permission Error', 'Please press use this folder on the next screen to allow storage writes permission!');
-  //     Future.delayed(Duration(seconds: 3), () async {
-  //       await requestScopedStorage( storage );
-  //     });
-  //   }
-  // }
 
   static Future<String> _createFolder(String filePath) async {
     Directory? baseDir;
@@ -61,30 +48,51 @@ class FileService {
     //     baseDir = await getTemporaryDirectory();
     //   }
     // }
+    if (baseDir == null) {
+      throw Exception('Base directory is null.');
+    }
     try {
-      await baseDir!.create(recursive: true);
+      await baseDir.create(recursive: true);
     } catch (e) {
       print('in catch $e');
     }
-    return baseDir!.path;
+    return baseDir.path;
   }
 
   static Future<String> getBaseFilePath() async {
     Directory? baseDir;
     if (Platform.isAndroid) {
-      if (await _requestPermission(Permission.storage)) {
-        baseDir = await getExternalStorageDirectory();
-        String newPath = '';
-        List<String> folders = baseDir!.path.split('/');
-        for (int i = 1; i < folders.length; i++) {
-          String folder = folders[i];
-          if (folder != 'Android') {
-            newPath += "/$folder";
-          } else {
-            break;
+      final deviceInfo = await DeviceInfoPlugin().androidInfo;
+      if (deviceInfo.version.sdkInt > 32) {
+        if (await _requestPermission(Permission.photos)) {
+          baseDir = await getExternalStorageDirectory();
+          String newPath = '';
+          List<String> folders = baseDir!.path.split('/');
+          for (int i = 1; i < folders.length; i++) {
+            String folder = folders[i];
+            if (folder != 'Android') {
+              newPath += "/$folder";
+            } else {
+              break;
+            }
           }
+          return newPath;
         }
-        return newPath;
+      } else {
+        if (await _requestPermission(Permission.storage)) {
+          baseDir = await getExternalStorageDirectory();
+          String newPath = '';
+          List<String> folders = baseDir!.path.split('/');
+          for (int i = 1; i < folders.length; i++) {
+            String folder = folders[i];
+            if (folder != 'Android') {
+              newPath += "/$folder";
+            } else {
+              break;
+            }
+          }
+          return newPath;
+        }
       }
     } else {
       if (await _requestPermission(Permission.photos)) {

@@ -1,11 +1,8 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
-
 import '../../../data/data.dart';
-import '../../../routes/app_pages.dart';
 
 class AddVehicleController extends GetxController {
   var title = 'Select Vehicle'.obs;
@@ -15,6 +12,7 @@ class AddVehicleController extends GetxController {
   var brandResult = BrandResult(brandList: [Brand()]).obs;
   var carModelResult = CarModelResult().obs;
   var carVariantResult = VariantResult().obs;
+  var vehicleList = <Vehicle>[].obs;
   // var colorList = <VehicleColor>[].obs;
   // var yearList = <VehicleYear>[].obs;
 
@@ -22,7 +20,7 @@ class AddVehicleController extends GetxController {
   var carModelList = <CarModel>[].obs;
   var variantList = <Variant>[].obs;
 
-  var selectedColor = Color(0xff443a49).obs;
+  var selectedColor = const Color(0xff443a49).obs;
   var selectedCarModel = CarModel().obs;
   var selectedVariant = Variant().obs;
   var selectedVehicle = Vehicle().obs;
@@ -103,7 +101,7 @@ class AddVehicleController extends GetxController {
     var result =
         await VehicleProvider().addVehicle(vehicle: selectedVehicle.value);
     if (result.status == 'success') {
-      Get.offNamedUntil(Routes.HOME, (route) => false);
+      Get.back(result: true);
     } else {
       Get.snackbar('Error', result.message!,
           snackPosition: SnackPosition.BOTTOM,

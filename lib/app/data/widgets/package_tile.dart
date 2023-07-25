@@ -25,7 +25,11 @@ class PackageTile extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Card(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(8),
+          side: BorderSide(
+              color: isSelected ? greenAppTheme : tileColor, width: 3),
+        ),
         // color: hexToColor(package.bgCardColor!),
         color: tileColor,
         child: Stack(
@@ -39,14 +43,14 @@ class PackageTile extends StatelessWidget {
                     ? MainAxisAlignment.end
                     : MainAxisAlignment.spaceBetween,
                 children: [
-                  if (!isManage)
-                    Radio(
-                      fillColor: MaterialStateColor.resolveWith(
-                          (states) => greenAppTheme),
-                      value: isSelected,
-                      groupValue: true,
-                      onChanged: onChanged,
-                    ),
+                  // if (!isManage)
+                  //   Radio(
+                  //     fillColor: MaterialStateColor.resolveWith(
+                  //         (states) => greenAppTheme),
+                  //     value: isSelected,
+                  //     groupValue: true,
+                  //     onChanged: onChanged,
+                  //   ),
                   Container(
                     height: Get.width * .3,
                     width: Get.width * .4,
@@ -94,6 +98,29 @@ class PackageTile extends StatelessWidget {
                           color: accent60,
                           borderRadius: BorderRadius.circular(100))),
                   const SizedBox(height: 8),
+                  Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Text(
+                        package.price.toString(),
+                        style: tsPoppins(
+                          weight: FontWeight.w600,
+                          color: black,
+                          size: 18,
+                        ),
+                      ),
+                      const SizedBox(width: 4),
+                      Text(
+                        'AED',
+                        style: tsPoppins(
+                          weight: FontWeight.w500,
+                          color: greenAppTheme,
+                          size: 18,
+                        ),
+                      ),
+                    ],
+                  ),
                   Text(
                     'Service Includes',
                     style: tsPoppins(

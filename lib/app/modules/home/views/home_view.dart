@@ -20,6 +20,7 @@ class HomeView extends GetView<HomeController> {
       backgroundColor: bgColor1,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        centerTitle: true,
         systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
           statusBarIconBrightness: Brightness.dark,
@@ -27,39 +28,40 @@ class HomeView extends GetView<HomeController> {
         ),
         backgroundColor: primary,
         automaticallyImplyLeading: false,
-        title: Row(
-          children: [
-            const Icon(
-              Icons.location_on_outlined,
-              color: greenAppTheme,
-            ),
-            const SizedBox(
-              width: 5,
-            ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Your Location',
-                  style: tsPoppins(
-                      size: 12, weight: FontWeight.w400, color: white),
-                ),
-                Text(
-                  'Dubai, Al Ain',
-                  style: tsPoppins(size: 10, color: white),
-                ),
-              ],
-            ),
-          ],
-        ),
-        actions: [
-          IconButton(
-              onPressed: () {},
-              icon: const Icon(
-                Icons.notifications_none_outlined,
-                color: white,
-              ))
-        ],
+        title: const Text('Al Dana Service Station'),
+        // title: Row(
+        //   children: [
+        //     const Icon(
+        //       Icons.location_on_outlined,
+        //       color: greenAppTheme,
+        //     ),
+        //     const SizedBox(
+        //       width: 5,
+        //     ),
+        //     Column(
+        //       crossAxisAlignment: CrossAxisAlignment.start,
+        //       children: [
+        //         Text(
+        //           'Your Location',
+        //           style: tsPoppins(
+        //               size: 12, weight: FontWeight.w400, color: white),
+        //         ),
+        //         Text(
+        //           'Dubai, Al Ain',
+        //           style: tsPoppins(size: 10, color: white),
+        //         ),
+        //       ],
+        //     ),
+        //   ],
+        // ),
+        // actions: [
+        //   IconButton(
+        //       onPressed: () {},
+        //       icon: const Icon(
+        //         Icons.notifications_none_outlined,
+        //         color: white,
+        //       ))
+        // ],
       ),
       drawer: Drawer(
           child: ListView(

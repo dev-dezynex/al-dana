@@ -68,3 +68,6 @@ const String apiInvoiceList = "${apiBase}customer/getInvoice";
 
 //VAT
 const String apiGetVat = "${apiBase}customer/listVat";
+
+//Tracking
+const String apiGetTracking = "${apiBase}customer/getTracking";

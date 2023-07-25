@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:al_dana/app/modules/invoice/provider/invoice_provider.dart';
 import 'package:al_dana/app/modules/invoice/views/invoice_view.dart';
+import 'package:al_dana/app/modules/tracking/views/tracking_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:provider/provider.dart';
@@ -12,11 +13,9 @@ class BookingTile extends StatelessWidget {
   const BookingTile({
     Key? key,
     required this.booking,
-    this.onTap,
     this.onChanged,
   }) : super(key: key);
   final Booking booking;
-  final GestureTapCallback? onTap;
   final void Function(bool?)? onChanged;
   @override
   Widget build(BuildContext context) {
@@ -151,7 +150,15 @@ class BookingTile extends StatelessWidget {
                     style: tsRubik(color: bgColor27, size: 14)),
                 const SizedBox(height: 10),
                 ElevatedButton(
-                  onPressed: onTap,
+                  onPressed: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => TrackingView(
+                          bookingId: booking.id ?? '',
+                        ),
+                      ),
+                    );
+                  },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: greenAppTheme,
                   ),

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:al_dana/app/data/data.dart';
 import 'package:al_dana/app/routes/app_pages.dart';
 import 'package:card_swiper/card_swiper.dart';
@@ -153,7 +155,12 @@ class CategoryView extends GetView<HomeController> {
                                   const EdgeInsets.only(right: 10.0, left: 18),
                               child: ElevatedButton(
                                 onPressed: () {
-                                  Get.toNamed(Routes.ADD_VEHICLE);
+                                  Get.toNamed(Routes.ADD_VEHICLE,
+                                          preventDuplicates: false)!
+                                      .then((value) {
+                                    log("back refresh working");
+                                    controller.getDetails();
+                                  });
                                 },
                                 style: ElevatedButton.styleFrom(
                                     backgroundColor: greenAppTheme),
