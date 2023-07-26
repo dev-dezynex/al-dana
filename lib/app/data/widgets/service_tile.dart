@@ -85,6 +85,7 @@ class ServiceTile extends StatelessWidget {
                             size: 12,
                           ),
                         ),
+                        const SizedBox(width: 3),
                         Text(
                           'AED',
                           style: tsPoppins(

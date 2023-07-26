@@ -35,18 +35,20 @@ class VehicleTile extends StatelessWidget {
             const SizedBox(
               width: 14,
             ),
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                    '${vehicle.brand?.title ?? ''} - ${vehicle.variant?.name ?? ''}',
-                    style: tsPoppins(color: textDark80, size: 16)),
-                Text(
-                    'Year ${vehicle.year ?? ''} | ${vehicle.colour?.name ?? ''}',
-                    style: tsPoppins(
-                      color: textDark40,
-                    )),
-              ],
+            Flexible(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                      '${vehicle.brand?.title ?? ''} - ${vehicle.variant?.name ?? ''}',
+                      style: tsPoppins(color: textDark80, size: 16)),
+                  Text(
+                      'Year ${vehicle.year ?? ''} | ${vehicle.colour?.name ?? ''}',
+                      style: tsPoppins(
+                        color: textDark40,
+                      )),
+                ],
+              ),
             )
           ],
         ),
