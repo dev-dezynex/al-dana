@@ -148,7 +148,7 @@ class BookingId {
     branchId =
         json['branchId'] != null ? BranchId.fromJson(json['branchId']) : null;
     customerId = json['customerId'];
-    addressId = json['AddressId'];
+    addressId = json['addressId'];
     vehicleId = json['vehicleId'] != null
         ? VehicleId.fromJson(json['vehicleId'])
         : null;
@@ -190,7 +190,7 @@ class BookingId {
       data['branchId'] = branchId!.toJson();
     }
     data['customerId'] = customerId;
-    data['AddressId'] = addressId;
+    data['addressId'] = addressId;
     if (vehicleId != null) {
       data['vehicleId'] = vehicleId!.toJson();
     }

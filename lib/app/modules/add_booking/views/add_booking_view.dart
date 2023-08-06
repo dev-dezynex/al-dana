@@ -13,7 +13,6 @@ class AddBookingView extends GetView<AddBookingController> {
 
   @override
   Widget build(BuildContext context) {
-    
     String vatPercentage =
         Provider.of<VATProvider>(context).vat?.data?[0].percentage.toString() ??
             '';

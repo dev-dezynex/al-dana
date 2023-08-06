@@ -412,10 +412,12 @@ vehicleSelectionBottomSheet({
       builder: (builder) {
         return Container(
             decoration: const BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(22.0),
-                    topRight: Radius.circular(22.0))),
+              color: Colors.white,
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(22.0),
+                topRight: Radius.circular(22.0),
+              ),
+            ),
             child: Column(
               children: [
                 Padding(
@@ -518,6 +520,7 @@ spareSelectionBottomSheet({
   required RxBool isAutoSelect,
   required VoidCallback? onSubmit,
 }) {
+  final formKey = GlobalKey<FormState>();
   return showModalBottomSheet(
     backgroundColor: Colors.transparent,
     shape: const RoundedRectangleBorder(
@@ -580,6 +583,7 @@ spareSelectionBottomSheet({
                       toggleable: true,
                       onChanged: (v) {
                         isAutoSelect.value = true;
+                        formKey.currentState?.reset();
                         onAutoSelectChange.call(true);
                       }),
                 ),
@@ -591,70 +595,70 @@ spareSelectionBottomSheet({
               ],
             ),
             if (spareCategoryList.isNotEmpty)
-              Expanded(
-                child: Obx(
-                  () => ListView.builder(
-                    shrinkWrap: true,
-                    padding: const EdgeInsets.symmetric(
-                        horizontal: 15, vertical: 25),
-                    itemCount: spareCategoryList.length,
-                    itemBuilder: (context, i) {
-                      var spareList = spareCategoryList[i].spareList.obs;
-                      if (spareList.value == null || spareList.value!.isEmpty) {
-                        return const Center(
-                          child: Text('No spare available'),
-                        );
-                      } else {
-                        return Padding(
-                          padding: const EdgeInsets.only(bottom: 15),
-                          child: DropdownButtonFormField<Spare>(
-                            isExpanded: true,
-                            decoration:
-                                InputFormDecoration.outLinedInputTextDecoration(
-                                    borderSide: BorderSide(
-                                      color: isAutoSelect.value
-                                          ? textDark40.withOpacity(.5)
-                                          : primary,
-                                    ),
-                                    labelText:
-                                        "Select ${spareCategoryList[i].name}",
-                                    labelStyle: tsPoppins(
+              Form(
+                key: formKey,
+                child: Expanded(
+                  child: Obx(
+                    () => ListView.builder(
+                      shrinkWrap: true,
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 15, vertical: 25),
+                      itemCount: spareCategoryList.length,
+                      itemBuilder: (context, i) {
+                        var spareList = spareCategoryList[i].spareList.obs;
+                        if (spareList.value == null ||
+                            spareList.value!.isEmpty) {
+                          return const Center(
+                            child: Text('No spare available'),
+                          );
+                        } else {
+                          return Padding(
+                            padding: const EdgeInsets.only(bottom: 15),
+                            child: DropdownButtonFormField<Spare>(
+                              isExpanded: true,
+                              decoration: InputFormDecoration
+                                  .outLinedInputTextDecoration(
+                                      borderSide: BorderSide(
                                         color: isAutoSelect.value
                                             ? textDark40.withOpacity(.5)
                                             : primary,
-                                        weight: FontWeight.w400)),
-                            value: spareList.value != null &&
-                                    spareList.value!.isNotEmpty
-                                ? spareList.value![0]
-                                : null,
-                            items: spareList.value?.map(
-                              (value) {
-                                return DropdownMenuItem<Spare>(
-                                  value: value,
-                                  child: Text(
-                                    value.name!,
-                                    maxLines: 1,
-                                    overflow: TextOverflow.clip,
-                                    style:
-                                        tsPoppins(color: textDark80, size: 14),
-                                  ),
-                                );
+                                      ),
+                                      labelText:
+                                          "Select ${spareCategoryList[i].name}",
+                                      hintText:
+                                          "Please Select ${spareCategoryList[i].name}",
+                                      labelStyle: tsPoppins(
+                                          color: isAutoSelect.value
+                                              ? textDark40.withOpacity(.5)
+                                              : primary,
+                                          weight: FontWeight.w400)),
+                              items: spareList.value?.map(
+                                (value) {
+                                  return DropdownMenuItem<Spare>(
+                                    value: value,
+                                    child: Text(
+                                      value.name!,
+                                      maxLines: 1,
+                                      overflow: TextOverflow.clip,
+                                      style: tsPoppins(
+                                          color: textDark80, size: 14),
+                                    ),
+                                  );
+                                },
+                              ).toList(),
+                              onChanged: (value) {
+                                isAutoSelect.value = false;
+                                onSpareSelected.call(value);
                               },
-                            ).toList(),
-                            onChanged: (value) {
-                              isAutoSelect.value = false;
-                              onSpareSelected.call(value);
-                            },
-                          ),
-                        );
-                      }
-                    },
+                            ),
+                          );
+                        }
+                      },
+                    ),
                   ),
                 ),
               ),
-            SizedBox(
-              height: Get.height * 0.020,
-            ),
+            SizedBox(height: Get.height * 0.020),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: ElevatedButton(

@@ -54,6 +54,7 @@ class AddVehicleController extends GetxController {
   getbrands() async {
     brandResult.value = await BrandProvider().getBrands();
     filterBrands.value = brandResult.value.brandList;
+    
     brandResult.refresh();
     filterBrands.refresh();
   }
@@ -89,7 +90,7 @@ class AddVehicleController extends GetxController {
         return result['data'][0];
       }
     }
-    return selectedVehicle.value.image!;
+    return selectedVehicle.value.image ?? '';
   }
 
   void addVehicle() async {

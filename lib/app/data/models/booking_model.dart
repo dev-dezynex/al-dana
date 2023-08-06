@@ -179,7 +179,7 @@ class Booking {
     log('address id');
 
     if (address?.sId != "") {
-      data['AddressId'] = address?.sId;
+      data['addressId'] = address?.sId;
     }
     return data;
   }

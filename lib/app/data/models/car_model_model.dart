@@ -39,7 +39,7 @@ class CarModel {
   late String id, name,desc,image;
 
   CarModel({this.id = '', this.name = ''});
-
+  
   CarModel.fromJson(Map<String, dynamic> json) {
     id = json['_id'];
     name = json['title'];
