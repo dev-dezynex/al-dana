@@ -5,6 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
 
+import '../../../data/providers/subscription_provider.dart';
+import '../../subscription_page/controllers/subscription_page_controller.dart';
+
 class PaymentPageController extends GetxController {
   Common common = Common();
   TextEditingController promoCodeController = TextEditingController();
@@ -18,6 +21,7 @@ class PaymentPageController extends GetxController {
   var isRewardApplied = false.obs;
   var walletResult = WalletResult().obs;
   var booking = Booking().obs;
+  final subscriptionController = Get.put(SubscriptionPageController());
   @override
   void onInit() {
     super.onInit();
@@ -150,6 +154,42 @@ class PaymentPageController extends GetxController {
     // print("booking.value");
     // print(booking.value.slot);
     var result = await BookingProvider().postBooking(booking: booking.value);
+    if (subscriptionController.subscribed.value == true) {
+      switch (subscriptionController.selectedTab.value) {
+        case 0:
+          if (subscriptionController.monthlyDateList.length >= 5) {
+            log('0 called');
+            SubscriptionProvider().postSubscription(
+              result.booking?.id ?? '',
+              subscriptionController.monthlyDateList
+                  .map((monthDate) => monthDate.toString())
+                  .toList(),
+            );
+          }
+          break;
+        case 1:
+          //please add minimum bookings in subscription here
+          if (subscriptionController.weeklyDateList.length >= 5) {
+            log('1 called');
+            SubscriptionProvider().postSubscription(
+              result.booking?.id ?? '',
+              subscriptionController.weeklyDateList
+                  .map((weekDate) => weekDate.toString())
+                  .toList(),
+            );
+          }
+          break;
+        case 2:
+          if (subscriptionController.multiDateList.length >= 5) {
+            log('2 called');
+            SubscriptionProvider().postSubscription(
+                result.booking?.id ?? '',
+                subscriptionController.multiDateList
+                    .map((multiDate) => multiDate.toString())
+                    .toList());
+          }
+      }
+    }
     if (result.status == 'success') {
       if (selectedPaymentOption.value != paymentOptions[1]) {
         booking.value.id = result.booking?.id;

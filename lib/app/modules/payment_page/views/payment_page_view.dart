@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:al_dana/app/modules/payment_page/views/payment_success.dart';
+import 'package:al_dana/app/modules/subscription_page/controllers/subscription_page_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -6,6 +9,7 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/data.dart';
+import '../../../data/providers/subscription_provider.dart';
 import '../../../data/providers/vat_provider.dart';
 import '../controllers/payment_page_controller.dart';
 
@@ -13,10 +17,10 @@ class PaymentPageView extends GetView<PaymentPageController> {
   const PaymentPageView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    
-
+    final subscriptionController = Get.put(SubscriptionPageController());
     String vatPercentage =
-        Provider.of<VATProvider>(context).vat?.data?[0].percentage.toString() ?? '';
+        Provider.of<VATProvider>(context).vat?.data?[0].percentage.toString() ??
+            '';
     return Obx(
       () => controller.isPaymentSuccess.value
           ? const PaymentSuccessView()
@@ -136,6 +140,21 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                       onPressed: () {
                                         if (controller
                                             .selectedPaymentOption.isNotEmpty) {
+                                          log(controller
+                                              .booking.value.subscribedPrice
+                                              .toString());
+                                          log('----------------');
+                                          log(subscriptionController.totalAmount
+                                              .toString());
+                                          log('----------------');
+                                          if (controller.booking.value
+                                                  .subscribedPrice >
+                                              0) {
+                                            controller.booking.value.price =
+                                                controller.booking.value
+                                                    .subscribedPrice;
+                                          }
+                                          
                                           controller.postBooking();
                                         } else {
                                           Get.snackbar('Error',

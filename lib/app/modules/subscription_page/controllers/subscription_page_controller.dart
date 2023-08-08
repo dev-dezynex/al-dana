@@ -17,7 +17,8 @@ class SubscriptionPageController extends GetxController
   var endDate = DateTime.now().add(const Duration(days: 15)).obs;
   var selectedTab = 0.obs;
   var totalAmount = 0.0.obs;
-  var tabs = ['Daily', 'Monthly', 'Weekly', 'Custom'].obs;
+  var tabs = ['Monthly', 'Weekly', 'Custom'].obs;
+  var subscribed = false.obs;
   var dateRangeController1 = DateRangePickerController();
   var dateRangeController2 = DateRangePickerController();
   var dateRangeController3 = DateRangePickerController();
@@ -25,7 +26,6 @@ class SubscriptionPageController extends GetxController
   var pickDateRange = PickerDateRange(
           DateTime.now(), DateTime.now().add(const Duration(days: 15)))
       .obs;
-  RxList<DateTime> dateList = RxList<DateTime>();
   RxList<DateTime> monthlyDateList = <DateTime>[].obs;
   RxList<DateTime> weeklyDateList = <DateTime>[].obs;
   RxList<DateTime> multiDateList = <DateTime>[].obs;
@@ -38,8 +38,6 @@ class SubscriptionPageController extends GetxController
     setDateRange();
     initDateList();
   }
-
-
 
   // void setDateRange() {}
 
@@ -57,18 +55,6 @@ class SubscriptionPageController extends GetxController
     switch (selectedTab.value) {
       case 0:
         //please add minimum bookings in subscription here
-        if (dateList.length < 5) {
-          Get.snackbar('Error', 'Please choose a minimum of 5 days',
-              snackPosition: SnackPosition.BOTTOM,
-              backgroundColor: textDark20,
-              colorText: textDark80);
-        } else {
-          booking.value.subscribedPrice = totalAmount.value;
-          Get.toNamed(Routes.PAYMENT_PAGE, arguments: booking.value);
-        }
-        break;
-      case 1:
-        //please add minimum bookings in subscription here
         if (monthlyDateList.length < 5) {
           Get.snackbar('Error', 'Please choose a minimum of 5 days',
               snackPosition: SnackPosition.BOTTOM,
@@ -77,10 +63,23 @@ class SubscriptionPageController extends GetxController
         } else {
           booking.value.subscribedPrice = totalAmount.value;
           Get.toNamed(Routes.PAYMENT_PAGE, arguments: booking.value);
+          subscribed.value = true;
+        }
+        break;
+      case 1:
+        //please add minimum bookings in subscription here
+        if (weeklyDateList.length < 5) {
+          Get.snackbar('Error', 'Please choose a minimum of 5 days',
+              snackPosition: SnackPosition.BOTTOM,
+              backgroundColor: textDark20,
+              colorText: textDark80);
+        } else {
+          booking.value.subscribedPrice = totalAmount.value;
+          Get.toNamed(Routes.PAYMENT_PAGE, arguments: booking.value);
+          subscribed.value = true;
         }
         break;
       case 2:
-        //please add minimum bookings in subscription here
         if (multiDateList.length < 5) {
           Get.snackbar('Error', 'Please choose a minimum of 5 days',
               snackPosition: SnackPosition.BOTTOM,
@@ -89,8 +88,8 @@ class SubscriptionPageController extends GetxController
         } else {
           booking.value.subscribedPrice = totalAmount.value;
           Get.toNamed(Routes.PAYMENT_PAGE, arguments: booking.value);
+          subscribed.value = true;
         }
-        break;
     }
   }
 
@@ -98,21 +97,16 @@ class SubscriptionPageController extends GetxController
     totalAmount.value = 0.0;
     switch (selectedTab.value) {
       case 0:
-        for (DateTime date in dateList) {
-          totalAmount.value += booking.value.price;
-        }
-        break;
-      case 1:
         for (DateTime date in monthlyDateList) {
           totalAmount.value += booking.value.price;
         }
         break;
-      case 2:
+      case 1:
         for (DateTime date in weeklyDateList) {
           totalAmount.value += booking.value.price;
         }
         break;
-      case 3:
+      case 2:
         for (DateTime date in multiDateList) {
           totalAmount.value += booking.value.price;
         }
@@ -121,16 +115,10 @@ class SubscriptionPageController extends GetxController
   }
 
   initDateList() {
-    dateList.clear();
     monthlyDateList.clear();
     weeklyDateList.clear();
     multiDateList.clear();
     int n = 0;
-    for (DateTime i = startDate.value;
-        (i.isBefore(endDate.value) || i.day == endDate.value.day);
-        i = i.add(const Duration(days: 1))) {
-      dateList.add(i);
-    }
     for (DateTime i = startDate.value;
         (i.year == endDate.value.year);
         i = DateTime(i.year, i.month + 1, i.day)) {
@@ -142,18 +130,6 @@ class SubscriptionPageController extends GetxController
       weeklyDateList.add(i);
     }
 
-    setTotalAmount();
-  }
-
-  void setDateList() {
-    dateList.clear();
-    for (DateTime i = startDate.value;
-        (i.isBefore(endDate.value) || i.day == endDate.value.day);
-        i = i.add(const Duration(days: 1))) {
-      dateList.add(i);
-    }
-    dateList.refresh();
-    print(dateList);
     setTotalAmount();
   }
 

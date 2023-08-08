@@ -116,7 +116,7 @@ class Booking {
     data['date'] = date;
     data['slot'] = slot;
     data['auto_spare_select'] = autoSpareSelect;
-    data['totalAmount'] = price;
+    data['totalAmount'] = subscribedPrice > 0 ? subscribedPrice : price;
     data['approval_status'] = approvalStatus;
     if (packageList != null) {
       data['package'] = packageList?.map((v) => v.toJson()).toList();

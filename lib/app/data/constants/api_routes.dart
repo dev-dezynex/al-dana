@@ -71,3 +71,6 @@ const String apiGetVat = "${apiBase}customer/listVat";
 
 //Tracking
 const String apiGetTracking = "${apiBase}customer/getTracking";
+
+//Subscription
+const String apiPostSubscription = "${apiBase}customer/addSubscription";
