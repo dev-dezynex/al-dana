@@ -16,13 +16,12 @@ class ProfileView extends GetView<ProfileController> {
     return Scaffold(
         backgroundColor: bgColor1,
         appBar: AppBar(
-          backgroundColor: Colors.transparent,
+          backgroundColor: primary,
           centerTitle: true,
           leading: const GoBack(),
           title: Text(
             'Profile',
-            style:
-                tsPoppins(size: 18, weight: FontWeight.w600, color: textDark80),
+            style: tsPoppins(size: 18, weight: FontWeight.w600, color: white),
           ),
         ),
         body: SingleChildScrollView(
@@ -95,97 +94,91 @@ class ProfileView extends GetView<ProfileController> {
                   controller.currentUser.value.email,
                   style: tsPoppins(color: textDark40, weight: FontWeight.w400),
                 ),
-                const SizedBox(
-                  height: 20,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Container(
-                      constraints: BoxConstraints(maxWidth: Get.width * .3),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 20, horizontal: 15),
-                      decoration: BoxDecoration(
-                          color: bgColor29,
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Column(
-                        children: [
-                          Text('2',
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.center,
-                              style: tsPoppins(
-                                  size: 24,
-                                  weight: FontWeight.w600,
-                                  color: white)),
-                          Text('Total Cars',
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.center,
-                              style: tsPoppins(
-                                  weight: FontWeight.w400, color: white)),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      constraints: BoxConstraints(maxWidth: Get.width * .3),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 20, horizontal: 15),
-                      decoration: BoxDecoration(
-                          color: bgColor30,
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Column(
-                        children: [
-                          Text('116',
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.center,
-                              style: tsPoppins(
-                                  size: 24,
-                                  weight: FontWeight.w600,
-                                  color: white)),
-                          Text('Total Services',
-                              maxLines: 1,
-                              style: tsPoppins(
-                                  weight: FontWeight.w400, color: white)),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Container(
-                      constraints: BoxConstraints(maxWidth: Get.width * .3),
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 20, horizontal: 15),
-                      decoration: BoxDecoration(
-                          color: bgColor31,
-                          borderRadius: BorderRadius.circular(8)),
-                      child: Column(
-                        children: [
-                          Text('11618',
-                              maxLines: 1,
-                              overflow: TextOverflow.ellipsis,
-                              textAlign: TextAlign.center,
-                              style: tsPoppins(
-                                  size: 24,
-                                  weight: FontWeight.w600,
-                                  color: white)),
-                          Text('Total Points',
-                              maxLines: 1,
-                              style: tsPoppins(
-                                  weight: FontWeight.w400, color: white)),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-                const SizedBox(
-                  height: 10,
-                ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     Container(
+                //       constraints: BoxConstraints(maxWidth: Get.width * .3),
+                //       padding: const EdgeInsets.symmetric(
+                //           vertical: 20, horizontal: 15),
+                //       decoration: BoxDecoration(
+                //           color: bgColor29,
+                //           borderRadius: BorderRadius.circular(8)),
+                //       child: Column(
+                //         children: [
+                //           Text('2',
+                //               maxLines: 1,
+                //               overflow: TextOverflow.ellipsis,
+                //               textAlign: TextAlign.center,
+                //               style: tsPoppins(
+                //                   size: 24,
+                //                   weight: FontWeight.w600,
+                //                   color: white)),
+                //           Text('Total Cars',
+                //               maxLines: 1,
+                //               overflow: TextOverflow.ellipsis,
+                //               textAlign: TextAlign.center,
+                //               style: tsPoppins(
+                //                   weight: FontWeight.w400, color: white)),
+                //         ],
+                //       ),
+                //     ),
+                //     const SizedBox(
+                //       width: 10,
+                //     ),
+                //     Container(
+                //       constraints: BoxConstraints(maxWidth: Get.width * .3),
+                //       padding: const EdgeInsets.symmetric(
+                //           vertical: 20, horizontal: 15),
+                //       decoration: BoxDecoration(
+                //           color: bgColor30,
+                //           borderRadius: BorderRadius.circular(8)),
+                //       child: Column(
+                //         children: [
+                //           Text('116',
+                //               maxLines: 1,
+                //               overflow: TextOverflow.ellipsis,
+                //               textAlign: TextAlign.center,
+                //               style: tsPoppins(
+                //                   size: 24,
+                //                   weight: FontWeight.w600,
+                //                   color: white)),
+                //           Text('Total Services',
+                //               maxLines: 1,
+                //               style: tsPoppins(
+                //                   weight: FontWeight.w400, color: white)),
+                //         ],
+                //       ),
+                //     ),
+                //     const SizedBox(
+                //       width: 10,
+                //     ),
+                //     Container(
+                //       constraints: BoxConstraints(maxWidth: Get.width * .3),
+                //       padding: const EdgeInsets.symmetric(
+                //           vertical: 20, horizontal: 15),
+                //       decoration: BoxDecoration(
+                //           color: bgColor31,
+                //           borderRadius: BorderRadius.circular(8)),
+                //       child: Column(
+                //         children: [
+                //           Text('11618',
+                //               maxLines: 1,
+                //               overflow: TextOverflow.ellipsis,
+                //               textAlign: TextAlign.center,
+                //               style: tsPoppins(
+                //                   size: 24,
+                //                   weight: FontWeight.w600,
+                //                   color: white)),
+                //           Text('Total Points',
+                //               maxLines: 1,
+                //               style: tsPoppins(
+                //                   weight: FontWeight.w400, color: white)),
+                //         ],
+                //       ),
+                //     )
+                //   ],
+                // ),
                 Container(
                   padding: const EdgeInsets.all(15),
                   margin: const EdgeInsets.all(20),

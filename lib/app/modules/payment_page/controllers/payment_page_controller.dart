@@ -159,34 +159,40 @@ class PaymentPageController extends GetxController {
         case 0:
           if (subscriptionController.monthlyDateList.length >= 5) {
             log('0 called');
-            SubscriptionProvider().postSubscription(
-              result.booking?.id ?? '',
-              subscriptionController.monthlyDateList
-                  .map((monthDate) => monthDate.toString())
-                  .toList(),
-            );
+            SubscriptionProvider()
+                .postSubscription(
+                  result.booking?.id ?? '',
+                  subscriptionController.monthlyDateList
+                      .map((monthDate) => monthDate.toString())
+                      .toList(),
+                )
+                .then((_) => subscriptionController.subscribed.value == false);
           }
           break;
         case 1:
           //please add minimum bookings in subscription here
           if (subscriptionController.weeklyDateList.length >= 5) {
             log('1 called');
-            SubscriptionProvider().postSubscription(
-              result.booking?.id ?? '',
-              subscriptionController.weeklyDateList
-                  .map((weekDate) => weekDate.toString())
-                  .toList(),
-            );
+            SubscriptionProvider()
+                .postSubscription(
+                  result.booking?.id ?? '',
+                  subscriptionController.weeklyDateList
+                      .map((weekDate) => weekDate.toString())
+                      .toList(),
+                )
+                .then((_) => subscriptionController.subscribed.value == false);
           }
           break;
         case 2:
           if (subscriptionController.multiDateList.length >= 5) {
             log('2 called');
-            SubscriptionProvider().postSubscription(
-                result.booking?.id ?? '',
-                subscriptionController.multiDateList
-                    .map((multiDate) => multiDate.toString())
-                    .toList());
+            SubscriptionProvider()
+                .postSubscription(
+                    result.booking?.id ?? '',
+                    subscriptionController.multiDateList
+                        .map((multiDate) => multiDate.toString())
+                        .toList())
+                .then((_) => subscriptionController.subscribed.value == false);
           }
       }
     }

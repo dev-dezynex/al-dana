@@ -9,7 +9,6 @@ import 'package:get/get.dart';
 import 'package:provider/provider.dart';
 
 import '../../../data/data.dart';
-import '../../../data/providers/subscription_provider.dart';
 import '../../../data/providers/vat_provider.dart';
 import '../controllers/payment_page_controller.dart';
 
@@ -27,13 +26,13 @@ class PaymentPageView extends GetView<PaymentPageController> {
           : Scaffold(
               backgroundColor: bgColor1,
               appBar: AppBar(
-                backgroundColor: Colors.transparent,
+                backgroundColor: primary,
                 centerTitle: true,
                 leading: const GoBack(),
                 title: Text(
                   'Payment Details',
                   style: tsPoppins(
-                      size: 18, weight: FontWeight.w600, color: textDark80),
+                      size: 18, weight: FontWeight.w600, color: white),
                 ),
               ),
               bottomSheet: Obx(
@@ -154,7 +153,7 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                                 controller.booking.value
                                                     .subscribedPrice;
                                           }
-                                          
+
                                           controller.postBooking();
                                         } else {
                                           Get.snackbar('Error',
@@ -371,70 +370,120 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                           ],
                                         ),
                                       ),
-                                    Obx(() => ListView.builder(
-                                        shrinkWrap: true,
-                                        physics:
-                                            const NeverScrollableScrollPhysics(),
-                                        padding: const EdgeInsets.symmetric(
-                                            vertical: 15),
-                                        itemCount:
-                                            controller.paymentOptions.length,
-                                        itemBuilder: (con, i) {
-                                          return Container(
-                                            margin: const EdgeInsets.only(
-                                                bottom: 10),
-                                            child: InkWell(
-                                              onTap: () {
-                                                controller.selectedPaymentOption
-                                                        .value =
-                                                    controller
-                                                        .paymentOptions[i];
-                                                controller.paymentOptions
-                                                    .refresh();
-                                              },
-                                              child: Container(
-                                                decoration: BoxDecoration(
-                                                    color: tileColor,
-                                                    borderRadius:
-                                                        BorderRadius.circular(
-                                                            8)),
-                                                child: Row(
-                                                  children: [
-                                                    Radio(
-                                                      fillColor: MaterialStateColor
-                                                          .resolveWith(
-                                                              (states) =>
-                                                                  greenAppTheme),
-                                                      value: controller
-                                                              .selectedPaymentOption
-                                                              .value ==
-                                                          controller
-                                                              .paymentOptions[i],
-                                                      groupValue: true,
-                                                      onChanged: (value) {
-                                                        controller
-                                                                .selectedPaymentOption
-                                                                .value =
-                                                            controller
-                                                                .paymentOptions[i];
-                                                        controller
-                                                            .paymentOptions
-                                                            .refresh();
-                                                      },
-                                                    ),
-                                                    Text(
+                                    Obx(
+                                      () => Container(
+                                        margin:
+                                            const EdgeInsets.only(bottom: 10),
+                                        child: InkWell(
+                                          onTap: () {
+                                            controller.selectedPaymentOption
+                                                    .value =
+                                                controller.paymentOptions[1];
+                                            controller.paymentOptions.refresh();
+                                          },
+                                          child: Container(
+                                            decoration: BoxDecoration(
+                                                color: tileColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(8)),
+                                            child: Row(
+                                              children: [
+                                                Radio(
+                                                  fillColor: MaterialStateColor
+                                                      .resolveWith((states) =>
+                                                          greenAppTheme),
+                                                  value: controller
+                                                          .selectedPaymentOption
+                                                          .value ==
                                                       controller
-                                                          .paymentOptions[i],
-                                                      style: tsPoppins(
-                                                          size: 14,
-                                                          color: textDark80),
-                                                    )
-                                                  ],
+                                                          .paymentOptions[1],
+                                                  groupValue: true,
+                                                  onChanged: (value) {
+                                                    controller
+                                                            .selectedPaymentOption
+                                                            .value =
+                                                        controller
+                                                            .paymentOptions[1];
+                                                    controller.paymentOptions
+                                                        .refresh();
+                                                  },
                                                 ),
-                                              ),
+                                                Text(
+                                                  controller.paymentOptions[1],
+                                                  style: tsPoppins(
+                                                      size: 14,
+                                                      color: textDark80),
+                                                )
+                                              ],
                                             ),
-                                          );
-                                        })),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    // Obx(() => ListView.builder(
+                                    //     shrinkWrap: true,
+                                    //     physics:
+                                    //         const NeverScrollableScrollPhysics(),
+                                    //     padding: const EdgeInsets.symmetric(
+                                    //         vertical: 15),
+                                    //     itemCount:
+                                    //         controller.paymentOptions.length,
+                                    //     itemBuilder: (con, i) {
+                                    //       return Container(
+                                    //         margin: const EdgeInsets.only(
+                                    //             bottom: 10),
+                                    //         child: InkWell(
+                                    //           onTap: () {
+                                    //             controller.selectedPaymentOption
+                                    //                     .value =
+                                    //                 controller
+                                    //                     .paymentOptions[i];
+                                    //             controller.paymentOptions
+                                    //                 .refresh();
+                                    //           },
+                                    //           child: Container(
+                                    //             decoration: BoxDecoration(
+                                    //                 color: tileColor,
+                                    //                 borderRadius:
+                                    //                     BorderRadius.circular(
+                                    //                         8)),
+                                    //             child: Row(
+                                    //               children: [
+                                    //                 Radio(
+                                    //                   fillColor: MaterialStateColor
+                                    //                       .resolveWith(
+                                    //                           (states) =>
+                                    //                               greenAppTheme),
+                                    //                   value: controller
+                                    //                           .selectedPaymentOption
+                                    //                           .value ==
+                                    //                       controller
+                                    //                           .paymentOptions[i],
+                                    //                   groupValue: true,
+                                    //                   onChanged: (value) {
+                                    //                     controller
+                                    //                             .selectedPaymentOption
+                                    //                             .value =
+                                    //                         controller
+                                    //                             .paymentOptions[i];
+                                    //                     controller
+                                    //                         .paymentOptions
+                                    //                         .refresh();
+                                    //                   },
+                                    //                 ),
+                                    //                 Text(
+                                    //                   controller
+                                    //                       .paymentOptions[i],
+                                    //                   style: tsPoppins(
+                                    //                       size: 14,
+                                    //                       color: textDark80),
+                                    //                 )
+                                    //               ],
+                                    //             ),
+                                    //           ),
+                                    //         ),
+                                    //       );
+                                    //     })),
                                     const SizedBox(
                                       height: 10,
                                     ),

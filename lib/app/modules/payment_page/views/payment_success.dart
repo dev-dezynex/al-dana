@@ -61,12 +61,14 @@ class PaymentSuccessView extends GetView<PaymentPageController> {
                       arguments: controller.booking.value);
                 },
                 style: ElevatedButton.styleFrom(
-                    backgroundColor: greenAppTheme,
-                    minimumSize: Size(Get.width, 50),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(6))),
+                  backgroundColor: greenAppTheme,
+                  minimumSize: Size(Get.width, 50),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(6),
+                  ),
+                ),
                 child: Text(
-                  'Track Order',
+                  'Back to Home',
                   style: tsPoppins(
                       color: white, size: 14, weight: FontWeight.w400),
                 )),

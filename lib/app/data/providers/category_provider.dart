@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../data.dart';
-import '../models/category_model.dart';
 
 class CategoryProvider extends GetConnect {
   Future<CategoryResult> getDummyData() async {
@@ -13,8 +12,6 @@ class CategoryProvider extends GetConnect {
     CategoryResult result = CategoryResult.fromJson(data);
     return result;
   }
-
-
 
   Future<CategoryResult> getCategories() async {
     CategoryResult result;
@@ -33,5 +30,4 @@ class CategoryProvider extends GetConnect {
     result = CategoryResult.listFromJson(response.body);
     return result;
   }
-
 }

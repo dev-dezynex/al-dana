@@ -35,8 +35,6 @@ class MapPageController extends GetxController {
     getDetails();
   }
 
-
-
   getPolyPoints() async {
     PolylinePoints polylinePoints = PolylinePoints();
 
@@ -112,8 +110,7 @@ class MapPageController extends GetxController {
     for (int i = 0; i < branchResult.value.branchList!.length; i++) {
       Marker resultMarker = Marker(
         markerId: MarkerId(branchResult.value.branchList![i].id),
-        infoWindow:
-            InfoWindow(title: branchResult.value.branchList![i].name),
+        infoWindow: InfoWindow(title: branchResult.value.branchList![i].name),
         position: LatLng(branchResult.value.branchList![i].latitude,
             branchResult.value.branchList![i].longitude),
         icon: selectedBranch.value.id == branchResult.value.branchList![i].id

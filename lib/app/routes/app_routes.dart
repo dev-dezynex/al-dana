@@ -25,6 +25,7 @@ abstract class Routes {
   static const TRACK_PAGE = _Paths.TRACK_PAGE;
   static const SUBSCRIPTION_PAGE = _Paths.SUBSCRIPTION_PAGE;
   static const ADDRESS_MAP = _Paths.ADDRESS_MAP;
+  static const LOGIN_PAGE = _Paths.LOGIN_PAGE;
 }
 
 abstract class _Paths {
@@ -51,4 +52,6 @@ abstract class _Paths {
   static const TRACK_PAGE = '/track-page';
   static const SUBSCRIPTION_PAGE = '/subscription-page';
   static const ADDRESS_MAP = '/address-map';
+  //After otp remove
+  static const LOGIN_PAGE = '/login-page';
 }

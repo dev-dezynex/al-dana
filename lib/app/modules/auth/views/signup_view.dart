@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
+import 'package:intl_phone_field/intl_phone_field.dart';
 
 import '../../../data/data.dart';
 import '../controllers/auth_controller.dart';
@@ -22,14 +24,7 @@ class SignUp extends GetView<AuthController> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(
-                  height: Get.height * .05,
-                ),
-                Image.asset(
-                  'assets/auth/auth.png',
-                  height: Get.height * .3,
-                ),
-                SizedBox(
-                  height: Get.height * .05,
+                  height: Get.height * .1,
                 ),
                 SizedBox(
                   width: Get.width * .7,
@@ -101,6 +96,70 @@ class SignUp extends GetView<AuthController> {
                                 const SizedBox(
                                   height: 15,
                                 ),
+                                //otp removed
+                                IntlPhoneField(
+                                  validator: (value) {
+                                    if (value == null) {
+                                      return 'Please enter Phone number';
+                                    }
+                                    return null;
+                                  },
+                                  controller: controller.signUpPhoneController,
+                                  onTap: null,
+                                  style: tsPoppins(
+                                      color: black,
+                                      size: 14,
+                                      weight: FontWeight.w400),
+                                  dropdownTextStyle: tsPoppins(
+                                      color: black,
+                                      size: 14,
+                                      weight: FontWeight.w400),
+                                  inputFormatters: [
+                                    FilteringTextInputFormatter.digitsOnly,
+                                  ],
+                                  dropdownIcon: const Icon(
+                                    Icons.arrow_drop_down,
+                                    color: black,
+                                  ),
+                                  showDropdownIcon: false,
+                                  decoration: InputDecoration(
+                                    iconColor: textDark40,
+                                    counterStyle: tsPoppins(
+                                        color: textDark60,
+                                        size: 14,
+                                        weight: FontWeight.w400),
+                                    contentPadding: const EdgeInsets.symmetric(
+                                        vertical: 15),
+                                    hintText: 'Enter your number',
+                                    hintStyle: tsPoppins(
+                                        color: textDark40,
+                                        size: 14,
+                                        weight: FontWeight.w400),
+                                    border: const UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: textDark20)),
+                                    focusedBorder: const UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: textDark20)),
+                                    errorBorder: const UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: Colors.red)),
+                                    focusedErrorBorder:
+                                        const UnderlineInputBorder(
+                                            borderSide:
+                                                BorderSide(color: Colors.red)),
+                                    enabledBorder: const UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: textDark20)),
+                                    disabledBorder: const UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: textDark20)),
+                                  ),
+                                  initialCountryCode: 'AE',
+                                  onCountryChanged: (code) {
+                                    controller.contryCode.value = code.dialCode;
+                                  },
+                                ),
                                 TextFormField(
                                   controller: controller.emailController,
                                   textAlignVertical: TextAlignVertical.center,
@@ -142,6 +201,126 @@ class SignUp extends GetView<AuthController> {
                                 const SizedBox(
                                   height: 15,
                                 ),
+                                Obx(
+                                  () => TextFormField(
+                                    obscureText:
+                                        controller.hideSignUpPassword.value,
+                                    controller:
+                                        controller.signUpPasswordController,
+                                    textAlignVertical: TextAlignVertical.center,
+                                    keyboardType: TextInputType.text,
+                                    validator: (String? value) {
+                                      if (value == null || value.isEmpty) {
+                                        return "Required password";
+                                      } else {
+                                        return null;
+                                      }
+                                    },
+                                    style: tsPoppins(
+                                        size: 14,
+                                        weight: FontWeight.w400,
+                                        color: black),
+                                    decoration: InputDecoration(
+                                      contentPadding:
+                                          const EdgeInsets.only(left: 0),
+                                      labelText: "Enter Password",
+                                      labelStyle: tsPoppins(
+                                          size: 14,
+                                          weight: FontWeight.w400,
+                                          color: textColor02),
+                                      enabledBorder: const UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: borderColor,
+                                        ),
+                                      ),
+                                      focusedBorder: const UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: borderColor),
+                                      ),
+                                      suffixIcon: IconButton(
+                                        onPressed: () {
+                                          controller.hideSignUpPassword.value =
+                                              !controller
+                                                  .hideSignUpPassword.value;
+                                        },
+                                        icon: controller
+                                                    .hideSignUpPassword.value ==
+                                                false
+                                            ? const Icon(
+                                                Icons.visibility_off,
+                                                color: Colors.grey,
+                                              )
+                                            : const Icon(
+                                                Icons.visibility,
+                                                color: Colors.grey,
+                                              ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                Obx(
+                                  () => TextFormField(
+                                    obscureText:
+                                        controller.hideConfirmPassword.value,
+                                    controller:
+                                        controller.confirmPasswordController,
+                                    textAlignVertical: TextAlignVertical.center,
+                                    keyboardType: TextInputType.text,
+                                    validator: (String? value) {
+                                      if (value == null || value.isEmpty) {
+                                        return "Required confirm password";
+                                      } else {
+                                        return null;
+                                      }
+                                    },
+                                    style: tsPoppins(
+                                        size: 14,
+                                        weight: FontWeight.w400,
+                                        color: black),
+                                    decoration: InputDecoration(
+                                      contentPadding:
+                                          const EdgeInsets.only(left: 0),
+                                      labelText: "Confirm Password",
+                                      labelStyle: tsPoppins(
+                                          size: 14,
+                                          weight: FontWeight.w400,
+                                          color: textColor02),
+                                      enabledBorder: const UnderlineInputBorder(
+                                        borderSide: BorderSide(
+                                          color: borderColor,
+                                        ),
+                                      ),
+                                      focusedBorder: const UnderlineInputBorder(
+                                        borderSide:
+                                            BorderSide(color: borderColor),
+                                      ),
+                                      suffixIcon: IconButton(
+                                        onPressed: () {
+                                          controller.hideConfirmPassword.value =
+                                              !controller
+                                                  .hideConfirmPassword.value;
+                                        },
+                                        icon: controller.hideConfirmPassword
+                                                    .value ==
+                                                false
+                                            ? const Icon(
+                                                Icons.visibility_off,
+                                                color: Colors.grey,
+                                              )
+                                            : const Icon(
+                                                Icons.visibility,
+                                                color: Colors.grey,
+                                              ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
                               ],
                             )),
                       ),
@@ -154,24 +333,6 @@ class SignUp extends GetView<AuthController> {
                       ? const CircularProgressIndicator(
                           color: white,
                         )
-                      // : InkWell(
-                      //     customBorder: const CircleBorder(),
-                      //     onTap: () {
-                      //       if (formKeyOtp.currentState!.validate()) {
-                      //         controller.signup();
-                      //       }
-                      //     },
-                      //     child: Ink(
-                      //       padding: const EdgeInsets.all(18),
-                      //       decoration: const BoxDecoration(
-                      //           shape: BoxShape.circle, color: accent),
-                      //       child: const Icon(
-                      //         Icons.arrow_forward_rounded,
-                      //         color: primary,
-                      //         size: 24,
-                      //       ),
-                      //     ),
-                      //   ),
                       : FractionallySizedBox(
                           widthFactor: 0.7,
                           child: ElevatedButton(
@@ -203,6 +364,12 @@ class SignUp extends GetView<AuthController> {
                           ),
                         ),
                 ),
+                TextButton(
+                    style: TextButton.styleFrom(foregroundColor: greenAppTheme),
+                    onPressed: () {
+                      controller.authView.value = AuthStatus.login;
+                    },
+                    child: const Text('Back to login')),
                 SizedBox(height: Get.height * .1),
               ],
             ),

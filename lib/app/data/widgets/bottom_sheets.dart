@@ -453,56 +453,72 @@ vehicleSelectionBottomSheet({
                   thickness: 1,
                   color: textDark20,
                 ),
-                Expanded(
-                  child: Obx(
-                    () => ListView.builder(
-                        physics: const BouncingScrollPhysics(),
-                        itemCount: vehicleList.length,
-                        itemBuilder: (con, i) {
-                          return Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: InkWell(
-                              onTap: () {
-                                onVehicleSelected.call(vehicleList[i]);
-                              },
-                              child: Container(
-                                decoration: BoxDecoration(
-                                    borderRadius: BorderRadius.circular(8),
-                                    color: white),
-                                child: Stack(
-                                  children: [
-                                    VehicleTile(vehicle: vehicleList[i]),
-                                    Positioned(
-                                      top: 0,
-                                      right: 0,
-                                      child: Theme(
-                                        data: Theme.of(context).copyWith(
-                                          unselectedWidgetColor: textDark40,
-                                        ),
-                                        child: Obx(
-                                          () => Radio(
-                                              value: selectedVehicle.value ==
-                                                  vehicleList[i],
-                                              groupValue: true,
-                                              fillColor: MaterialStateColor
-                                                  .resolveWith((states) =>
-                                                      greenAppTheme),
-                                              toggleable: true,
-                                              onChanged: (v) {
-                                                onVehicleSelected
-                                                    .call(vehicleList[i]);
-                                              }),
-                                        ),
+                vehicleList.isEmpty
+                    ? Expanded(
+                        child: Center(
+                          child: Text(
+                            'No Vehicles added\nPlease add your Vechicle',
+                            style: tsPoppins(
+                                size: 12,
+                                weight: FontWeight.w600,
+                                color: textDark80),
+                            textAlign: TextAlign.center,
+                          ),
+                        ),
+                      )
+                    : Expanded(
+                        child: Obx(
+                          () => ListView.builder(
+                              physics: const BouncingScrollPhysics(),
+                              itemCount: vehicleList.length,
+                              itemBuilder: (con, i) {
+                                return Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: InkWell(
+                                    onTap: () {
+                                      onVehicleSelected.call(vehicleList[i]);
+                                    },
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          color: white),
+                                      child: Stack(
+                                        children: [
+                                          VehicleTile(vehicle: vehicleList[i]),
+                                          Positioned(
+                                            top: 0,
+                                            right: 0,
+                                            child: Theme(
+                                              data: Theme.of(context).copyWith(
+                                                unselectedWidgetColor:
+                                                    textDark40,
+                                              ),
+                                              child: Obx(
+                                                () => Radio(
+                                                    value:
+                                                        selectedVehicle.value ==
+                                                            vehicleList[i],
+                                                    groupValue: true,
+                                                    fillColor: MaterialStateColor
+                                                        .resolveWith((states) =>
+                                                            greenAppTheme),
+                                                    toggleable: true,
+                                                    onChanged: (v) {
+                                                      onVehicleSelected
+                                                          .call(vehicleList[i]);
+                                                    }),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
                                       ),
                                     ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          );
-                        }),
-                  ),
-                ),
+                                  ),
+                                );
+                              }),
+                        ),
+                      ),
                 SizedBox(
                   height: Get.height * 0.020,
                 ),

@@ -42,34 +42,39 @@ class BranchView extends GetView<BranchController> {
                     ),
             ),
             Positioned(
-                bottom: 100,
-                left: 0,
-                right: 0,
-                child: SizedBox(
-                  height: Get.height * .2,
-                  child: Obx(
-                    () => controller.isLoading.value
-                        ? const SizedBox()
-                        : ListView.builder(
-                            scrollDirection: Axis.horizontal,
-                            padding: const EdgeInsets.symmetric(horizontal: 30),
-                            itemCount: controller
-                                .branchResult.value.branchList!.length,
-                            itemBuilder: (con, i) {
-                              return SizedBox(
-                                width: Get.width * .8,
-                                child: BranchTile(
+              bottom: 100,
+              left: 0,
+              right: 0,
+              child: SizedBox(
+                height: Get.height * .2,
+                child: Obx(
+                  () => controller.isLoading.value
+                      ? const SizedBox()
+                      : ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          padding: const EdgeInsets.symmetric(horizontal: 30),
+                          itemCount:
+                              controller.branchResult.value.branchList?.length,
+                          itemBuilder: (con, i) {
+                            return SizedBox(
+                              width: Get.width * .8,
+                              child: BranchTile(
                                   onTap: () {
                                     controller.selectBranch(controller
-                                        .branchResult.value.branchList![i]);
+                                            .branchResult
+                                            .value
+                                            .branchList?[i] ??
+                                        Branch());
                                   },
                                   branch: controller
-                                      .branchResult.value.branchList![i],
-                                ),
-                              );
-                            }),
-                  ),
-                )),
+                                          .branchResult.value.branchList?[i] ??
+                                      Branch()),
+                            );
+                          },
+                        ),
+                ),
+              ),
+            ),
             Positioned(
               bottom: 10,
               left: 70,

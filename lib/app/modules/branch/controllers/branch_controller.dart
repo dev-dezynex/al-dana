@@ -45,8 +45,10 @@ class BranchController extends GetxController {
     await getCurrentLocation();
 
     await addMarker();
+    Future.delayed(const Duration(seconds: 2), () async {
+      await getBranches();
+    });
 
-    await getBranches();
     isLoading(false);
   }
 
@@ -68,7 +70,7 @@ class BranchController extends GetxController {
       (a, b) => a.distance.compareTo(b.distance),
     );
 
-    selectBranch(branchResult.value.branchList![0] );
+    selectBranch(branchResult.value.branchList![0]);
   }
 
   void setMarkers() {

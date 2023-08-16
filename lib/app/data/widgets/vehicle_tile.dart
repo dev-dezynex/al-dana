@@ -40,7 +40,7 @@ class VehicleTile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                      '${vehicle.brand?.title ?? ''} - ${vehicle.variant?.name ?? ''}',
+                      '${vehicle.carModel?.name ?? ''} - ${vehicle.variant?.name ?? ''}',
                       style: tsPoppins(color: textDark80, size: 16)),
                   Text(
                       'Year ${vehicle.year ?? ''} | ${vehicle.colour?.name ?? ''}',

@@ -65,8 +65,12 @@ class ServiceController extends GetxController {
             storage.write(selected_mode, mode.toJson());
           },
           onSubmit: () {
-            Get.back();
-            gotoDetailsPage();
+            log(selectedMode.value.title);
+            if (selectedMode.value.title != "") {
+              log(selectedMode.value.title);
+              Get.back();
+              gotoDetailsPage();
+            }
           });
     } else {
       Get.snackbar('Error', 'Please choose a service to continue.',

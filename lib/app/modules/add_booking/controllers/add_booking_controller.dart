@@ -67,7 +67,7 @@ class AddBookingController extends GetxController {
   }
 
   onNextClick(String route) {
-    if (selectedTimeSlot.sId!.isNotEmpty) {
+    if (selectedTimeSlot.sId?.isNotEmpty ?? false) {
       booking.value.date = outputDateFormat.format(selectedDate.value);
       booking.value.slot = selectedTimeSlot.sId;
 
@@ -78,7 +78,10 @@ class AddBookingController extends GetxController {
       Get.snackbar('Error', 'Please choose a time slot to continue.',
           snackPosition: SnackPosition.BOTTOM,
           backgroundColor: textDark20,
-          colorText: textDark80);
+          colorText: textDark80,
+          isDismissible: true,
+          dismissDirection: DismissDirection.horizontal,
+          margin: const EdgeInsets.only(bottom: 8));
     }
   }
 }

@@ -42,7 +42,7 @@ class AddBookingView extends GetView<AddBookingController> {
               alignment: Alignment.center,
               color: Colors.yellow,
               child: Text(
-                'Subscribe now save upto 50% ->',
+                'Subscribe',
                 style: tsPoppins(size: 15),
               ),
             ),
@@ -243,15 +243,33 @@ class AddBookingView extends GetView<AddBookingController> {
                     child: Obx(
                       () => (controller.isLoading.value)
                           ? const Center(child: CircularProgressIndicator())
-                          : (controller.timeSlotResult.value.data?.timeSlotId ==
-                                      null &&
+                          : (controller.timeSlotResult.value.data == null ||
                                   controller.timeSlotResult.value.data
                                           ?.timeSlotId ==
-                                      [])
+                                      null ||
+                                  controller.timeSlotResult.value.data
+                                          ?.timeSlotId ==
+                                      [] ||
+                                  controller.timeSlotResult.value.data!
+                                      .timeSlotId!.isEmpty)
                               ? Center(
-                                  child: Text(
-                                    'No timeslots available',
-                                    style: tsPoppins(),
+                                  child: Container(
+                                    margin: const EdgeInsets.symmetric(
+                                      horizontal: 20,
+                                    ),
+                                    alignment: Alignment.center,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(8),
+                                      color: white,
+                                      border: Border.all(
+                                        color: Colors.red,
+                                      ),
+                                    ),
+                                    child: Text(
+                                      'NO TIME SLOTS AVAILABLE',
+                                      style:
+                                          tsInter(size: 13, color: textDark80),
+                                    ),
                                   ),
                                 )
                               : ListView.builder(

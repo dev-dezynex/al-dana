@@ -4,7 +4,6 @@ import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../data.dart';
-import '../models/user_model.dart';
 
 class UserProvider extends GetConnect {
   Future<UserResult> getUserList() async {
@@ -14,8 +13,7 @@ class UserProvider extends GetConnect {
     return result;
   }
 
-  Future<UserResult> requestOTP(
-      {required String phoneNumber}) async {
+  Future<UserResult> requestOTP({required String phoneNumber}) async {
     final UserResult result;
     var body = {"phoneNumber": phoneNumber};
     final response = await post(apiRequiestOtp, body);
@@ -25,13 +23,38 @@ class UserProvider extends GetConnect {
     print('response ${response.body}');
     print('response code ${response.statusCode}');
     if (response.statusCode == 200) {
-      result = UserResult.fromJson({'status':response.body['status'],'message':''});
+      result = UserResult.fromJson(
+          {'status': response.body['status'], 'message': ''});
       var authValue = response.body['data'];
-
     } else {
       result = UserResult.fromJson(response.body);
     }
 
+    return result;
+  }
+
+  Future<UserResult> login({
+    required String phoneNumber,
+    required String password,
+  }) async {
+    final UserResult result;
+    var body = {
+      "phoneNumber": phoneNumber,
+      "password": password,
+    };
+    final response = await post(apiLogin, body);
+    if (response.statusCode == 200) {
+      result = UserResult.fromJson(
+        {
+          'status': response.body['status'],
+          'message': '',
+        },
+      );
+      var authValue = response.body['data'];
+      await storage.write(auth, authValue);
+    } else {
+      result = UserResult.fromJson(response.body);
+    }
     return result;
   }
 
@@ -46,7 +69,8 @@ class UserProvider extends GetConnect {
     print('response ${response.body}');
     print('response code ${response.statusCode}');
     if (response.statusCode == 200) {
-      result = UserResult.fromJson({'status':response.body['status'],'message':''});
+      result = UserResult.fromJson(
+          {'status': response.body['status'], 'message': ''});
       var authValue = response.body['data'];
 
       await storage.write(auth, authValue);
@@ -66,7 +90,8 @@ class UserProvider extends GetConnect {
     print('body ${user.toPost()}');
     print('response ${response.body}');
     if (response.statusCode == 200) {
-      result = UserResult.fromJson({'status':response.body['status'],'message':''});
+      result = UserResult.fromJson(
+          {'status': response.body['status'], 'message': ''});
       var authValue = response.body['data'];
 
       await storage.write(auth, authValue);

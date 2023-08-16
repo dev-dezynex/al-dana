@@ -20,14 +20,6 @@ class BranchTile extends StatefulWidget {
 }
 
 class _BranchTileState extends State<BranchTile> {
-  var bgCardImage;
-
-  @override
-  void initState() {
-    super.initState();
-    bgCardImage = NetworkImage('$domainName${widget.branch.image}');
-  }
-
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -45,13 +37,11 @@ class _BranchTileState extends State<BranchTile> {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
                 image: DecorationImage(
-                  image: bgCardImage,
+                  image: NetworkImage(
+                      '$domainName${widget.branch.image.toString()}'),
                   fit: BoxFit.cover,
                   onError: (exception, stackTrace) {
-                    setState(() {
-                      bgCardImage =
-                          const AssetImage('assets/images/img_branch_1.png');
-                    });
+                    const AssetImage('assets/images/img_branch_1.png');
                   },
                 ),
               ),

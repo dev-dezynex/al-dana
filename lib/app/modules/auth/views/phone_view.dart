@@ -56,53 +56,49 @@ class PhoneView extends GetView<AuthController> {
               Form(
                 key: formKeySignIn,
                 child: SizedBox(
-                    width: Get.width * .7,
-                    child: IntlPhoneField(
-                      controller: controller.phoneController,
-                      onTap: null,
-                      style: tsPoppins(
-                          color: black, size: 14, weight: FontWeight.w400),
-                      dropdownTextStyle: tsPoppins(
-                          color: black, size: 14, weight: FontWeight.w400),
-                      inputFormatters: [
-                        FilteringTextInputFormatter.digitsOnly,
-                      ],
-                      dropdownIcon: const Icon(
-                        Icons.arrow_drop_down,
-                        color: black,
-                      ),
-                      showDropdownIcon: false,
-                      decoration: InputDecoration(
-                        iconColor: textDark40,
-                        counterStyle: tsPoppins(
-                            color: textDark60,
-                            size: 14,
-                            weight: FontWeight.w400),
-                        contentPadding:
-                            const EdgeInsets.symmetric(vertical: 15),
-                        hintText: 'Enter your number',
-                        hintStyle: tsPoppins(
-                            color: textDark40,
-                            size: 14,
-                            weight: FontWeight.w400),
-                        border: const UnderlineInputBorder(
-                            borderSide: BorderSide(color: textDark20)),
-                        focusedBorder: const UnderlineInputBorder(
-                            borderSide: BorderSide(color: textDark20)),
-                        errorBorder: const UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.red)),
-                        focusedErrorBorder: const UnderlineInputBorder(
-                            borderSide: BorderSide(color: Colors.red)),
-                        enabledBorder: const UnderlineInputBorder(
-                            borderSide: BorderSide(color: textDark20)),
-                        disabledBorder: const UnderlineInputBorder(
-                            borderSide: BorderSide(color: textDark20)),
-                      ),
-                      initialCountryCode: 'AE',
-                      onCountryChanged: (code) {
-                        controller.contryCode = code.dialCode;
-                      },
-                    )),
+                  width: Get.width * .7,
+                  child: IntlPhoneField(
+                    controller: controller.phoneController,
+                    onTap: null,
+                    style: tsPoppins(
+                        color: black, size: 14, weight: FontWeight.w400),
+                    dropdownTextStyle: tsPoppins(
+                        color: black, size: 14, weight: FontWeight.w400),
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                    ],
+                    dropdownIcon: const Icon(
+                      Icons.arrow_drop_down,
+                      color: black,
+                    ),
+                    showDropdownIcon: false,
+                    decoration: InputDecoration(
+                      iconColor: textDark40,
+                      counterStyle: tsPoppins(
+                          color: textDark60, size: 14, weight: FontWeight.w400),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 15),
+                      hintText: 'Enter your number',
+                      hintStyle: tsPoppins(
+                          color: textDark40, size: 14, weight: FontWeight.w400),
+                      border: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: textDark20)),
+                      focusedBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: textDark20)),
+                      errorBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.red)),
+                      focusedErrorBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.red)),
+                      enabledBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: textDark20)),
+                      disabledBorder: const UnderlineInputBorder(
+                          borderSide: BorderSide(color: textDark20)),
+                    ),
+                    initialCountryCode: 'AE',
+                    onCountryChanged: (code) {
+                      controller.contryCode.value = code.dialCode;
+                    },
+                  ),
+                ),
               ),
               Obx(
                 () => controller.isLoading.value

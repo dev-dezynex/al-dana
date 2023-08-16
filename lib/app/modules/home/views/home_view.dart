@@ -1,4 +1,7 @@
+import 'dart:developer';
+
 import 'package:al_dana/app/modules/home/views/category_view.dart';
+import 'package:al_dana/app/modules/rewards/views/reward_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
@@ -110,20 +113,20 @@ class HomeView extends GetView<HomeController> {
           //     Get.toNamed(Routes.PROFILE);
           //   },
           // ),
-          NavItem(
-            title: "Subscriptions",
-            icon: "assets/icons/ic_nav_2.svg",
-            onTap: () {
-              Get.back();
-            },
-          ),
-          NavItem(
-            title: "My Rides",
-            icon: "assets/icons/ic_nav_3.svg",
-            onTap: () {
-              Get.back();
-            },
-          ),
+          // NavItem(
+          //   title: "Subscriptions",
+          //   icon: "assets/icons/ic_nav_2.svg",
+          //   onTap: () {
+          //     Get.back();
+          //   },
+          // ),
+          // NavItem(
+          //   title: "My Rides",
+          //   icon: "assets/icons/ic_nav_3.svg",
+          //   onTap: () {
+          //     Get.back();
+          //   },
+          // ),
           NavItem(
             title: "My Bookings",
             icon: "assets/icons/ic_nav_4.svg",
@@ -133,34 +136,48 @@ class HomeView extends GetView<HomeController> {
             },
           ),
           NavItem(
-            title: "Manage Work",
+            title: "Change Branch",
             icon: "assets/icons/ic_nav_4.svg",
             onTap: () {
               Get.back();
-              Get.toNamed(Routes.WORK);
+              Get.offAllNamed(Routes.BRANCH);
             },
           ),
-          NavItem(
-            title: "Notifications",
-            icon: "assets/icons/ic_nav_5.svg",
-            onTap: () {
-              Get.back();
-            },
-          ),
+          // NavItem(
+          //   title: "Manage Work",
+          //   icon: "assets/icons/ic_nav_4.svg",
+          //   onTap: () {
+          //     Get.back();
+          //     Get.toNamed(Routes.WORK);
+          //   },
+          // ),
+          // NavItem(
+          //   title: "Notifications",
+          //   icon: "assets/icons/ic_nav_5.svg",
+          //   onTap: () {
+          //     Get.back();
+          //   },
+          // ),
           NavItem(
             title: "Rewards",
             icon: "assets/icons/ic_nav_6.svg",
             onTap: () {
               Get.back();
+              var common = Common();
+              log(common.currentUser.id);
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) =>
+                    RewaardView(customerId: common.currentUser.id),
+              ));
             },
           ),
-          NavItem(
-            title: "FAQ",
-            icon: "assets/icons/ic_nav_7.svg",
-            onTap: () {
-              Get.back();
-            },
-          ),
+          // NavItem(
+          //   title: "FAQ",
+          //   icon: "assets/icons/ic_nav_7.svg",
+          //   onTap: () {
+          //     Get.back();
+          //   },
+          // ),
           NavItem(
             title: "Help Center",
             icon: "assets/icons/ic_nav_8.svg",

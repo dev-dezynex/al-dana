@@ -11,6 +11,7 @@ const String apiSignup = "${apiBase}customer/signup";
 const String apiReadUser = "${apiBase}customer/getProfile";
 const String apiUpdateUser = "${apiBase}customer/editProfile";
 const String apiChangePasswordUser = "${apiBase}customer/changePassword";
+const String apiLogin = "${apiBase}customer/login";
 
 //file upload
 const String apiFileUpload = "${apiBase}customer/fileUpload";
@@ -74,3 +75,9 @@ const String apiGetTracking = "${apiBase}customer/getTracking";
 
 //Subscription
 const String apiPostSubscription = "${apiBase}customer/addSubscription";
+
+//Reset password
+const String apiResetPassword = "${apiBase}customer/changePassword";
+
+//Rewards
+const String apiGetRewards = "${apiBase}customer/getWallet";

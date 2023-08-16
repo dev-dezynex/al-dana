@@ -22,6 +22,7 @@ class HomeController extends GetxController {
   var bannerResult = BannerResult().obs;
   var categoryResult = CategoryResult().obs;
   TextEditingController vehicleController = TextEditingController();
+
   LocationData? currentLocation;
   // var modeList = <ServiceMode>[].obs;
   // var selectedMode = ServiceMode().obs;
@@ -36,7 +37,9 @@ class HomeController extends GetxController {
   TextEditingController nameController = TextEditingController();
   TextEditingController phoneController = TextEditingController();
   TextEditingController emailController = TextEditingController();
-
+  TextEditingController passwordController = TextEditingController();
+  TextEditingController newPasswordController = TextEditingController();
+  TextEditingController confirmPasswordController = TextEditingController();
   var isLoading = false.obs;
   var isProfileEdited = false.obs;
 
@@ -68,7 +71,7 @@ class HomeController extends GetxController {
     await getCategories();
     await getVehicles();
     await getUserProfile();
-    
+
     isLoading(false);
   }
 
@@ -101,7 +104,7 @@ class HomeController extends GetxController {
         onVehicleSelected: (Vehicle vehicle) {
           selectedVehicle.value = vehicle;
           vehicleController.text =
-              '${vehicle.brand!.title} - ${vehicle.variant!.name}';
+              '${vehicle.carModel!.name} - ${vehicle.variant!.name}';
           storage.write(selected_vehicle, vehicle.toJson());
           Get.back();
         });
