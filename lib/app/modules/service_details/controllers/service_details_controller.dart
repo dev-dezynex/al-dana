@@ -88,7 +88,9 @@ class ServiceDetailsController extends GetxController {
   }
 
   void onNextClick(BuildContext context) async {
+    log('Called');
     if (isSpareInclude.value) {
+      log('Spare incl');
       spareSelectionBottomSheet(
           context: context,
           spareCategoryList: spareCategoryList,
@@ -97,20 +99,40 @@ class ServiceDetailsController extends GetxController {
             booking.value.autoSpareSelect = true;
           },
           onSpareSelected: (Spare? spare) {
+            List<Spare> sparesToRemove = [];
             for (Spare inSpare in booking.value.spares!) {
               if (inSpare.categoryId == spare!.categoryId) {
-                booking.value.spares!.remove(inSpare);
+                // booking.value.spares!.remove(inSpare);
+                sparesToRemove.add(inSpare);
               }
             }
             booking.value.autoSpareSelect = false;
-            booking.value.spares!.add(spare!);
+            // booking.value.spares!.add(spare!);
+            for (Spare spareToRemove in sparesToRemove) {
+              booking.value.spares!.remove(spareToRemove);
+            }
+            if (spare != null) {
+              booking.value.spares!.add(spare);
+            }
           },
           isAutoSelect: true.obs,
           onSubmit: () {
-            nextPage();
+            if (selectedSpare.value.name != '' ||
+                selectedSpare.value.name!.isNotEmpty) {
+              log('1');
+              log(selectedSpare.value.name ?? '');
+              log('1');
+              nextPage();
+            }
           });
     } else {
-      nextPage();
+      if (selectedSpare.value.name != '' ||
+          selectedSpare.value.name!.isNotEmpty) {
+        log('2');
+        log(selectedSpare.value.name ?? '');
+        log('2');
+        nextPage();
+      }
     }
   }
 
