@@ -338,7 +338,7 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                                                     .circular(
                                                                         6))),
                                                     child: Text(
-                                                      '    Radeem   ',
+                                                      '    Redeem   ',
                                                       style: tsPoppins(
                                                           color: white,
                                                           size: 14,

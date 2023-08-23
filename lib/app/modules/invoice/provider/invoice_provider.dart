@@ -12,7 +12,7 @@ import '../../../data/constants/keys.dart';
 
 class InvoiceProvider extends ChangeNotifier {
   Invoice? _inovoice;
-  bool _isLoading = false;
+  bool _isLoading = true;
   bool _hasError = false;
 
   Invoice? get invoice => _inovoice;

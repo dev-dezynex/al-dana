@@ -61,6 +61,7 @@ const String apiPaymentVerify = "${apiBase}customer/verifyPayment";
 //Booking
 const String apiAddBooking = "${apiBase}customer/addBooking";
 const String apiGetBooking = "${apiBase}customer/listBooking";
+const String apiPostReward = "${apiBase}customer/addReward";
 
 //TimeSlot
 const String apiGetTimeSlot = "${apiBase}customer/listTimeSlot";

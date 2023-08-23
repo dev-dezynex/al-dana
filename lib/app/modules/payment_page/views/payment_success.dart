@@ -25,7 +25,7 @@ class PaymentSuccessView extends GetView<PaymentPageController> {
             const Spacer(
               flex: 1,
             ),
-            Text('Payment Success',
+            Text('Order Success',
                 style: tsRubik(
                     color: bgColor25, weight: FontWeight.w600, size: 18)),
             const SizedBox(

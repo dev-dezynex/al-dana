@@ -588,28 +588,28 @@ spareSelectionBottomSheet({
               thickness: 1,
               color: textDark20,
             ),
-            Row(
-              children: [
-                Obx(
-                  () => Radio(
-                      value: isAutoSelect.value,
-                      groupValue: true,
-                      fillColor: MaterialStateColor.resolveWith(
-                          (states) => greenAppTheme),
-                      toggleable: true,
-                      onChanged: (v) {
-                        isAutoSelect.value = true;
-                        formKey.currentState?.reset();
-                        onAutoSelectChange.call(true);
-                      }),
-                ),
-                Text(
-                  'Auto Select',
-                  style: tsPoppins(
-                      weight: FontWeight.w600, size: 13, color: greenAppTheme),
-                ),
-              ],
-            ),
+            // Row(
+            //   children: [
+            //     Obx(
+            //       () => Radio(
+            //           value: isAutoSelect.value,
+            //           groupValue: true,
+            //           fillColor: MaterialStateColor.resolveWith(
+            //               (states) => greenAppTheme),
+            //           toggleable: true,
+            //           onChanged: (v) {
+            //             isAutoSelect.value = true;
+            //             formKey.currentState?.reset();
+            //             onAutoSelectChange.call(true);
+            //           }),
+            //     ),
+            //     Text(
+            //       'Auto Select',
+            //       style: tsPoppins(
+            //           weight: FontWeight.w600, size: 13, color: greenAppTheme),
+            //     ),
+            //   ],
+            // ),
             if (spareCategoryList.isNotEmpty)
               Form(
                 key: formKey,
@@ -677,17 +677,19 @@ spareSelectionBottomSheet({
             SizedBox(height: Get.height * 0.020),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
-              child: ElevatedButton(
-                onPressed: onSubmit,
-                style: ElevatedButton.styleFrom(
-                    backgroundColor: greenAppTheme,
-                    minimumSize: Size(Get.width, 50),
-                    shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(8))),
-                child: Text(
-                  'OK',
-                  style: tsPoppins(
-                      weight: FontWeight.w600, size: 16, color: white),
+              child: Obx(
+                () => ElevatedButton(
+                  onPressed: isAutoSelect.value ? null : onSubmit,
+                  style: ElevatedButton.styleFrom(
+                      backgroundColor: greenAppTheme,
+                      minimumSize: Size(Get.width, 50),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8))),
+                  child: Text(
+                    'OK',
+                    style: tsPoppins(
+                        weight: FontWeight.w600, size: 16, color: white),
+                  ),
                 ),
               ),
             ),

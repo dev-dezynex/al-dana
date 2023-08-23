@@ -24,6 +24,7 @@ class BranchController extends GetxController {
   var markers = <Marker>{}.obs;
   late BitmapDescriptor customIconSelected, customIconUnSelected;
   var selectedBranch = Branch().obs;
+  // var tileTapped = false.obs;
   @override
   void onInit() {
     super.onInit();

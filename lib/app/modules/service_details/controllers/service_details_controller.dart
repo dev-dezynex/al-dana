@@ -77,6 +77,9 @@ class ServiceDetailsController extends GetxController {
     if (booking.value.services!.contains(service)) {
       booking.value.services!.removeWhere((e) => e.id == service.id);
       booking.value.price = booking.value.price - service.price;
+      spareCategoryList.value = <SpareCategory>[];
+      isSpareInclude.value = false;
+      log('remove called');
     } else {
       booking.value.services!.add(service);
       booking.value.price = booking.value.price + service.price;

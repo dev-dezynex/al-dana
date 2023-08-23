@@ -40,7 +40,7 @@ class BookingProvider extends GetConnect {
     // print('path $apiAddBooking');
     // print('headers ${jsonEncode(auth.requestHeaders)}');
     // log('body ${jsonEncode(booking.toPost())}');
-    
+
     log(apiAddBooking);
     log('booking body ${booking.toPost()}');
     log('response ${jsonEncode(response.body)}');
@@ -65,4 +65,6 @@ class BookingProvider extends GetConnect {
 
     return BookingResult.fromJson(response.body);
   }
+
+  
 }

@@ -9,7 +9,7 @@ import '../../../data/constants/keys.dart';
 
 class RewardProvider extends ChangeNotifier {
   Reward? _reward;
-  bool _isLoading = false;
+  bool _isLoading = true;
   bool _hasError = false;
 
   Reward? get reward => _reward;

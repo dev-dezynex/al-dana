@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:al_dana/app/data/data.dart';
+import 'package:al_dana/app/data/providers/reward_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
@@ -202,9 +203,21 @@ class PaymentPageController extends GetxController {
         startPayment(result.booking!.id!);
         log("result.booking!.id!");
         log(result.booking!.id!);
+        AddRewardProvider().addReward(
+            common.currentUser.id,
+            result.booking!.subscribedPrice > 0
+                ? result.booking!.subscribedPrice.toString()
+                : result.booking!.price.toString());
       } else {
+        log('customer id');
+        log(common.currentUser.id);
         isLoading(false);
         isPaymentSuccess.value = true;
+        AddRewardProvider().addReward(
+            common.currentUser.id,
+            result.booking!.subscribedPrice > 0
+                ? result.booking!.subscribedPrice.toString()
+                : result.booking!.price.toString());
       }
     } else {
       isLoading(false);

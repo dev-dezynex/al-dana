@@ -8,7 +8,7 @@ import '../constants/keys.dart';
 
 class VATProvider extends ChangeNotifier {
   Vat? _vat;
-  bool _isLoading = false;
+  bool _isLoading = true;
   bool _hasError = false;
 
   Vat? get vat => _vat;

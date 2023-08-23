@@ -58,17 +58,22 @@ class BranchView extends GetView<BranchController> {
                           itemBuilder: (con, i) {
                             return SizedBox(
                               width: Get.width * .8,
-                              child: BranchTile(
-                                  onTap: () {
-                                    controller.selectBranch(controller
-                                            .branchResult
-                                            .value
+                              child: Container(
+                                padding: const EdgeInsets.all(1),
+                                child: BranchTile(
+                                    onTap: () {
+                                      // controller.tileTapped.value =
+                                      //     !controller.tileTapped.value;
+                                      controller.selectBranch(controller
+                                              .branchResult
+                                              .value
+                                              .branchList?[i] ??
+                                          Branch());
+                                    },
+                                    branch: controller.branchResult.value
                                             .branchList?[i] ??
-                                        Branch());
-                                  },
-                                  branch: controller
-                                          .branchResult.value.branchList?[i] ??
-                                      Branch()),
+                                        Branch()),
+                              ),
                             );
                           },
                         ),
