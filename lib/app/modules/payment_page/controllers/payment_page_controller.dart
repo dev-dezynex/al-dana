@@ -154,6 +154,7 @@ class PaymentPageController extends GetxController {
     isLoading(true);
     // print("booking.value");
     // print(booking.value.slot);
+
     var result = await BookingProvider().postBooking(booking: booking.value);
     if (subscriptionController.subscribed.value == true) {
       switch (subscriptionController.selectedTab.value) {
@@ -197,6 +198,7 @@ class PaymentPageController extends GetxController {
           }
       }
     }
+    booking.value.bookingId = result.booking?.bookingId;
     if (result.status == 'success') {
       if (selectedPaymentOption.value != paymentOptions[1]) {
         booking.value.id = result.booking?.id;

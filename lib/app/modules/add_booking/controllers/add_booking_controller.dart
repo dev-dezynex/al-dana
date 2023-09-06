@@ -70,7 +70,7 @@ class AddBookingController extends GetxController {
     if (selectedTimeSlot.sId?.isNotEmpty ?? false) {
       booking.value.date = outputDateFormat.format(selectedDate.value);
       booking.value.slot = selectedTimeSlot.sId;
-
+      
       log('Next click');
       log(selectedTimeSlot.sId.toString());
       Get.toNamed(route, arguments: booking.value);

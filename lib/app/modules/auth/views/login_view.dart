@@ -101,6 +101,7 @@ class LoginView extends GetView<AuthController> {
                       ),
                       Obx(
                         () => TextFormField(
+                          keyboardType: TextInputType.number,
                           obscureText: controller.hideLoginPassword.value,
                           controller: controller.passwordController,
                           decoration: InputDecoration(
@@ -134,8 +135,10 @@ class LoginView extends GetView<AuthController> {
                                     !controller.hideLoginPassword.value;
                               },
                               icon: controller.hideLoginPassword.value == false
-                                  ? const Icon(Icons.visibility_off,
-                                      color: Colors.grey,)
+                                  ? const Icon(
+                                      Icons.visibility_off,
+                                      color: Colors.grey,
+                                    )
                                   : const Icon(
                                       Icons.visibility,
                                       color: Colors.grey,

@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -11,6 +13,9 @@ class PaymentSuccessView extends GetView<PaymentPageController> {
   const PaymentSuccessView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    log('Booking id');
+    log(controller.booking.value.toString());
+    log(controller.booking.value.slot ?? '');
     return Scaffold(
       body: SafeArea(
           child: Container(
@@ -31,7 +36,7 @@ class PaymentSuccessView extends GetView<PaymentPageController> {
             const SizedBox(
               height: 5,
             ),
-            Text('Sit back and relax.our superhero will\ncome to you',
+            Text('Your booking has confirmed\nWe will come to you soon',
                 textAlign: TextAlign.center,
                 style: tsRubik(color: textColor10.withOpacity(.5), size: 12)),
             const Spacer(
@@ -48,7 +53,7 @@ class PaymentSuccessView extends GetView<PaymentPageController> {
             ),
             Text(
                 // '${outputDateFormat2.format(inputDateFormat.parse(controller.booking.value.date!))}, ${controller.booking.value.slot}',
-                '${controller.booking.value.date}, ${controller.booking.value.slot}',
+                '${controller.booking.value.date}, ${controller.booking.value.bookingId}',
                 textAlign: TextAlign.center,
                 style: tsRubik(color: textDark40, weight: FontWeight.w400)),
             const Spacer(

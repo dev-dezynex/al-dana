@@ -130,4 +130,6 @@ class UserProvider extends GetConnect {
 
     return UserResult.fromJson(response.body);
   }
+
+  
 }

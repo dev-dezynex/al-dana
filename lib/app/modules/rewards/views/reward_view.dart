@@ -23,6 +23,7 @@ class _RewaardViewState extends State<RewaardView> {
 
   @override
   Widget build(BuildContext context) {
+    final rewardProvider = Provider.of<RewardProvider>(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: primary,
@@ -50,15 +51,16 @@ class _RewaardViewState extends State<RewaardView> {
               const SizedBox(
                 height: 10,
               ),
-              Text(
-                Provider.of<RewardProvider>(context)
-                        .reward
-                        ?.data
-                        ?.rewardPoint
-                        .toString() ??
-                    '',
-                style: const TextStyle(fontSize: 22),
-              )
+              if (rewardProvider.isLoading)
+                const Center(
+                  child: CircularProgressIndicator(),
+                ),
+              if (rewardProvider.hasError) const Text('Failed to load Reward'),
+              if (!rewardProvider.isLoading && !rewardProvider.hasError)
+                Text(
+                  rewardProvider.reward?.data?.rewardPoint.toString() ?? '',
+                  style: const TextStyle(fontSize: 22),
+                )
             ],
           ),
         ),

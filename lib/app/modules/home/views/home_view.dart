@@ -1,12 +1,15 @@
 import 'dart:developer';
 
 import 'package:al_dana/app/modules/home/views/category_view.dart';
+import 'package:al_dana/app/modules/reset_password/views/reset_pasasword_screen.dart';
+import 'package:al_dana/app/modules/rewards/provider/reward_provider.dart';
 import 'package:al_dana/app/modules/rewards/views/reward_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
+import 'package:provider/provider.dart';
 
 import '../../../data/data.dart';
 import '../../../routes/app_pages.dart';
@@ -159,12 +162,24 @@ class HomeView extends GetView<HomeController> {
           //   },
           // ),
           NavItem(
+            title: 'Reset Password',
+            icon: "assets/icons/ic_nav_5.svg",
+            onTap: () {
+              Get.back();
+              Navigator.of(context).push(MaterialPageRoute(
+                builder: (context) => const ResetPasswordScreen(),
+              ));
+            },
+          ),
+          NavItem(
             title: "Rewards",
             icon: "assets/icons/ic_nav_6.svg",
             onTap: () {
               Get.back();
               var common = Common();
               log(common.currentUser.id);
+              Provider.of<RewardProvider>(context, listen: false)
+                  .fetchReward(common.currentUser.id);
               Navigator.of(context).push(MaterialPageRoute(
                 builder: (context) =>
                     RewaardView(customerId: common.currentUser.id),

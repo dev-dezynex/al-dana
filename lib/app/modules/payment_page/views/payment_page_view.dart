@@ -618,8 +618,14 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                       mainAxisAlignment:
                                           MainAxisAlignment.spaceBetween,
                                       children: [
-                                        Text('Grand Total',
+                                        Text(
+                                            controller.booking.value
+                                                        .subscribedPrice >
+                                                    0
+                                                ? 'Total'
+                                                : 'Grand Total',
                                             style: tsPoppins(
+                                              
                                                 weight: FontWeight.w600,
                                                 size: 14,
                                                 color: textDark80)),
@@ -631,6 +637,42 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                                 color: textDark80)),
                                       ],
                                     ),
+                                    if (controller
+                                            .booking.value.subscribedPrice >
+                                        0)
+                                      const Divider(
+                                        color: textDark20,
+                                        thickness: 1,
+                                        height: 20,
+                                      ),
+                                    if (controller
+                                            .booking.value.subscribedPrice >
+                                        0)
+                                      Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.spaceBetween,
+                                        children: [
+                                          Text('Grand Total',
+                                              style: tsPoppins(
+                                                  weight: FontWeight.w600,
+                                                  size: 14,
+                                                  color: textDark80)),
+                                          Text(
+                                              'AED: ${controller.booking.value.subscribedPrice.toStringAsFixed(2)}',
+                                              style: tsPoppins(
+                                                  weight: FontWeight.w600,
+                                                  size: 14,
+                                                  color: textDark80)),
+                                        ],
+                                      ),
+                                    if (controller
+                                            .booking.value.subscribedPrice >
+                                        0)
+                                      const Divider(
+                                        color: textDark20,
+                                        thickness: 1,
+                                        height: 20,
+                                      ),
                                     SizedBox(height: Get.height * .3),
                                   ],
                                 ),

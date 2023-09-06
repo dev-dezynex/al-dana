@@ -11,10 +11,12 @@ class BranchTile extends StatefulWidget {
     this.onTap,
     this.onEdit,
     this.isManage = false,
+    this.isSelected = false,
   }) : super(key: key);
   final Branch branch;
   final GestureTapCallback? onTap, onEdit;
   final bool isManage;
+  final bool isSelected;
   @override
   State<BranchTile> createState() => _BranchTileState();
 }
@@ -36,6 +38,10 @@ class _BranchTileState extends State<BranchTile> {
                   maxWidth: Get.width),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
+                border: Border.all(
+                    color:
+                        widget.isSelected ? greenAppTheme : Colors.transparent,
+                    width: 4),
                 image: DecorationImage(
                   image: NetworkImage(
                       '$domainName${widget.branch.image.toString()}'),
@@ -49,16 +55,19 @@ class _BranchTileState extends State<BranchTile> {
             Positioned.fill(
               child: Container(
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    gradient: LinearGradient(
-                      colors: [
-                        Colors.black.withOpacity(.5),
-                        Colors.black.withOpacity(.5),
-                        Colors.black.withOpacity(.7)
-                      ],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                    )),
+                  borderRadius: BorderRadius.circular(10),
+                  gradient: !widget.isSelected
+                      ? LinearGradient(
+                          colors: [
+                            Colors.black.withOpacity(.5),
+                            Colors.black.withOpacity(.5),
+                            Colors.black.withOpacity(.7)
+                          ],
+                          begin: Alignment.topCenter,
+                          end: Alignment.bottomCenter,
+                        )
+                      : null,
+                ),
                 padding: const EdgeInsets.all(4),
                 child: Stack(
                   children: [

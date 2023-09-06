@@ -208,10 +208,12 @@ class SignUp extends GetView<AuthController> {
                                     controller:
                                         controller.signUpPasswordController,
                                     textAlignVertical: TextAlignVertical.center,
-                                    keyboardType: TextInputType.text,
+                                    keyboardType: TextInputType.number,
                                     validator: (String? value) {
                                       if (value == null || value.isEmpty) {
                                         return "Required password";
+                                      } else if (value.length < 6) {
+                                        return "Password should have atleast 6 digits";
                                       } else {
                                         return null;
                                       }
@@ -268,10 +270,12 @@ class SignUp extends GetView<AuthController> {
                                     controller:
                                         controller.confirmPasswordController,
                                     textAlignVertical: TextAlignVertical.center,
-                                    keyboardType: TextInputType.text,
+                                    keyboardType: TextInputType.number,
                                     validator: (String? value) {
                                       if (value == null || value.isEmpty) {
                                         return "Required confirm password";
+                                      } else if (value.length < 6) {
+                                        return "Password should have atleast 6 digits";
                                       } else {
                                         return null;
                                       }

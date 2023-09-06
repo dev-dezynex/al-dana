@@ -60,7 +60,8 @@ class BranchView extends GetView<BranchController> {
                               width: Get.width * .8,
                               child: Container(
                                 padding: const EdgeInsets.all(1),
-                                child: BranchTile(
+                                child: Obx(
+                                  () => BranchTile(
                                     onTap: () {
                                       // controller.tileTapped.value =
                                       //     !controller.tileTapped.value;
@@ -72,7 +73,13 @@ class BranchView extends GetView<BranchController> {
                                     },
                                     branch: controller.branchResult.value
                                             .branchList?[i] ??
-                                        Branch()),
+                                        Branch(),
+                                    isSelected:
+                                        controller.selectedBranch.value.name ==
+                                            controller.branchResult.value
+                                                .branchList?[i].name,
+                                  ),
+                                ),
                               ),
                             );
                           },

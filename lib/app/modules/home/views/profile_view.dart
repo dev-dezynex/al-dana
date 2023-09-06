@@ -1,8 +1,10 @@
+import 'package:al_dana/app/modules/rewards/provider/reward_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'package:get/get.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:provider/provider.dart';
 
 import '../../../data/data.dart';
 import '../../../routes/app_pages.dart';
@@ -14,6 +16,7 @@ class ProfileView extends GetView<HomeController> {
 
   @override
   Widget build(BuildContext context) {
+    final rewardProvider = Provider.of<RewardProvider>(context);
     return SingleChildScrollView(
       child: Form(
         key: formKeyProfile,
@@ -154,14 +157,40 @@ class ProfileView extends GetView<HomeController> {
                         borderRadius: BorderRadius.circular(8)),
                     child: Column(
                       children: [
-                        Text('11618',
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                            textAlign: TextAlign.center,
-                            style: tsPoppins(
-                                size: 24,
-                                weight: FontWeight.w600,
-                                color: white)),
+                        // Text('11618',
+                        //     maxLines: 1,
+                        //     overflow: TextOverflow.ellipsis,
+                        //     textAlign: TextAlign.center,
+                        //     style: tsPoppins(
+                        //         size: 24,
+                        //         weight: FontWeight.w600,
+                        //         color: white)),
+                        if (rewardProvider.isLoading)
+                          const CircularProgressIndicator(
+                            color: white,
+                          ),
+                        if (rewardProvider.hasError)
+                          Text('0',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
+                              style: tsPoppins(
+                                  size: 24,
+                                  weight: FontWeight.w600,
+                                  color: white)),
+                        if (!rewardProvider.isLoading &&
+                            !rewardProvider.hasError)
+                          Text(
+                              rewardProvider.reward?.data?.rewardPoint
+                                      .toString() ??
+                                  '',
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
+                              style: tsPoppins(
+                                  size: 24,
+                                  weight: FontWeight.w600,
+                                  color: white)),
                         Text('Total Points',
                             maxLines: 1,
                             style: tsPoppins(
