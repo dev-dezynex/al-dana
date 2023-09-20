@@ -82,3 +82,6 @@ const String apiResetPassword = "${apiBase}customer/changePassword";
 
 //Rewards
 const String apiGetRewards = "${apiBase}customer/getWallet";
+
+//Extra Charge
+const String apiGetExtraCharge = "${apiBase}customer/listExtraCharge";

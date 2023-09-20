@@ -114,8 +114,16 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                                     ? controller.booking.value
                                                         .subscribedPrice
                                                         .toStringAsFixed(2)
-                                                    : controller
-                                                        .booking.value.price
+                                                    : (controller.booking.value
+                                                                .price +
+                                                            controller
+                                                                .booking
+                                                                .value
+                                                                .extraCharge +
+                                                            controller
+                                                                .booking
+                                                                .value
+                                                                .spareAmount)
                                                         .toStringAsFixed(2),
                                                 style: tsPoppins(
                                                     size: 18,
@@ -619,18 +627,37 @@ class PaymentPageView extends GetView<PaymentPageController> {
                                           MainAxisAlignment.spaceBetween,
                                       children: [
                                         Text(
+                                          'Delivery Charge',
+                                          style: tsPoppins(
+                                              weight: FontWeight.w400,
+                                              size: 14,
+                                              color: textDark80),
+                                        ),
+                                        Text(
+                                          "AED: ${controller.deliveryCharge.value}",
+                                          style: tsPoppins(
+                                              weight: FontWeight.w400,
+                                              size: 14,
+                                              color: textDark80),
+                                        ),
+                                      ],
+                                    ),
+                                    Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
                                             controller.booking.value
                                                         .subscribedPrice >
                                                     0
                                                 ? 'Total'
                                                 : 'Grand Total',
                                             style: tsPoppins(
-                                              
                                                 weight: FontWeight.w600,
                                                 size: 14,
                                                 color: textDark80)),
                                         Text(
-                                            'AED: ${controller.booking.value.price.toStringAsFixed(2)}',
+                                            'AED: ${(controller.booking.value.price + controller.booking.value.extraCharge + controller.booking.value.spareAmount).toStringAsFixed(2)}',
                                             style: tsPoppins(
                                                 weight: FontWeight.w600,
                                                 size: 14,

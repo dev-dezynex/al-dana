@@ -51,7 +51,7 @@ class Booking {
   late bool autoSpareSelect;
   late String couponCode;
   late String couponId;
-  late double price, subscribedPrice, discountPrice;
+  late double price, subscribedPrice, discountPrice, spareAmount, extraCharge;
 
   Booking({
     this.id,
@@ -70,6 +70,8 @@ class Booking {
     this.couponCode = '',
     this.couponId = '',
     this.price = 0.0,
+    this.spareAmount = 0.0,
+    this.extraCharge = 0.0,
     this.subscribedPrice = 0.0,
     this.discountPrice = 0.0,
   });
@@ -172,7 +174,7 @@ class Booking {
     if (mode != null) {
       data['serviceModeId'] = mode?.id;
     }
-    data['totalAmount'] = price;
+    data['totalAmount'] = double.parse((price + spareAmount + extraCharge).toStringAsFixed(2));
     if (couponCode.isNotEmpty) {
       data['couponId'] = couponId;
     }

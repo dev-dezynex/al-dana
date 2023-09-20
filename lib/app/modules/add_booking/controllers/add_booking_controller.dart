@@ -63,7 +63,7 @@ class AddBookingController extends GetxController {
     for (Spare spare in booking.value.spares!) {
       spareTotal += spare.price!;
     }
-    booking.value.price = booking.value.price + spareTotal;
+    booking.value.spareAmount = spareTotal;
   }
 
   onNextClick(String route) {

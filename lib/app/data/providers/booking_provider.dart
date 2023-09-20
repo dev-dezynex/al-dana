@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:developer';
 
+import 'package:al_dana/app/data/models/extra_charge_model.dart';
 import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
@@ -25,6 +26,27 @@ class BookingProvider extends GetConnect {
     log('Vehicle response hklhlkhk');
     // log(response.body["data"][0]["vehicleId"]["image"].toString());
     return BookingResult.listFromJson(response.body);
+  }
+
+  Future<ExtraCharge> getExtraCharge(String modeId) async {
+    Auth auth = Auth();
+    Map<String, String> qParam = {
+      "filter[serviceModeId]": modeId,
+    };
+    final response = await get(
+      apiGetExtraCharge,
+      headers: auth.requestHeaders,
+      query: qParam,
+    );
+    log('--------------------------------------------------Extra charge--------------------------------------------------');
+    // log(response.statusCode.toString());
+    // log(Booking().mode?.id ?? '');
+    // log(response.body);
+    log('--------------------------------------------------Extra charge--------------------------------------------------');
+    if (response.statusCode == 401) {
+      auth.authFailed(response.body['message']);
+    }
+    return ExtraCharge.fromJson(response.body);
   }
 
   Future<BookingResult> postBooking({required Booking booking}) async {
@@ -65,6 +87,4 @@ class BookingProvider extends GetConnect {
 
     return BookingResult.fromJson(response.body);
   }
-
-  
 }

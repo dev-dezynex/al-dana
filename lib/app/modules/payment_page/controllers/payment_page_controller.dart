@@ -1,6 +1,7 @@
 import 'dart:developer';
 
 import 'package:al_dana/app/data/data.dart';
+import 'package:al_dana/app/data/models/extra_charge_model.dart';
 import 'package:al_dana/app/data/providers/reward_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -22,6 +23,9 @@ class PaymentPageController extends GetxController {
   var isRewardApplied = false.obs;
   var walletResult = WalletResult().obs;
   var booking = Booking().obs;
+  var extraCharge = ExtraCharge().obs;
+  var isDeliveryChargeIncluded = false.obs;
+  var deliveryCharge = "".obs;
   final subscriptionController = Get.put(SubscriptionPageController());
   @override
   void onInit() {
@@ -32,6 +36,7 @@ class PaymentPageController extends GetxController {
 
   @override
   void onClose() {
+    booking.value = Booking();
     _razorpay.clear();
     super.onClose();
   }
@@ -42,7 +47,36 @@ class PaymentPageController extends GetxController {
     isLoading(true);
     await getWalletPoints();
     paymentGatwayListeners();
+    getExtraCharge();
     isLoading(false);
+  }
+
+  getExtraCharge() async {
+    log('Extra charge Service mode - ${booking.value.mode!.title}');
+    log(booking.value.mode?.id ?? '');
+
+    extraCharge.value =
+        await BookingProvider().getExtraCharge(booking.value.mode?.id ?? '');
+    var distance = calculateDistance(
+      booking.value.branch!.latitude,
+      booking.value.branch!.longitude,
+      booking.value.address!.latitude,
+      booking.value.address!.longitude,
+    );
+    var amount = double.parse(extraCharge.value.data?[0].amount ?? '0');
+    var minimumDistance =
+        double.parse(extraCharge.value.data?[0].minimumDistance ?? '0');
+    var range = double.parse(extraCharge.value.data?[0].range ?? '0');
+    if (distance > minimumDistance) {
+      var charge = 0.0;
+
+      isDeliveryChargeIncluded.value = true;
+      charge = ((distance - minimumDistance) * amount) / range;
+      // booking.value.price += charge;
+      booking.value.extraCharge = double.parse(charge.toStringAsFixed(0));
+      deliveryCharge.value = charge.toStringAsFixed(0);
+    }
+    booking.refresh();
   }
 
   getWalletPoints() async {
