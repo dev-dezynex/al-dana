@@ -35,7 +35,9 @@ class BookingTile extends StatelessWidget {
                 Text(
                   booking.packageList != null && booking.packageList!.isNotEmpty
                       ? 'Packages'
-                      : 'Services',
+                      : booking.services != null && booking.services!.isNotEmpty
+                          ? 'Services'
+                          : '',
                   style: tsPoppins(
                     weight: FontWeight.w600,
                     color: textDark80,
@@ -87,25 +89,28 @@ class BookingTile extends StatelessWidget {
                             );
                           });
                     }),
-                if (booking.packageList != null &&
-                    booking.packageList!.isNotEmpty)
+                if (booking.services != null && booking.services!.isNotEmpty)
                   Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        'Services',
-                        style: tsPoppins(
-                          weight: FontWeight.w600,
-                          color: textDark80,
-                          size: 18,
+                      if (booking.packageList != null &&
+                          booking.packageList!.isNotEmpty)
+                        Text(
+                          'Services',
+                          style: tsPoppins(
+                            weight: FontWeight.w600,
+                            color: textDark80,
+                            size: 18,
+                          ),
                         ),
-                      ),
-                      Container(
-                          height: 2,
-                          width: 30,
-                          decoration: BoxDecoration(
-                              color: accent60,
-                              borderRadius: BorderRadius.circular(100))),
+                      if (booking.packageList != null &&
+                          booking.packageList!.isNotEmpty)
+                        Container(
+                            height: 2,
+                            width: 30,
+                            decoration: BoxDecoration(
+                                color: accent60,
+                                borderRadius: BorderRadius.circular(100))),
                     ],
                   ),
                 ListView.builder(

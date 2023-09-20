@@ -226,6 +226,7 @@ class SignUp extends GetView<AuthController> {
                                       contentPadding:
                                           const EdgeInsets.only(left: 0),
                                       labelText: "Enter Password",
+                                      hintText: 'Min 6 digits',
                                       labelStyle: tsPoppins(
                                           size: 14,
                                           weight: FontWeight.w400,
@@ -288,6 +289,7 @@ class SignUp extends GetView<AuthController> {
                                       contentPadding:
                                           const EdgeInsets.only(left: 0),
                                       labelText: "Confirm Password",
+                                      hintText: 'Min 6 digits',
                                       labelStyle: tsPoppins(
                                           size: 14,
                                           weight: FontWeight.w400,
