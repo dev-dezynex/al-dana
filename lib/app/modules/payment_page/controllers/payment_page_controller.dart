@@ -71,8 +71,7 @@ class PaymentPageController extends GetxController {
       var charge = 0.0;
 
       isDeliveryChargeIncluded.value = true;
-      charge = ((distance - minimumDistance) * amount) / range;
-      // booking.value.price += charge;
+      charge = (((distance - minimumDistance) /range).ceil()) * amount;
       booking.value.extraCharge = double.parse(charge.toStringAsFixed(0));
       deliveryCharge.value = charge.toStringAsFixed(0);
     }
