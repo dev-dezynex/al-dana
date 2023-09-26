@@ -19,7 +19,13 @@ class AddBookingController extends GetxController {
   void onInit() {
     super.onInit();
     booking.value = Get.arguments;
-
+    log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
+    log('ADDRESS');
+    log("Branch latitude ${booking.value.branch?.latitude}");
+    log("Branch longitude ${booking.value.branch?.longitude}");
+    log("Address latitude ${booking.value.address?.latitude}");
+    log("Address longitude ${booking.value.address?.longitude}");
+    log('+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++');
     // log("booking controller ${jsonEncode(Get.arguments)}");
     getDetails();
   }
@@ -29,8 +35,8 @@ class AddBookingController extends GetxController {
     dateController.text = outputDateFormat.format(selectedDate.value);
 
     getTimeSlots(dateController.text);
-    log('date');
-    log(selectedDate.value.toString());
+    // log('date');
+    // log(selectedDate.value.toString());
   }
 
   void getDetails() {
@@ -70,9 +76,9 @@ class AddBookingController extends GetxController {
     if (selectedTimeSlot.sId?.isNotEmpty ?? false) {
       booking.value.date = outputDateFormat.format(selectedDate.value);
       booking.value.slot = selectedTimeSlot.sId;
-      
-      log('Next click');
-      log(selectedTimeSlot.sId.toString());
+
+      // log('Next click');
+      // log(selectedTimeSlot.sId.toString());
       Get.toNamed(route, arguments: booking.value);
     } else {
       Get.snackbar('Error', 'Please choose a time slot to continue.',

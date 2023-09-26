@@ -675,6 +675,18 @@ spareSelectionBottomSheet({
                 ),
               ),
             SizedBox(height: Get.height * 0.020),
+            Obx(
+              () => Visibility(
+                visible: isAutoSelect.value,
+                child: TextButton(
+                  onPressed: isAutoSelect.value ? onSubmit : null,
+                  child: const Text(
+                    'Skip',
+                    style: TextStyle(color: greenAppTheme, fontSize: 16),
+                  ),
+                ),
+              ),
+            ),
             Container(
               margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
               child: Obx(

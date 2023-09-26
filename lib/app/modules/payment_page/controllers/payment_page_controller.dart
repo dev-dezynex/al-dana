@@ -25,7 +25,7 @@ class PaymentPageController extends GetxController {
   var booking = Booking().obs;
   var extraCharge = ExtraCharge().obs;
   var isDeliveryChargeIncluded = false.obs;
-  var deliveryCharge = "".obs;
+  var deliveryCharge = "0.0".obs;
   final subscriptionController = Get.put(SubscriptionPageController());
   @override
   void onInit() {
@@ -63,14 +63,19 @@ class PaymentPageController extends GetxController {
       booking.value.address!.latitude,
       booking.value.address!.longitude,
     );
-    var amount = double.parse(extraCharge.value.data?[0].amount ?? '0');
-    var minimumDistance =
-        double.parse(extraCharge.value.data?[0].minimumDistance ?? '0');
-    var range = double.parse(extraCharge.value.data?[0].range ?? '0');
+    var amount = extraCharge.value.data!.isNotEmpty
+        ? double.parse(extraCharge.value.data?[0].amount ?? '0')
+        : 0.0;
+    var minimumDistance = extraCharge.value.data!.isNotEmpty
+        ? double.parse(extraCharge.value.data?[0].minimumDistance ?? '0')
+        : 0.0;
+    var range = extraCharge.value.data!.isNotEmpty
+        ? double.parse(extraCharge.value.data?[0].range ?? '0')
+        : 0.0;
     if (distance > minimumDistance) {
       var charge = 0.0;
       isDeliveryChargeIncluded.value = true;
-      charge = (((distance - minimumDistance) /range).ceil()) * amount;
+      charge = (((distance - minimumDistance) / range).ceil()) * amount;
       booking.value.extraCharge = double.parse(charge.toStringAsFixed(0));
       deliveryCharge.value = charge.toStringAsFixed(0);
     }

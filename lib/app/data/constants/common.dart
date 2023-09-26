@@ -57,7 +57,7 @@ class Auth {
   Map<String, String> requestHeaders = {
     'Authorization': 'Bearer ${storage.read(auth)}',
   };
-  
+
   authFailed(message) {
     Get.dialog(
       WillPopScope(
@@ -94,8 +94,13 @@ class Auth {
 double calculateDistance(lat1, lon1, lat2, lon2) {
   var p = 0.017453292519943295;
   var c = cos;
+
   var a = 0.5 -
       c((lat2 - lat1) * p) / 2 +
       c(lat1 * p) * c(lat2 * p) * (1 - c((lon2 - lon1) * p)) / 2;
-  return 12742 * asin(sqrt(a));
+  if (lat2 == 0.0 && lon2 == 0.0) {
+    return 0.0;
+  } else {
+    return 12742 * asin(sqrt(a));
+  }
 }
