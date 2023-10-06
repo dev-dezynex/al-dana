@@ -1,5 +1,5 @@
 // change the domain name if you want
-const String domainName = "http://15.206.212.160:3000";
+const String domainName = "http://52.66.28.56:3000";
 
 const String apiVersion = "/api/v1/";
 

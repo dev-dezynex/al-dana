@@ -3,7 +3,6 @@ import 'dart:developer';
 import 'package:al_dana/app/data/constants/api_routes.dart';
 import 'package:get/get.dart';
 import 'package:http/http.dart' as http;
-
 import '../constants/common.dart';
 import '../constants/keys.dart';
 
