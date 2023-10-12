@@ -21,12 +21,14 @@ class HomeView extends GetView<HomeController> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
   @override
   Widget build(BuildContext context) {
+    final w = MediaQuery.of(context).size.width;
+    final h = MediaQuery.of(context).size.height;
     return Scaffold(
       key: _scaffoldKey,
       backgroundColor: bgColor1,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        centerTitle: true,
+        centerTitle: false,
         systemOverlayStyle: const SystemUiOverlayStyle(
           statusBarColor: Colors.transparent,
           statusBarIconBrightness: Brightness.dark,
@@ -34,7 +36,47 @@ class HomeView extends GetView<HomeController> {
         ),
         backgroundColor: primary,
         automaticallyImplyLeading: false,
-        title: const Text('Al Dana Service Station'),
+        title: GestureDetector(
+          onTap: () {
+            Get.offAllNamed(Routes.BRANCH);
+          },
+          child: Row(
+            children: [
+              const Icon(
+                Icons.place,
+                color: greenAppTheme,
+              ),
+              const SizedBox(
+                width: 5,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    width: w * 0.4,
+                    child: Text(
+                      Common().selectedBranch.name.capitalizeFirst.toString(),
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(fontSize: 12),
+                    ),
+                  ),
+                  SizedBox(
+                    width: w * 0.4,
+                    child: Text(
+                      Common()
+                          .selectedBranch
+                          .location
+                          .capitalizeFirst
+                          .toString(),
+                      overflow: TextOverflow.ellipsis,
+                      style: const TextStyle(fontSize: 12),
+                    ),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
         // title: Row(
         //   children: [
         //     const Icon(

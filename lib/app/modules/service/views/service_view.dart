@@ -13,7 +13,6 @@ class ServiceView extends GetView<ServiceController> {
   const ServiceView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    
     String vatPercentage =
         Provider.of<VATProvider>(context).vat?.data?[0].percentage.toString() ??
             '';
@@ -168,9 +167,10 @@ class ServiceView extends GetView<ServiceController> {
                           height: 2,
                           width: 20,
                           decoration: BoxDecoration(
-                              color: accent60,
-                              borderRadius: BorderRadius.circular(100)),
-                        )
+                            color: accent60,
+                            borderRadius: BorderRadius.circular(100),
+                          ),
+                        ),
                       ],
                     ),
                   ),
@@ -188,7 +188,7 @@ class ServiceView extends GetView<ServiceController> {
                                   .serviceResult.value.serviceList.length,
                               itemBuilder: (con, i) {
                                 return ServiceTile(
-                                  onTap: () { 
+                                  onTap: () {
                                     controller.selectedService.value =
                                         controller
                                             .serviceResult.value.serviceList[i];
