@@ -32,7 +32,8 @@ class SplashController extends GetxController {
   }
 
   void chackInstalation() async {
-    await AppSetup.setup();
+    //Note - To work for iOS i commented this section
+    // await AppSetup.setup();
     initSplash();
   }
 }

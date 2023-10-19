@@ -169,14 +169,16 @@ class HomeController extends GetxController {
   //for profile
 
   pickImage(ImageSource sourse) async {
-    var image = (await FileProvider().pickImage(imageSource: sourse))!;
+    var image = (await FileProvider().pickImage(imageSource: sourse));
 
-    print('file picked ${file.value.path.split('/').last}');
+    if (image != null) {
+      print('file picked ${file.value.path.split('/').last}');
 
-    file.value = (await FileProvider().cropImage(image))!;
+      file.value = (await FileProvider().cropImage(image))!;
 
-    if (file.value.path.isNotEmpty) {
-      updateProfile();
+      if (file.value.path.isNotEmpty) {
+        updateProfile();
+      }
     }
   }
 

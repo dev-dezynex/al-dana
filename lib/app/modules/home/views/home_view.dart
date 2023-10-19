@@ -346,6 +346,10 @@ class HomeView extends GetView<HomeController> {
               ),
               IconButton(
                   onPressed: () {
+                    var common = Common();
+                    log(common.currentUser.id);
+                    Provider.of<RewardProvider>(context, listen: false)
+                        .fetchReward(common.currentUser.id);
                     controller.bottomBarIndex.value = 2;
                   },
                   icon: SvgPicture.asset(
