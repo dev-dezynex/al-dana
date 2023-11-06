@@ -11,7 +11,6 @@ class ServiceDetailsView extends GetView<ServiceDetailsController> {
   const ServiceDetailsView({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    ;
     String vatPercentage =
         Provider.of<VATProvider>(context).vat?.data?[0].percentage.toString() ??
             '';
@@ -165,22 +164,22 @@ class ServiceDetailsView extends GetView<ServiceDetailsController> {
                     child:
                         VehicleTile(vehicle: controller.booking.value.vehicle!),
                   ),
-                  if (controller.booking.value.packageList!.isNotEmpty)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Obx(() => PackageTile(
-                            package: controller.booking.value.packageList![0],
-                            isSelected: true,
-                          )),
-                    ),
-                  if (controller.booking.value.services!.isNotEmpty)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10.0),
-                      child: Obx(() => ServiceTile(
-                            service: controller.booking.value.services![0],
-                            isSelected: true,
-                          )),
-                    ),
+                  // if (controller.booking.value.packageList!.isNotEmpty)
+                  //   Padding(
+                  //     padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  //     child: Obx(() => PackageTile(
+                  //           package: controller.booking.value.packageList![0],
+                  //           isSelected: true,
+                  //         )),
+                  //   ),
+                  // if (controller.booking.value.services!.isNotEmpty)
+                  //   Padding(
+                  //     padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  //     child: Obx(() => ServiceTile(
+                  //           service: controller.booking.value.services![0],
+                  //           isSelected: true,
+                  //         )),
+                  //   ),
                   Container(
                     padding: const EdgeInsets.symmetric(
                         horizontal: 20, vertical: 10),
@@ -201,37 +200,49 @@ class ServiceDetailsView extends GetView<ServiceDetailsController> {
                     ),
                   ),
                   Obx(
-                    () => GridView.builder(
-                        shrinkWrap: true,
-                        scrollDirection: Axis.vertical,
-                        physics: const NeverScrollableScrollPhysics(),
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 10, vertical: 2),
-                        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                          crossAxisCount: Get.width ~/ 166,
-                          crossAxisSpacing: 8,
-                          mainAxisSpacing: 8,
-                          childAspectRatio: 1 / 1,
-                        ),
-                        itemCount: controller
-                            .extraServiceResult.value.serviceList.length,
-                        itemBuilder: (con, i) {
-                          return ServiceTile2(
-                            onTap: () {
-                              controller.addExtraService(controller
-                                  .extraServiceResult.value.serviceList[i]);
-                            },
-                            service: controller
-                                .extraServiceResult.value.serviceList[i],
-                            isSelected: (controller.booking.value.services!
-                                .contains(controller
-                                    .extraServiceResult.value.serviceList[i])),
-                            onChanged: (bool? c) {
-                              controller.addExtraService(controller
-                                  .extraServiceResult.value.serviceList[i]);
-                            },
-                          );
-                        }),
+                    () => controller
+                            .extraServiceResult.value.serviceList.isEmpty
+                        ? const Center(
+                            child: Text(
+                              'Sorry, No extra services available.',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.bold,
+                              ),
+                            ),
+                          )
+                        : GridView.builder(
+                            shrinkWrap: true,
+                            scrollDirection: Axis.vertical,
+                            physics: const NeverScrollableScrollPhysics(),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 2),
+                            gridDelegate:
+                                SliverGridDelegateWithFixedCrossAxisCount(
+                              crossAxisCount: Get.width ~/ 166,
+                              crossAxisSpacing: 8,
+                              mainAxisSpacing: 8,
+                              childAspectRatio: 1 / 1,
+                            ),
+                            itemCount: controller
+                                .extraServiceResult.value.serviceList.length,
+                            itemBuilder: (con, i) {
+                              return ServiceTile2(
+                                onTap: () {
+                                  controller.addExtraService(controller
+                                      .extraServiceResult.value.serviceList[i]);
+                                },
+                                service: controller
+                                    .extraServiceResult.value.serviceList[i],
+                                isSelected: (controller.booking.value.services!
+                                    .contains(controller.extraServiceResult
+                                        .value.serviceList[i])),
+                                onChanged: (bool? c) {
+                                  controller.addExtraService(controller
+                                      .extraServiceResult.value.serviceList[i]);
+                                },
+                              );
+                            }),
                   ),
                   SizedBox(height: Get.height * .2),
                 ],

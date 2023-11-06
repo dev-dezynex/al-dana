@@ -12,6 +12,7 @@ class ServiceController extends GetxController {
   var serviceResult = ServiceResult().obs;
   var packageResult = PackageResult().obs;
   var selectedService = Service(spareCategory: SpareCategory()).obs;
+  var selectedServiceList = <Service>[].obs;
   var selectedPackage = PackageModel().obs;
   var selectedCategory = Category().obs;
   var isServiceSelected = false.obs;
@@ -20,6 +21,7 @@ class ServiceController extends GetxController {
   var packageId = ''.obs;
   var isSelected = false.obs;
   var selectedMode = ServiceMode().obs;
+  var modeList = <ServiceMode>[].obs;
   @override
   void onInit() {
     super.onInit();
@@ -32,6 +34,7 @@ class ServiceController extends GetxController {
     isLoading(true);
     await getServices();
     await getPackages();
+    await getModeList();
     isLoading(false);
   }
 
@@ -48,11 +51,27 @@ class ServiceController extends GetxController {
     serviceResult.refresh();
   }
 
+  getModeList() async {
+    modeList.value = (await ServiceModeProvider().getModes()).serviceModeList!;
+    modeList.refresh();
+    log('modelist ${modeList.length}');
+  }
+
   void chooseMode(BuildContext context) {
     if (isSelected.value) {
       RxList<ServiceMode> serviceModeList = <ServiceMode>[].obs;
       if (isServiceSelected.value) {
-        serviceModeList.value = selectedService.value.serviceModeList;
+        if (selectedServiceList.length > 1) {
+          int index =
+              modeList.indexWhere((element) => element.title == "DRIVE-THRU");
+          if (index != -1) {
+            serviceModeList.value = [modeList[index]];
+          } else {
+            serviceModeList.value = modeList;
+          }
+        } else {
+          serviceModeList.value = selectedServiceList[0].serviceModeList;
+        }
       } else {
         serviceModeList.value = selectedPackage.value.serviceModeList!;
       }
@@ -94,7 +113,8 @@ class ServiceController extends GetxController {
         address: Address(),
         price: price.value);
     if (isServiceSelected.value) {
-      booking.services!.add(selectedService.value);
+      // booking.services!.add(selectedService.value);
+      booking.services = selectedServiceList;
     } else {
       booking.packageList!.add(selectedPackage.value);
     }

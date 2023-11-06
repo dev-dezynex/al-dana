@@ -3,12 +3,12 @@ import 'package:al_dana/app/modules/invoice/provider/invoice_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:pdf/widgets.dart' as pw;
 import '../../../data/providers/vat_provider.dart';
+import '../api/pdf_api.dart';
+import '../api/pdf_invoice_api.dart';
 import '../widgets/invoice_divider.dart';
 import '../widgets/invoice_spacer.dart';
 import '../widgets/invoice_split.dart';
-import 'package:printing/printing.dart';
 
 class InvoiceView extends StatefulWidget {
   const InvoiceView({super.key});
@@ -40,19 +40,6 @@ class _InvoiceViewState extends State<InvoiceView> {
     final vehicleDetails = invoiceDetails?.bookingId?.vehicleId;
     double vatPercentage = double.parse(
         Provider.of<VATProvider>(context).vat!.data![0].percentage.toString());
-
-    Future<void> generatePDFAndOpen() async {
-      final pdf = pw.Document();
-      pdf.addPage(pw.Page(
-          build: (pw.Context context) =>
-              pw.Center(child: pw.Text('Hello, this is my PDF!'))));
-
-      // Generate the PDF
-      final pdfData = await pdf.save();
-
-      // Open the PDF with the default PDF viewer app
-      await Printing.sharePdf(bytes: pdfData, filename: 'example.pdf');
-    }
 
     return Scaffold(
       backgroundColor: bgColor1,
@@ -350,26 +337,18 @@ class _InvoiceViewState extends State<InvoiceView> {
                         ),
                       ),
                       const InvoiceSpacer(),
-                      // Align(
-                      //   alignment: Alignment.centerRight,
-                      //   child: Padding(
-                      //     padding: const EdgeInsets.only(right: 20, bottom: 20),
-                      //     child: ElevatedButton(
-                      //         style: ElevatedButton.styleFrom(
-                      //             backgroundColor: primary),
-                      //         onPressed: () {
-                      //           generatePDFAndOpen();
-                      //         },
-                      //         child: Row(
-                      //           mainAxisSize: MainAxisSize.min,
-                      //           children: const [
-                      //             Icon(Icons.picture_as_pdf),
-                      //             SizedBox(width: 5),
-                      //             Text('Download'),
-                      //           ],
-                      //         )),
-                      //   ),
-                      // )
+                      ElevatedButton(
+                        onPressed: () async {
+                          
+                          final pdfFile = await PDFInvoiceApi.generate(
+                            invoice,
+                            vatPercentage,
+                          );
+                          PdfApi.openFile(pdfFile);
+                        },
+                        child: const Text('Download PDF'),
+                      ),
+                      const InvoiceSpacer(),
                     ],
                   ),
                 ),
