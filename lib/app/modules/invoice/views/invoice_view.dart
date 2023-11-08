@@ -338,8 +338,9 @@ class _InvoiceViewState extends State<InvoiceView> {
                       ),
                       const InvoiceSpacer(),
                       ElevatedButton(
+                        style:
+                            ElevatedButton.styleFrom(backgroundColor: primary),
                         onPressed: () async {
-                          
                           final pdfFile = await PDFInvoiceApi.generate(
                             invoice,
                             vatPercentage,
