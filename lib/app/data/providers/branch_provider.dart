@@ -1,12 +1,8 @@
-import 'dart:convert';
 import 'dart:developer';
-import 'dart:io';
 
-import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 
 import '../data.dart';
-import '../models/branch_model.dart';
 
 class BranchProvider extends GetConnect {
   // Future<BranchResult> getDummyData() async {

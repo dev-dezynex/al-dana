@@ -38,7 +38,7 @@ class BrandResult {
 }
 
 class Brand {
-  late String id, title,desc, image;
+  late String id, title, desc, image;
   // late List<Variant>? variantList;
 
   Brand({this.id = '', this.title = '', this.image = ''});
@@ -46,8 +46,8 @@ class Brand {
   Brand.fromJson(Map<String, dynamic> json) {
     id = json['_id'];
     title = json['title'];
-    desc = json['description']??'';
-    image = json['image']??'';
+    desc = json['description'] ?? '';
+    image = json['image'] ?? '';
     // if (json['variant'] != null) {
     //   variantList = <Variant>[];
     //   json['variant'].forEach((e) {
